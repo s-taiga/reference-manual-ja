@@ -1,12 +1,14 @@
 import Verso.Genre.Manual
 
 import Manual.Meta
+import Manual.BuiltInTypes.String
+
+open Manual.FFIDocType
 
 open Verso.Genre Manual
 
 set_option pp.rawOnError true
 
-example := Char
 
 #doc (Manual) "Built-In Types" =>
 
@@ -50,44 +52,6 @@ In monomorphic contexts, characters are represented as 32-bit immediate values. 
 
 {docstring Char.isWhitespace}
 
-# Strings
-
-
-{docstring String}
-
-## Syntax
-
-Lean has two kinds of string literals: ordinary string literals and raw string literals.
-
-
-- Gaps
-- Raw strings
-- Valid escape codes
-
-## Run-Time Representation
-
-Strings are represented as arrays of bytes, encoded in UTF-8.
-
-## Logical Model
-
-The logical model of strings in Lean is as a structure that contains a single field, which is a list of characters.
-
-## API Reference
-
-### Positions
-
-{docstring String.Pos}
-
-### Iterators
-
-{docstring String.Iterator}
-
-{docstring String.iter}
-
-{docstring String.Iterator.hasNext}
-
-{docstring String.Iterator.next}
-
-{docstring String.Iterator.atEnd}
+{include 0 Manual.BuiltInTypes.String}
 
 # Arrays

@@ -12,3 +12,4 @@ Outline:
 
  * Describe the roles of the kernel, the interpreter, the compiler, the elaborator, and how they interact
  * Sketch the pipeline (parser -> command elaborator (with macro expansion) -> term elaborator (with macro expansion) -> ...
+ * Cost model for programs - what data is present at which stage?
