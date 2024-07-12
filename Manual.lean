@@ -2,6 +2,7 @@ import Verso.Genre.Manual
 
 import Manual.Intro
 import Manual.Elaboration
+import Manual.Language
 import Manual.BuiltInTypes
 
 open Verso.Genre Manual
@@ -17,6 +18,8 @@ authors := ["Lean Developers"]
 {include Manual.Intro}
 
 {include Manual.Elaboration}
+
+{include Manual.Language}
 
 {include Manual.BuiltInTypes}
 

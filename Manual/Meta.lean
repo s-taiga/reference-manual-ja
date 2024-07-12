@@ -10,7 +10,7 @@ import Verso.Code
 import SubVerso.Highlighting
 
 open Lean Elab
-open Verso ArgParse Doc Elab Genre.Manual Html Code
+open Verso ArgParse Doc Elab Genre.Manual Html Code Highlighted.WebAssets
 open SubVerso.Highlighting Highlighted
 
 namespace Manual
@@ -117,6 +117,8 @@ def lean.descr : BlockDescr where
         pure <| .seq #[← go b, .raw "\n"]
   extraCss := [highlightingStyle]
   extraJs := [highlightingJs]
+  extraJsFiles := [("popper.js", popper), ("tippy.js", tippy)]
+  extraCssFiles := [("tippy-border.css", tippy.border.css)]
   toHtml :=
     open Verso.Output.Html in
     some <| fun _ _ _ data _ => do
@@ -125,7 +127,7 @@ def lean.descr : BlockDescr where
         HtmlT.logError <| "Couldn't deserialize Lean code while rendering HTML: " ++ err
         pure .empty
       | .ok (hl : Highlighted) =>
-        pure <| hl.blockHtml "exercises"
+        hl.blockHtml "examples"
 
 
 inductive FFIDocType where
