@@ -1,6 +1,11 @@
 import Verso.Genre.Manual
 
 import Manual.Meta
+
+import Manual.BuiltInTypes.String.Logical
+import Manual.BuiltInTypes.String.Literals
+import Manual.BuiltInTypes.String.FFI
+
 open Manual.FFIDocType
 
 open Verso.Genre Manual
@@ -11,24 +16,44 @@ example := Char
 
 #doc (Manual) "Strings" =>
 
-{docstring String}
-
-# Syntax
-
-Lean has two kinds of string literals: ordinary string literals and raw string literals.
-
-
-- Gaps
-- Raw strings
-- Valid escape codes
+{include 0 Manual.BuiltInTypes.String.Logical}
 
 # Run-Time Representation
 
-Strings are represented as arrays of bytes, encoded in UTF-8.
+:::figure "Memory layout of strings" (name := "stringffi")
+![Memory layout of strings](/static/figures/string.svg)
+:::
 
-# Logical Model
+Strings are represented as dynamic arrays of bytes, encoded in UTF-8.
+After the object header, a string contains:
 
-The logical model of strings in Lean is as a structure that contains a single field, which is a list of characters.
+: byte count
+
+  The number of bytes that currently contain valid string data
+
+: capacity
+
+  The number of bytes presently allocated for the string
+
+: length
+
+  The length of the encoded string, which may be shorter than the byte count due to UTF-8 multibyte characters
+
+: data
+
+  The actual character data in the string, null-terminated
+
+Many string functions in the Lean runtime check whether they have exclusive access to their argument by consulting the reference count in the object header.
+If they do, and the string's capacity is sufficient, then the existing string can be mutated rather than allocating fresh memory.
+Otherwise, a new string must be allocated.
+
+
+## Performance Notes
+
+Despite the fact that they appear to be an ordinary constructor and projection, {name}`String.mk` and {name}`String.data` take *time linear in the length of the string*.
+This is because they must implement the conversions between lists of characters and packed arrays of bytes, which must necessarily visit each character.
+
+{include 0 Manual.BuiltInTypes.String.Literals}
 
 # API Reference
 
@@ -321,36 +346,5 @@ TODO Substring API xref
 
 {docstring String.crlfToLf}
 
-# FFI
 
-{docstring String.csize}
-
-:::ffi "lean_string_object" kind := type
-```
-typedef struct {
-    lean_object m_header;
-    /* byte length including '\0' terminator */
-    size_t      m_size;
-    size_t      m_capacity;
-    /* UTF8 length */
-    size_t      m_length;
-    char        m_data[0];
-} lean_string_object;
-```
-TODO xref to runtime representation above
-:::
-
-:::ffi "lean_is_string"
-````
-bool lean_is_string(lean_object * o)
-````
-
-Returns `true` if `o` is a string, or `false` otherwise.
-:::
-
-:::ffi "lean_to_string"
-````
-lean_string_object * lean_to_string(lean_object * o)
-````
-Performs a runtime check that `o` is indeed a string. If `o` is not a string, an assertion fails.
-:::
+{include 0 Manual.BuiltInTypes.String.FFI}

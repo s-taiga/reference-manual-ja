@@ -9,6 +9,8 @@ import Verso.Code
 
 import SubVerso.Highlighting
 
+import Manual.Meta.Figure
+
 open Lean Elab
 open Verso ArgParse Doc Elab Genre.Manual Html Code Highlighted.WebAssets
 open SubVerso.Highlighting Highlighted
@@ -129,6 +131,70 @@ def lean.descr : BlockDescr where
       | .ok (hl : Highlighted) =>
         hl.blockHtml "examples"
 
+
+def Inline.name : Inline where
+  name := `Manual.name
+
+structure NameConfig where
+  full : Option Name
+
+def NameConfig.parse [Monad m] [MonadError m] [MonadLiftT CoreM m] : ArgParse m NameConfig :=
+  NameConfig.mk <$> ((fun _ => none) <$> .done <|> .positional `name ref <|> pure none)
+where
+  ref : ValDesc m (Option Name) := {
+    description := m!"reference name"
+    get := fun
+      | .name x =>
+        some <$> liftM (realizeGlobalConstNoOverloadWithInfo x)
+      | other => throwError "Expected Boolean, got {repr other}"
+  }
+
+
+@[role_expander name]
+partial def name : RoleExpander
+  | args, #[arg] => do
+    let cfg ← NameConfig.parse.run args
+    let `(inline|code{ $name:str }) := arg
+      | throwErrorAt arg "Expected code literal with the example name"
+    let exampleName := name.getString.toName
+    let identStx := mkIdentFrom arg (cfg.full.getD exampleName) (canonical := true)
+    let _resolvedName ← withInfoTreeContext (mkInfoTree := pure ∘ InfoTree.node (.ofCommandInfo {elaborator := `Manual.Meta.name, stx := identStx})) <| realizeGlobalConstNoOverloadWithInfo identStx
+
+    let hl : Highlighted ← constTok (cfg.full.getD exampleName) name.getString
+
+    pure #[← `(Inline.other {Inline.name with data := ToJson.toJson $(quote hl)} #[Inline.code $(quote name.getString)])]
+  | _, more =>
+    if h : more.size > 0 then
+      throwErrorAt more[0] "Unexpected contents"
+    else
+      throwError "Unexpected arguments"
+where
+  constTok name str := do
+    let docs ← findDocString? (← getEnv) name
+    let sig := toString (← (PrettyPrinter.ppSignature name)).1
+    pure <| .token ⟨.const name sig docs, str⟩
+
+@[inline_extension name]
+def name.descr : InlineDescr where
+  traverse _ _ _ := do
+    pure none
+  toTeX :=
+    some <| fun go _ _ content => do
+      pure <| .seq <| ← content.mapM fun b => do
+        pure <| .seq #[← go b, .raw "\n"]
+  extraCss := [highlightingStyle]
+  extraJs := [highlightingJs]
+  extraJsFiles := [("popper.js", popper), ("tippy.js", tippy)]
+  extraCssFiles := [("tippy-border.css", tippy.border.css)]
+  toHtml :=
+    open Verso.Output.Html in
+    some <| fun _ _ data _ => do
+      match FromJson.fromJson? data with
+      | .error err =>
+        HtmlT.logError <| "Couldn't deserialize Lean code while rendering HTML: " ++ err
+        pure .empty
+      | .ok (hl : Highlighted) =>
+        hl.inlineHtml "examples"
 
 inductive FFIDocType where
   | function

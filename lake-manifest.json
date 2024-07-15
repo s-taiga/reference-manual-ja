@@ -22,7 +22,7 @@
   {"url": "https://github.com/leanprover/verso",
    "type": "git",
    "subDir": null,
-   "rev": "3d0eda991fdc1e82ebb45d6afaa9e04bd931be1a",
+   "rev": "5ed9a960a4eac2626f9c6dfb9b68a8dee1c7de64",
    "name": "verso",
    "manifestFile": "lake-manifest.json",
    "inputRev": "main",

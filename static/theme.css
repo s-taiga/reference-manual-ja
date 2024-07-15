@@ -57,3 +57,17 @@ h5, h6 {
 .hl.lean .keyword.token {
     font-weight: 500 !important;
 }
+
+figure {
+    padding: 1em;
+}
+
+figure img {
+    width: 100%;
+}
+
+
+figcaption {
+    font-family: var(--verso-structure-font-family);
+    text-align: center;
+}
