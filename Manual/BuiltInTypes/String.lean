@@ -16,6 +16,16 @@ example := Char
 
 #doc (Manual) "Strings" =>
 
+Strings represent Unicode text.
+Strings are specially supported by Lean:
+ * They have a _logical model_ that specifies their behavior in terms of lists of characters, which specifies the meaning of each operation on strings.
+ * They have an optimized run-time representation in compiled code, as packed arrays of bytes that encode the string as UTF-8, and the Lean runtime specially optimizes string operations.
+ * There is {ref "string-syntax"}[string literal syntax] for writing strings.
+
+The fact that strings are internally represented as UTF-8-encoded byte arrays is visible in the API:
+ * There is no operation to project a particular character out of the string, as this would be a performance trap. {ref "string-iterators"}[Use a {name}`String.Iterator`] in a loop instead of a {name}`Nat`.
+ * Strings are indexed by {name}`String.Pos`, which internally records _byte counts_ rather than _character counts_, and thus takes constant time. Aside from `0`, these should not be constructed directly, but rather updated using {name}`String.next` and {name}`String.prev`.
+
 {include 0 Manual.BuiltInTypes.String.Logical}
 
 # Run-Time Representation
@@ -225,8 +235,12 @@ This is because they must implement the conversions between lists of characters 
 {docstring String.toLower}
 
 ## Iterators
+%%%
+tag := "string-iterators"
+%%%
 
-TODO: Text that describes the usual patterns for using a string iterator, and that it should be used instead of e.g. building a GetElem instance
+Fundamentally, a string iterator is a pair of a string and a valid position in the string.
+
 
 {docstring String.Iterator}
 

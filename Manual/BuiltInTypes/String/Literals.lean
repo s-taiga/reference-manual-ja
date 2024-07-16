@@ -9,6 +9,9 @@ set_option pp.rawOnError true
 
 
 #doc (Manual) "Syntax" =>
+%%%
+tag := "string-syntax"
+%%%
 
 # Syntax
 
