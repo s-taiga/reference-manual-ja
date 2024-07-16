@@ -308,10 +308,6 @@ TODO Substring API xref
 
 {docstring String.fromExpr?}
 
-## Compiler Internals
-
-{docstring String.mangle}
-
 ## Encodings
 
 {docstring String.utf16PosToCodepointPos}

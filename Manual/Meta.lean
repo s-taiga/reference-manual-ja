@@ -266,7 +266,7 @@ def ffi.descr : BlockDescr where
 
       let (_, _, xref) ← read
       let idAttr :=
-        if let some (_, htmlId) := xref.externalTags.find? id then
+        if let some (_, htmlId) := xref.externalTags[id]? then
           #[("id", htmlId)]
         else #[]
 
