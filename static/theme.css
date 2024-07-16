@@ -71,3 +71,23 @@ figcaption {
     font-family: var(--verso-structure-font-family);
     text-align: center;
 }
+
+.error pre, .information pre, .warning pre,
+.error code, .information code, .warning code {
+    overflow-x: auto;
+    margin: 0px;
+}
+
+.information pre, .error pre, .warning pre,
+.information code, .error code, .warning code {
+  margin: 0.5em .85em;
+  border-left: 0.2em solid red;
+  padding: 0 0.45em;
+}
+
+
+/* Different color for information */
+.information pre, .information code
+{
+    border-color: var(--lean-blue);
+}

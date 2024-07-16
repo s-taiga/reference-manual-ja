@@ -15,6 +15,8 @@ open Lean Elab
 open Verso ArgParse Doc Elab Genre.Manual Html Code Highlighted.WebAssets
 open SubVerso.Highlighting Highlighted
 
+open Lean.Elab.Tactic.GuardMsgs
+
 namespace Manual
 
 @[role_expander versionString]
@@ -34,6 +36,9 @@ def parserInputString [Monad m] [MonadFileMap m] (str : TSyntax `str) : m String
     iter := iter.next
   code := code ++ str.getString
   return code
+
+initialize leanOutputs : EnvExtension (NameMap (List (MessageSeverity × String))) ←
+  registerEnvExtension (pure {})
 
 def Block.lean : Block where
   name := `Manual.lean
@@ -82,6 +87,15 @@ def lean : CodeBlockExpander
       for t in cmdState.infoState.trees do
         pushInfoTree t
 
+      if let some name := config.name then
+        let msgs ← cmdState.messages.toList.mapM fun msg => do
+
+          let head := if msg.caption != "" then msg.caption ++ ":\n" else ""
+          let txt := withNewline <| head ++ (← msg.data.toString)
+
+          pure (msg.severity, txt)
+        modifyEnv (leanOutputs.modifyState · (·.insert name msgs))
+
       match config.error with
       | none =>
         for msg in cmdState.messages.toArray do
@@ -108,6 +122,9 @@ def lean : CodeBlockExpander
         pure #[]
     finally
       if !config.keep.getD true then setEnv origEnv
+where
+  withNewline (str : String) := if str == "" || str.back != '\n' then str ++ "\n" else str
+
 
 @[block_extension lean]
 def lean.descr : BlockDescr where
@@ -131,6 +148,130 @@ def lean.descr : BlockDescr where
       | .ok (hl : Highlighted) =>
         hl.blockHtml "examples"
 
+def Block.leanOutput : Block where
+  name := `Manual.leanOutput
+
+structure LeanOutputConfig where
+  name : Ident
+  «show» : Bool := true
+  severity : Option MessageSeverity
+  summarize : Bool
+  whitespace : WhitespaceMode
+
+def LeanOutputConfig.parser [Monad m] [MonadInfoTree m] [MonadLiftT CoreM m] [MonadEnv m] [MonadError m] : ArgParse m LeanOutputConfig :=
+  LeanOutputConfig.mk <$>
+    .positional `name output <*>
+    ((·.getD true) <$> .named `show .bool true) <*>
+    .named `severity sev true <*>
+    ((·.getD false) <$> .named `summarize .bool true) <*>
+    ((·.getD .exact) <$> .named `whitespace ws true)
+where
+  output : ValDesc m Ident := {
+    description := "output name",
+    get := fun
+      | .name x => pure x
+      | other => throwError "Expected output name, got {repr other}"
+  }
+  opt {α} (p : ArgParse m α) : ArgParse m (Option α) := (some <$> p) <|> pure none
+  optDef {α} (fallback : α) (p : ArgParse m α) : ArgParse m α := p <|> pure fallback
+  sev : ValDesc m MessageSeverity := {
+    description := open MessageSeverity in m!"The expected severity: '{``error}', '{``warning}', or '{``information}'",
+    get := open MessageSeverity in fun
+      | .name b => do
+        let b' ← realizeGlobalConstNoOverloadWithInfo b
+        if b' == ``MessageSeverity.error then pure MessageSeverity.error
+        else if b' == ``MessageSeverity.warning then pure MessageSeverity.warning
+        else if b' == ``MessageSeverity.information then pure MessageSeverity.information
+        else throwErrorAt b "Expected '{``error}', '{``warning}', or '{``information}'"
+      | other => throwError "Expected severity, got {repr other}"
+  }
+  ws : ValDesc m WhitespaceMode := {
+    description := open WhitespaceMode in m!"The expected whitespace mode: '{``exact}', '{``normalized}', or '{``lax}'",
+    get := open WhitespaceMode in fun
+      | .name b => do
+        let b' ← realizeGlobalConstNoOverloadWithInfo b
+        if b' == ``WhitespaceMode.exact then pure WhitespaceMode.exact
+        else if b' == ``WhitespaceMode.normalized then pure WhitespaceMode.normalized
+        else if b' == ``WhitespaceMode.lax then pure WhitespaceMode.lax
+        else throwErrorAt b "Expected '{``exact}', '{``normalized}', or '{``lax}'"
+      | other => throwError "Expected whitespace mode, got {repr other}"
+  }
+
+defmethod Lean.NameMap.getOrSuggest [Monad m] [MonadInfoTree m] [MonadError m]
+    (map : NameMap α) (key : Ident) : m α := do
+  match map.find? key.getId with
+  | some v => pure v
+  | none =>
+    for (n, _) in map do
+      if FuzzyMatching.fuzzyMatch key.getId.toString n.toString then
+        Suggestion.saveSuggestion key n.toString n.toString
+    throwErrorAt key "'{key}' not found - options are {map.toList.map (·.fst)}"
+
+open Syntax (mkCApp) in
+open MessageSeverity in
+instance : Quote MessageSeverity where
+  quote
+    | .error => mkCApp ``error #[]
+    | .information => mkCApp ``information #[]
+    | .warning => mkCApp ``warning #[]
+
+@[code_block_expander leanOutput]
+def leanOutput : CodeBlockExpander
+ | args, str => do
+    let config ← LeanOutputConfig.parser.run args
+    let msgs : List (MessageSeverity × String) ← leanOutputs.getState (← getEnv) |>.getOrSuggest config.name
+
+    for (sev, txt) in msgs do
+      if mostlyEqual config.whitespace str.getString txt then
+        if let some s := config.severity then
+          if s != sev then
+            throwErrorAt str s!"Expected severity {sevStr s}, but got {sevStr sev}"
+        if config.show then
+          let content ← `(Block.other {Block.leanOutput with data := ToJson.toJson ($(quote sev), $(quote txt), $(quote config.summarize))} #[Block.code $(quote str.getString)])
+          return #[content]
+        else return #[]
+
+    for (_, m) in msgs do
+      Verso.Doc.Suggestion.saveSuggestion str (m.take 30 ++ "…") m
+    throwErrorAt str "Didn't match - expected one of: {indentD (toMessageData <| msgs.map (·.2))}\nbut got:{indentD (toMessageData str.getString)}"
+where
+  sevStr : MessageSeverity → String
+    | .error => "error"
+    | .information => "information"
+    | .warning => "warning"
+
+  mostlyEqual (ws : WhitespaceMode) (s1 s2 : String) : Bool :=
+    ws.apply s1.trim == ws.apply s2.trim
+
+@[block_extension leanOutput]
+def leanOutput.descr : BlockDescr where
+  traverse _ _ _ := do
+    pure none
+  toTeX :=
+    some <| fun _ go _ _ content => do
+      pure <| .seq <| ← content.mapM fun b => do
+        pure <| .seq #[← go b, .raw "\n"]
+  extraCss := [highlightingStyle]
+  extraJs := [highlightingJs]
+  extraJsFiles := [("popper.js", popper), ("tippy.js", tippy)]
+  extraCssFiles := [("tippy-border.css", tippy.border.css)]
+  toHtml :=
+    open Verso.Output.Html in
+    some <| fun _ _ _ data _ => do
+      match FromJson.fromJson? data with
+      | .error err =>
+        HtmlT.logError <| "Couldn't deserialize Lean code while rendering HTML: " ++ err
+        pure .empty
+      | .ok ((sev, txt, summarize) : MessageSeverity × String × Bool) =>
+        let wrap html :=
+          if summarize then {{<details><summary>"Expand..."</summary>{{html}}</details>}}
+          else html
+        pure <| wrap {{<div class={{getClass sev}}><pre>{{txt}}</pre></div>}}
+where
+  getClass
+    | .error => "error"
+    | .information => "information"
+    | .warning => "warning"
 
 def Inline.name : Inline where
   name := `Manual.name

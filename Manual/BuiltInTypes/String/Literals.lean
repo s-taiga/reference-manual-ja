@@ -63,10 +63,13 @@ In {deftech}[raw string literals], {index subterm:="raw string"}[literal] there 
 Raw string literals are preceded by `r`, followed by zero or more hash characters (`#`) and a double quote `"`.
 The string literal is completed at a double quote that is followed by _the same number_ of hash characters.
 For example, they can be used to avoid the need to double-escape certain characters:
-```lean
+```lean (name := evalStr)
 example : r"\t" = "\\t" := rfl
--- TODO get this message in CI and in the text
 #eval r"Write backslash in a string using '\\\\'"
+```
+The `#eval` yields:
+```leanOutput evalStr
+"Write backslash in a string using '\\\\\\\\'"
 ```
 
 Including hash marks allows the strings to contain unescaped quotes:
