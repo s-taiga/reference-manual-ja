@@ -50,10 +50,14 @@ example : str1 = str2 := rfl
 
 This example is rejected, because the line following the gap is empty:
 
-```
+```syntaxError foo
 def str3 := "String with \
 
              a gap"
+```
+The parser error is:
+```leanOutput foo
+<example>:2:0: unexpected additional newline in string gap
 ```
 
 

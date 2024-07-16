@@ -148,6 +148,167 @@ def lean.descr : BlockDescr where
       | .ok (hl : Highlighted) =>
         hl.blockHtml "examples"
 
+open Syntax (mkCApp) in
+open MessageSeverity in
+instance : Quote MessageSeverity where
+  quote
+    | .error => mkCApp ``error #[]
+    | .information => mkCApp ``information #[]
+    | .warning => mkCApp ``warning #[]
+
+open Syntax (mkCApp) in
+open Position in
+instance : Quote Position where
+  quote
+    | ⟨line, column⟩ => mkCApp ``Position.mk #[quote line, quote column]
+
+def Block.syntaxError : Block where
+  name := `Manual.syntaxError
+
+structure SyntaxErrorConfig where
+  name : Name
+  «show» : Bool := true
+  category : Name := `command
+  prec : Nat := 0
+
+defmethod ValDesc.nat [Monad m] [MonadError m] : ValDesc m Nat where
+  description := m!"a name"
+  get
+    | .num x => pure x.getNat
+    | other => throwError "Expected number, got {repr other}"
+
+def SyntaxErrorConfig.parse [Monad m] [MonadInfoTree m] [MonadLiftT CoreM m] [MonadEnv m] [MonadError m] : ArgParse m SyntaxErrorConfig :=
+  SyntaxErrorConfig.mk <$>
+    .positional `name .name <*>
+    ((·.getD true) <$> .named `show .bool true) <*>
+    ((·.getD `command) <$> .named `category .name true) <*>
+    ((·.getD 0) <$> .named `precedence .nat true)
+
+open Lean.Parser in
+@[code_block_expander syntaxError]
+def syntaxError : CodeBlockExpander
+  | args, str => do
+    let config ← SyntaxErrorConfig.parse.run args
+    let s := str.getString
+    match runParserCategory (← getEnv) (← getOptions) config.category s with
+    | .ok stx =>
+      throwErrorAt str m!"Expected a syntax error for category {config.category}, but got {indentD stx}"
+    | .error es =>
+      let msgs := es.map fun (pos, msg) =>
+        (.error, mkErrorStringWithPos  "<example>" pos msg)
+      modifyEnv (leanOutputs.modifyState · (·.insert config.name msgs))
+      return #[← `(Block.other {Block.syntaxError with data := ToJson.toJson ($(quote s), $(quote es))} #[Block.code $(quote s)])]
+where
+  toErrorMsg (ctx : InputContext) (s : ParserState) : List (Position × String) := Id.run do
+    let mut errs := []
+    for (pos, _stk, err) in s.allErrors do
+      let pos := ctx.fileMap.toPosition pos
+      errs := (pos, toString err) :: errs
+    errs.reverse
+
+  runParserCategory (env : Environment) (opts : Lean.Options) (catName : Name) (input : String) : Except (List (Position × String)) Syntax :=
+    let fileName := "<example>"
+    let p := andthenFn whitespace (categoryParserFnImpl catName)
+    let ictx := mkInputContext input fileName
+    let s := p.run ictx { env, options := opts } (getTokenTable env) (mkParserState input)
+    if !s.allErrors.isEmpty  then
+      Except.error (toErrorMsg ictx s)
+    else if ictx.input.atEnd s.pos then
+      Except.ok s.stxStack.back
+    else
+      Except.error (toErrorMsg ictx (s.mkError "end of input"))
+
+@[block_extension syntaxError]
+def syntaxError.descr : BlockDescr where
+  traverse _ _ _ := pure none
+  toTeX :=
+    some <| fun _ go _ _ content => do
+      pure <| .seq <| ← content.mapM fun b => do
+        pure <| .seq #[← go b, .raw "\n"]
+  extraCss := [
+    r"
+.syntax-error {
+  white-space: normal;
+}
+.syntax-error::before {
+  counter-reset: linenumber;
+}
+.syntax-error > .line {
+  display: block;
+  white-space: pre;
+  counter-increment: linenumber;
+  font-family: var(--verso-code-font-family);
+}
+.syntax-error > .line::before {
+  -webkit-user-select: none;
+  display: inline-block;
+  content: counter(linenumber);
+  border-right: 1px solid #ddd;
+  width: 2em;
+  padding-right: 0.25em;
+  margin-right: 0.25em;
+  font-family: var(--verso-code-font-family);
+  text-align: right;
+}
+
+:is(.syntax-error > .line):has(.parse-message)::before {
+  color: red;
+  font-weight: bold;
+}
+
+.syntax-error .parse-message > code {
+  display:none;
+}
+.syntax-error .parse-message {
+  position: relative;
+}
+.syntax-error .parse-message::before {
+  content: '🛑';
+  text-decoration: none;
+  position: absolute;
+  top: 0; left: 0;
+  color: red;
+}
+"
+  ]
+  extraJs := [
+    highlightingJs
+  ]
+  extraJsFiles := [("popper.js", popper), ("tippy.js", tippy)]
+  extraCssFiles := [("tippy-border.css", tippy.border.css)]
+  toHtml :=
+    open Verso.Output Html in
+    some <| fun _ _ _ data _ => do
+      match FromJson.fromJson? data with
+      | .error err =>
+        HtmlT.logError <| "Couldn't deserialize Lean code while rendering HTML: " ++ err
+        pure .empty
+      | .ok (str, (msgs : (List (Position × String)))) =>
+        let mut pos : String.Pos := ⟨0⟩
+        let mut out : Array Html := #[]
+        let mut line : Array Html := #[]
+        let filemap := FileMap.ofString str
+        let mut msgs := msgs
+        for lineNum in [1:filemap.getLastLine] do
+          pos := filemap.lineStart lineNum
+          let lineEnd := str.prev (filemap.lineStart (lineNum + 1))
+          repeat
+            match msgs with
+            | [] => break
+            | (pos', msg) :: more =>
+              let pos' := filemap.ofPosition pos'
+              if pos' > lineEnd then break
+              msgs := more
+              line := line.push <| str.extract pos pos'
+              line := line.push {{<span class="parse-message has-info error"><code class="hover-info">{{msg}}</code></span>"\n"}}
+              pos := pos'
+          line := line.push <| str.extract pos lineEnd
+          out := out.push {{<code class="line">{{line}}</code>}}
+          line := #[]
+          pos := str.next lineEnd
+
+        pure {{<pre class="syntax-error hl lean">{{out}}</pre>}}
+
 def Block.leanOutput : Block where
   name := `Manual.leanOutput
 
@@ -203,17 +364,10 @@ defmethod Lean.NameMap.getOrSuggest [Monad m] [MonadInfoTree m] [MonadError m]
   | some v => pure v
   | none =>
     for (n, _) in map do
-      if FuzzyMatching.fuzzyMatch key.getId.toString n.toString then
+      -- TODO once Levenshtein is merged upstream, use it here
+      if FuzzyMatching.fuzzyMatch key.getId.toString n.toString || FuzzyMatching.fuzzyMatch n.toString key.getId.toString  then
         Suggestion.saveSuggestion key n.toString n.toString
     throwErrorAt key "'{key}' not found - options are {map.toList.map (·.fst)}"
-
-open Syntax (mkCApp) in
-open MessageSeverity in
-instance : Quote MessageSeverity where
-  quote
-    | .error => mkCApp ``error #[]
-    | .information => mkCApp ``information #[]
-    | .warning => mkCApp ``warning #[]
 
 @[code_block_expander leanOutput]
 def leanOutput : CodeBlockExpander
