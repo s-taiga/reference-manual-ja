@@ -1,5 +1,5 @@
 ---
-name: Documenation Request
+name: Documentation Request
 about: Request documentation
 title: ''
 labels: doc-request
