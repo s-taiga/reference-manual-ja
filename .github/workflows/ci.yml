@@ -3,12 +3,16 @@ on:
     branches:
       - main
   pull_request:
-    branches:
-      - main
-  release:
-    types:
-      - published
-      - released
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 name: "Build and check HTML"
 
@@ -122,77 +126,24 @@ jobs:
           fail: true
           args: --base './_out/html-multi/' --no-progress --offline './_out/html-multi/**/*.html'
 
-      # This saved number is used by a workflow_run trigger. It
-      # manages labels that indicate the status of the built HTML.
-      - name: Save PR number
-        if: github.event_name == 'pull_request'
-        run: |
-          mkdir -p ./pr
-          echo ${{ github.event.number }} > ./pr/NR
-      - uses: actions/upload-artifact@v4
-        if: github.event_name == 'pull_request'
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: pr
-          path: pr/
-
+          path: _out/html-multi
+  
+  # Deployment job
   deploy:
-    name: Deploy release
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: [build]
-    if: github.event_name == 'release'
-    outputs:
-      ref-url: ${{ steps.deploy-release.outputs.deploy-url }}
+    needs: build
     steps:
-      - name: Get generated HTML from artifact storage
-        uses: actions/download-artifact@v4
-        with:
-          name: 'html'
-          path: '_out/'
-
-      # deploy-alias computes a URL component for the PR preview. This
-      # is so we can have a stable name to use for feedback on draft
-      # material.
-      - id: deploy-alias
-        uses: actions/github-script@v7
-        name: Compute Alias
-        with:
-          script: |
-            if (process.env.PR) {
-                return `pr-${process.env.PR}`
-            } else {
-                return 'deploy-preview-main';
-            }
-        env:
-          PR: ${{ github.event.number }}
-
-        # deploy-info computes metadata that's shown in the Netlify interface
-        # about the deployment (for non-PR deploys)
-      - id: deploy-info
-        name: Compute Deployment Metadata
-        if: github.event_name != 'pull_request'
-        run: |
-          set -e
-          echo "message=$(git log -1 --pretty=format:"%s")" >> "$GITHUB_OUTPUT"
-
-      # When a release is created in GH, push to the main site without proofreading info
-      - name: Deploy releases when tags are pushed
-        id: deploy-release
-        uses: nwtgck/actions-netlify@v2.0
-        if: github.event_name == 'release'
-        with:
-          publish-dir: _out/html-multi
-          production-branch: main
-          production-deploy: true
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: |
-            Release from tag ${{ github.ref }}
-          enable-commit-comment: false
-          enable-pull-request-comment: false
-          fails-without-credentials: true
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: "447031bf-9a96-4cee-831b-1f73599a7cb2"
-
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+  
 
   check-links:
     name: Check links

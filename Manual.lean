@@ -23,11 +23,18 @@ open Verso.Genre Manual
 
 set_option pp.rawOnError true
 
+/-
 #doc (Manual) "The Lean Language Reference" =>
+-/
+#doc (Manual) "The Lean Language Reference 日本語訳" =>
 %%%
 tag := "lean-language-reference"
 %%%
 
+**注意:** この翻訳は有志による **非公式** 翻訳です。原文の最新版は [こちら](https://lean-lang.org/doc/reference/latest/) です。
+
+_CAUTION:_ This is an **Unofficial** translation by volunteers.
+The latest version of original is [here](https://lean-lang.org/doc/reference/latest/).
 
 This is the _Lean Language Reference_, an in-progress reference work on Lean.
 It is intended to be a comprehensive, precise description of Lean: a reference work in which Lean users can look up detailed information, rather than a tutorial intended for new users.
@@ -152,7 +159,17 @@ file := some "the-index"
 
 {theIndex}
 
+# この翻訳について
 
+この翻訳は有志による **非公式** 翻訳です。翻訳に際して分かりやすさのために表現を大きく変えた箇所があります。また、用語の訳が一般的でない・誤りを含む可能性があります。必要に応じて原文 [Lean Language Reference](https://lean-lang.org/doc/reference/latest/)([GitHub](https://github.com/leanprover/reference-manual))をご覧ください。
+
+原文にはライセンスが無かったため、原著者様より許諾をいただいて翻訳させていただいています。（[Zulip Chat](https://leanprover.zulipchat.com/#narrow/channel/113488-general/topic/Discussion.20thread.20for.20Lean.20Language.20Reference/near/478724278)）。
+
+誤字脱字・内容の誤りの指摘・フォークからのPull Request・フォークによる翻訳の改変等歓迎いたします。ご指摘は [当該リポジトリ](https://github.com/lean-ja/reference-manual-ja) にてIssue・Pull Requestで受け付けております。
+
+翻訳に際して、機械翻訳サービス [DeepL翻訳](https://www.deepl.com/ja/translator) を参考にしました。
+
+この翻訳は原文のcommit [2fbf58d9210323e4ebc0a002d9f761074da462cf](https://github.com/leanprover/reference-manual/commit/2fbf58d9210323e4ebc0a002d9f761074da462cf) に基づいています。
 
 ::::::draft
 
