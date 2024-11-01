@@ -303,10 +303,18 @@ def Block.signature : Block where
 declare_syntax_cat signature_spec
 syntax ("def" <|> "theorem")? declId declSig : signature_spec
 
+structure SignatureConfig where
+  «show» : Bool := true
+
+def SignatureConfig.parse [Monad m] [MonadError m] [MonadLiftT CoreM m] : ArgParse m SignatureConfig :=
+  SignatureConfig.mk <$>
+    ((·.getD true) <$> .named `show .bool true)
+
+
 @[code_block_expander signature]
 def signature : CodeBlockExpander
   | args, str => do
-    ArgParse.done.run args
+    let {«show»} ← SignatureConfig.parse.run args
     let altStr ← parserInputString str
 
     match Parser.runParserCategory (← getEnv) `signature_spec altStr (← getFileName) with
@@ -325,7 +333,10 @@ def signature : CodeBlockExpander
       let ((hls, _, _, _), st') ← ((SubVerso.Examples.checkSignature name sig).run cmdCtx).run cmdState
       setInfoState st'.infoState
 
-      pure #[← `(Block.other {Block.signature with data := ToJson.toJson $(quote (Highlighted.seq hls))} #[Block.code $(quote str.getString)])]
+      if «show» then
+        pure #[← `(Block.other {Block.signature with data := ToJson.toJson $(quote (Highlighted.seq hls))} #[Block.code $(quote str.getString)])]
+      else
+        pure #[]
 
 @[block_extension signature]
 def signature.descr : BlockDescr where
@@ -620,6 +631,12 @@ where
       | other => throwError "Expected reference name, got {repr other}"
   }
 
+def constTok [Monad m] [MonadEnv m] [MonadLiftT MetaM m] [MonadLiftT IO m]
+    (name : Name) (str : String) :
+    m Highlighted := do
+  let docs ← findDocString? (← getEnv) name
+  let sig := toString (← (PrettyPrinter.ppSignature name)).1
+  pure <| .token ⟨.const name sig docs, str⟩
 
 @[role_expander name]
 def name : RoleExpander
@@ -643,11 +660,7 @@ def name : RoleExpander
       throwErrorAt more[0] "Unexpected contents"
     else
       throwError "Unexpected arguments"
-where
-  constTok name str := do
-    let docs ← findDocString? (← getEnv) name
-    let sig := toString (← (PrettyPrinter.ppSignature name)).1
-    pure <| .token ⟨.const name sig docs, str⟩
+
 
 @[inline_extension name]
 def name.descr : InlineDescr where
