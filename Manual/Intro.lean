@@ -55,7 +55,7 @@ Along with many other parts of Lean, the tactic language is user-extensible, so 
 Tactics are written in Lean itself, and can be used immediately upon definition; rebuilding the prover or loading external modules is not required.
 :::
 
-Lean は依存型理論に基づいた *対話型定理証明器* （interactive theorem prover）であり、最先端の数学とソフトウェア検証の両方で使用できるように設計されています。Lean の中核となる型理論は、非常に複雑な数学的対象を捉えるにあたって十分な表現力を持ちながら、独立した実装を認めるのに十分なシンプルさを持っており、健全性に影響を与えるバグのリスクを軽減しています。中核となる型理論は、証明項のチェック以外には何もしない最小限の {tech}[kernel] として実装されています。この中核理論とカーネルは {ref "tactics"}[表現力豊かなタクティク言語] で実現される高度な自動化によってサポートされています。各タクティクはカーネルによってチェックされる中核となる型理論の項を生成するため、タクティクにバグがあっても Lean 全体の健全性が脅かされることはありません。Lean の他の多くの部分と同様に、タクティク言語はユーザが拡張可能であるため、それぞれの形式化プロジェクトのニーズに合わせて構築することができます。タクティクは Lean 自体で記述されており、定義するとすぐに使用することができます：証明器の再ビルドや外部モジュールのロードなどは必要ありません。
+Lean は依存型理論に基づいた *対話型定理証明器* （interactive theorem prover）であり、最先端の数学とソフトウェア検証の両方で使用できるように設計されています。Lean のコア型理論は、非常に複雑な数学的対象を捉えるにあたって十分な表現力を持ちながら、独立した実装を認めるのに十分なシンプルさを持っており、健全性に影響を与えるバグのリスクを軽減しています。コア型理論は、証明項のチェック以外には何もしない最小限の {tech}[カーネル] （kernel）として実装されています。この中核理論とカーネルは {ref "tactics"}[表現力豊かなタクティク言語] で実現される高度な自動化によってサポートされています。各タクティクはカーネルによってチェックされるコア型理論の項を生成するため、タクティクにバグがあっても Lean 全体の健全性が脅かされることはありません。Lean の他の多くの部分と同様に、タクティク言語はユーザが拡張可能であるため、それぞれの形式化プロジェクトのニーズに合わせて構築することができます。タクティクは Lean 自体で記述されており、定義するとすぐに使用することができます：証明器の再ビルドや外部モジュールのロードなどは必要ありません。
 
 :::comment
 Lean is also a pure *functional programming language*, with features such as a run-time system based on reference counting that can efficiently work with packed array structures, multi-threading, and monadic {name}`IO`.
@@ -63,7 +63,7 @@ As befits a programming language, Lean is primarily implemented in itself, inclu
 This very book is written in [Verso](https://github.com/leanprover/verso), a documentation authoring tool written in Lean.
 :::
 
-また、Lean は純粋 *関数型プログラミング言語* （functional programming language）でもあり、packed array 構造を効率的に扱うことができる参照カウントに基づくランタイムシステム・マルチスレッド・モナド {name}`IO` などの機能を備えています。プログラミング言語にふさわしく、Lean の言語サーバ・ビルドツール・ {tech}[elaborator] ・タクティクシステムなどはもっぱら Lean 自体で実装されています。本書もまさに [Verso](https://github.com/leanprover/verso) という Lean で書かれた文書作成ツールで書かれています。
+また、Lean は純粋 *関数型プログラミング言語* （functional programming language）でもあり、packed array 構造を効率的に扱うことができる参照カウントに基づくランタイムシステム・マルチスレッド・モナド {name}`IO` などの機能を備えています。プログラミング言語にふさわしく、Lean の言語サーバ・ビルドツール・ {tech}[エラボレータ] （elaborator）・タクティクシステムなどはもっぱら Lean 自体で実装されています。本書もまさに [Verso](https://github.com/leanprover/verso) という Lean で書かれた文書作成ツールで書かれています。
 
 :::comment
 Familiarity with Lean's programming features is valuable even for users whose primary interest is in writing proofs, because Lean programs are used to implement new tactics and proof automation.
@@ -353,9 +353,9 @@ inductive Even : Nat → Prop where
 偶：ある数が均等に2で割れるなら偶数である。
 -/
 inductive Even : Nat → Prop where
-  | /-- ここでは0は遇だと見なす -/
+  | /-- ここでは0は偶だと見なす -/
     zero : Even 0
-  | /-- もし `n` が遇ならば、`n + 2` も遇である。 -/
+  | /-- もし `n` が偶ならば、`n + 2` も偶である。 -/
     plusTwo : Even n → Even (n + 2)
 ```
 

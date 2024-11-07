@@ -43,7 +43,7 @@ While most tactics affect only the main goal, operators such as {tactic}`<;>` an
 
 Behind the scenes, tactics construct {deftech}[proof terms].
 Proof terms are independently checkable evidence of a theorem's truth, written in Lean's type theory.
-Each proof is checked in the {tech}[kernel], and can be verified with independently-implemented external checkers, so the worst outcome from a bug in a tactic is a confusing error message, rather than an incorrect proof.
+Each proof is checked in the {tech}[カーネル]kernel, and can be verified with independently-implemented external checkers, so the worst outcome from a bug in a tactic is a confusing error message, rather than an incorrect proof.
 Each goal in a tactic proof corresponds to an incomplete portion of a proof term.
 
 # Running Tactics
