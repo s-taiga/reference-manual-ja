@@ -3,10 +3,13 @@
 | 英語 | 日本語 | 備考 |
 | --- | --- | --- |
 | abbreviation | 省略形 | |
+| abstraction | 抽象 | |
 | annotation | 注釈 | |
 | associativity | 結合性 | |
+| assumption | 仮定 | |
 | attribute | 属性 | |
 | backtrack | バックトラック | 後戻りと書かれる場合あり |
+| binder | 束縛子 | |
 | bound variable | 束縛変数 | |
 | canonical | 標準 | |
 | carriage return | CR | |
@@ -26,13 +29,19 @@
 | context | （プログラム中のcontextの意で）コンテキスト、（文章中のcontextの意で）文脈 | |
 | core language | コア言語 | |
 | core type theory | コア型理論 | |
+| curly brace | 波括弧 | |
+| currying | カリー化 | |
 | datatype | データ型 | |
 | debugging trace | デバッグトレース | |
 | declaration | 宣言 | |
 | definition | 定義 | |
 | definitional (η-)equality | 定義上の(η)等価性 | |
 | definitional proof irrelevance | 定義上の証明の無関係性 | |
+| dependent | 依存的 | 後ろに何も続かない場合 |
+| dependent function | 依存関数 | |
 | dependent type theory | 依存型理論 | |
+| desugar | 脱糖 | |
+| domain | 定義域 | |
 | double-struck | 重ね打ち体 | |
 | effect | 作用 | |
 | elaborate | エラボレート | |
@@ -51,20 +60,27 @@
 | form feed | 改ページ | |
 | functional programming language | 関数型プログラミング言語 | |
 | function extensionality | 関数外延性 | |
+| function type | 関数型 | |
 | grammar | 文法 | |
 | guillemet | ギュメ | フランス語 |
 | heap region | ヒープ領域 | |
 | hierarchical identifier | 階層的識別子 | |
 | hierarchy | 階層 | |
+| higher-order function | 高階関数 | |
 | identifier | 識別子 | |
 | identifier component | 識別子要素 | |
 | identifier continuation character | 識別子継続文字 | |
+| implicit parameter | 暗黙のパラメータ | |
 | inductively-defined | 帰納的に定義された | |
 | inductive predicate | 帰納的述語 | |
 | inductive type | 帰納型 | |
 | info tree | 情報木 | |
+| inhabitant | 住人 | |
 | initialization | 初期化 | |
+| instance implicit parameter | インスタンスの暗黙のパラメータ | |
+| instances synthesize | インスタンス合成 | |
 | instantiate | インスタンス化 | |
+| intensional | 内包的 | |
 | interactive theorem prover | 対話型定理証明器 | |
 | interface | インタフェース | |
 | interleave | 交互に実行する | |
@@ -87,12 +103,16 @@
 | multi-threading | マルチスレッド | |
 | mutually inductive | 相互帰納 | |
 | namespace | 名前空間 | |
+| nested | ネストされた | |
 | newline | 改行 | |
+| non-dependent | 非依存的 | |
 | notation | 記法 | |
 | opaque | 不透明 | |
 | operator | 演算子 | |
 | open scope | 開いたスコープ | |
 | packrat parse | パックラットパース | 一般的にはパックラット構文解析と呼ばれることが多いが、parseをパースと書くことに合わせた |
+| panic | パニック | |
+| parameter | パラメータ | |
 | parse | パース | |
 | parser | パーサ | |
 | pattern matching | パターンマッチ | |
@@ -106,11 +126,13 @@
 | question mark | 疑問符 | |
 | quote | クォート | |
 | quotient type | 商型 | |
+| range | 値域 | |
 | raw identifier | 生識別子 | Rust By Exampleの表現を利用 |
 | reasoning | 推論 | |
 | recovery | 回復 | |
 | recursive-descent parser | 再帰下降パーサ | |
 | reference count | 参照カウント |
+| rename | リネーム | |
 | representation | 表現 | |
 | reserved keyword | 予約キーワード | 下のreserved wordの表記ゆれかもしれないがいったん別の訳語を割り当てる |
 | reserved word | 予約語 | |
@@ -125,12 +147,15 @@
 | signature | シグネチャ | |
 | single quote | シングルクォート | |
 | soundness | 健全性 | |
+| square bracket | 角括弧 | |
 | specialization | 特殊化 | |
 | statement | 文 | |
+| strict implicit parameter | 厳格な暗黙のパラメータ | |
 | strictness | 正格 | |
 | structure | 構造体 | |
 | subterm | 部分項 | |
 | subscript | 下付き文字 | |
+| syntactically | 構文上 | |
 | syntactic sugar | 構文糖衣 | |
 | syntax | 構文 | |
 | syntax former | 構文形成器 | |
@@ -145,6 +170,7 @@
 | theorem | 定理 | |
 | token | 字句 | |
 | top-level | トップレベル | |
+| totality | 全域性 | |
 | transitive | 推移的 | |
 | transitivity | 推移性 | |
 | tree | 木 | |
@@ -166,3 +192,4 @@
 | packed array | System Verilogという言語にこの名前の文法要素がある？ |
 | prelude | |
 | subject reduction | TAPLに出てくる模様 |
+| type ascription | Scala、Rustに同じ用語あり |
