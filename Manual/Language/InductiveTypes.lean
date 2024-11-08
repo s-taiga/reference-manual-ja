@@ -68,7 +68,7 @@ In some situations, this process may fail to find a minimal universe or fail to 
 The constructor specifications follow {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`where`.
 Constructors are not mandatory, as constructorless inductive types such as {lean}`False` and {lean}`Empty` are perfectly sensible.
 Each constructor specification begins with a vertical bar (`'|'`, Unicode `'VERTICAL BAR' (U+007c)`), declaration modifiers, and a name.
-The name is a {tech}[raw identifier].
+The name is a {tech}[生識別子]raw identifier.
 A declaration signature follows the name.
 The signature may specify any parameters, modulo the well-formedness requirements for inductive type declarations, but the return type in the signature must be a saturated application of the type constructor of the inductive type being specified.
 If no signature is provided, then the constructor's type is inferred by inserting sufficient implicit parameters to construct a well-formed return type.
