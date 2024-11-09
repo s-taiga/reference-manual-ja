@@ -272,7 +272,7 @@ It does not include a syntactic termination checker, nor does it perform unifica
 Before new inductive types or definitions are added to the environment by the command or term elaborators, they must be checked by the kernel to guard against potential bugs in elaboration.
 :::
 
-Lean が信頼する {deftech}_カーネル_ （kernel）はコア型理論のための型チェッカの小さく堅牢な実装です。カーネルには構文的停止チェッカは含まれず、単一化も行いません；停止性はすべての再帰関数をプリミティブ {tech}[recursors] の使用にエラボレートすることで保証され、単一化はエラボレータによってすでに実行されていることが期待されます。コマンドと項エラボレータによって新しい帰納型や定義が環境に追加される前に、エラボレータによって潜在的なバグを防ぐために、それらはカーネルによってチェックされなければなりません。
+Lean が信頼する {deftech}_カーネル_ （kernel）はコア型理論のための型チェッカの小さく堅牢な実装です。カーネルには構文的停止チェッカは含まれず、単一化も行いません；停止性はすべての再帰関数をプリミティブ {tech}[再帰子] の使用にエラボレートすることで保証され、単一化はエラボレータによってすでに実行されていることが期待されます。コマンドと項エラボレータによって新しい帰納型や定義が環境に追加される前に、エラボレータによって潜在的なバグを防ぐために、それらはカーネルによってチェックされなければなりません。
 
 :::comment
 Lean's kernel is written in C++.
@@ -297,7 +297,7 @@ The language implemented by the kernel is a version of the Calculus of Construct
 カーネルが実装する言語は Calculus of Constructions の一種で、以下の特徴を持つ依存型理論です：
 + 完全な依存型
 + 相互に帰納的であったり、他の帰納的データ型の下で入れ子になった再帰を含んだりする帰納的に定義されたデータ型
-+ {tech}[impredicative] ・定義上証明とは無関係な {tech}[propositions] の拡張的 {tech}[universe]
++ {tech}[impredicative] ・定義上証明と irrelevant な {tech}[propositions] の拡張的 {tech}[universe]
 + {tech}[predicative] なデータの宇宙の非蓄積な階層
 * 定義上の計算規則を伴った {ref "quotients"}[商型] （Quotient type）
 + 命題上の関数外延性 {margin}[関数外延性は商型を使って証明できる定理ですが、重要な帰結であるため別で挙げておきます。]
@@ -342,7 +342,7 @@ In practice, apparent non-termination is indistinguishable from sufficiently slo
 These metatheoretic properties are a result of having impredicativity, quotient types that compute, definitional proof irrelevance, and propositional extensionality; these features are immensely valuable both to support ordinary mathematical practice and to enable automation.
 :::
 
-Lean の型理論には subject reduction の機能はなく、定義上の等価性は必ずしも推移的ではなく、型チェッカが停止しないようにすることも可能です。これらのメタ理論的な特性はいずれも実際には問題になりません。推移性が失敗するのは非常にまれであり、知る限りではそれを行使するために特別にコードを作成した場合を除き非停止は発生していません。最も重要なことは、論理的健全性に影響がないことです。実際には、見かけ上の非停止は十分に遅いプログラムと区別がつきません。これらのメタ理論的特性は、impredicativity・計算する商型・定義上の証明の無関係性・命題上の外延性からの帰結です；これらの機能は、通常の数学的実践をサポートする上でも、自動化を可能にするうえでも非常に価値があります。
+Lean の型理論には subject reduction の機能はなく、定義上の等価性は必ずしも推移的ではなく、型チェッカが停止しないようにすることも可能です。これらのメタ理論的な特性はいずれも実際には問題になりません。推移性が失敗するのは非常にまれであり、知る限りではそれを行使するために特別にコードを作成した場合を除き非停止は発生していません。最も重要なことは、論理的健全性に影響がないことです。実際には、見かけ上の非停止は十分に遅いプログラムと区別がつきません。これらのメタ理論的特性は、impredicativity・計算する商型・定義上の証明との irrelevance・命題上の外延性からの帰結です；これらの機能は、通常の数学的実践をサポートする上でも、自動化を可能にするうえでも非常に価値があります。
 
 :::comment
 # Elaboration Results
@@ -360,7 +360,7 @@ Thus, the elaborator must translate definitions that use pattern matching and re
 This translation is additionally a proof that the function terminates for all potential arguments, because all functions that can be translated to recursors also terminate.
 :::
 
-Lean のコア型理論には、パターンマッチや再帰定義は含まれていません。その代わりに、場合分けとプリミティブな再帰の両方を実装するために使用できる低レベルの {tech}[recursors] を提供します。したがって、エラボレータはパターンマッチと再帰を使用する定義から再帰子を使用する定義に変換する必要があります。この変換はさらに、関数がすべての潜在的な引数に対して停止することの証明でもあります。なぜなら再帰子へ翻訳されるすべての関数は停止するからです。
+Lean のコア型理論には、パターンマッチや再帰定義は含まれていません。その代わりに、場合分けとプリミティブな再帰の両方を実装するために使用できる低レベルの {tech}[再帰子] を提供します。したがって、エラボレータはパターンマッチと再帰を使用する定義から再帰子を使用する定義に変換する必要があります。この変換はさらに、関数がすべての潜在的な引数に対して停止することの証明でもあります。なぜなら再帰子へ翻訳されるすべての関数は停止するからです。
 
 :::comment
 The translation to recursors happens in two phases: during term elaboration, uses of pattern matching are replaced by appeals to {deftech}_auxiliary matching functions_ that implement the particular case distinction that occurs in the code.

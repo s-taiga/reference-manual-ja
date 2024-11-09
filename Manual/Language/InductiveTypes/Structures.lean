@@ -53,7 +53,7 @@ tag := "structure-params"
 %%%
 
 Just like ordinary inductive type declarations, the header of the structure declaration contains a signature that may specify both parameters and a resulting universe.
-Structures may not define {tech}[indexed families].
+Structures may not define {tech}[添字族]indexed families.
 
 # Fields
 %%%
@@ -188,7 +188,7 @@ def NatStringBimap.insert
 ```
 :::
 
-Because structures are represented by single-constructor inductive types, their constructors can be invoked or matched against using {tech}[anonymous constructor syntax].
+Because structures are represented by single-constructor inductive types, their constructors can be invoked or matched against using {tech}[匿名コンストラクタ構文]anonymous constructor syntax.
 Additionally, structures may be constructed or matched against using {deftech}_structure instance_ notation, which includes the names of the fields together with values for them.
 
 ::::syntax term (title := "Structure Instances")
@@ -400,7 +400,7 @@ example : toAcademicWork = Textbook.toAcademicWork := by
 The resulting structure's projections can be used as if its fields are simply the union of the parents' fields.
 The Lean elaborator automatically generates an appropriate projection when fields are used.
 Likewise, the field-based initialization and structure update notations hide the details of the encoding of inheritance.
-The encoding is, however, visible when using the constructor's name, when using {tech}[anonymous constructor syntax], or when referring to fields by their index rather than their name.
+The encoding is, however, visible when using the constructor's name, when using {tech}[匿名コンストラクタ構文]anonymous constructor syntax, or when referring to fields by their index rather than their name.
 
 :::: example "Field Indices and Structure Inheritance"
 

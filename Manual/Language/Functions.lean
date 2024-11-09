@@ -216,7 +216,7 @@ Not all functions originate from abstractions: {tech}[type constructors], {tech}
 
 :::
 
-Lean の {ref "function-terms"}[項の言語] では、関数抽象は複数のパラメータを取ったりパターンマッチを使ったりすることができます。これらの機能はコア言語ではより単純な操作に変換され、抽象化された関数はすべてちょうど1つだけのパラメータを取ります。すべての関数が抽象に由来するわけではありません： {tech}[type constructors] ・ {tech}[constructors] ・ {tech}[recursors] は関数型を持ちえますが、関数抽象だけでは定義できません。
+Lean の {ref "function-terms"}[項の言語] では、関数抽象は複数のパラメータを取ったりパターンマッチを使ったりすることができます。これらの機能はコア言語ではより単純な操作に変換され、抽象化された関数はすべてちょうど1つだけのパラメータを取ります。すべての関数が抽象に由来するわけではありません： {tech}[型コンストラクタ] ・ {tech}[コンストラクタ] ・ {tech}[再帰子] は関数型を持ちえますが、関数抽象だけでは定義できません。
 
 :::comment
 # Currying
@@ -338,7 +338,7 @@ These operations result in an arbitrarily chosen inhabitant of the type in Lean'
 
 :::
 
-同様に、配列への範囲外アクセスなど、コンパイルされたコードでは実行時に失敗するはずの操作は、結果の型が inhabited であることが分かっている場合にのみ使用することができます。これらの操作の結果、Lean のロジックでは型の住人が任意に選ばれます（具体的には、その型の {name}`Inhabited` インスタンスで指定されたもの）。
+同様に、配列への範囲外アクセスなど、コンパイルされたコードではランタイムに失敗するはずの操作は、結果の型が inhabited であることが分かっている場合にのみ使用することができます。これらの操作の結果、Lean のロジックでは型の住人が任意に選ばれます（具体的には、その型の {name}`Inhabited` インスタンスで指定されたもの）。
 
 :::comment
 ::example "Panic"
