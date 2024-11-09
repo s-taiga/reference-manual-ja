@@ -4,19 +4,25 @@
 | --- | --- | --- |
 | abbreviation | 省略形 | |
 | abstraction | 抽象 | |
+| angle bracket | 角括弧 | square bracketと同じ訳語にしているが、直後にコード例がある場合も多いため文脈で見分けられる想定 |
 | annotation | 注釈 | |
+| anonymous constructor | 匿名コンストラクタ | |
 | associativity | 結合性 | |
 | assumption | 仮定 | |
 | attribute | 属性 | |
 | backtrack | バックトラック | 後戻りと書かれる場合あり |
 | binder | 束縛子 | |
+| boolean | 真偽値 | |
 | bound variable | 束縛変数 | |
+| box | ボックス化 | |
 | canonical | 標準 | |
 | carriage return | CR | |
 | case distinction | 場合分け | |
 | chapter | 章 | |
+| clause | 節 | |
 | closed term | 閉項 | |
 | combinator | コンビネータ | |
+| comma | カンマ | |
 | command | コマンド | |
 | command elaboration | コマンドエラボレーション | |
 | compilation | コンパイル | |
@@ -40,6 +46,7 @@
 | dependent | 依存的 | 後ろに何も続かない場合 |
 | dependent function | 依存関数 | |
 | dependent type theory | 依存型理論 | |
+| deriving | 導出 | |
 | desugar | 脱糖 | |
 | domain | 定義域 | |
 | double-struck | 重ね打ち体 | |
@@ -47,15 +54,21 @@
 | elaborate | エラボレート | |
 | elaboration | エラボレーション | |
 | elaborator | エラボレータ | |
+| elimination rule | 除去則 | |
 | encoding | エンコード | |
 | English letter | 英語アルファベット | |
+| enum inductive | 列挙的帰納 | |
 | environment | 環境 | |
 | environment extensions | 環境拡張 | |
 | equational lemma | 等式の補題 | |
+| equivalent | 同値 | |
 | evaluate | 評価 | |
+| evidence | 根拠 | |
+| exception | 例外 | |
 | exclamation mark | 感嘆符 | |
 | executable | 実行ファイル | |
 | expression | 式 | |
+| fixed-width integer | 固定幅整数 | |
 | formalization | 形式化 | |
 | form feed | 改ページ | |
 | functional programming language | 関数型プログラミング言語 | |
@@ -67,10 +80,12 @@
 | hierarchical identifier | 階層的識別子 | |
 | hierarchy | 階層 | |
 | higher-order function | 高階関数 | |
+| identically | 同一 | |
 | identifier | 識別子 | |
 | identifier component | 識別子要素 | |
 | identifier continuation character | 識別子継続文字 | |
 | implicit parameter | 暗黙のパラメータ | |
+| index, indices | 添字 | |
 | inductively-defined | 帰納的に定義された | |
 | inductive predicate | 帰納的述語 | |
 | inductive type | 帰納型 | |
@@ -95,11 +110,13 @@
 | letterlike | 文字様 | |
 | longest match | 最長一致 | |
 | macro | マクロ | |
+| machine integer | 機械整数 | |
 | machinery | 機構 | |
 | macro Expansion | マクロ展開 | |
 | mapping | マッピング | |
 | memoization | メモ化 | |
 | monad | モナド | |
+| motive | 動機 | |
 | multi-threading | マルチスレッド | |
 | mutually inductive | 相互帰納 | |
 | namespace | 名前空間 | |
@@ -116,6 +133,7 @@
 | parse | パース | |
 | parser | パーサ | |
 | pattern matching | パターンマッチ | |
+| polymorphic | 多相 | |
 | precedence | 優先順位 | 構文解析・演算子等の優先具合を指す |
 | pretty printer | プリティプリンタ | |
 | primitive | プリミティブ | |
@@ -136,8 +154,10 @@
 | representation | 表現 | |
 | reserved keyword | 予約キーワード | 下のreserved wordの表記ゆれかもしれないがいったん別の訳語を割り当てる |
 | reserved word | 予約語 | |
+| run-length encoding | 連長圧縮 | |
 | run-time | ランタイム | |
 | rule | ランタイム | |
+| saturated application | 完全な適用 | 固定訳は無いように思われ、飽和では意味が分かりづらいため |
 | scope | スコープ | |
 | separator | 区切り文字 | |
 | set | （数学的な集合を意味しない場合）あつまり、（数学的な集合の場合）集合 | |
@@ -154,6 +174,7 @@
 | strictness | 正格 | |
 | structure | 構造体 | |
 | subterm | 部分項 | |
+| subtype | 部分型 | |
 | subscript | 下付き文字 | |
 | syntactically | 構文上 | |
 | syntactic sugar | 構文糖衣 | |
@@ -174,14 +195,22 @@
 | transitive | 推移的 | |
 | transitivity | 推移性 | |
 | tree | 木 | |
+| trivial | 自明な | |
 | trust | 信頼 | |
 | type class | 型クラス | |
 | type class instance synthesis | 型クラスインスタンス合成 | |
+| type signature | 型シグネチャ | |
+| unbox | ボックス化解除 | C#の用語を流用 |
 | underscore | アンダースコア | |
 | unification | 単一化 | |
 | union | 合併 | |
+| unit type | ユニット型 | |
+| universe | 宇宙 | |
+| universe level | 宇宙レベル | |
+| well-formed | 適格 | |
 | well-founded | 整礎 | |
 | whitespace | 空白 | |
+| wrapper | ラッパ | |
 
 
 # 英語表現をそのまま用いている単語
@@ -190,6 +219,8 @@
 | --- | --- |
 | choice node | |
 | packed array | System Verilogという言語にこの名前の文法要素がある？ |
+| strict positively, negatively | 自己言及される定義の分類、定訳は無い模様 |
 | prelude | |
+| relevant, irrelevant | 直訳して「関係・無関係」はわかりづらいと判断 |
 | subject reduction | TAPLに出てくる模様 |
 | type ascription | Scala、Rustに同じ用語あり |
