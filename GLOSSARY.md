@@ -9,8 +9,10 @@
 | anonymous constructor | 匿名コンストラクタ | |
 | associativity | 結合性 | |
 | assumption | 仮定 | |
+| at most | 高々 | |
 | attribute | 属性 | |
 | backtrack | バックトラック | 後戻りと書かれる場合あり |
+| base case | 基本ケース | |
 | binder | 束縛子 | |
 | boolean | 真偽値 | |
 | bound variable | 束縛変数 | |
@@ -19,6 +21,7 @@
 | carriage return | CR | |
 | case distinction | 場合分け | |
 | chapter | 章 | |
+| circular argument | 循環論法 | |
 | clause | 節 | |
 | closed term | 閉項 | |
 | combinator | コンビネータ | |
@@ -48,6 +51,8 @@
 | dependent type theory | 依存型理論 | |
 | deriving | 導出 | |
 | desugar | 脱糖 | |
+| disjointness | 不連結性 | |
+| disjunction | 選言 | |
 | domain | 定義域 | |
 | double-struck | 重ね打ち体 | |
 | effect | 作用 | |
@@ -68,7 +73,8 @@
 | exclamation mark | 感嘆符 | |
 | executable | 実行ファイル | |
 | expression | 式 | |
-| fixed-width integer | 固定幅整数 | |
+| fixed point operator | 不動点演算子 | |
+| fixed-width integer | 固定幅  整数 | |
 | formalization | 形式化 | |
 | form feed | 改ページ | |
 | functional programming language | 関数型プログラミング言語 | |
@@ -86,12 +92,15 @@
 | identifier continuation character | 識別子継続文字 | |
 | implicit parameter | 暗黙のパラメータ | |
 | index, indices | 添字 | |
+| induction | 帰納法 | |
+| induction hypothese | 帰納法の仮定 | |
 | inductively-defined | 帰納的に定義された | |
 | inductive predicate | 帰納的述語 | |
 | inductive type | 帰納型 | |
 | info tree | 情報木 | |
 | inhabitant | 住人 | |
 | initialization | 初期化 | |
+| injectivity | 単射性 | |
 | instance implicit parameter | インスタンスの暗黙のパラメータ | |
 | instances synthesize | インスタンス合成 | |
 | instantiate | インスタンス化 | |
@@ -135,6 +144,7 @@
 | pattern matching | パターンマッチ | |
 | polymorphic | 多相 | |
 | precedence | 優先順位 | 構文解析・演算子等の優先具合を指す |
+| predicate | 述語 | |
 | pretty printer | プリティプリンタ | |
 | primitive | プリミティブ | |
 | proof checker | 証明チェッカ | |
@@ -149,6 +159,7 @@
 | reasoning | 推論 | |
 | recovery | 回復 | |
 | recursive-descent parser | 再帰下降パーサ | |
+| reduction | 簡約 | |
 | reference count | 参照カウント |
 | rename | リネーム | |
 | representation | 表現 | |
@@ -156,7 +167,7 @@
 | reserved word | 予約語 | |
 | run-length encoding | 連長圧縮 | |
 | run-time | ランタイム | |
-| rule | ランタイム | |
+| rule | 規則 | |
 | saturated application | 完全な適用 | 固定訳は無いように思われ、飽和では意味が分かりづらいため |
 | scope | スコープ | |
 | separator | 区切り文字 | |
@@ -172,6 +183,7 @@
 | statement | 文 | |
 | strict implicit parameter | 厳格な暗黙のパラメータ | |
 | strictness | 正格 | |
+| strong induction | 強帰納法 | |
 | structure | 構造体 | |
 | subterm | 部分項 | |
 | subtype | 部分型 | |
@@ -185,6 +197,7 @@
 | synthetic syntax | 統合的な構文 | |
 | tactic | タクティク | |
 | Technical Terminology | 専門用語 | |
+| tail | 後続のリスト | 「末尾」だと「最後の1要素」というようにも読めるため |
 | term | 項 | |
 | term elaboration | 項エラボレーション | |
 | termination | 停止 | |
@@ -207,6 +220,7 @@
 | unit type | ユニット型 | |
 | universe | 宇宙 | |
 | universe level | 宇宙レベル | |
+| universe-polymorphic | 宇宙多相 | |
 | well-formed | 適格 | |
 | well-founded | 整礎 | |
 | whitespace | 空白 | |
@@ -223,4 +237,5 @@
 | prelude | |
 | relevant, irrelevant | 直訳して「関係・無関係」はわかりづらいと判断 |
 | subject reduction | TAPLに出てくる模様 |
+| subsingleton | |
 | type ascription | Scala、Rustに同じ用語あり |
