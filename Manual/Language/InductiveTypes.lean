@@ -453,7 +453,7 @@ inductive Either'' : Type u → Type v → Type (max u v) where
 {name}`Either''.right`'s type parameters are discovered via Lean's ordinary rules for {tech}[automatic implicit] parameters.
 :::
 
-{name}`Either''.right` の型パラメータは Lean の {tech}[automatic implicit] パラメータに関する通常のルールによって発見されます。
+{name}`Either''.right` の型パラメータは Lean の {tech}[automatic implicit] パラメータに関する通常の規則によって発見されます。
 
 :::::
 ::::::
