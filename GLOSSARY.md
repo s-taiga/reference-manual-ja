@@ -13,6 +13,7 @@
 | attribute | 属性 | |
 | backtrack | バックトラック | 後戻りと書かれる場合あり |
 | base case | 基本ケース | |
+| bijection | 全単射 | |
 | binder | 束縛子 | |
 | boolean | 真偽値 | |
 | bound variable | 束縛変数 | |
@@ -73,6 +74,9 @@
 | exclamation mark | 感嘆符 | |
 | executable | 実行ファイル | |
 | expression | 式 | |
+| extend | 拡張 | |
+| field | （構造体・クラスのメンバの意味）フィールド | |
+| field specifier | フィールド指定子 | |
 | fixed point operator | 不動点演算子 | |
 | fixed-width integer | 固定幅  整数 | |
 | formalization | 形式化 | |
@@ -99,6 +103,7 @@
 | inductive type | 帰納型 | |
 | info tree | 情報木 | |
 | inhabitant | 住人 | |
+| inheritance | 継承 | |
 | initialization | 初期化 | |
 | injectivity | 単射性 | |
 | instance implicit parameter | インスタンスの暗黙のパラメータ | |
@@ -109,6 +114,7 @@
 | interface | インタフェース | |
 | interleave | 交互に実行する | |
 | intermediate representation | 中間表現 | |
+| invariant | 不変量 | |
 | kernel | カーネル | |
 | keyword | キーワード | |
 | kind | 種 | |
@@ -122,8 +128,10 @@
 | machine integer | 機械整数 | |
 | machinery | 機構 | |
 | macro Expansion | マクロ展開 | |
+| map | 写像 | |
 | mapping | マッピング | |
 | memoization | メモ化 | |
+| modifier | 修飾子 | |
 | monad | モナド | |
 | motive | 動機 | |
 | multi-threading | マルチスレッド | |
@@ -147,10 +155,13 @@
 | predicate | 述語 | |
 | pretty printer | プリティプリンタ | |
 | primitive | プリミティブ | |
+| product type | 直積型 | |
+| projection function | 射影関数 | |
 | proof checker | 証明チェッカ | |
 | proof state | 証明状態 | |
 | proof term | 証明項 | |
 | qualification | 修飾 | |
+| quantify | 定量化 | |
 | question mark | 疑問符 | |
 | quote | クォート | |
 | quotient type | 商型 | |
@@ -185,6 +196,7 @@
 | strictness | 正格 | |
 | strong induction | 強帰納法 | |
 | structure | 構造体 | |
+| subfield | サブフィールド | |
 | subterm | 部分項 | |
 | subtype | 部分型 | |
 | subscript | 下付き文字 | |
