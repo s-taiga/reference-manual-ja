@@ -28,7 +28,7 @@ tag := "tactics"
 %%%
 
 The tactic language is a special-purpose programming language for constructing proofs.
-In Lean, {tech}[propositions] are represented by types, and proofs are terms that inhabit these types.
+In Lean, {tech}[命題]propositions are represented by types, and proofs are terms that inhabit these types.
 {margin}[The {ref "propositions"}[section on propositions] describes propositions in more detail.]
 While terms are designed to make it convenient to indicate a specific inhabitant of a type, tactics are designed to make it convenient to demonstrate that a type is inhabited.
 This distinction exists because it's important that definitions pick out the precise objects of interest and that programs return the intended results, but proof irrelevance means that there's no _technical_ reason to prefer one proof term over another.
@@ -357,7 +357,7 @@ tag := "metavariables-in-proofs"
 %%%
 
 Terms that begin with a question mark are _metavariables_ that correspond to an unknown value.
-They may stand for either {tech}[universe] levels or for terms.
+They may stand for either {tech}[宇宙]universe levels or for terms.
 Some metavariables arise as part of Lean's elaboration process, when not enough information is yet available to determine a value.
 These metavariables' names have a numeric component at the end, such as `?m.392` or `?u.498`.
 Other metavariables come into existence as a result of tactics or {tech}[synthetic holes].

@@ -34,7 +34,7 @@ Inductive types may have any number of constructors; these constructors introduc
 
 :::
 
-{deftech}_帰納型_ （inductive type）は Lean に新しい型を導入する主な手段です。 {tech}[universes] と {tech}[関数] は組み込みのプリミティブでユーザが追加することはできませんが、Lean の他のすべての型は帰納型であるか、宇宙・関数・帰納型によって定義されたものであるかのどちらかです。帰納型は {deftech}_型コンストラクタ_ （type constructor）{index}[type constructor] と {deftech}_コンストラクタ_ （constructor） {index}[constructor] によって指定されます；帰納型の性質はこれらから導かれます。各帰納型は1つの型コンストラクタを持ち、 {tech}[universe parameters] と通常のパラメータの両方を取ることができます。帰納型は任意の数のコンストラクタを持つことができます；これらのコンストラクタは帰納型の型コンストラクタによって型が導かれる新しい値を導入します。
+{deftech}_帰納型_ （inductive type）は Lean に新しい型を導入する主な手段です。 {tech}[宇宙] と {tech}[関数] は組み込みのプリミティブでユーザが追加することはできませんが、Lean の他のすべての型は帰納型であるか、宇宙・関数・帰納型によって定義されたものであるかのどちらかです。帰納型は {deftech}_型コンストラクタ_ （type constructor）{index}[type constructor] と {deftech}_コンストラクタ_ （constructor） {index}[constructor] によって指定されます；帰納型の性質はこれらから導かれます。各帰納型は1つの型コンストラクタを持ち、 {tech}[宇宙パラメータ] と通常のパラメータの両方を取ることができます。帰納型は任意の数のコンストラクタを持つことができます；これらのコンストラクタは帰納型の型コンストラクタによって型が導かれる新しい値を導入します。
 
 :::comment
 Based on the type constructor and the constructors for an inductive type, Lean derives a {deftech}_recursor_{index}[recursor]{see "recursor"}[eliminator].
@@ -45,7 +45,7 @@ Lean additionally produces a number of helper constructions based on the recurso
 
 :::
 
-帰納型の型コンストラクタとコンストラクタに基づいて、Lean は {deftech}_再帰子_{index}[recursor]{see "recursor"}[eliminator] （recursor）を導出します。論理的には、再帰子は帰納原理や除去則を表し、計算上はプリミティブな再帰計算を表します。再帰関数の停止は、再帰子の使用に変換することで正当化されるため、Lean のカーネルは再帰子の適用の型チェックを行うだけでよく、停止性の分析を別途行う必要はありません。Lean はさらに、システムの他の場所でも使用される再帰子 {margin}[_再帰子_ という用語は再帰的でないデータ型でも常に使用されます。] に基づいた数多くの補助的な構成を提供しています。
+帰納型の型コンストラクタとコンストラクタに基づいて、Lean は {deftech}_再帰子_{index}[recursor]{see "recursor"}[eliminator] （recursor）を導出します。論理的には、再帰子は帰納原理や除去則を表し、計算上は原始再帰計算を表します。再帰関数の停止は、再帰子の使用に変換することで正当化されるため、Lean のカーネルは再帰子の適用の型チェックを行うだけでよく、停止性の分析を別途行う必要はありません。Lean はさらに、システムの他の場所でも使用される再帰子 {margin}[_再帰子_ という用語は再帰的でないデータ型でも常に使用されます。] に基づいた数多くの補助的な構成を提供しています。
 
 :::comment
 _Structures_ are a special case of inductive types that have exactly one constructor.
@@ -106,7 +106,7 @@ In some situations, this process may fail to find a minimal universe or fail to 
 
 :::
 
-宣言の最初の行にて、 {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`inductive` から {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`where` までは新しい {tech}[型コンストラクタ] の名前と型を指定しています。型コンストラクタの型シグネチャが提供されている場合、その結果の型は {tech}[universe] でなければなりませんが、パラメータは型である必要はありません。シグネチャが提供されない場合、Lean は結果の型を含むのに十分な大きさの宇宙を推論しようとします。状況によってはこのプロセスは最小の宇宙を見つけることができなかったり、全く見つけることができなかったりすることがあり、その場合は注釈が必要です。
+宣言の最初の行にて、 {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`inductive` から {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`where` までは新しい {tech}[型コンストラクタ] の名前と型を指定しています。型コンストラクタの型シグネチャが提供されている場合、その結果の型は {tech}[宇宙] でなければなりませんが、パラメータは型である必要はありません。シグネチャが提供されない場合、Lean は結果の型を含むのに十分な大きさの宇宙を推論しようとします。状況によってはこのプロセスは最小の宇宙を見つけることができなかったり、全く見つけることができなかったりすることがあり、その場合は注釈が必要です。
 
 :::comment
 The constructor specifications follow {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`where`.
@@ -211,7 +211,7 @@ Empty inductive types are not useless; they can be used to indicate unreachable 
 {lean}`No` is a false {tech}[proposition], equivalent to Lean's {lean}`False`:
 :::
 
-{lean}`No` は偽の {tech}[proposition] であり、Lean の {lean}`False` と同値です：
+{lean}`No` は偽の {tech}[命題] であり、Lean の {lean}`False` と同値です：
 
 ```lean
 inductive No : Prop where
@@ -1280,7 +1280,7 @@ The actual dependency structure between the types is not taken into account; eve
 
 :::
 
-相互帰納型には、非相互に定義された帰納型と同様に、プリミティブな再帰子が用意されています。これらの再帰子は、グループ内の他の型を処理しなければならないことを考慮し、それぞれの帰納型に対して動機を持つことになります。`mutual` グループ内のすべての帰納型は同一のパラメータを持つ必要があるため、再帰子はパラメータを最初に受け取り、動機と再帰子の残りの部分を抽象化します。さらに、再帰子はグループの他の型を処理する必要があるため、グループ内の各型コンストラクタについてのケースが必要になります。型の間の実施あの依存構造は考慮されません；相互依存関係が少ないことで追加の動機またはコンストラクタのケースが実際には必要ない場合でも、生成された再帰子はそれらを必要とします。
+相互帰納型には、非相互に定義された帰納型と同様に、原始再帰子が用意されています。これらの再帰子は、グループ内の他の型を処理しなければならないことを考慮し、それぞれの帰納型に対して動機を持つことになります。`mutual` グループ内のすべての帰納型は同一のパラメータを持つ必要があるため、再帰子はパラメータを最初に受け取り、動機と再帰子の残りの部分を抽象化します。さらに、再帰子はグループの他の型を処理する必要があるため、グループ内の各型コンストラクタについてのケースが必要になります。型の間の実施あの依存構造は考慮されません；相互依存関係が少ないことで追加の動機またはコンストラクタのケースが実際には必要ない場合でも、生成された再帰子はそれらを必要とします。
 
 :::comment
 :: example "Even and odd"

@@ -7,14 +7,17 @@
 | angle bracket | 角括弧 | square bracketと同じ訳語にしているが、直後にコード例がある場合も多いため文脈で見分けられる想定 |
 | annotation | 注釈 | |
 | anonymous constructor | 匿名コンストラクタ | |
+| assign | 割り当て | |
 | associativity | 結合性 | |
 | assumption | 仮定 | |
 | at most | 高々 | |
 | attribute | 属性 | |
+| auto-bound | 自動的に束縛された | |
 | backtrack | バックトラック | 後戻りと書かれる場合あり |
 | base case | 基本ケース | |
 | bijection | 全単射 | |
 | binder | 束縛子 | |
+| binding | 束縛 | |
 | boolean | 真偽値 | |
 | bound variable | 束縛変数 | |
 | box | ボックス化 | |
@@ -46,10 +49,12 @@
 | declaration | 宣言 | |
 | definition | 定義 | |
 | definitional (η-)equality | 定義上の(η)等価性 | |
+| definition-like | 定義に類する | |
 | definitional proof irrelevance | 定義上の証明の無関係性 | |
 | dependent | 依存的 | 後ろに何も続かない場合 |
 | dependent function | 依存関数 | |
 | dependent type theory | 依存型理論 | |
+| derivation | 導出 | |
 | deriving | 導出 | |
 | desugar | 脱糖 | |
 | disjointness | 不連結性 | |
@@ -77,6 +82,7 @@
 | extend | 拡張 | |
 | field | （構造体・クラスのメンバの意味）フィールド | |
 | field specifier | フィールド指定子 | |
+| first-class | 第一級 | |
 | fixed point operator | 不動点演算子 | |
 | fixed-width integer | 固定幅  整数 | |
 | formalization | 形式化 | |
@@ -94,7 +100,9 @@
 | identifier | 識別子 | |
 | identifier component | 識別子要素 | |
 | identifier continuation character | 識別子継続文字 | |
+| identity function | 恒等関数 | |
 | implicit parameter | 暗黙のパラメータ | |
+| incompatible | 互換性 | |
 | index, indices | 添字 | |
 | induction | 帰納法 | |
 | induction hypothese | 帰納法の仮定 | |
@@ -108,7 +116,7 @@
 | injectivity | 単射性 | |
 | instance implicit parameter | インスタンスの暗黙のパラメータ | |
 | instances synthesize | インスタンス合成 | |
-| instantiate | インスタンス化 | |
+| instantiate, instantiation | インスタンス化 | |
 | intensional | 内包的 | |
 | interactive theorem prover | 対話型定理証明器 | |
 | interface | インタフェース | |
@@ -120,9 +128,11 @@
 | kind | 種 | |
 | laziness | 遅延 | |
 | language server | 言語サーバ | |
+| least upper bound | 最小上界 | |
 | lemma | 補題 | |
 | letter | 文字 | |
 | letterlike | 文字様 | |
+| level expression | レベル式 | |
 | longest match | 最長一致 | |
 | macro | マクロ | |
 | machine integer | 機械整数 | |
@@ -133,6 +143,7 @@
 | memoization | メモ化 | |
 | modifier | 修飾子 | |
 | monad | モナド | |
+| monomorphism | モノ射 | |
 | motive | 動機 | |
 | multi-threading | マルチスレッド | |
 | mutually inductive | 相互帰納 | |
@@ -155,13 +166,15 @@
 | predicate | 述語 | |
 | pretty printer | プリティプリンタ | |
 | primitive | プリミティブ | |
+| primitive recursion | 原始再帰 | |
 | product type | 直積型 | |
 | projection function | 射影関数 | |
 | proof checker | 証明チェッカ | |
 | proof state | 証明状態 | |
 | proof term | 証明項 | |
 | qualification | 修飾 | |
-| quantify | 定量化 | |
+| quantify | 量化 | |
+| quantification | 量化子 | |
 | question mark | 疑問符 | |
 | quote | クォート | |
 | quotient type | 商型 | |
@@ -180,6 +193,7 @@
 | run-time | ランタイム | |
 | rule | 規則 | |
 | saturated application | 完全な適用 | 固定訳は無いように思われ、飽和では意味が分かりづらいため |
+| schematic definition | スキーマ的定義 | |
 | scope | スコープ | |
 | separator | 区切り文字 | |
 | set | （数学的な集合を意味しない場合）あつまり、（数学的な集合の場合）集合 | |
@@ -188,11 +202,13 @@
 | side effect | 副作用 | |
 | signature | シグネチャ | |
 | single quote | シングルクォート | |
+| singleton | 単集合 | |
 | soundness | 健全性 | |
 | square bracket | 角括弧 | |
 | specialization | 特殊化 | |
 | statement | 文 | |
 | strict implicit parameter | 厳格な暗黙のパラメータ | |
+| strictly | （順序の意味で）狭義 | |
 | strictness | 正格 | |
 | strong induction | 強帰納法 | |
 | structure | 構造体 | |
@@ -200,6 +216,7 @@
 | subterm | 部分項 | |
 | subtype | 部分型 | |
 | subscript | 下付き文字 | |
+| substitution | 置換 | |
 | syntactically | 構文上 | |
 | syntactic sugar | 構文糖衣 | |
 | syntax | 構文 | |
@@ -222,6 +239,7 @@
 | tree | 木 | |
 | trivial | 自明な | |
 | trust | 信頼 | |
+| tuple | タプル | |
 | type class | 型クラス | |
 | type class instance synthesis | 型クラスインスタンス合成 | |
 | type signature | 型シグネチャ | |
@@ -244,6 +262,8 @@
 | 用語 | 備考 |
 | --- | --- |
 | choice node | |
+| cumulative | |
+| impredicativity, predicativity | |
 | packed array | System Verilogという言語にこの名前の文法要素がある？ |
 | strict positively, negatively | 自己言及される定義の分類、定訳は無い模様 |
 | prelude | |
@@ -251,3 +271,4 @@
 | subject reduction | TAPLに出てくる模様 |
 | subsingleton | |
 | type ascription | Scala、Rustに同じ用語あり |
+| well-typed | |

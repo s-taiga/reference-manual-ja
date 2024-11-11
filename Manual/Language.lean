@@ -23,42 +23,80 @@ set_option maxRecDepth 3000
 
 set_option linter.unusedVariables false
 
+/-
 #doc (Manual) "Source Files" =>
+-/
+#doc (Manual) "ソースファイル（Source Files）" =>
 
 {include 0 Manual.Language.Files}
 
 
+:::comment
 # Module Contents
 
+:::
+
+# モジュールの内容（Module Contents）
+
+:::comment
 As described {ref "module-structure"}[in the section on the syntax of files], a Lean module consists of a header followed by a sequence of commands.
 
+:::
+
+{ref "module-structure"}[ファイルの構文に関する節] で説明したように、Lean のモジュールはヘッダとそれに続く一連のコマンドで構成されます。
+
+:::comment
 ## Commands and Declarations
 
+:::
+
+## コマンドと宣言（Commands and Declaration）
+
+:::comment
 After the header, every top-level phrase of a Lean module is a command.
 Commands may add new types, define new constants, or query Lean for information.
 Commands may even {ref "language-extension"}[change the syntax used to parse subsequent commands].
+
+:::
+
+ヘッダの後にある、Lean モジュールのトップレベルのフレーズはすべてコマンドです。コマンドは新しい型を追加したり、新しい定数を定義したり、Lean に情報を問い合わせたりします。コマンドは {ref "language-extension"}[後続のコマンドをパースするために使用される構文を変更する] ことさえもできます。
 
 ::: planned 100
  * Describe the various families of available commands (definition-like, `#eval`-like, etc).
  * Refer to specific chapters that describe major commands, such as `inductive`.
 :::
 
+:::comment
 ### Definition-Like Commands
+
+:::
+
+### 定義に類するコマンド（Definition-Like Commands）
 
 ::: planned 101
  * Precise descriptions of these commands and their syntax
  * Comparison of each kind of definition-like command to the others
 :::
 
+:::comment
 The following commands in Lean are definition-like: {TODO}[Render commands as their name (a la tactic index)]
+:::
+
+以下の Lean のコマンドは定義に類するものです：
+
  * {syntaxKind}`def`
  * {syntaxKind}`abbrev`
  * {syntaxKind}`example`
  * {syntaxKind}`theorem`
 
-All of these commands cause Lean to {tech key:="エラボレータ"}[elaborate]elaborator a term based on a signature.
+:::comment
+All of these commands cause Lean to {tech key:="elaborator"}[elaborate] a term based on a signature.
 With the exception of {syntaxKind}`example`, which discards the result, the resulting expression in Lean's core language is saved for future use in the environment.
 The {keywordOf Lean.Parser.Command.declaration}`instance` command is described in the {ref "instance-declarations"}[section on instance declarations].
+
+:::
+
+これらのコマンドはすべて Lean によってシグネチャに応じた項へ {tech key:="エラボレータ"}[エラボレート] されます。結果を破棄する {syntaxKind}`example` を除き、Lean のコア言語での結果の式は将来の環境で使用するために保存されます。
 
 :::syntax Lean.Parser.Command.declaration
 ```grammar
@@ -133,7 +171,12 @@ example $_ $_ where
 ```
 :::
 
+:::comment
 {deftech}_Opaque constants_ are defined constants that cannot be reduced to their definition.
+
+:::
+
+{deftech}_不透明な定数_ はそれらの定義へ簡約されない定数を定義します。
 
 :::syntax Lean.Parser.Command.opaque
 ```grammar
@@ -185,9 +228,19 @@ Describe signatures, including the following topics:
 
 :::
 
+:::comment
 ### Headers
 
+:::
+
+### ヘッダ（Headers）
+
+:::comment
 The {deftech}[_header_] of a definition or declaration specifies the signature of the new constant that is defined.
+
+:::
+
+定義または宣言の {deftech}[_ヘッダ_] （header）は定義される新しい定数のシグネチャを指定します。
 
 ::: TODO
 * Precision and examples; list all of them here

@@ -15,7 +15,7 @@ open Lean.Parser.Command («inductive» «structure» declValEqns computedField)
 /-
 #doc (Manual) "Structure Declarations" =>
 -/
-#doc (Manual) "構造体 宣言" =>
+#doc (Manual) "構造体宣言（Structure Declarations）" =>
 %%%
 tag := "structures"
 %%%
@@ -68,7 +68,7 @@ tag := "structure-params"
 
 :::
 
-# 構造体のパラメータ
+# 構造体のパラメータ（Structure Parameters）
 
 :::comment
 Just like ordinary inductive type declarations, the header of the structure declaration contains a signature that may specify both parameters and a resulting universe.
@@ -86,7 +86,7 @@ tag := "structure-fields"
 
 :::
 
-# フィールド
+# フィールド（Fields）
 
 :::comment
 Each field of a structure declaration corresponds to a parameter of the constructor.
@@ -94,7 +94,7 @@ Auto-implicit arguments are inserted in each field separately, even if their nam
 
 :::
 
-構造体宣言の各フィールドは、コンストラクタのパラメータに対応します。自動的な暗黙引数はたとえ名前が一致していても各フィールドに別々に挿入され、フィールドは型を定量化するコンストラクタのパラメータになります。
+構造体宣言の各フィールドは、コンストラクタのパラメータに対応します。自動的な暗黙引数はたとえ名前が一致していても各フィールドに別々に挿入され、フィールドは型を量化するコンストラクタのパラメータになります。
 
 :::comment
 :: example "Auto-implicit parameters in structure fields"
@@ -126,7 +126,7 @@ MyStructure.{u, v} : Type (max u v)
 The resulting type is in `Type` rather than `Sort` because the constructor fields quantify over types in `Sort`. In particular, both fields in its constructor {name}`MyStructure.mk` take an implicit type parameter:
 :::
 
-コンストラクタのフィールドは `Sort` の型に対して定量化されるため、結果の型は `Type` ではなく `Sort` になります。特に、コンストラクタ {name}`MyStructure.mk` の両方のフィールドは暗黙の型パラメータを取ります：
+コンストラクタのフィールドは `Sort` の型に対して量化されるため、結果の型は `Type` ではなく `Sort` になります。特に、コンストラクタ {name}`MyStructure.mk` の両方のフィールドは暗黙の型パラメータを取ります：
 
 ```signature
 MyStructure.mk.{u, v}
@@ -230,7 +230,7 @@ tag := "structure-constructors"
 
 :::
 
-# 構造体のコンストラクタ
+# 構造体のコンストラクタ（Structure Constructors）
 
 :::comment
 Structure constructors may be explicitly named by providing the constructor name and `::` prior to the fields.
@@ -508,7 +508,7 @@ def location : Float × Float where
 # Structure Inheritance
 :::
 
-# 構造体の継承
+# 構造体の継承（Structure Inheritance）
 
 %%%
 tag := "structure-inheritance"
