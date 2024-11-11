@@ -13,7 +13,7 @@ open Verso.Genre Manual
 /-
 #doc (Manual) "Functions" =>
 -/
-#doc (Manual) "関数" =>
+#doc (Manual) "関数（Functions）" =>
 %%%
 tag := "functions"
 %%%
@@ -227,7 +227,7 @@ tag := "currying"
 
 :::
 
-# カリー化
+# カリー化（Currying）
 
 :::comment
 In Lean's core type theory, every function maps each element of the domain to a single element of the range.
@@ -249,7 +249,7 @@ tag := "function-extensionality"
 
 :::
 
-# 外延性
+# 外延性（Extensionality）
 
 :::comment
 Definitional equality of functions in Lean is {deftech}_intensional_.
@@ -258,7 +258,7 @@ To a first approximation, this means that two functions are definitionally equal
 
 :::
 
-Lean における関数の定義上の等価性は {deftech}_内包的_ （intensional）です。つまり、この定義上の等価性は、束縛変数のリネームと {tech}[reduction] によって _構文上_ （syntactically）で定義されます。大まかに言えば、これは2つの関数が同じアルゴリズムを実装していれば定義上等しいということを意味し、定義域の等しい要素を値域の等しい要素にマッピングしていれば等しいという通常の数学的な等値性の概念とは異なります。
+Lean における関数の定義上の等価性は {deftech}_内包的_ （intensional）です。つまり、この定義上の等価性は、束縛変数のリネームと {tech}[簡約] によって _構文上_ （syntactically）で定義されます。大まかに言えば、これは2つの関数が同じアルゴリズムを実装していれば定義上等しいということを意味し、定義域の等しい要素を値域の等しい要素にマッピングしていれば等しいという通常の数学的な等値性の概念とは異なります。
 
 :::comment
 Definitional equality is used by the type checker, so it's important that it be predictable.
@@ -269,8 +269,7 @@ Function extensionality is instead made available as a reasoning principle that 
 
 :::
 
-定義上の等価性は型チェッカで使用されるため、予測可能であることが重要です。内包的な等価性の構文的特徴によって、それをチェックするアルゴリズムが適切に指定できます。外延的な等価性のチェックには、関数の等価性に関する本質的に任意の定理を証明する必要があり、それをチェックするアルゴリズムの明確な仕様はありません。このため、外延的な等価性は型チェッカに向きません。その代わりに関数の外延性は、2つの関数が等しいという {tech}[proposition] を証明する時に推論原理として利用できるようにします。
-
+定義上の等価性は型チェッカで使用されるため、予測可能であることが重要です。内包的な等価性の構文的特徴によって、それをチェックするアルゴリズムが適切に指定できます。外延的な等価性のチェックには、関数の等価性に関する本質的に任意の定理を証明する必要があり、それをチェックするアルゴリズムの明確な仕様はありません。このため、外延的な等価性は型チェッカに向きません。その代わりに関数の外延性は、2つの関数が等しいという {tech}[命題] を証明する時に推論原理として利用できるようにします。
 
 ::::keepEnv
 ```lean (show := false)
@@ -309,7 +308,7 @@ tag := "totality"
 
 :::
 
-# 全域性と停止
+# 全域性と停止（Totality and Termination）
 
 :::comment
 Functions can be defined recursively using {keywordOf Lean.Parser.Command.declaration}`def`.

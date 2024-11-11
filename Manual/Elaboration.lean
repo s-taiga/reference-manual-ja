@@ -19,7 +19,7 @@ open Lean (Syntax SourceInfo)
 /-
 #doc (Manual) "Elaboration and Compilation" =>
 -/
-#doc (Manual) "エラボレーションとコンパイル" =>
+#doc (Manual) "エラボレーションとコンパイル（Elaboration and Compilation）" =>
 %%%
 htmlSplit := .never
 %%%
@@ -112,7 +112,7 @@ The next command is parsed and elaborated in this updated state, and itself upda
 # Parsing
 :::
 
-# パース
+# パース（Parsing）
 %%%
 tag := "parser"
 %%%
@@ -174,7 +174,7 @@ Syntax extensions are described in more detail in {ref "language-extension"}[a d
 # Macro Expansion and Elaboration
 :::
 
-# マクロ展開とエラボレーション
+# マクロ展開とエラボレーション（Macro Expansion and Elaboration）
 %%%
 tag := "macro-and-elab"
 %%%
@@ -234,7 +234,7 @@ While macro expansion occurs prior to elaboration for a given “layer” of the
 ## Info Trees
 :::
 
-## 情報木
+## 情報木（Info Trees）
 
 :::comment
 When interacting with Lean code, much more information is needed than when simply importing it as a dependency.
@@ -264,7 +264,7 @@ This can be used to add information to be used by custom code actions or other u
 # The Kernel
 :::
 
-# カーネル
+# カーネル（The Kernel）
 
 :::comment
 Lean's trusted {deftech}_kernel_ is a small, robust implementation of a type checker for the core type theory.
@@ -297,7 +297,7 @@ The language implemented by the kernel is a version of the Calculus of Construct
 カーネルが実装する言語は Calculus of Constructions の一種で、以下の特徴を持つ依存型理論です：
 + 完全な依存型
 + 相互に帰納的であったり、他の帰納的データ型の下で入れ子になった再帰を含んだりする帰納的に定義されたデータ型
-+ {tech}[impredicative] ・定義上証明と irrelevant な {tech}[propositions] の拡張的 {tech}[universe]
++ {tech}[impredicative] ・定義上証明と irrelevant な {tech}[命題] の拡張的 {tech}[宇宙]
 + {tech}[predicative] なデータの宇宙の非蓄積な階層
 * 定義上の計算規則を伴った {ref "quotients"}[商型] （Quotient type）
 + 命題上の関数外延性 {margin}[関数外延性は商型を使って証明できる定理ですが、重要な帰結であるため別で挙げておきます。]
@@ -348,7 +348,7 @@ Lean の型理論には subject reduction の機能はなく、定義上の等�
 # Elaboration Results
 :::
 
-# エラボレーションの結果
+# エラボレーションの結果（Elaboration Results）
 %%%
 tag := "elaboration-results"
 %%%
@@ -360,7 +360,7 @@ Thus, the elaborator must translate definitions that use pattern matching and re
 This translation is additionally a proof that the function terminates for all potential arguments, because all functions that can be translated to recursors also terminate.
 :::
 
-Lean のコア型理論には、パターンマッチや再帰定義は含まれていません。その代わりに、場合分けとプリミティブな再帰の両方を実装するために使用できる低レベルの {tech}[再帰子] を提供します。したがって、エラボレータはパターンマッチと再帰を使用する定義から再帰子を使用する定義に変換する必要があります。この変換はさらに、関数がすべての潜在的な引数に対して停止することの証明でもあります。なぜなら再帰子へ翻訳されるすべての関数は停止するからです。
+Lean のコア型理論には、パターンマッチや再帰定義は含まれていません。その代わりに、場合分けと原始再帰の両方を実装するために使用できる低レベルの {tech}[再帰子] を提供します。したがって、エラボレータはパターンマッチと再帰を使用する定義から再帰子を使用する定義に変換する必要があります。この変換はさらに、関数がすべての潜在的な引数に対して停止することの証明でもあります。なぜなら再帰子へ翻訳されるすべての関数は停止するからです。
 
 :::comment
 The translation to recursors happens in two phases: during term elaboration, uses of pattern matching are replaced by appeals to {deftech}_auxiliary matching functions_ that implement the particular case distinction that occurs in the code.
@@ -664,7 +664,7 @@ The most important topics related to Lean's reference-counting-based allocator:
 # Initialization
 :::
 
-# 初期化コード
+# 初期化（Initialization）
 
 :::comment
 Before starting up, the elaborator must be correctly initialized.
