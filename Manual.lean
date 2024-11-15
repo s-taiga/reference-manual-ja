@@ -44,6 +44,7 @@ tag := "monads-and-do"
 
 :::planned 102
 This chapter will describe `do`-notation in Lean:
+ * Overview of {deftech}[monads]
  * Desugaring of `do` and its associated control structures
  * Comprehensive description of the syntax of `do`-notation
  * Definition of being in the "same `do`-block"
@@ -85,6 +86,14 @@ Describe {name}`Option`, including the default coercions and its API.
 
 {include 0 Manual.NotationsMacros}
 
+# Output from Lean
+
+:::planned 122
+ * {deftech}[Unexpanders]
+ * {deftech key:="delaborate"}[Delaboration]
+ * {deftech}[Pretty printing]
+ * Parenthesizers
+:::
 
 # Elan
 %%%

@@ -6,6 +6,7 @@ Author: David Thrane Christiansen
 import VersoManual
 
 import Manual.Meta
+import Manual.Papers
 
 open Verso.Genre Manual
 
@@ -14,27 +15,6 @@ set_option pp.rawOnError true
 open Lean (Syntax SourceInfo)
 
 
-def pratt73 : InProceedings where
-  title := .concat (inlines!"Top down operator precedence")
-  authors := #[.concat (inlines!"Vaughan Pratt")]
-  year := 1973
-  booktitle := .concat (inlines!"Proceedings of the 1st Annual ACM SIGACT-SIGPLAN Symposium on Principles of Programming Languages")
-
-def carneiro19 : Thesis where
-  title := .concat (inlines!"The Type Theory of Lean")
-  author := .concat (inlines!"Mario Carneiro")
-  year := 2019
-  university := .concat (inlines!"Carnegie Mellon University")
-  url := some "https://github.com/digama0/lean-type-theory/releases/download/v1.0/main.pdf"
-  degree := .concat (inlines!"Masters thesis")
-
-def ullrich23 : Thesis where
-  title := .concat (inlines!"An Extensible Theorem Proving Frontend")
-  author := .concat (inlines!"Sebastian Ullrich")
-  year := 2023
-  university := .concat (inlines!"Karlsruhe Institute of Technology")
-  url := some "https://www.lean-lang.org/papers/thesis-sebastian.pdf"
-  degree := .concat (inlines!"Dr. Ing. dissertation")
 
 #doc (Manual) "Elaboration and Compilation" =>
 %%%
@@ -92,7 +72,7 @@ tag := "parser"
 Lean's parser is a recursive-descent parser that uses dynamic tables based on Pratt parsing{citep pratt73}[] to resolve operator precedence and associativity.
 When grammars are unambiguous, the parser does not need to backtrack; in the case of ambiguous grammars, a memoization table similar to that used in Packrat parsing avoids exponential blowup.
 Parsers are highly extensible: users may define new syntax in any command, and that syntax becomes available in the next command.
-The open namespaces in the current {tech}[scope] also influences which parsing rules are used, because parser extensions may be set to be active only when a given namespace is open.
+The open namespaces in the current {tech}[section scope] also influence which parsing rules are used, because parser extensions may be set to be active only when a given namespace is open.
 
 When ambiguity is encountered, the longest matching parse is selected.
 If there is no unique longest match, then both matching parses are saved in the syntax tree in a {deftech}[choice node] to be resolved later by the elaborator.
@@ -127,7 +107,7 @@ Elaboration of both commands and terms may be recursive, both because of command
 Command and term elaboration have different capabilities.
 Command elaboration may have side effects on an environment, and it has access to run arbitrary computations in {lean}`IO`.
 Lean environments contain the usual mapping from names to definitions along with additional data defined in {deftech}[environment extensions], which are additional tables associated with an environment; environment extensions are used to track most other information about Lean code, including {tactic}`simp` lemmas, custom pretty printers, and internals such as the compiler's intermediate representations.
-Command elaboration also maintains a message log with the contents of the compiler's informational output, warnings, and errors, a set of {tech}[info trees] that associate metadata with the original syntax (used for interactive features such as displaying proof states, identifier completion, and showing documentation), accumulated debugging traces, the open {tech}[scopes], and some internal state related to macro expansion.
+Command elaboration also maintains a message log with the contents of the compiler's informational output, warnings, and errors, a set of {tech}[info trees] that associate metadata with the original syntax (used for interactive features such as displaying proof states, identifier completion, and showing documentation), accumulated debugging traces, the open {tech}[section scopes], and some internal state related to macro expansion.
 Term elaboration may modify all of these fields except the open scopes.
 Additionally, it has access to all the machinery needed to create fully-explicit terms in the core language from Lean's terse, friendly syntax, including unification, type class instance synthesis, and type checking.
 
