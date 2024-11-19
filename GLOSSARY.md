@@ -8,9 +8,11 @@
 | annotation | 注釈 | |
 | anonymous constructor | 匿名コンストラクタ | |
 | assign | 割り当て | |
+| accessible | （仮定のアクセス可否の文脈で）アクセス可能 | |
 | associativity | 結合性 | |
 | assumption | 仮定 | |
 | at most | 高々 | |
+| atomic | アトミック | |
 | attribute | 属性 | |
 | auto-bound | 自動的に束縛された | |
 | backtrack | バックトラック | 後戻りと書かれる場合あり |
@@ -21,6 +23,7 @@
 | boolean | 真偽値 | |
 | bound variable | 束縛変数 | |
 | box | ボックス化 | |
+| bullet | ブレット | |
 | canonical | 標準 | |
 | carriage return | CR | |
 | case distinction | 場合分け | |
@@ -50,7 +53,7 @@
 | definition | 定義 | |
 | definitional (η-)equality | 定義上の(η)等価性 | |
 | definition-like | 定義に類する | |
-| definitional proof irrelevance | 定義上の証明の無関係性 | |
+| definitional proof irrelevance | 定義上の証明の irrelevance | |
 | dependent | 依存的 | 後ろに何も続かない場合 |
 | dependent function | 依存関数 | |
 | dependent type theory | 依存型理論 | |
@@ -90,18 +93,23 @@
 | functional programming language | 関数型プログラミング言語 | |
 | function extensionality | 関数外延性 | |
 | function type | 関数型 | |
+| goal | ゴール | |
 | grammar | 文法 | |
 | guillemet | ギュメ | フランス語 |
 | heap region | ヒープ領域 | |
 | hierarchical identifier | 階層的識別子 | |
 | hierarchy | 階層 | |
 | higher-order function | 高階関数 | |
+| hygiene | （マクロの）健全性 | |
+| hypothese | 仮定 | |
 | identically | 同一 | |
 | identifier | 識別子 | |
 | identifier component | 識別子要素 | |
 | identifier continuation character | 識別子継続文字 | |
 | identity function | 恒等関数 | |
+| imperative | 命令型 | |
 | implicit parameter | 暗黙のパラメータ | |
+| inaccessible | （仮定のアクセス可否の文脈で）アクセス不能 | |
 | incompatible | 互換性 | |
 | index, indices | 添字 | |
 | induction | 帰納法 | |
@@ -128,12 +136,14 @@
 | kind | 種 | |
 | laziness | 遅延 | |
 | language server | 言語サーバ | |
+| lawful | 合法 | |
 | least upper bound | 最小上界 | |
 | lemma | 補題 | |
 | letter | 文字 | |
 | letterlike | 文字様 | |
 | level expression | レベル式 | |
 | longest match | 最長一致 | |
+| main goal | メインゴール | |
 | macro | マクロ | |
 | machine integer | 機械整数 | |
 | machinery | 機構 | |
@@ -195,10 +205,12 @@
 | saturated application | 完全な適用 | 固定訳は無いように思われ、飽和では意味が分かりづらいため |
 | schematic definition | スキーマ的定義 | |
 | scope | スコープ | |
+| scrutinee | 被検査対象 | |
 | separator | 区切り文字 | |
 | set | （数学的な集合を意味しない場合）あつまり、（数学的な集合の場合）集合 | |
 | section | 節 | |
 | serialize | シリアライズ | |
+| shadow | （変数の隠蔽の意で）シャドーイング | |
 | side effect | 副作用 | |
 | signature | シグネチャ | |
 | single quote | シングルクォート | |
@@ -213,6 +225,7 @@
 | strong induction | 強帰納法 | |
 | structure | 構造体 | |
 | subfield | サブフィールド | |
+| subgoal | サブゴール | |
 | subterm | 部分項 | |
 | subtype | 部分型 | |
 | subscript | 下付き文字 | |
