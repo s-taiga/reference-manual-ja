@@ -16,12 +16,21 @@ set_option pp.rawOnError true
 
 set_option linter.unusedVariables false
 
+/-
 #doc (Manual) "Simplification" =>
+-/
+#doc (Manual) "単純化（Simplification）" =>
 %%%
 tag := "simp-tactics"
 %%%
 
+
+:::comment
 The simplifier is described in greater detail in {ref "the-simplifier"}[its dedicated chapter].
+
+:::
+
+単純化器については {ref "the-simplifier"}[専用の章] で詳細に説明します。
 
 :::tactic "simp"
 :::

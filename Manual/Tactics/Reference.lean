@@ -21,17 +21,24 @@ set_option linter.unusedVariables false
 
 
 
+/-
 #doc (Manual) "Tactic Reference" =>
+-/
+#doc (Manual) "タクティクリファレンス（Tactic Reference）" =>
 %%%
 tag := "tactic-ref"
 %%%
 
 
-
+:::comment
 # Assumptions
 %%%
 tag := "tactic-ref-assumptions"
 %%%
+
+:::
+
+# 仮定（Assumptions）
 
 :::tactic Lean.Parser.Tactic.assumption
 :::
@@ -39,10 +46,15 @@ tag := "tactic-ref-assumptions"
 :::tactic "apply_assumption"
 :::
 
+:::comment
 # Quantifiers
 %%%
 tag := "tactic-ref-quantifiers"
 %%%
+
+:::
+
+# 量化子（Quantifiers）
 
 :::tactic "exists"
 :::
@@ -61,10 +73,15 @@ tag := "tactic-ref-quantifiers"
 :::
 
 
+:::comment
 # Relations
 %%%
 tag := "tactic-ref-relations"
 %%%
+
+:::
+
+# 関係（Relations）
 
 :::planned 47
  * Descriptions of the `symm` and `refl` and `trans` attributes
@@ -91,10 +108,15 @@ tag := "tactic-ref-relations"
 :::
 
 
+:::comment
 ## Equality
 %%%
 tag := "tactic-ref-equality"
 %%%
+
+:::
+
+## 等価性（Equality）
 
 :::tactic "subst"
 :::
@@ -114,10 +136,15 @@ tag := "tactic-ref-equality"
 :::tactic "ac_rfl"
 :::
 
+:::comment
 # Lemmas
 %%%
 tag := "tactic-ref-lemmas"
 %%%
+
+:::
+
+# 補題（Lemmas）
 
 :::tactic "exact"
 :::
@@ -138,10 +165,15 @@ tag := "tactic-ref-lemmas"
 :::tactic "apply_rules"
 :::
 
+:::comment
 # Falsehood
 %%%
 tag := "tactic-ref-false"
 %%%
+
+:::
+
+# 偽（Falsehood）
 
 :::tactic "exfalso"
 :::
@@ -153,10 +185,15 @@ tag := "tactic-ref-false"
 :::
 
 
+:::comment
 # Goal Management
 %%%
 tag := "tactic-ref-goals"
 %%%
+
+:::
+
+# ゴールの管理（Goal Management）
 
 :::tactic "suffices"
 :::
@@ -183,13 +220,23 @@ tag := "tactic-ref-goals"
 :::
 
 
+:::comment
 # Cast Management
 %%%
 tag := "tactic-ref-casts"
 %%%
 
+:::
+
+# キャストの管理（Cast Management）
+
+:::comment
 The tactics in this section make it easier avoid getting stuck on {deftech}_casts_, which are functions that coerce data from one type to another, such as converting a natural number to the corresponding integer.
 They are described in more detail by {citet castPaper}[].
+
+:::
+
+本節のタクティクは {deftech}_キャスト_ （cast）に詰まってしまうことを回避します。キャストとはある型から別の型にデータを強制する関数であり、例えば自然数を対応する整数に変換するようなものです。これらは Robert Y. Lewis と Paul-Nicolas Madelaine による [_Simplifying Casts and Coercions_](https://arxiv.org/abs/2001.10594) で詳しく説明されています。
 
 :::tactic Lean.Parser.Tactic.tacticNorm_cast_
 :::
@@ -209,10 +256,15 @@ They are described in more detail by {citet castPaper}[].
 :::tactic Lean.Parser.Tactic.tacticAssumption_mod_cast
 :::
 
+:::comment
 # Extensionality
 %%%
 tag := "tactic-ref-ext"
 %%%
+
+:::
+
+# 外延性（Extensionality）
 
 :::tactic "ext"
 :::
@@ -228,11 +280,16 @@ tag := "tactic-ref-ext"
 
 {include 0 Manual.Tactics.Reference.Simp}
 
+
+# 書き換え（Rewriting）
+
+:::comment
 # Rewriting
 %%%
 tag := "tactic-ref-rw"
 %%%
 
+:::
 :::tactic "rw"
 :::
 
@@ -266,15 +323,25 @@ Implemented by {name}`Lean.Elab.Tactic.evalUnfold`.
 :::
 
 
+:::comment
 # Inductive Types
 %%%
 tag := "tactic-ref-inductive"
 %%%
 
+:::
+
+# 帰納型（Inductive Types）
+
+:::comment
 ## Introduction
 %%%
 tag := "tactic-ref-inductive-intro"
 %%%
+
+:::
+
+## 帰納法（Introduction）
 
 :::tactic "constructor"
 :::
@@ -292,10 +359,16 @@ tag := "tactic-ref-inductive-intro"
 :::tactic "right"
 :::
 
+:::comment
 ## Elimination
 %%%
 tag := "tactic-ref-inductive-elim"
 %%%
+
+:::
+
+## 除去（Elimination）
+
 
 :::planned 48
 
@@ -319,14 +392,24 @@ Description of the `@[induction_eliminator]` and `@[cases_eliminator]` attribute
 :::
 
 
+:::comment
 # Library Search
 %%%
 tag := "tactic-ref-search"
 %%%
 
+:::
+
+# ライブラリ検索（Library Search）
+
+:::comment
 The library search tactics are intended for interactive use.
 When run, they search the Lean library for lemmas or rewrite rules that could be applicable in the current situation, and suggests a new tactic.
 These tactics should not be left in a proof; rather, their suggestions should be incorporated.
+
+:::
+
+ライブラリ検索タクティクは対話的な使用を目的としています。これらを実行すると、Lean ライブラリ内を検索し、現在の状況に適用できそうな補題や書き換え規則を探し、新しいタクティクを提案します。これらのタクティクは証明の中に放置されるべきではなく、むしろその提案を受け入れるべきです。
 
 :::tactic "exact?"
 :::
@@ -337,12 +420,17 @@ These tactics should not be left in a proof; rather, their suggestions should be
 
 
 
-:::tacticExample
+::::tacticExample
 {goal show:=false}`∀ (i j k : Nat), i < j → j < k → i < k`
 ```setup
 intro i j k h1 h2
 ```
+:::comment
 In this proof state:
+:::
+
+この証明状態において：
+
 ```pre
 i j k : Nat
 h1 : i < j
@@ -350,7 +438,12 @@ h2 : j < k
 ⊢ i < k
 ```
 
+:::comment
 invoking {tacticStep}`apply?` suggests:
+
+:::
+
+{tacticStep}`apply?` の実行結果は以下を提案します：
 
 ```tacticOutput
 Try this: exact Nat.lt_trans h1 h2
@@ -359,17 +452,22 @@ Try this: exact Nat.lt_trans h1 h2
 ```post (show := false)
 
 ```
-:::
+::::
 
 
 :::tactic "rw?"
 :::
 
+:::comment
 # Case Analysis
 %%%
 tag := "tactic-ref-cases"
 %%%
 
+
+:::
+
+# ケース分析（Case Analysis）
 
 :::tactic "split"
 :::
@@ -377,11 +475,16 @@ tag := "tactic-ref-cases"
 :::tactic "by_cases"
 :::
 
+:::comment
 # Decision Procedures
 %%%
 tag := "tactic-ref-decision"
 %%%
 
+
+:::
+
+# 決定処理（Decision Procedures）
 
 :::tactic Lean.Parser.Tactic.decide show:="decide"
 :::
@@ -396,10 +499,15 @@ tag := "tactic-ref-decision"
 :::
 
 
+:::comment
 ## SAT Solver Integration
 %%%
 tag := "tactic-ref-sat"
 %%%
+
+:::
+
+## SAT ソルバの統合（SAT Solver Integration）
 
 :::tactic "bv_decide"
 :::
@@ -413,11 +521,16 @@ tag := "tactic-ref-sat"
 :::tactic Lean.Parser.Tactic.bvTrace
 :::
 
+:::comment
 # Control Flow
 %%%
 tag := "tactic-ref-control"
 %%%
 
+
+:::
+
+# フロー制御（Control Flow）
 
 :::tactic "skip"
 :::
@@ -449,13 +562,23 @@ tag := "tactic-ref-control"
 :::
 
 
+:::comment
 # Term Elaboration Backends
 %%%
 tag := "tactic-ref-term-helpers"
 %%%
 
 
+:::
+
+# 項エラボレーションのバックエンド（Term Elaboration Backends）
+
+:::comment
 These tactics are used during elaboration of terms to satisfy obligations that arise.
+
+:::
+
+これらのタクティクは項のエラボレーション中において発生した義務を満たすために用いられます。
 
 :::tactic "decreasing_tactic"
 :::
@@ -477,11 +600,16 @@ These tactics are used during elaboration of terms to satisfy obligations that a
 
 
 
+:::comment
 # Debugging Utilities
 %%%
 tag := "tactic-ref-debug"
 %%%
 
+
+:::
+
+# デバッグ用ユーティリティ（Debugging Utilities）
 
 :::tactic "sorry"
 :::
@@ -499,10 +627,15 @@ tag := "tactic-ref-debug"
 :::
 
 
+:::comment
 # Other
 %%%
 tag := "tactic-ref-other"
 %%%
+
+:::
+
+# その他（Other）
 
 :::tactic "trivial"
 :::
