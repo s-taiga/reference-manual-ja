@@ -43,6 +43,7 @@
 | constructor | コンストラクタ | |
 | content | 内容 | |
 | context | （プログラム中のcontextの意で）コンテキスト、（文章中のcontextの意で）文脈 | |
+| conversion | 変換 | |
 | core language | コア言語 | |
 | core type theory | コア型理論 | |
 | curly brace | 波括弧 | |
@@ -253,6 +254,7 @@
 | trivial | 自明な | |
 | trust | 信頼 | |
 | tuple | タプル | |
+| turnstile | ターンスタイル | |
 | type class | 型クラス | |
 | type class instance synthesis | 型クラスインスタンス合成 | |
 | type signature | 型シグネチャ | |
