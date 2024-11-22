@@ -234,6 +234,7 @@
 | syntactically | 構文上 | |
 | syntactic sugar | 構文糖衣 | |
 | syntax | 構文 | |
+| syntax category | 構文カテゴリ | |
 | syntax former | 構文形成器 | |
 | syntax trees | 構文木 | |
 | syntax value | 構文の値 | |
