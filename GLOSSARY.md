@@ -111,6 +111,7 @@
 | identifier component | 識別子要素 | |
 | identifier continuation character | 識別子継続文字 | |
 | identity function | 恒等関数 | |
+| immediate value | 即値 | |
 | imperative | 命令型 | |
 | implicit parameter | 暗黙のパラメータ | |
 | inaccessible | （仮定のアクセス可否の文脈で）アクセス不能 | |
@@ -134,6 +135,7 @@
 | interface | インタフェース | |
 | interleave | 交互に実行する | |
 | intermediate representation | 中間表現 | |
+| interpolate | 補間 | |
 | invariant | 不変量 | |
 | kernel | カーネル | |
 | keyword | キーワード | |
@@ -289,6 +291,7 @@
 | choice node | |
 | cumulative | |
 | impredicativity, predicativity | |
+| no confusion | |
 | packed array | System Verilogという言語にこの名前の文法要素がある？ |
 | strict positively, negatively | 自己言及される定義の分類、定訳は無い模様 |
 | prelude | |
