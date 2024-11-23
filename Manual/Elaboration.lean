@@ -196,7 +196,7 @@ Term elaboration may modify all of these fields except the open scopes.
 Additionally, it has access to all the machinery needed to create fully-explicit terms in the core language from Lean's terse, friendly syntax, including unification, type class instance synthesis, and type checking.
 :::
 
-コマンドエラボレーションと項エラボレーションは異なる能力を持ちます。コマンドエラボレーションは環境に副作用を与える可能性があり、 {lean}`IO` で任意の計算を実行するアクセス権を持っています。Lean の環境は名前から定義への通常のマッピングに加え、 {deftech}[環境拡張] （environment extension）で定義される追加データを含んでいます；環境拡張は {tactic}`simp` 補題・カスタムのプリティプリンタ・コンパイラの中間表現などの内部を含む、Lean コードに関する他のほとんどの情報を追跡するために使用されます。コマンドエラボレーションはまた、コンパイラの情報出力・警告・およびエラー内容を含むメッセージログ・メタデータをもとの構文に関連付ける {tech}[情報木] のあつまり（証明状態の表示・識別子の補完・ドキュメントの表示などの対話的な機能に使用されます）・蓄積されたデバッグトレース・開いた {tech}[scope] ・マクロ展開に関連するいくつかの内部状態を維持します。項エラボレーションは開いたスコープを除くこれらすべてのフィールドを変更することができます。さらに、Lean の簡潔で親しみやすい構文からコア言語で完全に明示的な項を作成するために必要な単一化・型クラスインスタンス合成・型チェックを含むすべての機構にアクセスすることができます。
+コマンドエラボレーションと項エラボレーションは異なる能力を持ちます。コマンドエラボレーションは環境に副作用を与える可能性があり、 {lean}`IO` で任意の計算を実行するアクセス権を持っています。Lean の環境は名前から定義への通常のマッピングに加え、 {deftech}[環境拡張] （environment extension）で定義される追加データを含んでいます；環境拡張は {tactic}`simp` 補題・カスタムのプリティプリンタ・コンパイラの中間表現などの内部を含む、Lean コードに関する他のほとんどの情報を追跡するために使用されます。コマンドエラボレーションはまた、コンパイラの情報出力・警告・およびエラー内容を含むメッセージログ・メタデータをもとの構文に関連付ける {tech}[情報木] のセット（証明状態の表示・識別子の補完・ドキュメントの表示などの対話的な機能に使用されます）・蓄積されたデバッグトレース・開いた {tech}[scope] ・マクロ展開に関連するいくつかの内部状態を維持します。項エラボレーションは開いたスコープを除くこれらすべてのフィールドを変更することができます。さらに、Lean の簡潔で親しみやすい構文からコア言語で完全に明示的な項を作成するために必要な単一化・型クラスインスタンス合成・型チェックを含むすべての機構にアクセスすることができます。
 
 :::comment
 The first step in both term and command elaboration is macro expansion.
@@ -218,7 +218,7 @@ Command elaborators accept syntax and return no value, but may have monadic side
 While both term and command elaborators have access to {lean}`IO`, it's unusual that they perform side effects; exceptions include interactions with external tools or solvers.
 :::
 
-マクロ展開の後、項とコマンドエラボレータのどちらも、構文の種をエラボレータの処理にマップするテーブルを参照します。項エラボレータは、構文とオプションで期待される型を、前述の非常に機能的なモナドを使用するコア言語の式にマッピングします。コマンドエラボレータは構文を受け入れ、値を返しませんが、グローバルのコマンド状態に対してモナドの副作用を持つかもしれません。項とコマンドエラボレータのどちらも {lean}`IO` にアクセスできますが、副作用を実行するのは一般的ではありません；例外は外部ツールやソルバとのやり取りを含みます。
+マクロ展開の後、項とコマンドエラボレータのどちらも、構文の種をエラボレータの手続きにマップするテーブルを参照します。項エラボレータは、構文とオプションで期待される型を、前述の非常に機能的なモナドを使用するコア言語の式にマッピングします。コマンドエラボレータは構文を受け入れ、値を返しませんが、グローバルのコマンド状態に対してモナドの副作用を持つかもしれません。項とコマンドエラボレータのどちらも {lean}`IO` にアクセスできますが、副作用を実行するのは一般的ではありません；例外は外部ツールやソルバとのやり取りを含みます。
 
 :::comment
 The elaborator tables may be extended to enable the use of new syntax for both terms and commands by extending the tables.

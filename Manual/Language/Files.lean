@@ -271,7 +271,7 @@ These keywords must also be quoted with guillemets to be used as identifier comp
 Contexts in which keywords may be used as identifiers without guillemets, such as constructor names in inductive types, are {deftech}_raw identifier_ contexts.{index (subterm:="raw")}[identifier]
 :::
 
-識別子要素として予約キーワードを使うことがあるかもしれません。予約キーワードの特定のあつまりは、アクティブな構文拡張のあつまりに依存し、またそれらはインポートされたモジュールと現在開いている名前空間のあつまりに依存するかもしれません；Lean はこれを列挙することができません。これらのキーワードはほとんどの構文で識別子の構成要素として使用するために、ギュメでクォートする必要があります。帰納型のコンストラクタ名など、キーワードをギュメなしで識別子として使用できるコンテキストは {deftech}_生識別子_ （raw identifier）コンテキストです。 {index (subterm:="raw")}[identifier]
+識別子要素として予約キーワードを使うことがあるかもしれません。予約キーワードの特定のセットは、アクティブな構文拡張のセットに依存し、またそれらはインポートされたモジュールと現在開いている名前空間のセットに依存するかもしれません；Lean はこれを列挙することができません。これらのキーワードはほとんどの構文で識別子の構成要素として使用するために、ギュメでクォートする必要があります。帰納型のコンストラクタ名など、キーワードをギュメなしで識別子として使用できるコンテキストは {deftech}_生識別子_ （raw identifier）コンテキストです。 {index (subterm:="raw")}[identifier]
 
 :::comment
 Identifiers that contain one or more `'.'` characters, and thus consist of more than one identifier component, are called {deftech}[hierarchical identifiers].
@@ -365,7 +365,7 @@ Modules do not necessarily correspond to namespaces.
 Modules may add names to any namespace, and importing a module has no effect on the set of currently open namespaces.
 :::
 
-モジュールは必ずしも名前空間に対応するとは限りません。モジュールはどの名前空間にも名前を追加することができ、モジュールをインポートしても現在開いている名前空間のあつまりには影響しません。
+モジュールは必ずしも名前空間に対応するとは限りません。モジュールはどの名前空間にも名前を追加することができ、モジュールをインポートしても現在開いている名前空間のセットには影響しません。
 
 :::comment
 The imported module name is translated to a filename by replacing dots (`'.'`) in its name with directory separators and appending `.lean` or `.olean`.

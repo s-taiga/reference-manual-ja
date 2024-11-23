@@ -37,6 +37,8 @@
 | command elaboration | コマンドエラボレーション | |
 | compilation | コンパイル | |
 | completion | 補完 | |
+| confluence | 合流性 | |
+| conjunction | 連言 | |
 | consistency | 一貫性 | |
 | constant | 定数 | |
 | construction | 構成 | |
@@ -76,6 +78,7 @@
 | environment | 環境 | |
 | environment extensions | 環境拡張 | |
 | equational lemma | 等式の補題 | |
+| equivalence | 同値性 | |
 | equivalent | 同値 | |
 | evaluate | 評価 | |
 | evidence | 根拠 | |
@@ -162,6 +165,7 @@
 | nested | ネストされた | |
 | newline | 改行 | |
 | non-dependent | 非依存的 | |
+| normal form | 正規形 | |
 | notation | 記法 | |
 | opaque | 不透明 | |
 | operator | 演算子 | |
@@ -178,6 +182,7 @@
 | pretty printer | プリティプリンタ | |
 | primitive | プリミティブ | |
 | primitive recursion | 原始再帰 | |
+| procedure | 手続き | |
 | product type | 直積型 | |
 | projection function | 射影関数 | |
 | proof checker | 証明チェッカ | |
@@ -200,6 +205,7 @@
 | representation | 表現 | |
 | reserved keyword | 予約キーワード | 下のreserved wordの表記ゆれかもしれないがいったん別の訳語を割り当てる |
 | reserved word | 予約語 | |
+| rewrite | 書き換え | |
 | run-length encoding | 連長圧縮 | |
 | run-time | ランタイム | |
 | rule | 規則 | |
@@ -208,12 +214,15 @@
 | scope | スコープ | |
 | scrutinee | 被検査対象 | |
 | separator | 区切り文字 | |
-| set | （数学的な集合を意味しない場合）あつまり、（数学的な集合の場合）集合 | |
+| set | （数学的な集合の場合）集合、（数学的な集合を意味しない場合でプログラミング上実体のある集まりの場合）セット、（それ以外）あつまり | |
 | section | 節 | |
 | serialize | シリアライズ | |
 | shadow | （変数の隠蔽の意で）シャドーイング | |
 | side effect | 副作用 | |
 | signature | シグネチャ | |
+| simplifier | 単純化器 | |
+| simplify | 単純化 | |
+| simp set | simp セット | |
 | single quote | シングルクォート | |
 | singleton | 単集合 | |
 | soundness | 健全性 | |

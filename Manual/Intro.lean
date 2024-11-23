@@ -17,7 +17,7 @@ set_option pp.rawOnError true
 /-
 #doc (Manual) "Introduction" =>
 -/
-#doc (Manual) "はじめに" =>
+#doc (Manual) "はじめに（Introduction）" =>
 %%%
 htmlSplit := .never
 tag := "introduction"
@@ -76,7 +76,7 @@ Lean のプログラムは新しいタクティクや証明の自動化を実装
 ## History
 :::
 
-## 歴史
+## 歴史（History）
 %%%
 tag := "history-of-lean"
 %%%
@@ -123,7 +123,7 @@ Leonardo de Moura と彼の共同設立者である Sebastian Ullrich は2023年
 # Typographical Conventions
 :::
 
-# 表記ルール
+# 表記規則（Typographical Conventions）
 %%%
 tag := "typographical-conventions"
 %%%
@@ -139,7 +139,7 @@ This document makes use of a number of typographical and layout conventions to i
 
 :::
 
-## Lean のコード
+## Lean のコード（Lean Code）
 %%%
 tag := "code-samples"
 %%%
@@ -265,7 +265,7 @@ def f : Option Nat → Type
 ## Examples
 :::
 
-## 例
+## 例（Examples）
 %%%
 tag := "example-boxes"
 %%%
@@ -306,7 +306,7 @@ inductive Even : Nat → Prop where
 
 :::
 
-## 専門用語
+## 専門用語（Technical Terminology）
 %%%
 tag := "technical-terms"
 %%%
@@ -323,7 +323,7 @@ Uses of {tech}[technical terminology] are frequently hyperlinked to their defini
 
 :::
 
-## 定数・構文・タクティクの参照
+## 定数・構文・タクティクの参照（Constant, Syntax, and Tactic References）
 %%%
 tag := "reference-boxes"
 %%%
