@@ -484,7 +484,7 @@ tag := "tactic-ref-decision"
 
 :::
 
-# 決定処理（Decision Procedures）
+# 決定手続き（Decision Procedures）
 
 :::tactic Lean.Parser.Tactic.decide show:="decide"
 :::
