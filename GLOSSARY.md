@@ -37,6 +37,7 @@
 | command elaboration | コマンドエラボレーション | |
 | compilation | コンパイル | |
 | completion | 補完 | |
+| configuration item | 設定項目 | |
 | confluence | 合流性 | |
 | conjunction | 連言 | |
 | consistency | 一貫性 | |

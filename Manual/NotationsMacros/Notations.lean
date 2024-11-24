@@ -63,7 +63,7 @@ If this still does not resolve the ambiguity, then all are saved, and the elabor
 
 Rather than a single operator with its fixity and token, the body of a notation declaration consists of a sequence of {deftech}_notation items_, which may be either new {tech}[atoms] (including both keywords such as `if`, `#eval`, or `where` and symbols such as `=>`, `+`, `↗`, `⟦`, or `⋉`) or positions for terms.
 Just as they do in operators, string literals identify the placement of atoms.
-Leading and trailing spaces in the strings do not affect parsing, but they cause Lean to insert spaces in the corresponding position when displaying the syntax in {tech}[proof states] and error messages.
+Leading and trailing spaces in the strings do not affect parsing, but they cause Lean to insert spaces in the corresponding position when displaying the syntax in {tech}[証明状態]proof states and error messages.
 Identifiers indicate positions where terms are expected, and name the corresponding term so it can be inserted in the notation's expansion.
 
 While custom operators have a single notion of precedence, there are many involved in a notation.
@@ -183,7 +183,7 @@ def e : Nat × Int :=
 
 
 When the expansion consists of the application of a function defined in the global environment and each term in the notation occurs exactly once, an {tech}[unexpander] is generated.
-The new notation will be displayed in {tech}[proof states], error messages, and other output from Lean when matching function application terms otherwise would have been displayed.
+The new notation will be displayed in {tech}[証明状態]proof states, error messages, and other output from Lean when matching function application terms otherwise would have been displayed.
 As with custom operators, Lean does not track whether the notation was used in the original term; it is used at every opportunity in Lean's output.
 
 # Operators and Notations

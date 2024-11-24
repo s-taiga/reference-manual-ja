@@ -112,13 +112,13 @@ Tactic proofs may be embedded via {keywordOf Lean.Parser.Term.byTactic}`by` in a
 
 :::comment
 # Reading Proof States
+:::
+
+# 証明状態の読み方（Reading Proof States）
 %%%
 tag := "proof-states"
 %%%
 
-:::
-
-# 証明状態の読み方（Reading Proof States）
 
 :::comment
 The goals in a proof state are displayed in order, with the main goal on top.
@@ -479,13 +479,13 @@ This is generally not a good idea for non-propositions, however—when it matter
 
 :::comment
 ## Hiding Proofs and Large Terms
+:::
+
+## 証明と大きな項の非表示（Hiding Proofs and Large Terms）
 %%%
 tag := "hiding-terms-in-proof-states"
 %%%
 
-:::
-
-## 証明と大きな項の非表示（Hiding Proofs and Large Terms）
 
 :::comment
 Terms in proof states can be quite big, and there may be many assumptions.
@@ -547,13 +547,13 @@ Printing very large terms can lead to slowdowns or even stack overflows in tooli
 
 :::comment
 ## Metavariables
+:::
+
+## メタ変数（Metavariables）
 %%%
 tag := "metavariables-in-proofs"
 %%%
 
-:::
-
-## メタ変数（Metavariables）
 
 :::comment
 Terms that begin with a question mark are _metavariables_ that correspond to an unknown value.
@@ -743,13 +743,13 @@ Demonstrate and explain diff labels that show the difference between the steps o
 
 :::comment
 # The Tactic Language
+:::
+
+# タクティク言語（The Tactic Language）
 %%%
 tag := "tactic-language"
 %%%
 
-:::
-
-# タクティク言語（The Tactic Language）
 
 :::comment
 A tactic script consists of a sequence of tactics, separated either by semicolons or newlines.
@@ -781,13 +781,13 @@ However, with a few exceptions, the majority of tactics can be identified by a l
 
 :::comment
 ## Control Structures
+:::
+
+## 制御構造（Control Structures）
 %%%
 tag := "tactic-language-control"
 %%%
 
-:::
-
-## 制御構造（Control Structures）
 
 :::comment
 Strictly speaking, there is no fundamental distinction between control structures and other tactics.
@@ -801,13 +801,13 @@ The tactics in this section are those that resemble traditional control structur
 
 :::comment
 ### Success and Failure
+:::
+
+### 成功と失敗（Success and Failure）
 %%%
 tag := "tactic-language-success-failure"
 %%%
 
-:::
-
-### 成功と失敗（Success and Failure）
 
 :::comment
 When run in a proof state, every tactic either succeeds or fails.
@@ -833,13 +833,13 @@ Unlike exceptions, there is no operator to distinguish between reasons for failu
 
 :::comment
 ### Branching
+:::
+
+### 分岐（Branching）
 %%%
 tag := "tactic-language-branching"
 %%%
 
-:::
-
-### 分岐（Branching）
 
 :::comment
 Tactic proofs may use pattern matching and conditionals.
@@ -914,14 +914,14 @@ example (n : Nat) : if n = 0 then n < 1 else n > 0 := by
 
 :::comment
 ### Goal Selection
+:::
+
+### ゴールの選択（Goal Selection）
 %%%
 tag := "tactic-language-goal-selection"
 %%%
 
 
-:::
-
-### ゴールの選択（Goal Selection）
 
 :::comment
 Most tactics affect the {tech}[main goal].
@@ -947,13 +947,13 @@ Goal selection tactics provide a way to treat a different goal as the main one, 
 
 :::comment
 #### Sequencing
+:::
+
+#### 順序実行（Sequencing）
 %%%
 tag := "tactic-language-sequencing"
 %%%
 
-:::
-
-#### 順序実行（Sequencing）
 
 :::comment
 In addition to running tactics one after the other, each being used to solve the main goal, the tactic language supports sequencing tactics according to the way in which goals are produced.
@@ -1076,13 +1076,13 @@ Replacing the `;` with {tactic}`<;>` and running {tacticStep}`cases h <;> simp [
 
 :::comment
 #### Working on Multiple Goals
+:::
+
+#### 複数のゴールに作用する（Working on Multiple Goals）
 %%%
 tag := "tactic-language-multiple-goals"
 %%%
 
-:::
-
-#### 複数のゴールに作用する（Working on Multiple Goals）
 
 :::comment
 The tactics {tactic}`all_goals` and {tactic}`any_goals` allow a tactic to be applied to every goal in the proof state.
@@ -1101,13 +1101,13 @@ The difference between them is that if the tactic fails for in any of the goals,
 
 :::comment
 ### Focusing
+:::
+
+### 焦点をあてる（Focusing）
 %%%
 tag := "tactic-language-focusing"
 %%%
 
-:::
-
-### 焦点をあてる（Focusing）
 
 :::comment
 Focusing tactics remove some subset of the proof goals (typically leaving only the main goal) from the consideration of some further tactics.
@@ -1137,13 +1137,13 @@ This makes it easier to read and maintain proofs, because the connections betwee
 
 :::comment
 ### Repetition and Iteration
+:::
+
+### 繰り返しと反復（Repetition and Iteration）
 %%%
 tag := "tactic-language-iteration"
 %%%
 
-:::
-
-### 繰り返しと反復（Repetition and Iteration）
 
 :::tactic "iterate"
 :::
@@ -1160,13 +1160,13 @@ tag := "tactic-language-iteration"
 
 :::comment
 ## Names and Hygiene
+:::
+
+## 名前と健全性（Names and Hygiene）
 %%%
 tag := "tactic-language-hygiene"
 %%%
 
-:::
-
-## 名前と健全性（Names and Hygiene）
 
 :::comment
 Behind the scenes, tactics generate proof terms.
@@ -1277,13 +1277,13 @@ n : Nat
 
 :::comment
 ### Accessing Assumptions
+:::
+
+### 仮定へのアクセス（Accessing Assumptions）
 %%%
 tag := "tactic-language-assumptions"
 %%%
 
-:::
-
-### 仮定へのアクセス（Accessing Assumptions）
 
 :::comment
 Many tactics provide a means of specifying names for the assumptions that they introduce.
@@ -1299,13 +1299,13 @@ When an assumption does not have a name, one can be assigned using {tactic}`next
 
 :::comment
 ## Assumption Management
+:::
+
+## 仮定の管理（Assumption Management）
 %%%
 tag := "tactic-language-assumption-management"
 %%%
 
-:::
-
-## 仮定の管理（Assumption Management）
 
 :::comment
 Larger proofs can benefit from management of proof states, removing irrelevant assumptions and making their names easier to understand.
@@ -1327,13 +1327,13 @@ Along with these operators, {tactic}`rename_i` allows inaccessible assumptions t
 
 :::comment
 ## Local Definitions and Proofs
+:::
+
+## ローカル定義と証明（Local Definitions and Proofs）
 %%%
 tag := "tactic-language-local-defs"
 %%%
 
-:::
-
-## ローカル定義と証明（Local Definitions and Proofs）
 
 :::comment
 {tactic}`have` and {tactic}`let` both create local assumptions.
@@ -1364,25 +1364,43 @@ Generally speaking, {tactic}`have` should be used when proving an intermediate l
 :::tactic Lean.Parser.Tactic.tacticLet'_
 :::
 
+:::comment
 ## Configuration
+:::
+## 設定（Configuration）
 %%%
 tag := "tactic-config"
 %%%
 
+:::comment
 Many tactics are configurable.{index subterm:="of tactics"}[configuration]
 By convention, tactics share a configuration syntax, described using {syntaxKind}`optConfig`.
 The specific options available to each tactic are described in the tactic's documentation.
 
-:::syntax Lean.Parser.Tactic.optConfig (open := false)
+:::
+
+多くのタクティクは設定変更が可能です。 {index subterm:="of tactics"}[configuration] 慣例的に、タクティクは設定の構文を共有しており、 {syntaxKind}`optConfig` を使って記述します。各タクティクで利用可能なオプションはタクティクのドキュメントに記述されています。
+
+::::syntax Lean.Parser.Tactic.optConfig (open := false)
+:::comment
 A tactic configuration consists of zero or more {deftech}[configuration items]:
+:::
+
+タクティクの設定は0個以上の {deftech}[設定項目] （configuration item）から構成されます：
+
 ```grammar
 $x:configItem*
 ```
-:::
+::::
 
-:::syntax Lean.Parser.Tactic.configItem (open := false)
+::::syntax Lean.Parser.Tactic.configItem (open := false)
+:::comment
 Each configuration item has a name that corresponds to an underlying tactic option.
 Boolean options may be enabled or disabled using prefix `+` and `-`:
+:::
+
+各設定項目は、タクティクのオプションに対応する名前を持ちます。真偽値のオプションは、接頭辞 `+` と `-` を使って有効・無効に設定できます：
+
 ```grammar
 +$x
 ```
@@ -1390,28 +1408,38 @@ Boolean options may be enabled or disabled using prefix `+` and `-`:
 -$x
 ```
 
+:::comment
 Options may be assigned specific values using a syntax similar to that for named function arguments:
+:::
+
+オプションは、名前付き関数の引数の構文に似た構文を使って特定の値を割り当てることができます：
+
 ```grammar
 ($x:ident := $t)
 ```
 
+:::comment
 Finally, the name `config` is reserved; it is used to pass an entire set of options as a data structure.
 The specific type expected depends on the tactic.
+:::
+
+最後に、`config` という名前が予約されています；これはオプションのセット全体をデータ構造として渡すために使われます。期待される具体的な型はタクティクによって異なります。
+
 ```grammar
 (config := $t)
 ```
 
-:::
+::::
 
 :::comment
 ## Namespace and Option Management
+:::
+
+## 名前空間とオプション管理（Namespace and Option Management）
 %%%
 tag := "tactic-language-namespaces-options"
 %%%
 
-:::
-
-## 名前空間とオプション管理（Namespace and Option Management）
 
 :::comment
 Namespaces and options can be adjusted in tactic scripts using the same syntax as in terms.
@@ -1428,13 +1456,13 @@ Namespaces and options can be adjusted in tactic scripts using the same syntax a
 
 :::comment
 ### Controlling Unfolding
+:::
+
+### 展開のコントロール（Controlling Unfolding）
 %%%
 tag := "tactic-language-unfolding"
 %%%
 
-:::
-
-### 展開のコントロール（Controlling Unfolding）
 
 :::comment
 By default, only definitions marked reducible are unfolded, except when checking definitional equality.
@@ -1456,13 +1484,13 @@ These operators allow this default to be adjusted for some part of a tactic scri
 
 :::comment
 # Options
+:::
+
+# オプション
 %%%
 tag := "tactic-language-options"
 %%%
 
-:::
-
-# オプション
 
 :::comment
 These options affect the meaning of tactics.

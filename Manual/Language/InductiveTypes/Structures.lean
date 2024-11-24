@@ -46,7 +46,7 @@ Structures do not add any expressive power to Lean; all of their features are im
 
 :::
 
-{deftech}[構造体] （structure）は単一のコンストラクタと添字を持たない帰納型です。これらの制限と引き換えに、Lean は構造体のための数々の便利なコードを生成します：アクセサ関数が各フィールドに対して生成される・位置引数ではなくフィールド名に基づく追加のコンストラクタ構文が利用できる・同様の構文を使用して特定の名前付きフィールドの値を書き換えることができる・構造体は他の構造体を拡張することができる。構造体は Lean の表現力を増すものではありません；すべての機能はコード生成の観点から実装されます。
+{deftech}[構造体] （structure）は単一のコンストラクタと添字を持たない帰納型です。これらの制限と引き換えに、Lean は構造体のための数々の便利なコードを生成します：アクセサ関数が各フィールドに対して生成される・位置引数ではなくフィールド名に基づく追加のコンストラクタ構文が利用できる・同様の構文を使用して特定の名前付きフィールドの値を書き換えることができる・構造体は他の構造体を拡張することができる。他の帰納型と同様に、構造体も再帰的です；また strict positivity に関しても同じ制約を受けます。構造体は Lean の表現力を増すものではありません；すべての機能はコード生成の観点から実装されます。
 
 ```lean (show := false)
 -- Test claim about recursive above
@@ -62,13 +62,13 @@ structure RecStruct where
 
 :::comment
 # Structure Parameters
+:::
+
+# 構造体のパラメータ（Structure Parameters）
 %%%
 tag := "structure-params"
 %%%
 
-:::
-
-# 構造体のパラメータ（Structure Parameters）
 
 :::comment
 Just like ordinary inductive type declarations, the header of the structure declaration contains a signature that may specify both parameters and a resulting universe.
@@ -80,13 +80,13 @@ Structures may not define {tech}[indexed families].
 
 :::comment
 # Fields
+:::
+
+# フィールド（Fields）
 %%%
 tag := "structure-fields"
 %%%
 
-:::
-
-# フィールド（Fields）
 
 :::comment
 Each field of a structure declaration corresponds to a parameter of the constructor.
@@ -223,14 +223,14 @@ Fields are numbered beginning with `1`.
 
 :::comment
 # Structure Constructors
+:::
+
+# 構造体のコンストラクタ（Structure Constructors）
 %%%
 tag := "structure-constructors"
 %%%
 
 
-:::
-
-# 構造体のコンストラクタ（Structure Constructors）
 
 :::comment
 Structure constructors may be explicitly named by providing the constructor name and `::` prior to the fields.

@@ -35,14 +35,14 @@ The simplifier is highly configurable, and a number of tactics use it in differe
 
 :::comment
 # Invoking the Simplifier
+:::
+
+# 単純化器の呼び出し（Invoking the Simplifier）
 %%%
 tag := "simp-tactic-naming"
 %%%
 
 
-:::
-
-# 単純化器の呼び出し（Invoking the Simplifier）
 
 :::comment
 Lean's simplifier can be invoked in a variety of ways.
@@ -163,7 +163,7 @@ In other words, an invocation of a simplification tactic takes the following mod
 :::
 
 言い換えれば、単純化タクティクの呼び出しは以下の修飾子を順番に取ります。またこれらはすべて任意です：
- * 呼び出される単純化器が {tactic}`simp` のバージョンか {tactic}`dsimp` のバージョンであるかに応じて、 {name}`Lean.Meta.Simp.Config` か {name}`Lean.Meta.DSimp.Config` のインスタンスでなければなりません。
+ * {ref "tactic-config"}[設定オプション] 、呼び出される単純化器が {tactic}`simp` のバージョンか {tactic}`dsimp` のバージョンであるかに応じて、 {name}`Lean.Meta.Simp.Config` か {name}`Lean.Meta.DSimp.Config` のフィールドでなければなりません。
  * {keywordOf Lean.Parser.Tactic.simp}`only` 修飾子はデフォルトの simp セットを除外し、代わりに空の {margin}[厳密には、再帰的なケースを除外するために、simp セットは常に {name}`eq_self` と {name}`iff_self` を含みます。] simp セットから開始します。
  * 補題リストは simp セットに補題を追加したり削除したりします。補題リストで補題を指定する方法は3つあります：
    * `*`、これは証明状態にあるすべての仮定を simp セットに追加します
@@ -323,13 +323,13 @@ h' : p (x + 12)
 
 :::comment
 # Rewrite Rules
+:::
+
+# 書き換え規則（Rewrite Rules）
 %%%
 tag := "simp-rewrites"
 %%%
 
-:::
-
-# 書き換え規則（Rewrite Rules）
 
 :::comment
 The simplifier has three kinds of rewrite rules:
@@ -347,7 +347,7 @@ The simplifier has three kinds of rewrite rules:
 
 : 定義の展開
 
-  単純化器はデフォルトで {tech}[reducible] な定義のみを展開します。しかし、任意の {tech}[semireducible] または {tech}[irreducible] な定義用に書き換え規則を追加して、単純化器が同様にそれらを展開するようにできます。単純化器が定義上モード（ {tactic}`dsimp` とその亜種）で動作している場合、定義の展開は定義された名前をその値で置き換えるだけです；それ以外では、等式のコンパイラから提供された等式の補題も使用します。
+  単純化器はデフォルトで {tech}[reducible] な定義のみを展開します。しかし、任意の {tech}[semi-reducible] または {tech}[irreducible] な定義用に書き換え規則を追加して、単純化器が同様にそれらを展開するようにできます。単純化器が定義上モード（ {tactic}`dsimp` とその亜種）で動作している場合、定義の展開は定義された名前をその値で置き換えるだけです；それ以外では、等式のコンパイラから提供された等式の補題も使用します。
 
 :::comment
 : Equational lemmas
@@ -511,13 +511,13 @@ Even when the simp set is empty, {tactic}`simp` can replace `let`-bound variable
 
 :::comment
 # Simp sets
+:::
+
+# simp セット（Simp sets）
 %%%
 tag := "simp-sets"
 %%%
 
-:::
-
-# simp セット（Simp sets）
 
 :::comment
 A collection of rules used by the simplifier is called a {deftech}_simp set_.
@@ -583,14 +583,14 @@ The {tactic}`simp` tactics can be instructed to use the new simp set by includin
 
 :::comment
 # Simp Normal Forms
+:::
+
+# simp 正規形（Simp Normal Forms）
 %%%
 tag := "simp-normal-forms"
 %%%
 
 
-:::
-
-# simp 正規形（Simp Normal Forms）
 
 :::comment
 The default {tech}[simp set] contains all the theorems and simplification procedures marked with the {attr}`simp` attribute.
@@ -640,13 +640,13 @@ If a library relies on additional simplification rules for definitions or declar
 
 :::comment
 # Terminal vs Non-Terminal Positions
+:::
+
+# 終端・非終端位置（Terminal vs Non-Terminal Positions）
 %%%
 tag := "terminal-simp"
 %%%
 
-:::
-
-# 終端・非終端位置（Terminal vs Non-Terminal Positions）
 
 :::comment
 To write maintainable proofs, avoid using {tactic}`simp` without {keywordOf Lean.Parser.Tactic.simp}`only` unless it closes the goal.
@@ -736,13 +736,13 @@ tag := "simp-config"
 
 :::comment
 ## Options
+:::
+
+## オプション（Options）
 %%%
 tag := "simp-options"
 %%%
 
-:::
-
-## オプション（Options）
 
 :::comment
 Some global options affect {tactic}`simp`:
@@ -763,14 +763,14 @@ Some global options affect {tactic}`simp`:
 
 :::comment
 # Simplification vs Rewriting
+:::
+
+# 単純化と書き換え（Simplification vs Rewriting）
 %%%
 tag := "simp-vs-rw"
 %%%
 
 
-:::
-
-# 単純化と書き換え（Simplification vs Rewriting）
 
 :::comment
 Both {tactic}`simp` and {tactic}`rw`/{tactic}`rewrite` use equational lemmas to replace parts of terms with equivalent alternatives.

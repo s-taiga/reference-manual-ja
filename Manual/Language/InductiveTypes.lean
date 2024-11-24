@@ -45,7 +45,7 @@ Lean additionally produces a number of helper constructions based on the recurso
 
 :::
 
-帰納型の型コンストラクタとコンストラクタに基づいて、Lean は {deftech}_再帰子_{index}[recursor]{see "recursor"}[eliminator] （recursor）を導出します。論理的には、再帰子は帰納原理や除去則を表し、計算上は原始再帰計算を表します。再帰関数の停止は、再帰子の使用に変換することで正当化されるため、Lean のカーネルは再帰子の適用の型チェックを行うだけでよく、停止性の分析を別途行う必要はありません。Lean はさらに、システムの他の場所でも使用される再帰子 {margin}[_再帰子_ という用語は再帰的でないデータ型でも常に使用されます。] に基づいた数多くの補助的な構成を提供しています。
+帰納型の型コンストラクタとコンストラクタに基づいて、Lean は {deftech}_再帰子_{index}[recursor]{see "recursor"}[eliminator] （recursor）を導出します。論理的には、再帰子は帰納原理や除去則を表し、計算上は原始再帰計算を表します。再帰関数の停止は、再帰子の使用に変換することで正当化されるため、Lean のカーネルは再帰子の適用の型チェックを行うだけでよく、停止性の分析を別途行う必要はありません。Lean はさらに、システムの他の場所でも使用される再帰子 {margin}[_再帰子_ という用語は再帰的でない型でも常に使用されます。] に基づいた数多くの補助的な構成を提供しています。
 
 :::comment
 _Structures_ are a special case of inductive types that have exactly one constructor.
@@ -64,13 +64,13 @@ This section describes the specific details of the syntax used to specify both i
 
 :::comment
 # Inductive Type Declarations
+:::
+
+# 帰納型の宣言
 %%%
 tag := "inductive-declarations"
 %%%
 
-:::
-
-# 帰納型の宣言
 
 ::::syntax command (alias := «inductive»)
 ```grammar
@@ -119,7 +119,7 @@ If no signature is provided, then the constructor's type is inferred by insertin
 
 :::
 
-コンストラクタの仕様は {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`where` の後に続きます。コンストラクタは必須ではありません。コンストラクタのないデータ型としては {lean}`False` と {lean}`Empty` などがまさに当てはまります。各コンストラクタの指定は、縦棒（`'|'`、Unicode `'VERTICAL BAR' (U+007c)`）・宣言修飾子・名前で始まります。名前は {tech}[生識別子] です。宣言シグネチャは名前の後に続きます。シグネチャは帰納的宣言の適格要件に従って任意のパラメータを指定することができますが、シグネチャの戻り型は指定された帰納型の型コンストラクタを完全に適用したものでなければなりません。シグネチャが提供されない場合、コンストラクタの型は適格な戻り値を構成するのに十分な暗黙のパラメータを挿入することによって推測されます。
+コンストラクタの仕様は {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`where` の後に続きます。コンストラクタは必須ではありません。コンストラクタのない帰納型としては {lean}`False` と {lean}`Empty` などがまさに当てはまります。各コンストラクタの指定は、縦棒（`'|'`、Unicode `'VERTICAL BAR' (U+007c)`）・宣言修飾子・名前で始まります。名前は {tech}[生識別子] です。宣言シグネチャは名前の後に続きます。シグネチャは帰納的宣言の適格要件に従って任意のパラメータを指定することができますが、シグネチャの戻り型は指定された帰納型の型コンストラクタを完全に適用したものでなければなりません。シグネチャが提供されない場合、コンストラクタの型は適格な戻り値を構成するのに十分な暗黙のパラメータを挿入することによって推測されます。
 
 :::comment
 The new inductive type's name is defined in the {tech}[current namespace].
@@ -131,13 +131,13 @@ Each constructor's name is in the inductive type's namespace.{index subterm:="of
 
 :::comment
 ## Parameters and Indices
+:::
+
+## パラメータと添字
 %%%
 tag := "inductive-datatypes-parameters-and-indices"
 %%%
 
-:::
-
-## パラメータと添字
 
 :::comment
 Type constructors may take two kinds of arguments: {deftech}_parameters_ {index subterm:="of inductive type"}[parameter] and {deftech key:="index"}_indices_.{index subterm:="of inductive type"}[index]
@@ -461,13 +461,13 @@ inductive Either'' : Type u → Type v → Type (max u v) where
 
 :::comment
 ## Anonymous Constructor Syntax
+:::
+
+## 匿名コンストラクタ構文
 %%%
 tag := "anonymous-constructor-syntax"
 %%%
 
-:::
-
-## 匿名コンストラクタ構文
 
 :::comment
 If an inductive type has just one constructor, then this constructor is eligible for {deftech}_anonymous constructor syntax_.
@@ -540,13 +540,13 @@ def AtLeastOne.head' : AtLeastOne α → α
 
 :::comment
 ## Deriving Instances
+:::
+
+## インスタンスの導出
 %%%
 tag := "inductive-declarations-deriving-instances"
 %%%
 
-:::
-
-## インスタンスの導出
 
 :::comment
 The optional {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`deriving` clause of an inductive type declaration can be used to derive instances of type classes.
@@ -580,13 +580,13 @@ An inductive type's run-time representation depends both on how many constructor
 
 :::comment
 ## Exceptions
+:::
+
+## 例外
 %%%
 tag := "inductive-types-runtime-special-support"
 %%%
 
-:::
-
-## 例外
 
 :::comment
 Not every inductive type is represented as indicated here—some inductive types have special support from the Lean compiler:
@@ -711,13 +711,13 @@ However, in cases where some representation is required (such as when they are a
 
 :::comment
 ## Trivial Wrappers
+:::
+
+## 自明なラッパ
 %%%
 tag := "inductive-types-trivial-wrappers"
 %%%
 
-:::
-
-## 自明なラッパ
 
 :::comment
 If an inductive type has exactly one constructor, and that constructor has exactly one run-time relevant parameter, then the inductive type is represented identically to its parameter.
@@ -751,14 +751,14 @@ Thus, subtypes impose no runtime overhead in compiled code, and are represented 
 
 :::comment
 ## Other Inductive Types
+:::
+
+## その他の帰納型
 %%%
 tag := "inductive-types-standard-representation"
 %%%
 
 
-:::
-
-## その他の帰納型
 
 :::comment
 If an inductive type doesn't fall into one of the categories above, then its representation is determined by its constructors.
@@ -827,7 +827,7 @@ Within each group the fields are ordered in declaration order. **Warning**: Triv
 :::
 
 * 最初の種類のフィールドにアクセスするには、 `lean_ctor_get(val, i)` を使って `i` 番目の非スカラーフィールドを取得します。
-* {lean}`USize` フィールドにアクセスするには、`lean_ctor_get_usize(val, n+i)` を使って `i` 番目の usize フィールドを取得します。`n` は最初の種類のフィールドの総数です。
+* {lean}`USize` フィールドにアクセスするには、`lean_ctor_get_usize(val, n+i)` を使って `i` 番目の `USize` フィールドを取得します。`n` は最初の種類のフィールドの総数です。
 * その他のスカラーフィールドにアクセスするには、`lean_ctor_get_uintN(vai, off)` または `lean_ctor_get_usize(val, off)` を適切に使用します。ここで `off` は構造体内のフィールドのバイトオフセットであり、`n*sizeof(void*)` から始まります。`n` はその前の2種類のフィールドの数です。
 
 ::::keepEnv
@@ -884,14 +884,14 @@ Figure out how to test/validate/CI these statements
 
 :::comment
 # Mutual Inductive Types
+:::
+
+# 相互帰納型
 %%%
 tag := "mutual-inductive-types"
 %%%
 
 
-:::
-
-# 相互帰納型
 
 :::comment
 Inductive types may be mutually recursive.
@@ -911,7 +911,7 @@ This distinction can also be expressed by the choice of one of two mutually indu
 
 :::
 
-先の例の型 {name}`EvenOddList` は真偽値の添字を使用して問題のリストの要素数が偶数か奇数かを選択しました。この区別は、2つの相互帰納的データ型 {name}`EvenList` と {name}`OddList` のどちらかを選択することでも表現できます：
+先の例の型 {name}`EvenOddList` は真偽値の添字を使用して問題のリストの要素数が偶数か奇数かを選択しました。この区別は、2つの相互帰納型 {name}`EvenList` と {name}`OddList` のどちらかを選択することでも表現できます：
 
 ```lean
 mutual
@@ -936,14 +936,14 @@ invalid dotted identifier notation, unknown identifier `OddList.nil` from expect
 
 :::comment
 ## Requirements
+:::
+
+## 要件
 %%%
 tag := "mutual-inductive-types-requirements"
 %%%
 
 
-:::
-
-## 要件
 
 :::comment
 The inductive types declared in a `mutual` block are considered as a group; they must collectively satisfy generalized versions of the well-formedness criteria for non-mutually-recursive inductive types.
@@ -955,13 +955,13 @@ This is true even if they could be defined without the `mutual` block, because t
 
 :::comment
 ### Mutual Dependencies
+:::
+
+### 相互依存
 %%%
 tag := "mutual-inductive-types-dependencies"
 %%%
 
-:::
-
-### 相互依存
 
 :::comment
 Each type constructor's signature must be able to be elaborated without reference to the other inductive types in the `mutual` group.
@@ -1007,13 +1007,13 @@ unknown identifier 'FreshList'
 
 :::comment
 ### Parameters Must Match
+:::
+
+### マッチすべきパラメータ
 %%%
 tag := "mutual-inductive-types-same-parameters"
 %%%
 
-:::
-
-### マッチすべきパラメータ
 
 :::comment
 All inductive types in the `mutual` group must have the same {tech}[parameters].
@@ -1082,13 +1082,13 @@ but is expected to have type
 
 :::comment
 ### Universe Levels
+:::
+
+### 宇宙レベル
 %%%
 tag := "mutual-inductive-types-same-universe"
 %%%
 
-:::
-
-### 宇宙レベル
 
 :::comment
 The universe levels of each inductive type in a mutual group must obey the same requirements as non-mutually-recursive inductive types.
@@ -1206,7 +1206,7 @@ In other words, in the type of each parameter to each constructor in all the typ
 
 :::
 
-`mutual` グループで定義される各帰納型は、グループ内のすべての型のコンストラクタのパラメータの型中において strict positively にのみ出現可能です。言い換えると、グループ内のすべての型の各コンストラクタのパラメータの型では、グループ内のどの型コンストラクタも矢印の左側には出現せず、帰納的データ型の型コンストラクタの引き数でない限り引数の位置に出現しません。
+`mutual` グループで定義される各帰納型は、グループ内のすべての型のコンストラクタのパラメータの型中において strict positively にのみ出現可能です。言い換えると、グループ内のすべての型の各コンストラクタのパラメータの型では、グループ内のどの型コンストラクタも矢印の左側には出現せず、帰納型の型コンストラクタの引き数でない限り引数の位置に出現しません。
 
 :::comment
 :: example "Mutual strict positivity"
@@ -1263,13 +1263,13 @@ end
 
 :::comment
 ## Recursors
+:::
+
+## 再帰子
 %%%
 tag := "mutual-inductive-types-recursors"
 %%%
 
-:::
-
-## 再帰子
 
 :::comment
 Mutual inductive types are provided with primitive recursors, just like non-mutually-defined inductive types.
@@ -1357,13 +1357,13 @@ Two.rec.{u} {α : Type}
 
 :::comment
 ## Run-Time Representation
+:::
+
+## ランタイム表現
 %%%
 tag := "mutual-inductive-types-run-time"
 %%%
 
-:::
-
-## ランタイム表現
 
 :::comment
 Mutual inductive types are represented identically to {ref "run-time-inductives"}[non-mutual inductive types] in compiled code and in the runtime.

@@ -133,14 +133,14 @@ Lean ランタイムの多くの文字列関数は、おぷじぇくとヘッダ
 
 :::comment
 ## Performance Notes
+:::
+
+## パフォーマンスについての注記（Performance Notes）
 %%%
 tag := "string-performance"
 %%%
 
 
-:::
-
-## パフォーマンスについての注記（Performance Notes）
 
 :::comment
 Despite the fact that they appear to be an ordinary constructor and projection, {name}`String.mk` and {name}`String.data` take *time linear in the length of the string*.
@@ -153,25 +153,25 @@ This is because they must implement the conversions between lists of characters 
 {include 0 Manual.BasicTypes.String.Literals}
 
 # API リファレンス（API Reference）
-
-:::comment
-# API Reference
 %%%
 tag := "string-api"
 %%%
 
 
+
+:::comment
+# API Reference
 :::
 :::comment
 ## Constructing
+:::
+
+## 構成（Constructing）
 %%%
 tag := "string-api-build"
 %%%
 
 
-:::
-
-## 構成（Constructing）
 
 {docstring String.singleton}
 
@@ -183,14 +183,14 @@ tag := "string-api-build"
 
 :::comment
 ## Conversions
+:::
+
+## 変換（Conversions）
 %%%
 tag := "string-api-convert"
 %%%
 
 
-:::
-
-## 変換（Conversions）
 
 {docstring String.toList}
 
@@ -210,13 +210,13 @@ tag := "string-api-convert"
 
 :::comment
 ## Properties
+:::
+
+## プロパティ（Properties）
 %%%
 tag := "string-api-props"
 %%%
 
-:::
-
-## プロパティ（Properties）
 
 {docstring String.isEmpty}
 
@@ -224,13 +224,13 @@ tag := "string-api-props"
 
 :::comment
 ## Positions
+:::
+
+## 位置（Positions）
 %%%
 tag := "string-api-pos"
 %%%
 
-:::
-
-## 位置（Positions）
 
 {docstring String.Pos}
 
@@ -254,13 +254,13 @@ tag := "string-api-pos"
 
 :::comment
 ## Lookups and Modifications
+:::
+
+## 検索と変更（Lookups and Modifications）
 %%%
 tag := "string-api-lookup"
 %%%
 
-:::
-
-## 検索と変更（Lookups and Modifications）
 
 {docstring String.get}
 
@@ -323,13 +323,13 @@ tag := "string-api-lookup"
 
 :::comment
 ## Folds and Aggregation
+:::
+
+## 畳み込みと集約（Folds and Aggregation）
 %%%
 tag := "string-api-fold"
 %%%
 
-:::
-
-## 畳み込みと集約（Folds and Aggregation）
 
 {docstring String.map}
 
@@ -343,13 +343,13 @@ tag := "string-api-fold"
 
 :::comment
 ## Comparisons
+:::
+
+## 比較（Comparisons）
 %%%
 tag := "string-api-compare"
 %%%
 
-:::
-
-## 比較（Comparisons）
 
 {docstring String.le}
 
@@ -369,13 +369,13 @@ tag := "string-api-compare"
 
 :::comment
 ## Manipulation
+:::
+
+## 操作（Manipulation）
 %%%
 tag := "string-api-modify"
 %%%
 
-:::
-
-## 操作（Manipulation）
 
 {docstring String.split}
 
@@ -450,13 +450,13 @@ Clients are responsible for checking whether they've reached the beginning or en
 
 :::comment
 ## Substrings
+:::
+
+## 部分文字列（Substrings）
 %%%
 tag := "string-api-substring"
 %%%
 
-:::
-
-## 部分文字列（Substrings）
 
 :::TODO
 Substring API xref
@@ -468,14 +468,14 @@ Substring API xref
 
 :::comment
 ## Proof Automation
+:::
+
+## 証明自動化（Proof Automation）
 %%%
 tag := "string-simp"
 %%%
 
 
-:::
-
-## 証明自動化（Proof Automation）
 
 {docstring String.reduceGT}
 
@@ -503,14 +503,14 @@ tag := "string-simp"
 
 :::comment
 ## Metaprogramming
+:::
+
+## メタプログラミング（Metaprogramming）
 %%%
 tag := "string-api-meta"
 %%%
 
 
-:::
-
-## メタプログラミング（Metaprogramming）
 
 {docstring String.toName}
 
@@ -522,14 +522,14 @@ tag := "string-api-meta"
 
 :::comment
 ## Encodings
+:::
+
+## エンコード（Encodings）
 %%%
 tag := "string-api-encoding"
 %%%
 
 
-:::
-
-## エンコード（Encodings）
 
 {docstring String.utf16PosToCodepointPos}
 

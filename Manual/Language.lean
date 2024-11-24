@@ -97,7 +97,7 @@ The {keywordOf Lean.Parser.Command.declaration}`instance` command is described i
 
 :::
 
-これらのコマンドはすべて Lean によってシグネチャに応じた項へ {tech key:="エラボレータ"}[エラボレート] されます。結果を破棄する {syntaxKind}`example` を除き、Lean のコア言語での結果の式は将来の環境で使用するために保存されます。
+これらのコマンドはすべて Lean によってシグネチャに応じた項へ {tech key:="エラボレータ"}[エラボレート] されます。結果を破棄する {syntaxKind}`example` を除き、Lean のコア言語での結果の式は将来の環境で使用するために保存されます。 {keywordOf Lean.Parser.Command.declaration}`instance` コマンドについては {ref "instance-declarations"}[インスタンス宣言の節] で記述します。
 
 :::syntax Lean.Parser.Command.declaration
 ```grammar

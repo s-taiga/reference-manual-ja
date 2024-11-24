@@ -38,14 +38,14 @@ Because the natural numbers are fundamental to both mathematical reasoning and p
 
 :::comment
 # Logical Model
+:::
+
+# 論理モデル（Logical Model）
 %%%
 tag := "nat-model"
 %%%
 
 
-:::
-
-# 論理モデル（Logical Model）
 
 {docstring Nat}
 
@@ -101,14 +101,14 @@ Look up and document
 
 :::comment
 ## Performance Notes
+:::
+
+## パフォーマンスについての注記（Performance Notes）
 %%%
 tag := "nat-performance"
 %%%
 
 
-:::
-
-## パフォーマンスについての注記（Performance Notes）
 
 :::comment
 Using Lean's built-in arithmetic operators, rather than redefining them, is essential.
@@ -122,14 +122,14 @@ While defining arithmetic from scratch can be a useful learning exercise, these 
 
 :::comment
 # Syntax
+:::
+
+# 構文（Syntax）
 %%%
 tag := "nat-syntax"
 %%%
 
 
-:::
-
-# 構文（Syntax）
 
 :::comment
 Natural number literals are overridden using the {lean}`OfNat` type class.
@@ -145,24 +145,24 @@ Document this elsewhere, insert a cross-reference here
 
 :::comment
 # API Reference
+:::
+
+# API リファレンス（API Reference）
 %%%
 tag := "nat-api"
 %%%
 
 
-:::
-
-# API リファレンス（API Reference）
 
 :::comment
 ## Arithmetic
+:::
+
+## 算術（Arithmetic）
 %%%
 tag := "nat-api-arithmetic"
 %%%
 
-:::
-
-## 算術（Arithmetic）
 
 {docstring Nat.pred}
 
@@ -184,13 +184,13 @@ tag := "nat-api-arithmetic"
 
 :::comment
 ### Bitwise Operations
+:::
+
+### ビット演算（Bitwise Operations）
 %%%
 tag := "nat-api-bitwise"
 %%%
 
-:::
-
-### ビット演算（Bitwise Operations）
 
 {docstring Nat.shiftLeft}
 
@@ -208,14 +208,14 @@ tag := "nat-api-bitwise"
 
 :::comment
 ## Minimum and Maximum
+:::
+
+## 最小・最大（Minimum and Maximum）
 %%%
 tag := "nat-api-minmax"
 %%%
 
 
-:::
-
-## 最小・最大（Minimum and Maximum）
 
 {docstring Nat.min}
 
@@ -225,14 +225,14 @@ tag := "nat-api-minmax"
 
 :::comment
 ## GCD and LCM
+:::
+
+## 最大公約数と最小公倍数（GCD and LCM）
 %%%
 tag := "nat-api-gcd-lcm"
 %%%
 
 
-:::
-
-## 最大公約数と最小公倍数（GCD and LCM）
 
 {docstring Nat.gcd}
 
@@ -240,14 +240,14 @@ tag := "nat-api-gcd-lcm"
 
 :::comment
 ## Powers of Two
+:::
+
+## 2の累乗（Powers of Two）
 %%%
 tag := "nat-api-pow2"
 %%%
 
 
-:::
-
-## 2の累乗（Powers of Two）
 
 {docstring Nat.isPowerOfTwo}
 
@@ -255,25 +255,25 @@ tag := "nat-api-pow2"
 
 :::comment
 ## Comparisons
+:::
+
+## 比較（Comparisons）
 %%%
 tag := "nat-api-comparison"
 %%%
 
 
-:::
-
-## 比較（Comparisons）
 
 :::comment
 ### Boolean Comparisons
+:::
+
+### 真偽値の比較（Boolean Comparisons）
 %%%
 tag := "nat-api-comparison-bool"
 %%%
 
 
-:::
-
-### 真偽値の比較（Boolean Comparisons）
 
 {docstring Nat.beq}
 
@@ -283,13 +283,13 @@ tag := "nat-api-comparison-bool"
 
 :::comment
 ### Decidable Equality
+:::
+
+### 決定的な等価性（Decidable Equality）
 %%%
 tag := "nat-api-deceq"
 %%%
 
-:::
-
-### 決定的な等価性（Decidable Equality）
 
 {docstring Nat.decEq}
 
@@ -299,13 +299,13 @@ tag := "nat-api-deceq"
 
 :::comment
 ### Predicates
+:::
+
+### 述語（Predicates）
 %%%
 tag := "nat-api-predicates"
 %%%
 
-:::
-
-### 述語（Predicates）
 
 {docstring Nat.le}
 
@@ -315,13 +315,13 @@ tag := "nat-api-predicates"
 
 :::comment
 ## Iteration
+:::
+
+## 反復（Iteration）
 %%%
 tag := "nat-api-iteration"
 %%%
 
-:::
-
-## 反復（Iteration）
 
 :::comment
 Many iteration operators come in two versions: a structurally recursive version and a tail-recursive version.
@@ -363,13 +363,13 @@ The structurally recursive version is typically easier to use in contexts where 
 
 :::comment
 ## Conversion
+:::
+
+## 変換（Conversion）
 %%%
 tag := "nat-api-conversion"
 %%%
 
-:::
-
-## 変換（Conversion）
 
 {docstring Nat.toUInt8}
 
@@ -407,13 +407,13 @@ tag := "nat-api-conversion"
 
 :::comment
 ### Metaprogramming and Internals
+:::
+
+### メタプログラミングと内部（Metaprogramming and Internals）
 %%%
 tag := "nat-api-meta"
 %%%
 
-:::
-
-### メタプログラミングと内部（Metaprogramming and Internals）
 
 {docstring Nat.fromExpr?}
 
@@ -421,14 +421,14 @@ tag := "nat-api-meta"
 
 :::comment
 ## Casts
+:::
+
+## キャスト（Casts）
 %%%
 tag := "nat-api-cast"
 %%%
 
 
-:::
-
-## キャスト（Casts）
 
 {docstring NatCast}
 
@@ -436,14 +436,14 @@ tag := "nat-api-cast"
 
 :::comment
 ## Elimination
+:::
+
+## 除去（Elimination）
 %%%
 tag := "nat-api-elim"
 %%%
 
 
-:::
-
-## 除去（Elimination）
 
 :::comment
 The recursion principle that is automatically generated for {lean}`Nat` results in proof goals that are phrased in terms of {lean}`Nat.zero` and {lean}`Nat.succ`.
@@ -475,14 +475,14 @@ Insert reference to section on how to do this
 
 :::comment
 ### Alternative Induction Principles
+:::
+
+### 代替の帰納原理（Alternative Induction Principles）
 %%%
 tag := "nat-api-induction"
 %%%
 
 
-:::
-
-### 代替の帰納原理（Alternative Induction Principles）
 
 {docstring Nat.strongInductionOn}
 

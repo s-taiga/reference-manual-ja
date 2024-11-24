@@ -518,7 +518,7 @@ String literals are parsed as {tech}[atoms] (including both keywords such as `if
 ```grammar
 $s:str
 ```
-Leading and trailing spaces in the strings do not affect parsing, but they cause Lean to insert spaces in the corresponding position when displaying the syntax in {tech}[proof states] and error messages.
+Leading and trailing spaces in the strings do not affect parsing, but they cause Lean to insert spaces in the corresponding position when displaying the syntax in {tech}[証明状態]proof states and error messages.
 Ordinarily, valid identifiers occurring as atoms in syntax rules become reserved keywords.
 Preceding a string literal with an ampersand (`&`) suppresses this behavior:
 ```grammar

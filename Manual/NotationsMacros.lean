@@ -59,7 +59,7 @@ They can be combined flexibly to achieve the necessary results:
 tag := "macros"
 %%%
 
-{deftech}_Macros_ are transformations from {name Lean.Syntax}`Syntax` to {name Lean.Syntax}`Syntax` that occur during {tech key:="elaborator"}[elaboration] and during {ref "tactic-macros"}[tactic execution].
+{deftech}_Macros_ are transformations from {name Lean.Syntax}`Syntax` to {name Lean.Syntax}`Syntax` that occur during {tech key:="エラボレータ"}[elaboration] and during {ref "tactic-macros"}[tactic execution].
 Replacing syntax with the result of transforming it with a macro is called {deftech}_macro expansion_.
 Multiple macros may be associated with a single {tech}[syntax kind], and they are attempted in order of definition.
 Macros are run in a {tech}[monad] that has access to some compile-time metadata and has the ability to either emit an error message or to delegate to subsequent macros, but the macro monad is much less powerful than the elaboration monads.
@@ -186,7 +186,7 @@ tag := "macro-monad"
 
 The macro monad {name Lean.MacroM}`MacroM` is sufficiently powerful to implement hygiene and report errors.
 Macro expansion does not have the ability to modify the environment directly, to carry out unification, to examine the current local context, or to do anything else that only makes sense in one particular context.
-This allows the same macro mechanism to be used throughout Lean, and it makes macros much easier to write than {tech}[elaborators].
+This allows the same macro mechanism to be used throughout Lean, and it makes macros much easier to write than {tech}[エラボレータ]elaborators.
 
 {docstring Lean.MacroM}
 
