@@ -76,47 +76,47 @@ tag := "Float"
 
 :::comment
 # Characters
+:::
+
+# 文字（Characters）
 %%%
 tag := "Char"
 %%%
 
 
-:::
-
-# 文字（Characters）
 
 {docstring Char}
 
 :::comment
 ## Syntax
+:::
+
+## 構文（Syntax）
 %%%
 tag := "char-syntax"
 %%%
 
 
-:::
-
-## 構文（Syntax）
 
 :::comment
 ## Logical Model
+:::
+
+## 論理モデル（Logical Model）
 %%%
 tag := "char-model"
 %%%
 
-:::
-
-## 論理モデル（Logical Model）
 
 :::comment
 ## Run-Time Representation
+:::
+
+## ランタイム表現（Run-Time Representation）
 %%%
 tag := "char-runtime"
 %%%
 
-:::
-
-## ランタイム表現（Run-Time Representation）
 
 :::comment
 In monomorphic contexts, characters are represented as 32-bit immediate values. In other words, a field of a constructor or structure of type {lean}`Char` does not require indirection to access. In polymorphic contexts, characters are boxed.
@@ -128,25 +128,25 @@ In monomorphic contexts, characters are represented as 32-bit immediate values. 
 
 :::comment
 ## API Reference
+:::
+
+## API リファレンス（API Reference）
 %%%
 tag := "char-api"
 %%%
 
 
-:::
-
-## API リファレンス（API Reference）
 
 :::comment
 ### Character Classes
+:::
+
+### 文字クラス（Character Classes）
 %%%
 tag := "char-api-classes"
 %%%
 
 
-:::
-
-### 文字クラス（Character Classes）
 
 {docstring Char.isAlpha}
 

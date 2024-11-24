@@ -220,14 +220,14 @@ Lean の {ref "function-terms"}[項の言語] では、関数抽象は複数の�
 
 :::comment
 # Currying
+:::
+
+# カリー化（Currying）
 %%%
 tag := "currying"
 %%%
 
 
-:::
-
-# カリー化（Currying）
 
 :::comment
 In Lean's core type theory, every function maps each element of the domain to a single element of the range.
@@ -242,14 +242,14 @@ Lean のコア型理論では、すべての関数は定義域の要素をそれ
 
 :::comment
 # Extensionality
+:::
+
+# 外延性（Extensionality）
 %%%
 tag := "function-extensionality"
 %%%
 
 
-:::
-
-# 外延性（Extensionality）
 
 :::comment
 Definitional equality of functions in Lean is {deftech}_intensional_.
@@ -301,14 +301,14 @@ When reasoning about functions, the theorem {lean}`funext`{margin}[Unlike some i
 
 :::comment
 # Totality and Termination
+:::
+
+# 全域性と停止（Totality and Termination）
 %%%
 tag := "totality"
 %%%
 
 
-:::
-
-# 全域性と停止（Totality and Termination）
 
 :::comment
 Functions can be defined recursively using {keywordOf Lean.Parser.Command.declaration}`def`.

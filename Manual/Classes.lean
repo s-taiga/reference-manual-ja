@@ -41,7 +41,7 @@ tag := "type-classes"
 An operation is _polymorphic_ if it can be used with multiple types.
 In Lean, polymorphism comes in three varieties:
 
- 1. {tech}[universe polymorphism], where the sorts in a definition can be instantiated in various ways,
+ 1. {tech}[宇宙多相]universe polymorphism, where the sorts in a definition can be instantiated in various ways,
  2. functions that take types as (potentially implicit) parameters, allowing a single body of code to work with any type, and
  3. {deftech}_ad-hoc polymorphism_, implemented with type classes, in which operations to be overloaded may have different implementations for different types.
 
@@ -314,7 +314,7 @@ tag := "class inductive"
 Most type classes follow the paradigm of a set of overloaded methods from which clients may choose freely.
 This is naturally modeled by a product type, from which the overloaded methods are projections.
 Some classes, however, are sum types: they require that the recipient of the synthesized instance first check _which_ of the available instance constructors was provided.
-To account for these classes, a class declaration may consist of an arbitrary {tech}[inductive type], not just an extended form of structure declaration.
+To account for these classes, a class declaration may consist of an arbitrary {tech}[帰納型]inductive type, not just an extended form of structure declaration.
 
 :::syntax Lean.Parser.Command.declaration
 ```grammar

@@ -24,13 +24,13 @@ tag := "inductive-types-logical-model"
 
 :::comment
 # Recursors
+:::
+
+# 再帰子（Recursors）
 %%%
 tag := "recursors"
 %%%
 
-:::
-
-# 再帰子（Recursors）
 
 :::comment
 Every inductive type is equipped with a {tech}[recursors].
@@ -43,14 +43,14 @@ Recursors have function types, but they are primitive and are not definable usin
 
 :::comment
 ## Recursor Types
+:::
+
+## 再帰子の型（Recursor Types）
 %%%
 tag := "recursor-types"
 %%%
 
 
-:::
-
-## 再帰子の型（Recursor Types）
 
 :::comment
 The recursor takes the following parameters:
@@ -127,7 +127,7 @@ The result type of the recursor is the motive applied to these indices and the t
 
 :::
 
- * 動機は Bool から任意の宇宙における型を計算します。
+ * 動機は {lean}`Bool` から任意の宇宙における型を計算します。
  * {lean}`false` と {lean}`true` の両方で動機が満たされる両方のコンストラクタのケースが存在します。
  * ターゲットはなんらかの {lean}`Bool` です。
 
@@ -402,13 +402,13 @@ This means that proofs of equality can be used to rewrite the types of non-propo
 
 :::comment
 ## Reduction
+:::
+
+## 簡約（Reduction）
 %%%
 tag := "iota-reduction"
 %%%
 
-:::
-
-## 簡約（Reduction）
 
 :::comment
 In addition to adding new constants to the logic, inductive type declarations also add new reduction rules.
@@ -607,7 +607,7 @@ Because they are largely useless, Lean's inductive type elaborator has not been 
 
 :::
 
-Lean は実用上多相的に使うことができない宇宙多相型を拒否します。これは宇宙パラメータの特定のインスタンス化によって型自体が {lean}`Prop` になる場合に発生する可能性があります。この型が {tech}[subsingleton] でない場合、再帰子は命題のみを対象とすることができます（つまり、 {tech}[動機] は {lean}`Prop` を返さなければなりません）。このような型は {lean}`Prop` そのものとしてしか意味をなさないため、宇宙多相としたことは間違いだと考えられます。これらの型はほとんど役に立たないため、Lean のデータ型エラボレータはこれらの型をサポートするように設計されていません。
+Lean は実用上多相的に使うことができない宇宙多相型を拒否します。これは宇宙パラメータの特定のインスタンス化によって型自体が {lean}`Prop` になる場合に発生する可能性があります。この型が {tech}[subsingleton] でない場合、再帰子は命題のみを対象とすることができます（つまり、 {tech}[動機] は {lean}`Prop` を返さなければなりません）。このような型は {lean}`Prop` そのものとしてしか意味をなさないため、宇宙多相としたことは間違いだと考えられます。これらの型はほとんど役に立たないため、Lean の帰納型エラボレータはこれらの型をサポートするように設計されていません。
 
 :::comment
 When such universe-polymorphic inductive types are indeed subsingletons, it can make sense to define them.

@@ -313,7 +313,7 @@ prefix:max "blah" => Nat.add
 ```
 
 If the term consists either of a name from the global environment or of an application of such a name to one or more arguments, then Lean automatically generates an {tech}[unexpander] for the operator.
-This means that the operator will be displayed in {tech}[proof states], error messages, and other output from Lean when the function term otherwise would have been displayed.
+This means that the operator will be displayed in {tech}[証明状態]proof states, error messages, and other output from Lean when the function term otherwise would have been displayed.
 Lean does not track whether the operator was used in the original term; it is inserted at every opportunity.
 
 :::::keepEnv

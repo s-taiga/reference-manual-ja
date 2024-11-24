@@ -24,7 +24,7 @@ Modules correspond to source files, and are imported into other modules based on
 In other words, the names and folder structures of files are significant in Lean code.
 :::
 
-Lean におけるコンパイルの最小単位は1つの {deftech}[モジュール] （module）です。モジュールはソースファイルに対応し、ファイル名に基づいて他のモジュールにインポートされます。言い換えれば、Lean コードではファイルの名前とフォルダ構造が重要です。
+Lean におけるコンパイルの最小単位は1つの {deftech key:="module"}[モジュール] （module）です。モジュールはソースファイルに対応し、ファイル名に基づいて他のモジュールにインポートされます。言い換えれば、Lean コードではファイルの名前とフォルダ構造が重要です。
 
 :::comment
 # Modules
@@ -166,7 +166,7 @@ tag := "keywords-and-identifiers"
 An {tech}[identifier] consists of one or more identifier components, separated by `'.'`.{index}[identifier]
 :::
 
-{tech}[識別子] （identifier）は `'.'` 区切りで1つ以上の識別子要素から構成されます。 {index}[identifier]
+{tech}[identifier] は `'.'` 区切りで1つ以上の識別子要素から構成されます。 {index}[identifier]
 
 :::comment
 {deftech}[Identifier components] consist of a letter or letter-like character or an underscore (`'_'`), followed by zero or more identifier continuation characters.

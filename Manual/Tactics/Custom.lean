@@ -49,13 +49,13 @@ A custom tactic consists of an extension to the `tactic` category along with eit
 
 :::comment
 # Tactic Macros
+:::
+
+# タクティクマクロ（Tactic Macros）
 %%%
 tag := "tactic-macros"
 %%%
 
-:::
-
-# タクティクマクロ（Tactic Macros）
 
 :::comment
 The easiest way to define a new tactic is as a {tech}[macro] that expands into already-existing tactics.
@@ -113,14 +113,14 @@ Otherwise, the syntax will be interpreted as that of a term, which will match ag
 
 :::comment
 ## Extensible Tactic Macros
+:::
+
+## 拡張可能なタクティクマクロ（Extensible Tactic Macros）
 %%%
 tag := "tactic-macro-extension"
 %%%
 
 
-:::
-
-## 拡張可能なタクティクマクロ（Extensible Tactic Macros）
 
 :::comment
 Because macro expansion can fail, {TODO}[xref] multiple macros can match the same syntax, allowing backtracking.
@@ -208,13 +208,13 @@ Backtracking is at the granularity of {keywordOf Lean.Parser.Command.macro_rules
 
 :::comment
 # The Tactic Monad
+:::
+
+# タクティクモナド（The Tactic Monad）
 %%%
 tag := "tactic-monad"
 %%%
 
-:::
-
-# タクティクモナド（The Tactic Monad）
 
 ::: planned 67
  * Relationship to {name}`Lean.Elab.Term.TermElabM`, {name}`Lean.Meta.MetaM`

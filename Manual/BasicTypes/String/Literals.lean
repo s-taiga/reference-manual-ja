@@ -31,13 +31,13 @@ Lean には3種類の文字列リテラルがあります：通常の文字列�
 
 :::comment
 # String Literals
+:::
+
+# 文字列リテラル（String Literals）
 %%%
 tag := "string-literals"
 %%%
 
-:::
-
-# 文字列リテラル（String Literals）
 
 :::comment
 String literals begin and end with a double-quote character `"`. {index subterm:="string"}[literal]
@@ -131,13 +131,13 @@ The parser error is:
 
 :::comment
 # Interpolated Strings
+:::
+
+# 補間文字列（Interpolated Strings）
 %%%
 tag := "string-interpolation"
 %%%
 
-:::
-
-# 補間文字列（Interpolated Strings）
 
 :::comment
 Preceding a string literal with `s!` causes it to be processed as an {deftech}[_interpolated string_], in which regions of the string surrounded by `{` and `}` characters are parsed and interpreted as Lean expressions.
@@ -166,13 +166,13 @@ Preceding a literal with `m!` causes the interpolation to result in an instance 
 
 :::comment
 # Raw String Literals
+:::
+
+# 生文字列リテラル
 %%%
 tag := "raw-string-literals"
 %%%
 
-:::
-
-# 生文字列リテラル
 
 :::comment
 In {deftech}[raw string literals], {index subterm:="raw string"}[literal] there are no escape sequences or gaps, and each character denotes itself exactly.
