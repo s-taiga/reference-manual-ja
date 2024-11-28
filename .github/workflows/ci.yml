@@ -59,7 +59,7 @@ jobs:
           lean --version
 
       - name: Cache .lake
-        uses: actions/cache@v4
+        uses: actions/cache/restore@v4
         with:
           path: .lake
           key: ${{ runner.os }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-${{ hashFiles('lakefile.lean') }}-${{ github.sha }}
@@ -73,21 +73,27 @@ jobs:
         run: |
           lake build
 
+      - name: Save cache for .lake
+        uses: actions/cache/save@v4
+        with:
+          path: .lake
+          key: ${{ runner.os }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-${{ hashFiles('lakefile.lean') }}-${{ github.sha }}
+
       - name: Generate HTML (non-release)
         if: github.event_name != 'release'
         run: |
-          lake exe generate-manual --depth 2 --with-word-count "words.txt"
+          lake --quiet exe generate-manual --depth 2 --with-word-count "words.txt" --verbose
 
       - name: Generate HTML (release)
         if: github.event_name == 'release'
         # Include the base to fix trailing slash issue on Netlify
         run: |
-          lake exe generate-manual --depth 2 --with-word-count "words.txt" --site-base-url "/doc/reference/latest/"
+          lake --quiet exe generate-manual --depth 2 --with-word-count "words.txt" --verbose --site-base-url "/doc/reference/latest/"
 
       - name: Generate proofreading HTML
         if: github.event_name == 'pull_request'
         run: |
-          lake exe generate-manual --depth 2 --with-word-count "words.txt" --draft --output "_out/draft"
+          lake --quiet exe generate-manual --depth 2 --verbose --draft --output "_out/draft"
 
       - name: Report word count
         run: |
@@ -181,7 +187,7 @@ jobs:
         with:
           publish-dir: _out/html-multi
           production-branch: main
-          production-deploy: true
+          production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: |
             ${{ github.event_name == 'pull_request' && format('pr#{0}: {1}', github.event.number, github.event.pull_request.title) || format('ref/{0}: {1}', github.ref_name, steps.deploy-info.outputs.message) }}
