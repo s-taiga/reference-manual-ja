@@ -13,6 +13,7 @@ import Manual.Tactics
 import Manual.Simp
 import Manual.BasicTypes
 import Manual.NotationsMacros
+import Manual.IO
 
 open Verso.Genre Manual
 
@@ -48,16 +49,10 @@ This chapter will describe `do`-notation in Lean:
  * Desugaring of `do` and its associated control structures
  * Comprehensive description of the syntax of `do`-notation
  * Definition of being in the "same `do`-block"
+ * Various common kinds of monads, including reader monads, {deftech}[state monads], and {deftech}[exception monads].
 :::
 
-# IO
-%%%
-tag := "io"
-%%%
-
-:::planned 102
-This chapter will describe features for writing programs that can have side effects on the real world.
-:::
+{include 0 Manual.IO}
 
 {include 0 Manual.Tactics}
 
@@ -83,6 +78,8 @@ tag := "option"
 :::planned 110
 Describe {name}`Option`, including the default coercions and its API.
 :::
+
+{docstring Option}
 
 {include 0 Manual.NotationsMacros}
 
@@ -153,7 +150,9 @@ file := some "the-index"
 
 :::progress
 ```namespace
-String Char Nat Lean.Elab.Tactic Array Subarray
+String Char Nat Lean.Elab.Tactic Array Subarray IO IO.FS System System.FilePath IO.Process IO.FS.Stream ST IO.Error IO.FS.Stream.Buffer IO.FS.Handle
+IO.Process.SpawnArgs IO.Process.Output IO.Process.Child IO.Process.StdioConfig IO.Process.Stdio IO.Ref ST.Ref IO.FS.Metadata IO.FS.DirEntry EIO BaseIO
+IO.FileRight IO.FS.Stream Task Task.Priority
 ```
 ```exceptions
 String.revFindAux String.extract.go₂ String.substrEq.loop String.casesOn
@@ -488,6 +487,75 @@ Lean.Elab.Tactic.evalTacticSeq1Indented
 ```
 
 ```exceptions
+IO.stdGenRef
+IO.throwServerError
+IO.initializing
+```
+
+```exceptions
+IO.Process.StdioConfig.noConfusionType
+IO.Process.StdioConfig.recOn
+IO.Process.StdioConfig.rec
+IO.Process.StdioConfig.noConfusion
+IO.Process.StdioConfig.casesOn
+```
+
+```exceptions
+IO.FS.lines.read
+```
+
+
+```exceptions
+IO.FS.Handle.readBinToEndInto.loop
+```
+
+```exceptions
+IO.FS.Stream.readLspNotificationAs
+IO.FS.Stream.readNotificationAs
+IO.FS.Stream.readResponseAs
+IO.FS.Stream.writeLspNotification
+IO.FS.Stream.readJson
+IO.FS.Stream.readLspMessage
+IO.FS.Stream.Buffer.casesOn
+IO.FS.Stream.Buffer.noConfusion
+IO.FS.Stream.Buffer.recOn
+IO.FS.Stream.Buffer.noConfusionType
+IO.FS.Stream.Buffer.rec
+IO.FS.Stream.rec
+IO.FS.Stream.writeLspRequest
+IO.FS.Stream.writeResponseError
+IO.FS.Stream.noConfusionType
+IO.FS.Stream.writeLspResponseErrorWithData
+IO.FS.Stream.readLspResponseAs
+IO.FS.Stream.noConfusion
+IO.FS.Stream.writeLspResponse
+IO.FS.Stream.readLspRequestAs
+IO.FS.Stream.casesOn
+IO.FS.Stream.readMessage
+IO.FS.Stream.writeLspMessage
+IO.FS.Stream.writeResponseErrorWithData
+IO.FS.Stream.recOn
+IO.FS.Stream.writeRequest
+IO.FS.Stream.writeJson
+IO.FS.Stream.writeLspResponseError
+IO.FS.Stream.chainLeft
+IO.FS.Stream.readRequestAs
+IO.FS.Stream.withPrefix
+IO.FS.Stream.writeResponse
+IO.FS.Stream.chainRight
+IO.FS.Stream.writeNotification
+IO.FS.Stream.writeMessage
+```
+```exceptions
+System.FilePath.recOn
+System.FilePath.noConfusion
+System.FilePath.casesOn
+System.FilePath.walkDir.go
+System.FilePath.rec
+System.FilePath.noConfusionType
+```
+
+```exceptions
 List.tacticSizeOf_list_dec
 Lean.Parser.Tactic.tacticRefine_lift_
 Lean.Parser.Tactic.tacticRefine_lift'_
@@ -500,6 +568,13 @@ Lean.Parser.Tactic.paren
 tacticDecreasing_trivial_pre_omega
 ```
 
+```exceptions
+IO.Process.Stdio.toCtorIdx
+```
+
+```exceptions
+BaseIO.mapTasks.go
+```
 :::
 
 ::::::
