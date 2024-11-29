@@ -142,12 +142,23 @@ file := some "the-index"
 String Char Nat Lean.Elab.Tactic Array Subarray IO IO.FS System System.FilePath IO.Process IO.FS.Stream ST IO.Error IO.FS.Stream.Buffer IO.FS.Handle
 IO.Process.SpawnArgs IO.Process.Output IO.Process.Child IO.Process.StdioConfig IO.Process.Stdio IO.Ref ST.Ref IO.FS.Metadata IO.FS.DirEntry EIO BaseIO
 IO.FileRight IO.FS.Stream Task Task.Priority Unit PUnit
+Bool Decidable
 System.Platform
 PLift ULift Subtype Option List
 USize
 UInt8 UInt16 UInt32 UInt64
 Int8 Int16 Int32 Int64
 ```
+
+```exceptions
+Bool.toLBool
+Bool.«term_^^_»
+```
+
+```exceptions
+Decidable.or_not_self
+```
+
 ```exceptions
 String.revFindAux String.extract.go₂ String.substrEq.loop String.casesOn
 String.offsetOfPosAux String.extract.go₁ String.mapAux String.firstDiffPos.loop String.utf8SetAux String.revPosOfAux String.replace.loop
