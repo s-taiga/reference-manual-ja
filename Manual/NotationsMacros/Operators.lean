@@ -28,7 +28,7 @@ Lean supports custom infix, prefix, and postfix operators.
 New operators can be added by any Lean library, and the new operators have equal status to those that are part of the language.
 Each new operator is assigned an interpretation as a function, after which uses of the operator are translated into uses of the function.
 The operator's translation into a function call is referred to as its {deftech}_expansion_.
-If this function is a {tech}[type class] {tech}[method], then the resulting operator can be overloaded by defining instances of the class.
+If this function is a {tech}[型クラス]type class {tech}[メソッド]method, then the resulting operator can be overloaded by defining instances of the class.
 
 All operators have a {deftech}_precedence_.
 Operator precedence determines the order of operations for unparenthesized expressions: because multiplication has a higher precedence than addition, {lean}`2 + 3 * 4` is equivalent to {lean}`2 + (3 * 4)`, and {lean}`2 * 3 + 4` is equivalent to {lean}`(2 * 3) + 4`.
@@ -304,7 +304,7 @@ Prefix and postfix operators apply the term to their single argument as an expli
 Infix operators apply the term to the left and right arguments, in that order.
 Other than its ability to accept arguments at each call site, there are no specific requirements imposed on the term.
 Operators may construct functions, so the term may expect more parameters than the operator.
-Implicit and {tech}[instance-implicit] parameters are resolved at each application site, which allows the operator to be defined by a {tech}[type class] {tech}[method].
+Implicit and {tech}[暗黙のインスタンス]instance-implicit parameters are resolved at each application site, which allows the operator to be defined by a {tech}[型クラス]type class {tech}[メソッド]method.
 
 ```lean (show := false) (keep := false)
 -- Double-check claims about operators above
