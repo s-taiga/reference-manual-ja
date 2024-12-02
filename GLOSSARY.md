@@ -4,6 +4,7 @@
 | --- | --- | --- |
 | abbreviation | 省略形 | |
 | abstraction | 抽象 | |
+| ad-hoc polymorphism | アドホック多相性 | |
 | angle bracket | 角括弧 | square bracketと同じ訳語にしているが、直後にコード例がある場合も多いため文脈で見分けられる想定 |
 | annotation | 注釈 | |
 | anonymous constructor | 匿名コンストラクタ | |
@@ -98,6 +99,7 @@
 | functional programming language | 関数型プログラミング言語 | |
 | function extensionality | 関数外延性 | |
 | function type | 関数型 | |
+| gadget | ガジェット | |
 | goal | ゴール | |
 | grammar | 文法 | |
 | guillemet | ギュメ | フランス語 |
@@ -128,8 +130,8 @@
 | inheritance | 継承 | |
 | initialization | 初期化 | |
 | injectivity | 単射性 | |
-| instance implicit parameter | インスタンスの暗黙のパラメータ | |
-| instances synthesize | インスタンス合成 | |
+| instance implicit parameter | 暗黙のインスタンスのパラメータ | |
+| instances synthesize | インスタンス統合 | composite instanceという類似表現もあるが、関数合成の意味での合成と使い分けるために統合を採用 |
 | instantiate, instantiation | インスタンス化 | |
 | intensional | 内包的 | |
 | interactive theorem prover | 対話型定理証明器 | |
@@ -157,6 +159,7 @@
 | macro Expansion | マクロ展開 | |
 | map | 写像 | |
 | mapping | マッピング | |
+| membership predicate | メンバシップ述語 | |
 | memoization | メモ化 | |
 | modifier | 修飾子 | |
 | monad | モナド | |
@@ -228,6 +231,7 @@
 | simp set | simp セット | |
 | single quote | シングルクォート | |
 | singleton | 単集合 | |
+| sort | ソート | |
 | soundness | 健全性 | |
 | square bracket | 角括弧 | |
 | specialization | 特殊化 | |
@@ -269,7 +273,9 @@
 | tuple | タプル | |
 | turnstile | ターンスタイル | |
 | type class | 型クラス | |
-| type class instance synthesis | 型クラスインスタンス合成 | |
+| type class instance synthesis | 型クラスインスタンス統合 | |
+| type-directed | 型指向 | |
+| type family | 型族 | |
 | type signature | 型シグネチャ | |
 | unbox | ボックス化解除 | C#の用語を流用 |
 | underscore | アンダースコア | |
@@ -293,6 +299,7 @@
 | cumulative | |
 | impredicativity, predicativity | |
 | no confusion | |
+| out, semi-out | |
 | packed array | System Verilogという言語にこの名前の文法要素がある？ |
 | strict positively, negatively | 自己言及される定義の分類、定訳は無い模様 |
 | prelude | |

@@ -192,7 +192,7 @@ An element of a {lean}`List Nat` can be concluded to be a {lean}`Nat` simply on 
 Membership.{u, v} (α : outParam (Type u)) (γ : Type v) : Type (max u v)
 ```
 
-Type class parameters can be declared as outputs by wrapping their types in the {name}`outParam` {tech}[gadget].
+Type class parameters can be declared as outputs by wrapping their types in the {name}`outParam` {tech}[ガジェット]gadget.
 When a class parameter is an {deftech}_output parameter_, instance synthesis will not require that it be known; in fact, any existing value is ignored completely.
 The first instance that matches the input parameters is selected, and that instance's assignment of the output parameter becomes its value.
 If there was a pre-existing value, then it is compared with the assignment after synthesis is complete, and it is an error if they do not match.
