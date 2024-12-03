@@ -261,6 +261,7 @@
 | term | 項 | |
 | term elaboration | 項エラボレーション | |
 | termination | 停止 | |
+| The Law of the Excluded Middle | 排中律 | |
 | theorem | 定理 | |
 | token | 字句 | |
 | top-level | トップレベル | |
@@ -298,6 +299,7 @@
 | choice node | |
 | cumulative | |
 | impredicativity, predicativity | |
+| inhabited | |
 | no confusion | |
 | out, semi-out | |
 | packed array | System Verilogという言語にこの名前の文法要素がある？ |

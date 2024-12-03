@@ -40,11 +40,15 @@ def derivableClassList : DirectiveExpander
     let theList ← `(Verso.Doc.Block.ul #[$[⟨0, #[Verso.Doc.Block.para #[$itemStx]]⟩],*])
     return #[theList]
 
+/-
 #doc (Manual) "Deriving Handlers" =>
+-/
+#doc (Manual) "導出ハンドラ（Deriving Handlers）" =>
 %%%
 tag := "deriving-handlers"
 %%%
 
+:::comment
 Instance deriving uses a table of {deftech}_deriving handlers_ that maps type class names to metaprograms that derive instances for them.
 Deriving handlers may be added to the table using {lean}`registerDerivingHandler`, which should be called in an {keywordOf Lean.Parser.Command.initialize}`initialize` block.
 Each deriving handler should have the type {lean}`Array Name → CommandElabM Bool`.
@@ -52,16 +56,33 @@ When a user requests that an instance of a class be derived, its registered hand
 They are provided with all of the names in the mutual block for which the instance is to be derived, and should either correctly derive an instance and return {lean}`true` or have no effect and return {lean}`false`.
 When a handler returns {lean}`true`, no further handlers are called.
 
+:::
+
+インスタンスの導出は {deftech}_導出ハンドラ_ （deriving handler）のテーブルを使用し、型クラス名をインスタンスを導出するメタプログラムにマッピングします。導出ハンドラは {lean}`registerDerivingHandler` を使用してテーブルに追加することができます。これは {keywordOf Lean.Parser.Command.initialize}`initialize` ブロック内で呼び出す必要があります。それぞれの導出ハンドラは {lean}`Array Name → CommandElabM Bool` 型を持つ必要があります。ユーザがクラスのインスタンス導出を要求すると、登録されているハンドラが1つずつ呼び出されます。これらのハンドラにはインスタンスを導出させる相互ブロック内のすべての名前が提供され、正しくインスタンスを導出した場合は {lean}`true` を、そうでない場合は何もせずに {lean}`false` を返します。ハンドラが {lean}`true` を返すと、それ以降のハンドラは呼び出されません。
+
+:::comment
 Lean includes deriving handlers for the following classes:
+:::
+
+Lean には以下のクラスの導出ハンドラがあります：
+
 :::derivableClassList
 :::
 
 {docstring Lean.Elab.registerDerivingHandler}
 
 
-::::keepEnv
-:::example "Deriving Handlers"
+:::::keepEnv
+:::comment
+::example "Deriving Handlers"
+:::
+::::example "導出ハンドラ"
+:::comment
 Instances of the {name}`IsEnum` class demonstrate that a type is a finite enumeration by providing a bijection between the type and a suitably-sized {name}`Fin`:
+:::
+
+{name}`IsEnum` クラスのインスタンスは型に対して適切なサイズの {name}`Fin` との間に全単射を提供することによって型が有限に列挙されることを示します：
+
 ```lean
 class IsEnum (α : Type) where
   size : Nat
@@ -71,8 +92,13 @@ class IsEnum (α : Type) where
   from_to_id : ∀ (x : α), fromIdx (toIdx x) = x
 ```
 
+:::comment
 For inductive types that are trivial enumerations, where no constructor expects any parameters, instances of this class are quite repetitive.
 The instance for `Bool` is typical:
+:::
+
+帰納型は自明な列挙であり、コンストラクタがパラメータを期待しない帰納型ではこのクラスのインスタンスにおいては非常に繰り返しが多いコードになります。 `Bool` のインスタンスが典型的です：
+
 ```lean
 instance : IsEnum Bool where
   size := 2
@@ -90,7 +116,12 @@ instance : IsEnum Bool where
     | true => rfl
 ```
 
+:::comment
 The deriving handler programmatically constructs each pattern case, by analogy to the {lean}`IsEnum Bool` implementation:
+:::
+
+導出ハンドラは {lean}`IsEnum Bool` の実装をなぞるようにそれぞれのパターンのケースをプログラムで構築します：
+
 ```lean
 open Lean Elab Parser Term Command
 
@@ -129,5 +160,5 @@ def deriveIsEnum (declNames : Array Name) : CommandElabM Bool := do
 initialize
   registerDerivingHandler ``IsEnum deriveIsEnum
 ```
-:::
 ::::
+:::::
