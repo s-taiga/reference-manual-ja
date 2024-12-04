@@ -160,7 +160,7 @@ the resulting parser extension has the same documentation as {name}`Option.getD`
 When multiple operators are defined that share the same syntax, Lean's parser attempts all of them.
 If more than one succeed, the one that used the most input is selected—this is called the {deftech}_local longest-match rule_.
 In some cases, parsing multiple operators may succeed, all of them covering the same range of the input.
-In these cases, the operator's {tech}[priority] is used to select the appropriate result.
+In these cases, the operator's {tech}[優先度]priority is used to select the appropriate result.
 Finally, if multiple operators with the same priority tie for the longest match, the parser saves all of the results, and the elaborator attempts each in turn, failing if elaboration does not succeed on exactly one of them.
 
 :::::keepEnv

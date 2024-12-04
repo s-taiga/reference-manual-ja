@@ -188,6 +188,7 @@
 | pretty printer | プリティプリンタ | |
 | primitive | プリミティブ | |
 | primitive recursion | 原始再帰 | |
+| priority | 優先度 | |
 | procedure | 手続き | |
 | product type | 直積型 | |
 | projection function | 射影関数 | |
