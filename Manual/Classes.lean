@@ -125,7 +125,7 @@ Thus, type class instance synthesis is also a means of constructing programs in 
 
 :::
 
-通常の多相定義は単に任意のパラメータでインスタンス化されることを想定していますが、型クラスでオーバーロードされる演算子は特定のパラメータセットに対してオーバーロードされる演算を定義する {deftech}_インスタンス_ （instance）としてインスタンス化されます。これらの {deftech}[暗黙のインスタンス] （instance-implicit）パラメータは角括弧で示されます。呼び出しの際において、Lean は利用可能な候補から適切なインスタンスを {deftech key:="synthesis"}_統合_ {index}[instance synthesis] {index subterm:="of type class instances"}[synthesis] （synthesize）するかエラーを通知します。インスタンスはそれ自身がインスタンスパラメータを持つことがあるため、この検索プロセスは再帰的であり、様々なインスタンスからのコードを組み合わせた最終的な合成インスタンス値になる可能性があります。このように型クラスのインスタンス統合は型指向の流儀によるプログラムを構築する手段でもあります。
+通常の多相定義は単に任意のパラメータでインスタンス化されることを想定していますが、型クラスでオーバーロードされる演算子は特定のパラメータセットに対してオーバーロードされる演算を定義する {deftech}_インスタンス_ （instance）としてインスタンス化されます。これらの {deftech}[インスタンス暗黙] （instance-implicit）パラメータは角括弧で示されます。呼び出しの際において、Lean は利用可能な候補から適切なインスタンスを {deftech key:="synthesis"}_統合_ {index}[instance synthesis] {index subterm:="of type class instances"}[synthesis] （synthesize）するかエラーを通知します。インスタンスはそれ自身がインスタンスパラメータを持つことがあるため、この検索プロセスは再帰的であり、様々なインスタンスからのコードを組み合わせた最終的な合成インスタンス値になる可能性があります。このように型クラスのインスタンス統合は型指向の流儀によるプログラムを構築する手段でもあります。
 
 :::comment
 Here are some typical use cases for type classes:
@@ -210,7 +210,7 @@ The differences between structure and class declarations are:
 
 : フィールドの代わりにメソッド
 
-  構造体型の値を明示的なパラメータとして受け取るフィールドの射影を作成する代わりに {tech}[メソッド] が作成されます。各メソッドは対応するインスタンスを暗黙のインスタンスのパラメータとして取ります。
+  構造体型の値を明示的なパラメータとして受け取るフィールドの射影を作成する代わりに {tech}[メソッド] が作成されます。各メソッドは対応するインスタンスをインスタンス暗黙のパラメータとして取ります。
 
 :::comment
 : Instance-implicit parent classes
@@ -221,9 +221,9 @@ The differences between structure and class declarations are:
 
 :::
 
-: 暗黙のインスタンスとしての親クラス
+: インスタンス暗黙としての親クラス
 
-  他のクラスを継承するクラスのコンストラクタは、明示的なパラメータではなくそのクラスの親のインスタンスを暗黙のインスタンスのパラメータとして受け取ります。このクラスのインスタンスが定義されると、継承されたフィールドの値を見つけるためにインスタンス統合が使用されます。クラスでない親は依然として基礎となるコンストラクタの明示的なパラメータになります。
+  他のクラスを継承するクラスのコンストラクタは、明示的なパラメータではなくそのクラスの親のインスタンスをインスタンス暗黙のパラメータとして受け取ります。このクラスのインスタンスが定義されると、継承されたフィールドの値を見つけるためにインスタンス統合が使用されます。クラスでない親は依然として基礎となるコンストラクタの明示的なパラメータになります。
 
 :::comment
 : Parent projections via instance synthesis
@@ -246,7 +246,7 @@ The differences between structure and class declarations are:
 
 : クラスとして登録される
 
-  宣言の結果出来る帰納型は型クラスとして登録され、インスタンスの定義および暗黙のインスタンスの引数の型のために使用されます。
+  宣言の結果出来る帰納型は型クラスとして登録され、インスタンスの定義およびインスタンス暗黙の引数の型のために使用されます。
 
 :::comment
 : Out and semi-out parameters are considered
@@ -275,7 +275,7 @@ While {keywordOf Lean.Parser.Command.declaration}`deriving` clauses are allowed 
 Lean rejects instance-implicit parameters of types that are not classes:
 :::
 
-Lean はクラスでない型の暗黙のインスタンスのパラメータを拒否します：
+Lean はクラスでない型のインスタンス暗黙のパラメータを拒否します：
 
 ```lean (error := true) (name := notClass)
 def f [n : Nat] : n = n := rfl
@@ -375,7 +375,7 @@ C2.Magma.mk.{u} {α : Type u} (op : α → α → α) : C2.Magma α
 {name}`S.Semigroup.mk`, however, takes its parent as an ordinary parameter, while {name}`C2.Semigroup.mk` takes its parent as an instance implicit parameter:
 :::
 
-しかし、 {name}`S.Semigroup.mk` はその親を通常のパラメータとして受け取る一方で、 {name}`C2.Semigroup.mk` は親を暗黙のインスタンスのパラメータとして受け取ります：
+しかし、 {name}`S.Semigroup.mk` はその親を通常のパラメータとして受け取る一方で、 {name}`C2.Semigroup.mk` は親をインスタンス暗黙のパラメータとして受け取ります：
 
 ```signature
 S.Semigroup.mk.{u} {α : Type u}
@@ -396,7 +396,7 @@ Finally, {name}`C2.Monoid.mk` takes its semigroup parent as an instance implicit
 The references to `op` become references to the method {name}`C2.Magma.op`, relying on instance synthesis to recover the implementation from the {name}`C2.Semigroup` instance-implicit parameter via its parent projection:
 :::
 
-最後に、 {name}`C2.Monoid.mk` は暗黙のインスタンスのパラメータとして半群の親を取ります。`op` への参照はメソッド {name}`C2.Magma.op` への参照になります。これは {name}`C2.Semigroup` の暗黙のインスタンスのパラメータから親の射影を経由して実装を復元するインスタンス統合に依存しています：
+最後に、 {name}`C2.Monoid.mk` はインスタンス暗黙のパラメータとして半群の親を取ります。`op` への参照はメソッド {name}`C2.Magma.op` への参照になります。これは {name}`C2.Semigroup` のインスタンス暗黙のパラメータから親の射影を経由して実装を復元するインスタンス統合に依存しています：
 
 ```signature
 C2.Monoid.mk.{u} {α : Type u}
