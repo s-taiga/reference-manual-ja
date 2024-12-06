@@ -304,7 +304,7 @@ Prefix and postfix operators apply the term to their single argument as an expli
 Infix operators apply the term to the left and right arguments, in that order.
 Other than its ability to accept arguments at each call site, there are no specific requirements imposed on the term.
 Operators may construct functions, so the term may expect more parameters than the operator.
-Implicit and {tech}[暗黙のインスタンス]instance-implicit parameters are resolved at each application site, which allows the operator to be defined by a {tech}[型クラス]type class {tech}[メソッド]method.
+Implicit and {tech}[インスタンス暗黙]instance-implicit parameters are resolved at each application site, which allows the operator to be defined by a {tech}[型クラス]type class {tech}[メソッド]method.
 
 ```lean (show := false) (keep := false)
 -- Double-check claims about operators above

@@ -52,6 +52,7 @@
 | core type theory | コア型理論 | |
 | curly brace | 波括弧 | |
 | currying | カリー化 | |
+| cycle | 巡回 | |
 | datatype | データ型 | |
 | debugging trace | デバッグトレース | |
 | declaration | 宣言 | |
@@ -65,6 +66,7 @@
 | derivation | 導出 | |
 | deriving | 導出 | |
 | desugar | 脱糖 | |
+| diamond | ダイアモンド | 菱形継承問題関連の単語。菱形だとわかりづらいためカタカナにした |
 | disjointness | 不連結性 | |
 | disjunction | 選言 | |
 | domain | 定義域 | |
@@ -81,7 +83,7 @@
 | environment extensions | 環境拡張 | |
 | equational lemma | 等式の補題 | |
 | equivalence | 同値性 | |
-| equivalent | 同値 | |
+| equivalent | 同値、同等 | |
 | evaluate | 評価 | |
 | evidence | 根拠 | |
 | exception | 例外 | |
@@ -130,7 +132,7 @@
 | inheritance | 継承 | |
 | initialization | 初期化 | |
 | injectivity | 単射性 | |
-| instance implicit parameter | 暗黙のインスタンスのパラメータ | |
+| instance implicit parameter | インスタンス暗黙のパラメータ | |
 | instances synthesize | インスタンス統合 | composite instanceという類似表現もあるが、関数合成の意味での合成と使い分けるために統合を採用 |
 | instantiate, instantiation | インスタンス化 | |
 | intensional | 内包的 | |
@@ -165,6 +167,7 @@
 | monad | モナド | |
 | monomorphism | モノ射 | |
 | motive | 動機 | |
+| multiset | 多集合 | |
 | multi-threading | マルチスレッド | |
 | mutually inductive | 相互帰納 | |
 | namespace | 名前空間 | |
@@ -206,6 +209,7 @@
 | reasoning | 推論 | |
 | recovery | 回復 | |
 | recursive-descent parser | 再帰下降パーサ | |
+| reducibility | 簡約性 | |
 | reduction | 簡約 | |
 | reference count | 参照カウント |
 | rename | リネーム | |
