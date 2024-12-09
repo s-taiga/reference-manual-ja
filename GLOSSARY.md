@@ -257,6 +257,8 @@
 | syntax | 構文 | |
 | syntax category | 構文カテゴリ | |
 | syntax former | 構文形成器 | |
+| syntax item | 構文アイテム | |
+| syntax kind | 構文種別 | |
 | syntax trees | 構文木 | |
 | syntax value | 構文の値 | |
 | synthetic syntax | 統合的な構文 | |
@@ -303,6 +305,7 @@
 | --- | --- |
 | choice node | |
 | cumulative | |
+| idiom bracket | https://wiki.haskell.org/Idiom_brackets |
 | impredicativity, predicativity | |
 | inhabited | |
 | no confusion | |
@@ -310,8 +313,10 @@
 | packed array | System Verilogという言語にこの名前の文法要素がある？ |
 | strict positively, negatively | 自己言及される定義の分類、定訳は無い模様 |
 | prelude | |
+| quotation, antiquotation, quasiquotation | マクロの機能 |
 | relevant, irrelevant | 直訳して「関係・無関係」はわかりづらいと判断 |
 | subject reduction | TAPLに出てくる模様 |
 | subsingleton | |
 | type ascription | Scala、Rustに同じ用語あり |
+| unexpander | プリティプリンタの一部機能 |
 | well-typed | |

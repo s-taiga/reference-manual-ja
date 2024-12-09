@@ -143,7 +143,7 @@ tag := "source-info"
 
 Atoms, identifiers, and nodes optionally contain {deftech}[source information] that tracks their correspondence with the original file.
 The parser saves source information for all tokens, but not for nodes; position information for parsed nodes is reconstructed from their first and last tokens.
-Not all {name Lean.Syntax}`Syntax` data results from the parser: it may be the result of {tech}[macro expansion], in which case it typically contains a mix of generated and parsed syntax, or it may be the result of {tech key:="delaborate"}[delaborating] an internal term to display it to a user.
+Not all {name Lean.Syntax}`Syntax` data results from the parser: it may be the result of {tech}[マクロ展開]macro expansion, in which case it typically contains a mix of generated and parsed syntax, or it may be the result of {tech key:="delaborate"}[delaborating] an internal term to display it to a user.
 In these use cases, nodes may themselves contain source information.
 
 Source information comes in two varieties:
@@ -210,13 +210,13 @@ Lean.Syntax.node
     Lean.Syntax.atom (Lean.SourceInfo.none) "+", Lean.Syntax.missing]
 ```
 
-In the second example, {tech}[macro scopes] inserted by quotation are visible on the call to {name}`List.length`.
+In the second example, {tech}[マクロスコープ]macro scopes inserted by quotation are visible on the call to {name}`List.length`.
 ```lean (name := reprStx2)
 #eval do
   let stx ← `(List.length ["Rose", "Daffodil", "Lily"])
   logInfo (repr (removeSourceInfo stx.raw))
 ```
-The contents of the {tech}[pre-resolved identifier] {name}`List.length` are visible here:
+The contents of the {tech}[事前解決された識別子]pre-resolved identifier {name}`List.length` are visible here:
 ```leanOutput reprStx2
 Lean.Syntax.node
   (Lean.SourceInfo.none)
@@ -267,7 +267,7 @@ The string representation of syntax can be inspected by quoting it in the contex
 («term_+_» (num "2") "+" <missing>)
 ```
 
-In the second example, {tech}[macro scopes] inserted by quotation are visible on the call to {name}`List.length`.
+In the second example, {tech}[マクロスコープ]macro scopes inserted by quotation are visible on the call to {name}`List.length`.
 ```lean (name := toStringStx2)
 #eval do
   let stx ← `(List.length ["Rose", "Daffodil", "Lily"])
@@ -313,7 +313,7 @@ def getPPContext : CommandElabM PPContext := do
 2 + 5
 ```
 
-In the second example, the {tech}[macro scopes] inserted on {name}`List.length` by quotation cause it to be displayed with a dagger (`✝`).
+In the second example, the {tech}[マクロスコープ]macro scopes inserted on {name}`List.length` by quotation cause it to be displayed with a dagger (`✝`).
 ```lean (name := ppStx2)
 #eval do
   let stx ← `(List.length ["Rose", "Daffodil", "Lily"])
