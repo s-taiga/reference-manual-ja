@@ -176,6 +176,7 @@
 | non-dependent | 非依存的 | |
 | normal form | 正規形 | |
 | notation | 記法 | |
+| notation item | 記法アイテム | |
 | opaque | 不透明 | |
 | operator | 演算子 | |
 | open scope | 開いたスコープ | |
