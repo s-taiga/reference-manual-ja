@@ -51,7 +51,7 @@ jobs:
           enable-commit-comment: false
           enable-pull-request-comment: false
           github-deployment-environment: |
-            ${{ github.event_name == 'pull_request' && format('lean-ref-pr-#{0}', github.event.number) || 'lean-ref' }}
+            ${{ format('lean-ref-pr-#{0}', github.event.number) || 'lean-ref' }}
           github-deployment-description: |
             Draft without proofreading info
           fails-without-credentials: true
@@ -63,8 +63,6 @@ jobs:
       - name: Deploy with proofreading info (draft mode, for PRs)
         id: deploy-draft-proofreading
         uses: nwtgck/actions-netlify@v2.0
-        if:
-          github.event_name == 'pull_request'
         with:
           publish-dir: _out/draft/html-multi
           production-branch: main
