@@ -92,7 +92,7 @@ If this still does not resolve the ambiguity, then all are saved, and the elabor
 
 :::
 
-演算子と同様に、 {tech}[local longest-match rule] が記法をパースする際に使用されます。もし複数の記法が最長一致で並んだ場合、宣言された優先順位によってどのパース結果が適用されるかが決定されます。それでもあいまいさが解消されない場合、すべてが保存され、エラボレータはそれらすべてを試行し、ちょうど1つがエラボレートできたときに成功することが期待されます。
+演算子と同様に、 {tech}[ローカル最長一致規則] が記法をパースする際に使用されます。もし複数の記法が最長一致で並んだ場合、宣言された優先順位によってどのパース結果が適用されるかが決定されます。それでもあいまいさが解消されない場合、すべてが保存され、エラボレータはそれらすべてを試行し、ちょうど1つがエラボレートできたときに成功することが期待されます。
 
 :::comment
 Rather than a single operator with its fixity and token, the body of a notation declaration consists of a sequence of {deftech}_notation items_, which may be either new {tech}[atoms] (including both keywords such as `if`, `#eval`, or `where` and symbols such as `=>`, `+`, `↗`, `⟦`, or `⋉`) or positions for terms.

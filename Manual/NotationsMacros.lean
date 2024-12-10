@@ -430,7 +430,7 @@ Term quotation has a higher priority than command quotation, so the quotation is
 Terms expect their {tech}[antiquotations] to have type {lean}``TSyntax `term`` rather than {lean}``TSyntax `command``.
 :::
 
-以下の例では、quotation の中身は関数適用かコマンド列のどちらかです。どちらもファイルの同じ領域でマッチするため、 {tech}[local longest-match rule] は関係しません。項の quotation はコマンドの quotation よりも優先順位が高いため、quotation は項として解釈されます。項は {lean}``TSyntax `command`` 型よりも {lean}``TSyntax `term`` 型を持つ {tech}[antiquotations] を期待します。
+以下の例では、quotation の中身は関数適用かコマンド列のどちらかです。どちらもファイルの同じ領域でマッチするため、 {tech}[ローカル最長一致規則] は関係しません。項の quotation はコマンドの quotation よりも優先順位が高いため、quotation は項として解釈されます。項は {lean}``TSyntax `command`` 型よりも {lean}``TSyntax `term`` 型を持つ {tech}[antiquotations] を期待します。
 
 ```lean (error := true) (name := cmdQuot)
 example (cmd1 cmd2 : TSyntax `command) : MacroM (TSyntax `command) := `($cmd1 $cmd2)

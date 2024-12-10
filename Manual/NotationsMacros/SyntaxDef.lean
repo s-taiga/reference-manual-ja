@@ -484,7 +484,7 @@ Attributes may be added to invoke compile-time metaprograms on the resulting def
 Syntax rules interact with {tech}[section scopes] in the same manner as attributes, operators, and notations.
 By default, syntax rules are available to the parser in any module that transitively imports the one in which they are established, but they may be declared `scoped` or `local` to restrict their availability either to contexts in which the current namespace has been opened or to the current {tech}[section scope], respectively.
 
-When multiple syntax rules for a category can match the current input, the {tech}[local longest-match rule] is used to select one of them.
+When multiple syntax rules for a category can match the current input, the {tech}[ローカル最長一致規則]local longest-match rule is used to select one of them.
 Like notations and operators, if there is a tie for the longest match then the declared priorities are used to determine which parse result applies.
 If this still does not resolve the ambiguity, then all the results that tied are saved.
 The elaborator is expected to attempt all of them, succeeding when exactly one can be elaborated.
