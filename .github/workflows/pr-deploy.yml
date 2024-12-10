@@ -19,7 +19,7 @@ jobs:
           workflow_conclusion: success
           name: 'html'
           path: _out
-          allow_forks: false
+          allow_forks: true
 
       # deploy-alias computes a URL component for the PR preview. This
       # is so we can have a stable name to use for feedback on draft
