@@ -42,7 +42,6 @@ jobs:
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: _out/html-multi
-          production-branch: main
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: |
@@ -65,7 +64,6 @@ jobs:
         uses: nwtgck/actions-netlify@v2.0
         with:
           publish-dir: _out/draft/html-multi
-          production-branch: main
           production-deploy: false
           github-token: ${{ secrets.GITHUB_TOKEN }}
           deploy-message: |
