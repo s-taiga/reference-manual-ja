@@ -76,8 +76,7 @@ jobs:
               repo: context.repo.repo,
               issue_number: issue_number
             });
-            console.log(labels);
-            if (labels.filter(l => l.name == 'HTML available').length != 0) {
+            if (labels.data.includes('HTML available')) {
               await github.rest.issues.removeLabel({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
