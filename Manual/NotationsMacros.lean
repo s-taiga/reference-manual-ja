@@ -96,7 +96,7 @@ Macros are run in a {tech}[monad] that has access to some compile-time metadata 
 
 :::
 
-{deftech}_マクロ_ （macro）は {tech key:="エラボレータ"}[エラボレーション] および {ref "tactic-macros"}[タクティクの実行] 中に出現する {name Lean.Syntax}`Syntax` から {name Lean.Syntax}`Syntax` への変換処理のことです。構文をマクロで変換した結果で置き換えることを {deftech}_マクロ展開_ （macro expansion）と呼びます。複数のマクロを1つの {tech}[syntax kind] に関連付けることができ、定義順に試行されます。マクロは {tech}[monad] の中で実行され、コンパイル時のメタデータにアクセスし、エラーメッセージを出すかマクロ展開を後続のマクロに委譲するする機能を持ちますが、マクロモナドはエラボレーションモナドにくらべてはるかに非力です。
+{deftech}_マクロ_ （macro）は {tech key:="エラボレータ"}[エラボレーション] および {ref "tactic-macros"}[タクティクの実行] 中に出現する {name Lean.Syntax}`Syntax` から {name Lean.Syntax}`Syntax` への変換処理のことです。構文をマクロで変換した結果で置き換えることを {deftech}_マクロ展開_ （macro expansion）と呼びます。複数のマクロを1つの {tech}[構文種別] に関連付けることができ、定義順に試行されます。マクロは {tech}[monad] の中で実行され、コンパイル時のメタデータにアクセスし、エラーメッセージを出すかマクロ展開を後続のマクロに委譲するする機能を持ちますが、マクロモナドはエラボレーションモナドにくらべてはるかに非力です。
 
 ```lean (show := false)
 section
@@ -113,7 +113,7 @@ If a macro throws any other exception, an error is reported to the user.
 
 :::
 
-マクロは {tech}[syntax kinds] に関連付けられます。内部テーブルは構文種別を {lean}`Syntax → MacroM Syntax` 型のマクロにマッピングします。マクロは {name Lean.Macro.Exception.unsupportedSyntax}`unsupportedSyntax` 例外を投げることで次のエントリに委譲します。与えられた {name}`Syntax` の値は {name Lean.Macro.Exception.unsupportedSyntax}`unsupportedSyntax` を投げない構文種別に関連付けられたマクロが存在する場合、 _マクロとなります_ 。マクロがそれ以外の例外を投げる場合、ユーザにエラーが報告されます。 {tech}[Syntax categories] はマクロ展開には関係ありません；ただし、各構文種別は通常1つの構文カテゴリに関連付けられているため実際には干渉しません。
+マクロは {tech}[構文種別] に関連付けられます。内部テーブルは構文種別を {lean}`Syntax → MacroM Syntax` 型のマクロにマッピングします。マクロは {name Lean.Macro.Exception.unsupportedSyntax}`unsupportedSyntax` 例外を投げることで次のエントリに委譲します。与えられた {name}`Syntax` の値は {name Lean.Macro.Exception.unsupportedSyntax}`unsupportedSyntax` を投げない構文種別に関連付けられたマクロが存在する場合、 _マクロとなります_ 。マクロがそれ以外の例外を投げる場合、ユーザにエラーが報告されます。 {tech}[構文カテゴリ] はマクロ展開には関係ありません；ただし、各構文種別は通常1つの構文カテゴリに関連付けられているため実際には干渉しません。
 
 :::::keepEnv
 :::comment
@@ -175,7 +175,7 @@ These nested macros are expanded in turn when the elaborator reaches them.
 
 :::
 
-構文の一部をエラボレートする前に、エラボレータはその {tech}[syntax kind] にマクロが関連付けられているかどうかをチェックします。これらは順番に試行されます。マクロが成功し、異なる種類の構文を返す可能性がある場合、チェックが繰り返され、構文の一番外側がマクロでなくなるまでマクロが繰り返し展開されます。その後、エラボレーションやタクティクの実行が可能になります。構文の一番外側（通常は {name Lean.Syntax.node}`node` ）だけが展開されます。このマクロ展開の出力にはマクロの構文が含まれる場合があります。これらの入れ子になったマクロはエラボレータがそこに到達した時に順番に展開されます。
+構文の一部をエラボレートする前に、エラボレータはその {tech}[構文種別] にマクロが関連付けられているかどうかをチェックします。これらは順番に試行されます。マクロが成功し、異なる種類の構文を返す可能性がある場合、チェックが繰り返され、構文の一番外側がマクロでなくなるまでマクロが繰り返し展開されます。その後、エラボレーションやタクティクの実行が可能になります。構文の一番外側（通常は {name Lean.Syntax.node}`node` ）だけが展開されます。このマクロ展開の出力にはマクロの構文が含まれる場合があります。これらの入れ子になったマクロはエラボレータがそこに到達した時に順番に展開されます。
 
 :::comment
 In particular, macro expansion occurs in three situations in Lean:
@@ -860,7 +860,7 @@ Because `?` is a valid identifier character, identifiers must be parenthesized t
 
 :::
 
-スプライス接尾辞は、アスタリスクまたは有効なアトムの後にアスタリスク（`*`）を付けたものです。接尾辞は任意の識別子または項の antiquotation の後につけることができます。スプライス接尾辞 `*` を持つ antiquotation は `many` または `many1` に対応します；構文ルールの `*` と `+` 接尾辞のどちらも `*` スプライス接尾辞に対応します。アスタリスクの前にアトムを含むスプライス接尾辞を持つ antiquotation は `sepBy` または `sepBy1` に対応します。スプライス接尾辞 `?` は構文ルールの `optional` または `?` 接尾辞の使用に対応します。`?` は有効な識別子文字であるため、これを接尾辞として使用するには括弧でくくらなければなりません。
+スプライス接尾辞は、アスタリスクまたは有効なアトムの後にアスタリスク（`*`）を付けたものです。接尾辞は任意の識別子または項の antiquotation の後につけることができます。スプライス接尾辞 `*` を持つ antiquotation は `many` または `many1` に対応します；構文規則の `*` と `+` 接尾辞のどちらも `*` スプライス接尾辞に対応します。アスタリスクの前にアトムを含むスプライス接尾辞を持つ antiquotation は `sepBy` または `sepBy1` に対応します。スプライス接尾辞 `?` は構文規則の `optional` または `?` 接尾辞の使用に対応します。`?` は有効な識別子文字であるため、これを接尾辞として使用するには括弧でくくらなければなりません。
 
 :::comment
 While there is overlap between repetition specifiers for syntax and antiquotation suffixes, they have distinct syntaxes.
@@ -970,7 +970,7 @@ def ex3 (size : Nat) := show CommandElabM _ from do
 :::comment
 ::example "Non-Comma Separators"
 :::
-::::example "コンマではない区切り文字"
+::::example "カンマではない区切り文字"
 :::comment
 The following unconventional syntax for lists separates numeric elements by either em dashes or double asterisks, rather than by commas.
 :::
@@ -986,7 +986,7 @@ This means that `—*` and `***` are valid splice suffixes between the `⟦` and
 In the case of `***`, the first two asterisks are the atom in the syntax rule, while the third is the repetition suffix.
 :::
 
-これは `—*` と `***` がアトム `⟦` と `⟧` の間の有効なスプライス接尾辞であることを意味します。`***` の場合、最初の2つのアスタリスクは構文ルールのアトムで、3つ目は反復の接尾辞になります。
+これは `—*` と `***` がアトム `⟦` と `⟧` の間の有効なスプライス接尾辞であることを意味します。`***` の場合、最初の2つのアスタリスクは構文規則のアトムで、3つ目は反復の接尾辞になります。
 
 ```lean
 macro_rules
@@ -1278,7 +1278,7 @@ The {keywordOf Lean.Parser.Command.macro_rules}`macro_rules` command may be expl
 
 :::
 
-内部的には、マクロは各 {tech}[syntax kind] をそのマクロに対応付けるテーブルで追跡されます。 {keywordOf Lean.Parser.Command.macro_rules}`macro_rules` コマンドは構文種別を明示的に注釈することができます。
+内部的には、マクロは各 {tech}[構文種別] をそのマクロに対応付けるテーブルで追跡されます。 {keywordOf Lean.Parser.Command.macro_rules}`macro_rules` コマンドは構文種別を明示的に注釈することができます。
 
 :::comment
 If a syntax kind is explicitly provided, the macro definition checks that each quotation pattern has that kind.
@@ -1610,7 +1610,7 @@ Because macros are so much more flexible than notations, Lean cannot automatical
 
 :::
 
-{keywordOf Lean.Parser.Command.macro}`macro` コマンドは新しい {tech}[syntax rule] の定義とそれを {tech}[macro] に関連付けることを同時に行います。 {keywordOf Lean.Parser.Command.notation}`notation` コマンドが新しい項の構文のみを定義でき、展開がパラメータを代入する項であるのとは異なり、 {keywordOf Lean.Parser.Command.macro}`macro` コマンドは任意の {tech}[syntax category] の構文を定義でき、展開の生成に {name}`MacroM` モナドの任意のコードを使用できます。マクロは記法よりはるかに柔軟であるため、Lean は自動的に unexpander を生成することができません；つまり、 {keywordOf Lean.Parser.Command.macro}`macro` コマンドで実装された新しい構文は、Lean への _入力_ で使用できますが、Lean の出力で用いるにはさらなる作業を行わないといけません。
+{keywordOf Lean.Parser.Command.macro}`macro` コマンドは新しい {tech}[構文規則] の定義とそれを {tech}[マクロ] に関連付けることを同時に行います。 {keywordOf Lean.Parser.Command.notation}`notation` コマンドが新しい項の構文のみを定義でき、展開がパラメータを代入する項であるのとは異なり、 {keywordOf Lean.Parser.Command.macro}`macro` コマンドは任意の {tech}[構文カテゴリ] の構文を定義でき、展開の生成に {name}`MacroM` モナドの任意のコードを使用できます。マクロは記法よりはるかに柔軟であるため、Lean は自動的に unexpander を生成することができません；つまり、 {keywordOf Lean.Parser.Command.macro}`macro` コマンドで実装された新しい構文は、Lean への _入力_ で使用できますが、Lean の出力で用いるにはさらなる作業を行わないといけません。
 
 :::syntax command
 ```grammar
@@ -1709,14 +1709,14 @@ This low-level means of specifying macros is typically not useful, except as a r
 
 :::
 
-{tech}[Macros] は {keywordOf Lean.Parser.Attr.macro}`macro` 属性を使用して構文種別に手動で追加を行うことができます。マクロを指定するこの低レベルな手段は、それ自身がマクロ定義を生成するマクロによるコード生成の結果である場合を除いて通常は有用ではありません。
+{tech}[マクロ] は {keywordOf Lean.Parser.Attr.macro}`macro` 属性を使用して構文種別に手動で追加を行うことができます。マクロを指定するこの低レベルな手段は、それ自身がマクロ定義を生成するマクロによるコード生成の結果である場合を除いて通常は有用ではありません。
 
 ::::syntax attr label:="attribute"
 :::comment
 The {keywordOf Lean.Parser.Attr.macro}`macro` attribute specifies that a function is to be considered a {tech}[macro] for the specified syntax kind.
 :::
 
-{keywordOf Lean.Parser.Attr.macro}`macro` 属性は指定された構文種別に対して {tech}[macro] と見なされる関数を指定します。
+{keywordOf Lean.Parser.Attr.macro}`macro` 属性は指定された構文種別に対して {tech}[マクロ] と見なされる関数を指定します。
 
 ```grammar
 macro $_:ident

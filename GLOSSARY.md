@@ -38,6 +38,7 @@
 | command elaboration | コマンドエラボレーション | |
 | compilation | コンパイル | |
 | completion | 補完 | |
+| concrete syntax tree | 解析木 | |
 | configuration item | 設定項目 | |
 | confluence | 合流性 | |
 | conjunction | 連言 | |
