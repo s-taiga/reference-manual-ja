@@ -166,7 +166,7 @@ tag := "keywords-and-identifiers"
 An {tech}[identifier] consists of one or more identifier components, separated by `'.'`.{index}[identifier]
 :::
 
-{tech}[identifier] は `'.'` 区切りで1つ以上の識別子要素から構成されます。 {index}[identifier]
+{tech}[識別子] は `'.'` 区切りで1つ以上の識別子要素から構成されます。 {index}[identifier]
 
 :::comment
 {deftech}[Identifier components] consist of a letter or letter-like character or an underscore (`'_'`), followed by zero or more identifier continuation characters.
