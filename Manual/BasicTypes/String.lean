@@ -75,7 +75,7 @@ After the object header, a string contains:
 
 :::
 
-文字列はバイトの {tech}[dynamic arrays] として表現され、UTF-8 でエンコードされます。オブジェクトヘッダの後、文字列は以下を含みます：
+文字列はバイトの {tech}[動的配列] として表現され、UTF-8 でエンコードされます。オブジェクトヘッダの後、文字列は以下を含みます：
 
 :::comment
 : byte count

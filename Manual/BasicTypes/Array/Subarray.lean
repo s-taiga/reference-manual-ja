@@ -14,7 +14,10 @@ open Verso.Genre Manual
 
 set_option pp.rawOnError true
 
+/-
 #doc (Manual) "Sub-Arrays" =>
+-/
+#doc (Manual) "部分配列（Sub-Arrays）" =>
 %%%
 tag := "subarray"
 %%%
@@ -25,11 +28,19 @@ tag := "subarray"
 
 {docstring Subarray.empty}
 
+:::comment
 # Size
+:::
+
+# サイズ（Size）
 
 {docstring Subarray.size}
 
+:::comment
 # Resizing
+:::
+
+# サイズ変更（Resizing）
 
 {docstring Subarray.drop}
 
@@ -39,7 +50,12 @@ tag := "subarray"
 
 {docstring Subarray.split}
 
+:::comment
 # Lookups
+:::
+
+# 検索（Lookups）
+
 
 {docstring Subarray.get}
 
@@ -47,7 +63,12 @@ tag := "subarray"
 
 {docstring Subarray.getD}
 
+:::comment
 # Iteration
+:::
+
+# 反復（Iteration）
+
 
 {docstring Subarray.foldl}
 
@@ -63,7 +84,11 @@ tag := "subarray"
 
 {docstring Subarray.forIn}
 
+:::comment
 # Element Predicates
+:::
+
+# 要素についての述語（Element Predicates）
 
 {docstring Subarray.findRev?}
 
