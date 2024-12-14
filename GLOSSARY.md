@@ -72,6 +72,7 @@
 | disjunction | 選言 | |
 | domain | 定義域 | |
 | double-struck | 重ね打ち体 | |
+| dynamic array | 動的配列 | |
 | effect | 作用 | |
 | elaborate | エラボレート | |
 | elaboration | エラボレーション | |
@@ -170,6 +171,7 @@
 | motive | 動機 | |
 | multiset | 多集合 | |
 | multi-threading | マルチスレッド | |
+| mutation | ミューテーション | |
 | mutually inductive | 相互帰納 | |
 | namespace | 名前空間 | |
 | nested | ネストされた | |
