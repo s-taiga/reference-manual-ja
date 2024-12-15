@@ -10,15 +10,19 @@ import Manual.Meta
 import Manual.Language.Classes
 import Manual.Language.Files
 import Manual.Language.Types
+import Manual.Language.RecursiveDefs
 
 import Lean.Parser.Command
 
-open Manual hiding «example»
+open Manual
 open Verso.Genre
 open Verso.Genre.Manual
-open Lean.Parser.Command (declModifiers «example»)
+
+
+open Lean.Elab.Tactic.GuardMsgs.WhitespaceMode
 
 set_option pp.rawOnError true
+set_option maxRecDepth 3000
 
 set_option linter.unusedVariables false
 
@@ -178,6 +182,7 @@ $_
 
 Describe signatures, including the following topics:
  * Explicit, implicit, instance-implicit, and strict implicit parameter binders
+ * {deftech key := "optional parameter"}[Optional] and {deftech}[automatic parameters]
  * {deftech}_Automatic implicit_ parameters
  * Argument names and by-name syntax
  * Which parts can be omitted where? Why?
@@ -191,6 +196,18 @@ The {deftech}[_header_] of a definition or declaration specifies the signature o
 ::: TODO
 * Precision and examples; list all of them here
 * Mention interaction with autoimplicits
+:::
+
+## Namespaces
+%%%
+tag := "namespaces"
+%%%
+
+:::planned 210
+
+Describe {deftech}[namespaces], aliases, and the semantics of `export` and `open`.
+Which language features are controlled by the currently open namespaces?
+
 :::
 
 ## Section Scopes
@@ -207,7 +224,7 @@ Section scopes track the following:
  * The {deftech}_current namespace_
  * The {deftech key:="open namespace"}_open namespaces_
  * The values of all {deftech}_options_
- * Variable and universe declarations
+ * {deftech}[Section variable] and universe declarations
 
 This section will describe this mechanism.
 
@@ -236,48 +253,11 @@ scoped
 Describe {deftech}_axioms_ in detail
 :::
 
-# Recursive Definitions
-
-## Structural Recursion
-::: planned 55
-This section will describe the specification of the translation to recursors.
-:::
-
-### Mutual Structural Recursion
-
-::: planned 56
-This section will describe the specification of the translation to recursors.
-:::
-
-## Well-Founded Recursion
-%%%
-tag := "well-founded-recursion"
-%%%
-
-::: planned 57
-This section will describe the translation of {deftech}[well-founded recursion].
-:::
-
-## Controlling Reduction
-
-:::planned 58
-This section will describe {deftech}_reducibility_: {deftech}[reducible], {deftech}[semi-reducible], and {deftech}[irreducible] definitions.
-:::
-
-## Partial and Unsafe Recursive Definitions
-%%%
-tag := "partial-unsafe"
-%%%
-
-:::planned 59
-This section will describe `partial` and `unsafe` definitions:
+{include 0 Manual.Language.RecursiveDefs}
 
 
- * Interaction with the kernel and elaborator
- * What guarantees are there, and what aren't there?
- * How to bridge from unsafe to safe code?
 
-:::
+
 
 # Attributes
 %%%

@@ -84,8 +84,10 @@ It expands to its argument in all other cases.
 syntax &"notFive" term:arg : term
 open Lean in
 macro_rules
-  | `(term|notFive 5) => Macro.throwError "'5' is not allowed here"
-  | `(term|notFive $e) => pure e
+  | `(term|notFive 5) =>
+    Macro.throwError "'5' is not allowed here"
+  | `(term|notFive $e) =>
+    pure e
 ```
 
 When applied to terms that are not syntactically the numeral five, elaboration succeeds:
@@ -246,7 +248,7 @@ tag := "quotation"
 Quoted code is parsed, but not elaborated—while it must be syntactically correct, it need not make sense.
 Quotation makes it much easier to programmatically generate code: rather than reverse-engineering the specific nesting of {name Lean.Syntax.node}`node` values that Lean's parser would produce, the parser can be directly invoked to create them.
 This is also more robust in the face of refactoring of the grammar that may change the internals of the parse tree without affecting the user-visible concrete syntax.
-Quotation in Lean is surrounded by ``​`(`` and `)`.
+Quotation in Lean is surrounded by `` `( `` and `)`.
 
 The syntactic category or parser being quoted may be indicated by placing its name after the opening backtick and parenthesis, followed by a vertical bar (`|`).
 As a special case, the name `tactic` may be used to parse either tactics or sequences of tactics.
@@ -796,7 +798,7 @@ Syntax matches a quote pattern in the following cases:
   If the syntax of the term being matched requires the check, then the node kind is compared.
 
   Literals, such as string or numeric literals, are compared via their underlying string representation.
-  The pattern ``​`(0x15)`` and the quotation ``​`(21)`` do not match.
+  The pattern `` `(0x15) `` and the quotation `` `(21) `` do not match.
 
  : Nodes
 

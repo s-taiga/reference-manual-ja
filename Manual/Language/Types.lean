@@ -53,6 +53,8 @@ Definitional equality includes the following forms of {deftech}[reduction]:
 
      Replacement of let-bound variables by their defined values
 
+Terms in which all possible reductions have been carried out are in {deftech}_normal form_.
+
 ::::keepEnv
 ```lean (show := false)
 axiom α : Type
@@ -505,7 +507,7 @@ def L := List (Type 0)
 
 ### Universe Unification
 
-:::planned 00
+:::planned 99
  * Rules for unification, properties of algorithm
  * Lack of injectivity
  * Universe inference for unannotated inductive types

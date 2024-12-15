@@ -201,13 +201,16 @@ In practice, apparent non-termination is indistinguishable from sufficiently slo
 These metatheoretic properties are a result of having impredicativity, quotient types that compute, definitional proof irrelevance, and propositional extensionality; these features are immensely valuable both to support ordinary mathematical practice and to enable automation.
 
 # Elaboration Results
+%%%
+tag := "elaboration-results"
+%%%
 
 Lean's core type theory does not include pattern matching or recursive definitions.
 Instead, it provides low-level {tech}[recursors] that can be used to implement both case distinction and primitive recursion.
-Thus, the elaborator must translate definitions that use pattern matching and recursion into definitions that use recursors.
+Thus, the elaborator must translate definitions that use pattern matching and recursion into definitions that use recursors.{margin}[More details on the elaboration of recursive definitions is available in the {ref "recursive-definitions"}[dedicated section] on the topic.]
 This translation is additionally a proof that the function terminates for all potential arguments, because all functions that can be translated to recursors also terminate.
 
-The translation to recursors happens in two phases: during term elaboration, uses of pattern matching are replaced by appeals to auxiliary functions that implement the particular case distinction that occurs in the code.
+The translation to recursors happens in two phases: during term elaboration, uses of pattern matching are replaced by appeals to {deftech}_auxiliary matching functions_ that implement the particular case distinction that occurs in the code.
 These auxiliary functions are themselves defined using recursors, though they do not make use of the recursors' ability to actually implement recursive behavior.{margin}[They use the `casesOn` construction that is described in the {ref "recursor-elaboration-helpers"}[section on recursors and elaboration].]
 The term elaborator thus returns core-language terms in which pattern matching has been replaced with the use of special functions that implement case distinction, but these terms may still contain recursive occurrences of the function being defined.
 To see auxiliary pattern matching functions in Lean's output, set the option {option}`pp.match` to {lean}`false`.
@@ -251,11 +254,12 @@ This split is for three reasons:
  * The compiler can compile {ref "partial-unsafe"}[`partial` functions] that the kernel treats as opaque constants for the purposes of reasoning.
  * The compiler can also compile {ref "partial-unsafe"}[`unsafe` functions] that bypass the kernel entirely.
  * Translation to recursors does not necessarily preserve the cost model expected by programmers, in particular laziness vs strictness, but compiled code must have predictable performance.
+
 The compiler stores an intermediate representation in an environment extension.
 
 For straightforwardly structurally recursive functions, the translation will use the type's recursor.
 These functions tend to be relatively efficient when run in the kernel, their defining equations hold definitionally, and they are easy to understand.
-Functions that use other patterns of recursion that cannot be captured by the type's recursor are translated using {deftech}[well-founded recursion], which is structural recursion on a proof that some measure decreases at each recursive call.
+Functions that use other patterns of recursion that cannot be captured by the type's recursor are translated using {deftech}[well-founded recursion], which is structural recursion on a proof that some {deftech}_measure_ decreases at each recursive call.
 Lean can automatically derive many of these cases, but some require manual proofs.
 Well-founded recursion is more flexible, but the resulting functions are often slower to execute in the kernel due to the proof terms that show that a measure decreases, and their defining equations may hold only propositionally.
 To provide a uniform interface to functions defined via structural and well-founded recursion and to check its own correctness, the elaborator proves equational lemmas that relate the function to its original definition.
@@ -376,6 +380,26 @@ Finally, the compiler is invoked to translate the intermediate representation of
 A C file is produced for each Lean module; these are then compiled to native code using a bundled C compiler.
 If the `precompileModules` option is set in the build configuration, then this native code can be dynamically loaded and invoked by Lean; otherwise, an interpreter is used.
 For most workloads, the overhead of compilation is larger than the time saved by avoiding the interpreter, but some workloads can be sped up dramatically by pre-compiling tactics, language extensions, or other extensions to Lean.
+
+## Memory Allocation and Reference Counting
+
+:::planned 208
+
+The most important topics related to Lean's reference-counting-based allocator:
+
+ * Overview of {deftech key:="reference count"}_reference counting_
+
+ * Compact regions
+
+ * When are counts incremented and decremented?
+
+ * Tools for debugging uniqueness issues
+
+ * When should C code increment or decrement reference counts?
+
+ * What is the meaning of the borrow annotation (`@&`)?
+
+:::
 
 
 # Initialization

@@ -47,6 +47,9 @@ Each proof is checked in the {tech}[kernel], and can be verified with independen
 Each goal in a tactic proof corresponds to an incomplete portion of a proof term.
 
 # Running Tactics
+%%%
+tag := "by"
+%%%
 
 :::TODO
 The syntax of `by` is showing with commas instead of semicolons below
@@ -357,7 +360,7 @@ Terms that begin with a question mark are _metavariables_ that correspond to an 
 They may stand for either {tech}[universe] levels or for terms.
 Some metavariables arise as part of Lean's elaboration process, when not enough information is yet available to determine a value.
 These metavariables' names have a numeric component at the end, such as `?m.392` or `?u.498`.
-Other metavariables come into existence as a result of tactics or {tech}[named holes].
+Other metavariables come into existence as a result of tactics or {tech}[synthetic holes].
 These metavariables' names do not have a numeric component.
 Metavariables that result from tactics frequently appear as goals whose {tech}[case labels] match the name of the metavariable.
 
@@ -386,11 +389,12 @@ The metavariable is repeated because the unknown type must be the same in both p
 ∀ (x : _) (xs : List _), x ∈ xs → xs.length > 0 := by
   intros x xs elem
 /--
-x : ?m.1025
-xs : List ?m.1025
+x : ?m.1035
+xs : List ?m.1035
 elem : x ∈ xs
 ⊢ xs.length > 0
 -/
+
 
 
 ```
