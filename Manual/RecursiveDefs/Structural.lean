@@ -526,7 +526,7 @@ Next, for each group of parameters, a translation using `brecOn` is attempted.
 The `below` construction is a mapping from each value of a type to the results of some function call on _all_ smaller values; it can be understood as a memoization table that already contains the results for all smaller values.
 The notion of “smaller value” that is expressed in the `below` construction corresponds directly to the definition of {tech}[strict sub-terms].
 
-Recursors expect an argument for each of the inductive type's constructors; these arguments are called with the constructor's arguments (and the result of recursion on recursive parameters) during {tech}[ι-reduction].
+Recursors expect an argument for each of the inductive type's constructors; these arguments are called with the constructor's arguments (and the result of recursion on recursive parameters) during {tech}[ι簡約]ι-reduction.
 The course-of-values recursion operator `brecOn`, on the other hand, expects just a single case that covers all constructors at once.
 This case is provided with a value and a `below` table that contains the results of recursion on all values smaller than the given value; it should use the contents of the table to satisfy the motive for the provided value.
 If the function is structurally recursive over a given parameter (or parameter group), then the results of all recursive calls will be present in this table already.

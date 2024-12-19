@@ -60,7 +60,7 @@ In one ordering, state changes are rolled back when exceptions are caught; in th
 The latter option matches the semantics of most imperative programming languages, but the former is very useful for search-based problems.
 Often, some but not all state should be rolled back; this can be achieved by “sandwiching” {name}`ExceptT` between two separate uses of {name}`StateT`.
 
-To avoid yet another layer of indirection via the use of {lean}`StateT σ (EStateM ε σ') α`, {name}`EStateM` offers the {name}`EStateM.Backtrackable` {tech}[type class].
+To avoid yet another layer of indirection via the use of {lean}`StateT σ (EStateM ε σ') α`, {name}`EStateM` offers the {name}`EStateM.Backtrackable` {tech}[型クラス]type class.
 This class specifies some part of the state that can be saved and restored.
 {name}`EStateM` then arranges for the saving and restoring to take place around error handling.
 

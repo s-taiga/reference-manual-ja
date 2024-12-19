@@ -32,7 +32,7 @@ tag := "io"
 
 
 Lean is a pure functional programming language.
-While Lean code is strictly evaluated at run time, the order of evaluation that is used during type checking, especially while checking {tech}[definitional equality], is formally unspecified and makes use of a number of heuristics that improve performance but are subject to change.
+While Lean code is strictly evaluated at run time, the order of evaluation that is used during type checking, especially while checking {tech}[定義上の等価性]definitional equality, is formally unspecified and makes use of a number of heuristics that improve performance but are subject to change.
 This means that simply adding operations that perform side effects (such as file I/O, exceptions, or mutable references) would lead to programs in which the order of effects is unspecified.
 During type checking, even terms with free variables are reduced; this would make side effects even more difficult to predict.
 Finally, a basic principle of Lean's logic is that functions are _functions_ that map each element of the domain to a unique element of the range.
@@ -129,7 +129,7 @@ example : BaseIO = EIO Empty := rfl
 ## Errors and Error Handling
 
 Error handling in the {lean}`IO` monad uses the same facilities as any other {tech}[exception monad].
-In particular, throwing and catching exceptions uses the methods of the {name}`MonadExceptOf` {tech}[type class].
+In particular, throwing and catching exceptions uses the methods of the {name}`MonadExceptOf` {tech}[型クラス]type class.
 The exceptions thrown in {lean}`IO` have the type {lean}`IO.Error`.
 The constructors of this type represent the low-level errors that occur on most operating systems, such as files not existing.
 The most-used constructor is {name IO.Error.userError}`userError`, which covers all other cases and includes a string that describes the problem.

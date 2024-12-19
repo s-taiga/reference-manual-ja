@@ -380,7 +380,7 @@ Default arguments are still present in patterns; if a pattern does not specify a
 
 :::comment
 The optional type annotation allows the structure type to be specified in contexts where it is not otherwise determined.
-::::
+:::
 
 オプションで型注釈することによって、構造体型が他に決定されないコンテキストにおいて構造体型を指定することを可能にします。
 

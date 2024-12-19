@@ -293,6 +293,7 @@
 | underscore | アンダースコア | |
 | unification | 単一化 | |
 | union | 合併 | |
+| unit-like type | unit-like 型 | |
 | unit type | ユニット型 | |
 | universe | 宇宙 | |
 | universe level | 宇宙レベル | |

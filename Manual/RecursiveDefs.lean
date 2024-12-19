@@ -22,10 +22,10 @@ tag := "recursive-definitions"
 %%%
 
 Allowing arbitrary recursive function definitions would make Lean's logic inconsistent.
-General recursion makes it possible to write circular proofs: "{tech}[proposition] $`P` is true because proposition $`P` is true".
+General recursion makes it possible to write circular proofs: "{tech}[命題]proposition $`P` is true because proposition $`P` is true".
 Outside of proofs, an infinite loop could be assigned the type {name}`Empty`, which can be used with {keywordOf Lean.Parser.Term.nomatch}`nomatch` or {name Empty.rec}`Empty.rec` to prove any theorem.
 
-Banning recursive function definitions outright would render Lean far less useful: {tech}[inductive types] are key to defining both predicates and data, and they have a recursive structure.
+Banning recursive function definitions outright would render Lean far less useful: {tech}[帰納型]inductive types are key to defining both predicates and data, and they have a recursive structure.
 Furthermore, most useful recursive functions do not threaten soundness, and infinite loops usually indicate mistakes in definitions rather than intentional behavior.
 Instead of banning recursive functions, Lean requires that each recursive function is defined safely.
 While elaborating recursive definitions, the Lean elaborator also produces a justification that the function being defined is safe.{margin}[The section on {ref "elaboration-results"}[the elaborator's output] in the overview of elaboration contextualizes the elaboration of recursive definitions in the overall context of the elaborator.]
@@ -34,15 +34,15 @@ There are four main kinds of recursive functions that can be defined:
 
 : Structurally recursive functions
 
-  Structurally recursive functions take an argument such that the function makes recursive calls only on strict sub-components of said argument.{margin}[Strictly speaking, arguments whose types are {tech}[indexed families] are grouped together with their indices, with the whole collection considered as a unit.]
-  The elaborator translates the recursion into uses of the argument's {tech}[recursor].
+  Structurally recursive functions take an argument such that the function makes recursive calls only on strict sub-components of said argument.{margin}[Strictly speaking, arguments whose types are {tech}[添字族]indexed families are grouped together with their indices, with the whole collection considered as a unit.]
+  The elaborator translates the recursion into uses of the argument's {tech}[再帰子]recursor.
   Because every type-correct use of a recursor is guaranteed to avoid infinite regress, this translation is evidence that the function terminates.
   Applications of functions defined via recursors are definitionally equal to the result of the recursion, and are typically relatively efficient inside the kernel.
 
 : Recursion over well-founded relations
 
   Many functions are also difficult to convert to structural recursion; for instance, a function may terminate because the difference between an array index and the size of the array decreases as the index increases, but {name}`Nat.rec` isn't applicable because the index that increases is the function's argument.
-  Here, there is a {tech}[measure] of termination that decreases at each recursive call, but the measure is not itself an argument to the function.
+  Here, there is a {tech}[測度]measure of termination that decreases at each recursive call, but the measure is not itself an argument to the function.
   In these cases, {tech}[well-founded recursion] can be used to define the function.
   Well-founded recursion is a technique for systematically transforming recursive functions with a decreasing measure into recursive functions over proofs that every sequence of reductions to the measure eventually terminates at a minimum.
   Applications of functions defined via well-founded recursion are not necessarily definitionally equal to their return values, but this equality can be proved as a proposition.

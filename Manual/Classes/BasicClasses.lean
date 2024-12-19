@@ -58,13 +58,13 @@ Lean の型クラスの多くは、加算や配列インデックスのような
 
 :::comment
 # Decidability
-%%%
-tag := "decidable-propositions"
-%%%
 
 :::
 
 # 決定可能性（Decidability）
+%%%
+tag := "decidable-propositions"
+%%%
 
 :::comment
 A proposition is {deftech}_decidable_ if it can be checked algorithmically.{index}[decidable]{index subterm:="decidable"}[proposition]

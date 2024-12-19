@@ -317,7 +317,7 @@ The values of total functions are defined for all type-correct arguments, and th
 
 :::
 
-関数は {keywordOf Lean.Parser.Command.declaration}`def` を使って再帰的に定義することができます。Lean の論理の観点から、すべての関数は {deftech}_全域_ （total）です。これは関数が定義域の各要素を値域の要素に有限時間でマッピングすることを意味します。 {margin}[プログラミング言語のコミュニティによっては、より限定的な意味で _全域_ という用語を使用するものもあり、その場合、関数はクラッシュしなければ全域と見なされますが、非停止は無視されます。] 全域関数の値はすべての型が正しい引数に対して定義され、パターンマッチでケースが漏れて停止に失敗したりクラッシュしたりすることはありません。
+関数は {keywordOf Lean.Parser.Command.declaration}`def` を使って再帰的に定義することができます。Lean の論理の観点から、すべての関数は {deftech}_全域_ （total）です。これは関数が定義域の各要素を値域の要素に有限時間でマッピングすることを意味します。 {margin}[プログラミング言語のコミュニティによっては、異なる意味で _全域_ という用語を使用するものもあり、その場合、関数がハンドルされていないケースによってクラッシュしなければ全域と見なされますが、非停止は無視されます。] 全域関数の値はすべての型が正しい引数に対して定義され、パターンマッチでケースが漏れて停止に失敗したりクラッシュしたりすることはありません。
 
 :::comment
 While the logical model of Lean considers all functions to be total, Lean is also a practical programming language that provides certain "escape hatches".
