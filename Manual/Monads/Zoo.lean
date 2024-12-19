@@ -157,8 +157,8 @@ For example, there might be a mutable {lean}`Nat` and a mutable {lean}`String` o
 As long as they have different types, it should be convenient to access both.
 In typical use, some monadic operations that are overloaded in type classes have type information available for {tech key:="synthesis"}[instance synthesis], while others do not.
 For example, the argument passed to {name MonadState.set}`set` determines the type of the state to be used, while {name MonadState.get}`get` takes no such argument.
-The type information present in applications of {name MonadState.set}`set` can be used to pick the correct instance when multiple states are available, which suggests that the type of the mutable state should be an input parameter or {tech}[semi-output parameter] so that it can be used to select instances.
-The lack of type information present in uses of {name MonadState.get}`get`, on the other hand, suggests that the type of the mutable state should be an {tech}[output parameter] in {lean}`MonadState`, so type class synthesis determines the state's type from the monad itself.
+The type information present in applications of {name MonadState.set}`set` can be used to pick the correct instance when multiple states are available, which suggests that the type of the mutable state should be an input parameter or {tech}[半出力パラメータ]semi-output parameter so that it can be used to select instances.
+The lack of type information present in uses of {name MonadState.get}`get`, on the other hand, suggests that the type of the mutable state should be an {tech}[出力パラメータ]output parameter in {lean}`MonadState`, so type class synthesis determines the state's type from the monad itself.
 
 This dichotomy is solved by having two versions of many of the effect type classes.
 The version with a semi-output parameter has the suffix `-Of`, and its operations take types explicitly as needed.
@@ -270,7 +270,7 @@ Providing the state type explicitly using {name}`getThe` from {name}`MonadStateO
 (getThe String, getThe Nat) : M String × M Nat
 ```
 
-Setting a state works for either type, because the state type is a {tech}[semi-output parameter] on {name}`MonadStateOf`.
+Setting a state works for either type, because the state type is a {tech}[半出力パラメータ]semi-output parameter on {name}`MonadStateOf`.
 ```lean (name := setNat)
 #check (set 4 : M Unit)
 ```

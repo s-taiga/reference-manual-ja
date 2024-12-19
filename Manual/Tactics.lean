@@ -66,13 +66,13 @@ Each goal in a tactic proof corresponds to an incomplete portion of a proof term
 
 :::comment
 # Running Tactics
-%%%
-tag := "by"
-%%%
 
 :::
 
 # タクティクの実行（Running Tactics）
+%%%
+tag := "by"
+%%%
 
 :::TODO
 The syntax of `by` is showing with commas instead of semicolons below
@@ -567,7 +567,7 @@ Metavariables that result from tactics frequently appear as goals whose {tech}[c
 
 :::
 
-疑問符で始まる項は未知の値に対応する _メタ変数_ （metavariable）です。これらは {tech}[宇宙] レベルか項のいずれかを表すこともあります。メタ変数の中には、Lean のエラボレーションプロセスの一環として、値を決定するのに十分な情報が得られていないときに生じるものがあります。このようなメタ変数の名前の最後には `?m.392` や `?u.498` のように数字が付きます。その他のメタ変数はタクティクや {tech}[named holes] の結果として存在するようになります。これらのメタ変数の名前には数字の要素はありません。タクティクの結果として生じるメタ変数は {tech}[ケースラベル] がメタ変数の名前と一致するゴールとして現れることが多いです。
+疑問符で始まる項は未知の値に対応する _メタ変数_ （metavariable）です。これらは {tech}[宇宙] レベルか項のいずれかを表すこともあります。メタ変数の中には、Lean のエラボレーションプロセスの一環として、値を決定するのに十分な情報が得られていないときに生じるものがあります。このようなメタ変数の名前の最後には `?m.392` や `?u.498` のように数字が付きます。その他のメタ変数はタクティクや {tech}[synthetic holes] の結果として存在するようになります。これらのメタ変数の名前には数字の要素はありません。タクティクの結果として生じるメタ変数は {tech}[ケースラベル] がメタ変数の名前と一致するゴールとして現れることが多いです。
 
 :::comment
 ::example "Universe Level Metavariables"

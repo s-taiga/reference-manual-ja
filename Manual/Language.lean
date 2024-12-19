@@ -32,12 +32,12 @@ set_option linter.unusedVariables false
 {include 0 Manual.Language.Files}
 
 
+# モジュールの内容（Module Contents）
+
 :::comment
 # Module Contents
 
 :::
-
-# モジュールの内容（Module Contents）
 
 :::comment
 As described {ref "module-structure"}[in the section on the syntax of files], a Lean module consists of a header followed by a sequence of commands.

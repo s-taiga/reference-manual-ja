@@ -532,7 +532,7 @@ for $[$[$h :]? $x in $y],* do
 :::
 
 A {keywordOf Lean.Parser.Term.doFor}`for`​`…`​{keywordOf Lean.Parser.Term.doFor}`in` loop requires at least one clause that specifies the iteration to be performed, which consists of an optional membership proof name followed by a colon (`:`), a pattern to bind, the keyword {keywordOf Lean.Parser.Term.doFor}`in`, and a collection term.
-The pattern, which may just be an {tech}[identifier], must match any element of the collection; patterns in this position cannot be used as implicit filters.
+The pattern, which may just be an {tech}[識別子]identifier, must match any element of the collection; patterns in this position cannot be used as implicit filters.
 Further clauses may be provided by separating them with commas.
 Each collection is iterated over at the same time, and iteration stops when any of the collections runs out of elements.
 

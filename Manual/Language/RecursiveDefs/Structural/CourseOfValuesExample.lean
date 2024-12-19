@@ -30,7 +30,7 @@ theorem List.below_eq_below' : @List.below = @List.below' := by
   congr
 ```
 
-In other words, for a given {tech}[motive], {lean}`List.below'` is a type that contains a realization of the motive for all suffixes of the list.
+In other words, for a given {tech}[動機]motive, {lean}`List.below'` is a type that contains a realization of the motive for all suffixes of the list.
 
 More recursive arguments require further nested iterations of the product type.
 For instance, binary trees have two recursive occurrences.

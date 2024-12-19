@@ -169,7 +169,7 @@ Type constructors with indices are said to specify {deftech}_indexed families_ {
 
 :::
 
-添字は型の _族_ （family）を定義していると見なすことができます。添字を選択するごとに、その族から型が選択され、その型は使用可能なコンストラクタのあつまりを持ちます。添字のパラメータを取る型のコンストラクタは {deftech}_添字族_ {index subterm:="of types"}[indexed family] （indexed family）と呼ばれます、
+添字は型の _族_ （family）を定義していると見なすことができます。添字を選択するごとに、その族から型が選択され、その型は使用可能なコンストラクタのあつまりを持ちます。添字を持つ型のコンストラクタは {deftech}_添字族_ {index subterm:="of types"}[indexed family] （indexed family）の型を指定すると言われます。
 
 :::comment
 ## Example Inductive Types
@@ -477,7 +477,7 @@ Providing arguments by name or converting all implicit parameters to explicit pa
 
 :::
 
-帰納型がコンストラクタを1つだけ持つ場合、このコンストラクタは {deftech}_匿名コンストラクタ構文_ （anonymous constructor syntax）の対象となります。コンストラクタの名前を引数に適用して書く代わりに、明示的な引数を角括弧（`'⟨'` と `'⟩'`、Unicode `MATHEMATICAL LEFT ANGLE BRACKET	(U+0x27e8)` と `MATHEMATICAL RIGHT ANGLE BRACKET	(U+0x27e9)`）で囲み、カンマで区切ることができます。これはパターンと式の両方のコンテキストで動作します。引数を名前で指定したり、すべての暗黙的なパラメータを `@` で明示的なものに変換したりするには、通常のコンストラクタ構文を使用する必要があります。
+帰納型がコンストラクタを1つだけ持つ場合、このコンストラクタは {deftech}_匿名コンストラクタ構文_ （anonymous constructor syntax）の対象となります。コンストラクタの名前を引数に適用して書く代わりに、明示的な引数を角括弧（`'⟨'` と `'⟩'`、Unicode `MATHEMATICAL LEFT ANGLE BRACKET	(U+0x27e8)` と `MATHEMATICAL RIGHT ANGLE BRACKET	(U+0x27e9)`）で囲み、カンマで区切ることができます。これはパターンと式の両方のコンテキストで動作します。引数を名前で指定したり、すべての暗黙的なパラメータを `@` で明示的なパラメータに変換したりするには、通常のコンストラクタ構文を使用する必要があります。
 
 :::comment
 ::example "Anonymous constructors"
@@ -792,7 +792,7 @@ Lean assumes that `sizeof(size_t) == sizeof(void*)`—while this is not guarante
 
 :::
 
-C の観点では、これらの帰納型は `lean_object *` として表現されます。各コンストラクタは `lean_ctor_object` として格納され、`lean_is_ctor` は真を返します。`lean_ctor_object` はコンストラクタのインデックスをヘッダに格納し、フィールドはオブジェクトの `m_objs` 部分に格納されます。
+C の観点では、これらの帰納型は `lean_object *` として表現されます。各コンストラクタは `lean_ctor_object` として格納され、`lean_is_ctor` は真を返します。`lean_ctor_object` はコンストラクタのインデックスをヘッダに格納し、フィールドはオブジェクトの `m_objs` 部分に格納されます。Lean は `sizeof(size_t) == sizeof(void*)` を仮定しています。これは C では保証されていませんが、Lean のランタイムシステムには、これが当てはまらない場合に失敗するアサートが含まれています。
 
 :::comment
 The memory order of the fields is derived from the types and order of the fields in the declaration. They are ordered as follows:

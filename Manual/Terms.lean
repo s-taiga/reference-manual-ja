@@ -31,7 +31,7 @@ This chapter will describe Lean's term language, including the following feature
 :::
 
 {deftech}_Terms_ are the principal means of writing mathematics and programs in Lean.
-The {tech}[elaborator] translates them to Lean's minimal core language, which is then checked by the kernel and compiled for execution.
+The {tech}[エラボレータ]elaborator translates them to Lean's minimal core language, which is then checked by the kernel and compiled for execution.
 The syntax of terms is {ref "syntax-ext"}[arbitrarily extensible]; this chapter documents the term syntax that Lean provides out-of-the-box.
 
 # Identifiers
@@ -63,8 +63,8 @@ Resolving an identifier in a way that both creates one of these declarations and
 The rules for resolving and realizing a name are the same, so even though this section refers only to resolving names, it applies to both.
 
 Name resolution is affected by the following:
- * {tech key:="pre-resolved identifier"}[Pre-resolved names] attached to the identifier
- * The {tech}[macro scopes] attached to the identifier
+ * {tech key:="事前解決された識別子"}[Pre-resolved names]pre-resolved identifier attached to the identifier
+ * The {tech}[マクロスコープ]macro scopes attached to the identifier
  * The local bindings in scope, including auxiliary definitions created as part of the elaboration of {keywordOf Lean.Parser.Term.letrec}`let rec`.
  * Aliases created with {keywordOf Lean.Parser.Command.export}`export` in modules transitively imported by the current module
  * The current {tech}[section scope], in particular the current namespace, opened namespaces, and section variables
@@ -270,7 +270,7 @@ def MyList α := List α
 
 Lean's function types describe more than just the function's domain and range.
 They also provide instructions for elaborating application sites by indicating that some parameters are to be discovered automatically via unification or {ref "instance-synth"}[type class synthesis], that others are optional with default values, and that yet others should be synthesized using a custom tactic script.
-Furthermore, their syntax contains support for abbreviating {tech key:="currying"}[curried] functions.
+Furthermore, their syntax contains support for abbreviating {tech key:="カリー化"}[curried]currying functions.
 
 :::syntax term title:="Function types"
 Dependent function types include an explicit name:
@@ -595,7 +595,7 @@ After all arguments have been inserted and there is an ellipsis, then the missin
 If any fresh variables were created for missing explicit positional arguments, the entire application is wrapped in a {keywordOf Lean.Parser.Term.fun}`fun` term that binds them.
 Finally, instance synthesis is invoked and as many metavariables as possible are solved:
  1. A type is inferred for the entire function application. This may cause some metavariables to be solved due to unification that occurs during type inference.
- 2. The instance metavariables are synthesized. {tech}[Default instances] are only used if the inferred type is a metavariable that is the output parameter of one of the instances.
+ 2. The instance metavariables are synthesized. {tech}[デフォルトインスタンス]Default instances are only used if the inferred type is a metavariable that is the output parameter of one of the instances.
  3. If there is an expected type, it is unified with the inferred type; however, errors resulting from this unification are discarded. If the expected and inferred types can be equal, unification can solve leftover implicit argument metavariables. If they can't be equal, an error is not thrown because a surrounding elaborator may be able to insert {tech}[coercions] or {tech key:="lift"}[monad lifts].
 
 
@@ -684,7 +684,7 @@ fun x y => sum3 x y x : Nat → Nat → Nat
 
 
 Optional and automatic parameters are not part of Lean's core type theory.
-They are encoded using the {name}`optParam` and {name}`autoParam` {tech}[gadgets].
+They are encoded using the {name}`optParam` and {name}`autoParam` {tech}[ガジェット]gadgets.
 
 {docstring optParam}
 
@@ -908,7 +908,7 @@ end
 # Literals
 
 There are two kinds of numeric literal: natural number literals and {deftech}[scientific literals].
-Both are overloaded via {tech key:="type class"}[type classes].
+Both are overloaded via {tech key:="型クラス"}[type classes]type class.
 
 ## Natural Numbers
 
@@ -918,7 +918,7 @@ variable {n : Nat}
 ```
 
 When Lean encounters a natural number literal {lean}`n`, it interprets it via the overloaded method {lean}`OfNat.ofNat n`.
-A {tech}[default instance] of {lean}`OfNat Nat n` ensures that the type {lean}`Nat` can be inferred when no other type information is present.
+A {tech}[デフォルトインスタンス]default instance of {lean}`OfNat Nat n` ensures that the type {lean}`Nat` can be inferred when no other type information is present.
 
 {docstring OfNat}
 
@@ -1184,13 +1184,13 @@ They consist of the following:
 
   If an identifier is not bound in the current scope and is not applied to arguments, then it represents a pattern variable.
   {deftech}_Pattern variables_ match any value, and the values thus matched are bound to the pattern variable in the local environment in which the {tech}[right-hand side] is evaluated.
-  If the identifier is bound, it is a pattern if it is bound to the {tech}[constructor] of an {tech}[inductive type] or if its definition has the {attr}`match_pattern` attribute.
+  If the identifier is bound, it is a pattern if it is bound to the {tech}[コンストラクタ]constructor of an {tech}[帰納型]inductive type or if its definition has the {attr}`match_pattern` attribute.
 
 : Applications
 
   Function applications are patterns if the function being applied is an identifier that is bound to a constructor or that has the {attr}`match_pattern` attribute and if all arguments are also patterns.
   If the identifier is a constructor, the pattern matches values built with that constructor if the argument patterns match the constructor's arguments.
-  If it is a function with the {attr}`match_pattern` attribute, then the function application is unfolded and the resulting term's {tech}[normal form] is used as the pattern.
+  If it is a function with the {attr}`match_pattern` attribute, then the function application is unfolded and the resulting term's {tech}[正規形]normal form is used as the pattern.
   Default arguments are inserted as usual, and their normal forms are used as patterns.
   {tech key:="ellipsis"}[Ellipses], however, result in all further arguments being treated as universal patterns, even those with associated default values or tactics.
 
@@ -1198,13 +1198,13 @@ They consist of the following:
 
   {ref "char-syntax"}[Character literals] and {ref "string-syntax"}[string literals] are patterns that match the corresponding character or string.
   {ref "raw-string-literals"}[Raw string literals] are allowed as patterns, but {ref "string-interpolation"}[interpolated strings] are not.
-  {ref "nat-syntax"}[Natural number literals] in patterns are interpreted by synthesizing the corresponding {name}`OfNat` instance and reducing the resulting term to {tech}[normal form], which must be a pattern.
+  {ref "nat-syntax"}[Natural number literals] in patterns are interpreted by synthesizing the corresponding {name}`OfNat` instance and reducing the resulting term to {tech}[正規形]normal form, which must be a pattern.
   Similarly, {tech}[scientific literals] are interpreted via the corresponding {name}`OfScientific` instance.
   While {lean}`Float` has such an instance, {lean}`Float`s cannot be used as patterns because the instance relies on an opaque function that can't be reduced to a valid pattern.
 
 : Structure Instances
 
-  {tech}[Structure instances] may be used as patterns.
+  {tech}[構造体インスタンス]Structure instances may be used as patterns.
   They are interpreted as the corresponding structure constructor.
 
 : Quoted names
@@ -1426,7 +1426,7 @@ variable {α : Type u}
 ```
 
 :::example "Type Refinement"
-This {tech}[indexed family] describes mostly-balanced trees, with the depth encoded in the type.
+This {tech}[添字族]indexed family describes mostly-balanced trees, with the depth encoded in the type.
 ```lean
 inductive BalancedTree (α : Type u) : Nat → Type u where
   | empty : BalancedTree α 0
@@ -1531,8 +1531,8 @@ simp_all made no progress
 ### Explicit Motives
 
 Pattern matching is not a built-in primitive of Lean.
-Instead, it is translated to applications of {tech}[recursors] via {tech}[auxiliary matching functions].
-Both require a {tech}_motive_ that explains the relationship between the discriminant and the resulting type.
+Instead, it is translated to applications of {tech}[再帰子]recursors via {tech}[補助マッチ関数]auxiliary matching functions.
+Both require a {tech}_動機_ motive that explains the relationship between the discriminant and the resulting type.
 Generally, the {keywordOf Lean.Parser.Term.match}`match` elaborator is capable of synthesizing an appropriate motive, and the refinement of types that occurs during pattern matching is a result of the motive that was selected.
 In some specialized circumstances, a different motive may be needed and may be provided explicitly using the `(motive := …)` syntax of {keywordOf Lean.Parser.Term.match}`match`.
 This motive should be a function type that expects at least as many parameters as there are discriminants.
@@ -1653,7 +1653,7 @@ variable {n : Nat}
 In patterns, defined constants with the {attr}`match_pattern` attribute are unfolded and normalized rather than rejected.
 This allows a more convenient syntax to be used for many patterns.
 In the standard library, {name}`Nat.add`, {name}`HAdd.hAdd`, {name}`Add.add`, and {name}`Neg.neg` all have this attribute, which allows patterns like {lean}`n + 1` instead of {lean}`Nat.succ n`.
-Similarly, {name}`Unit` and {name}`Unit.unit` are definitions that set the respective {tech}[universe parameters] of {name}`PUnit` and {name}`PUnit.unit` to 0; the {attr}`match_pattern` attribute on {name}`Unit.unit` allows it to be used in patterns, where it expands to {lean}`PUnit.unit.{0}`.
+Similarly, {name}`Unit` and {name}`Unit.unit` are definitions that set the respective {tech}[宇宙パラメータ]universe parameters of {name}`PUnit` and {name}`PUnit.unit` to 0; the {attr}`match_pattern` attribute on {name}`Unit.unit` allows it to be used in patterns, where it expands to {lean}`PUnit.unit.{0}`.
 
 :::syntax attr (title := "Attribute for Match Patterns")
 The {attr}`match_pattern` attribute indicates that a definition should be unfolded, rather than rejected, in a pattern.
@@ -1688,7 +1688,7 @@ def add : Nat → Nat → Nat
   | a, Nat.succ b => Nat.succ (Nat.add a b)
 ```
 
-No {tech}[ι-reduction] is possible, because the value being matched is a variable, not a constructor.
+No {tech}[ι簡約]ι-reduction is possible, because the value being matched is a variable, not a constructor.
 {lean}`1 + k` gets stuck as {lean}`Nat.add 1 k`, which is not a valid pattern.
 
 In the case of {lean}`k + 1`, that is, {lean}`Nat.add k (.succ .zero)`, the second pattern matches, so it reduces to {lean}`Nat.succ (Nat.add k .zero)`.
@@ -1959,7 +1959,7 @@ typeclass instance problem is stuck, it is often due to metavariables
 ```
 
 A prefix type ascription with {keywordOf Lean.Parser.Term.show}`show`, together with a {tech}[hole], can be used to indicate the monad.
-The {tech key:="default instance"}[default] {lean}`OfNat _ 5` instance provides enough type information to fill the hole with {lean}`Nat`.
+The {tech key:="デフォルトインスタンス"}[default] {lean}`OfNat _ 5` instance provides enough type information to fill the hole with {lean}`Nat`.
 ```lean
 example := show StateM String _ from do
   return 5
