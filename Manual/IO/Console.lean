@@ -31,7 +31,7 @@ In particular, to read a line from standard input, use a combination of {lean}`I
 
 :::
 
-Lean は {tech}[standard output] と {tech}[standard error] に書き出すための便利な関数を有しています。それらは全て {lean}`ToString` インスタンスを使用し、そのうち名前が `-ln` で終わるものは出力の後に改行を追加します。これらの便利な関数は {ref "stdio"}[標準 I/O ストリームを使用する] 機能の一部しか公開していません。特に、標準入力から行を読むには、 {lean}`IO.getStdin` と {lean}`IO.FS.Stream.getLine` を組み合わせて使用します。
+Lean は {tech}[標準出力] と {tech}[標準エラー] に書き出すための便利な関数を有しています。それらは全て {lean}`ToString` インスタンスを使用し、そのうち名前が `-ln` で終わるものは出力の後に改行を追加します。これらの便利な関数は {ref "stdio"}[標準 I/O ストリームを使用する] 機能の一部しか公開していません。特に、標準入力から行を読むには、 {lean}`IO.getStdin` と {lean}`IO.FS.Stream.getLine` を組み合わせて使用します。
 
 {docstring IO.print}
 
