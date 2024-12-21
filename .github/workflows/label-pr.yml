@@ -5,10 +5,11 @@ name: Label PRs with artifacts
 # further actions.
 
 on:
-  workflow_run:
-    workflows: ["Build and check HTML"]
-    types:
-      - completed
+  workflow_dispatch:
+  # workflow_run:
+  #   workflows: ["Build and check HTML"]
+  #   types:
+  #     - completed
 
 jobs:
   label:
