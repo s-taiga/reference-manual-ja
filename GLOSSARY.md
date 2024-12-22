@@ -129,6 +129,7 @@
 | inductively-defined | 帰納的に定義された | |
 | inductive predicate | 帰納的述語 | |
 | inductive type | 帰納型 | |
+| infinite regress | 無限後退 | |
 | info tree | 情報木 | |
 | inhabitant | 住人 | |
 | inheritance | 継承 | |
@@ -163,6 +164,7 @@
 | macro Expansion | マクロ展開 | |
 | map | 写像 | |
 | mapping | マッピング | |
+| measure | 測度 | 再帰関数で停止性を証明するために使用する項のこと。普通に「尺度」でも良さそう |
 | membership predicate | メンバシップ述語 | |
 | memoization | メモ化 | |
 | modifier | 修飾子 | |
@@ -250,6 +252,7 @@
 | strictness | 正格 | |
 | strong induction | 強帰納法 | |
 | structure | 構造体 | |
+| structurally recursive function | 構造的再帰関数 | |
 | subfield | サブフィールド | |
 | subgoal | サブゴール | |
 | subterm | 部分項 | |

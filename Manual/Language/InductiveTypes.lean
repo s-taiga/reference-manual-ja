@@ -19,7 +19,7 @@ set_option maxRecDepth 800
 /-
 #doc (Manual) "Inductive Types" =>
 -/
-#doc (Manual) "帰納型" =>
+#doc (Manual) "帰納型（Inductive Types）" =>
 %%%
 tag := "inductive-types"
 %%%
