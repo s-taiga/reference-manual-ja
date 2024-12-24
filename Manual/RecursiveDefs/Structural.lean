@@ -15,15 +15,23 @@ open Verso.Genre
 open Verso.Genre.Manual
 open Lean.Elab.Tactic.GuardMsgs.WhitespaceMode
 
+/-
 #doc (Manual) "Structural Recursion" =>
+-/
+#doc (Manual) "構造的再帰（Structural Recursion）" =>
 %%%
 tag := "structural-recursion"
 %%%
 
+:::comment
 Structurally recursive functions are those in which each recursive call is on a structurally smaller term than the argument.
 The same parameter must decrease in all recursive calls; this parameter is called the {deftech}_decreasing parameter_.
 Structural recursion is stronger than the primitive recursion that recursors provide, because the recursive call can use more deeply nested sub-terms of the argument, rather than only an immediate sub-term.
 The constructions used to implement structural recursion are, however, implemented using the recursor; these helper constructions are described in the {ref "recursor-elaboration-helpers"}[section on inductive types].
+
+:::
+
+構造的再帰関数とは、各再帰呼び出しが引数よりも構造的に小さい項に対して行われる関数のことです。構造的再帰は、再帰子が提供する原始再帰よりも強力です。なぜなら、再帰呼び出しが引数の直前の部分項だけでなく、任意の部分項を使用できるからです。しかし、構造的再帰を実装するために使用される構成は再帰子を使用して実装されます；これらの補助構成は {ref "recursor-elaboration-helpers"}[帰納型の節] で説明されています。
 
 The rules that govern structural recursion are fundamentally _syntactic_ in nature.
 There are many recursive definitions that exhibit structurally recursive computational behavior, but which are not accepted by these rules; this is a fundamental consequence of the analysis being fully automatic.
@@ -517,20 +525,31 @@ This elaboration uses the {ref "recursor-elaboration-helpers"}[`below` and `brec
 
 {spliceContents Manual.RecursiveDefs.Structural.RecursorExample}
 
+:::comment
 The structural recursion analysis attempts to translate the recursive pre-definition into a use of the appropriate structural recursion constructions.
 At this step, pattern matching has already been translated into the use of matcher functions; these are treated specially by the termination checker.
 Next, for each group of parameters, a translation using `brecOn` is attempted.
 
+:::
+
+構造的再帰分析は再帰的な事前定義を適切な構造的再帰の構成の利用に変換しようと試みます。このステップでは、パターンマッチはすでにマッチ関数の使用に変換されています；これらの関数は停止チェッカによって特別に扱われます。次に、各パラメータのグループに対して `brecOn` を使った変換が試みられます。
+
 {spliceContents Manual.RecursiveDefs.Structural.CourseOfValuesExample}
 
+:::comment
 The `below` construction is a mapping from each value of a type to the results of some function call on _all_ smaller values; it can be understood as a memoization table that already contains the results for all smaller values.
 The notion of “smaller value” that is expressed in the `below` construction corresponds directly to the definition of {tech}[strict sub-terms].
 
-Recursors expect an argument for each of the inductive type's constructors; these arguments are called with the constructor's arguments (and the result of recursion on recursive parameters) during {tech}[ι簡約]ι-reduction.
+Recursors expect an argument for each of the inductive type's constructors; these arguments are called with the constructor's arguments (and the result of recursion on recursive parameters) during {tech}[ι-reduction].
 The course-of-values recursion operator `brecOn`, on the other hand, expects just a single case that covers all constructors at once.
 This case is provided with a value and a `below` table that contains the results of recursion on all values smaller than the given value; it should use the contents of the table to satisfy the motive for the provided value.
 If the function is structurally recursive over a given parameter (or parameter group), then the results of all recursive calls will be present in this table already.
 
+:::
+
+`below` 構成は型の各値から _すべての_ 小さい値に対する関数呼び出しの結果へのマッピングです；これはすべての小さい値の結果をすでの格納したメモ化テーブルとして理解することができます。再帰子は帰納型のコンストラクタの各引数を期待します；これらの引数は {tech}[ι簡約] の間にコンストラクタの引数（および再帰パラメータに対する再帰の結果）とともに呼び出されます。一方、累積再帰の演算子 `brecOn` は一度にすべてのコンストラクタをカバーする単一のケースだけを期待します。このケースには値と、与えられた値よりも小さいすべての値に対する再帰の結果を含む `below` テーブルが提供されます；これは与えられた値に対する動機を満たすテーブルの内容を使用するべきです。関数が与えられたパラメータ（もしくはパラメータグループ）に対して構造的再帰である場合、すべての再帰呼び出しの結果はすでにこのテーブルに存在することになります。
+
+:::comment
 When the body of the recursive function is transformed into an invocation of `brecOn` on one of the function's parameters, the parameter and its course-of-values table are in scope.
 The analysis traverses the body of the function, looking for recursive calls.
 If the parameter is matched against, then its occurrences in the local context are {ref "match-generalization"}[generalized] and then instantiated with the pattern; this is also true for the type of the course-of-values table.
@@ -540,28 +559,50 @@ When an recursive occurrence of the function is detected, the course-of-values t
 If so, the recursive call can be replaced with a projection from the table.
 If not, then the parameter in question doesn't support structural recursion.
 
+:::
+
+再帰関数の本体が関数のパラメータの1つに対する `brecOn` の呼び出しに変換されると、そのパラメータと値の累積テーブルがスコープに入ります。この解析は関数本体を走査し、再帰的な呼び出しを探します。パラメータがマッチした場合、ローカルコンテキストに出現するパラメータは {ref "match-generalization"}[一般化] され、そのパターンでインスタンス化されます；これは累積テーブルの型についても真です。通常、このパターンマッチの結果、累積テーブルの型はより具体的になり、より小さな値の再帰結果にアクセスできるようになります。関数の再帰的な出現が検出されると、累積テーブルが参照され、チェックされている引数の結果が含まれているかどうかが確認されます。もし含まれていれば、再帰呼び出しはテーブルからの射影で置き換えることができます。含まれていない場合は、当該パラメータは構造的再帰をサポートしていません。
+
 ```lean (show := false)
 section
 ```
 
-:::example "Elaboration Walkthrough"
+:::comment
+::example "Elaboration Walkthrough"
+:::
+::::example "エラボレーションの一連の流れ"
+:::comment
 The first step in walking through the elaboration of {name}`half` is to manually desugar it to a simpler form.
 This doesn't match the way Lean works, but its output is much easier to read when there are fewer {name}`OfNat` instances present.
 This readable definition:
+:::
+
+{name}`half` のエラボレーションを進める最初のステップは、手作業でより単純な形に脱糖することです。これは Lean の動作方法とは一致しませんが、 {name}`OfNat` インスタンスの数が少なければその出力はずっと読みやすくなります。この読みやすい定義：
+
 ```lean (keep := false)
 def half : Nat → Nat
   | 0 | 1 => 0
   | n + 2 => half n + 1
 ```
+:::comment
 can be rewritten to this somewhat lower-level version:
+:::
+
+は、以下のやや低レベルのバージョンに書き換えることができます：
+
 ```lean (keep := false)
 def half : Nat → Nat
   | .zero | .succ .zero => .zero
   | .succ (.succ n) => half n |>.succ
 ```
 
+:::comment
 The elaborator begins by elaborating a pre-definition in which recursion is still present but the definition is otherwise in Lean's core type theory.
 Turning on the compiler's tracing of pre-definitions, as well as making the pretty printer more explicit, makes the resulting pre-definition visible:
+:::
+
+エラボレータは、再帰はまだ存在するものの、それ以外は Lean のコア型理論に沿った事前定義をエラボレートすることから始めます。コンパイラの事前定義の追跡をオンにすると、プリティプリンタがより明示的になり、その結果事前定義が見えるようになります：
+
 ```lean (keep := false) (show := false)
 -- Test of next block - visually check correspondence when updating!
 set_option trace.Elab.definition.body true in
@@ -586,7 +627,12 @@ def half : Nat → Nat
   | .zero | .succ .zero => .zero
   | .succ (.succ n) => half n |>.succ
 ```
+:::comment
 The returned trace message is:{TODO}[Trace not showing up in serialized info - figure out why so this test can work better, or better yet, add proper trace rendering to Verso]
+:::
+
+返される追跡メッセージは以下です：
+
 ```
 [Elab.definition.body] half : Nat → Nat :=
     fun (x : Nat) =>
@@ -595,7 +641,12 @@ The returned trace message is:{TODO}[Trace not showing up in serialized info - f
         (fun (_ : Unit) => Nat.zero)
         fun (n : Nat) => Nat.succ (half n)
 ```
+:::comment
 The auxiliary match function's definition is:
+:::
+
+この補助マッチ関数の定義は以下です：
+
 ```lean (name := halfmatch)
 #print half.match_1
 ```
@@ -610,7 +661,12 @@ def half.match_1.{u_1} :
       Nat.casesOn n (h_2 ()) fun n =>
         h_3 n
 ```
+:::comment
 Formatted more readably, this definition is:
+:::
+
+より読みやすくフォーマットすると、この定義は以下のようになります：
+
 ```lean
 def half.match_1'.{u} :
     (motive : Nat → Sort u) → (x : Nat) →
@@ -622,9 +678,19 @@ def half.match_1'.{u} :
       Nat.casesOn n (h_2 ()) fun n =>
         h_3 n
 ```
+:::comment
 In other words, the specific configuration of patterns used in {name}`half` are captured in {name}`half.match_1`.
 
+:::
+
+つまり、 {name}`half` で使用されるパターンの特定の構成は {name}`half.match_1` に取り込まれます。
+
+:::comment
 This definition is a more readable version of {name}`half`'s pre-definition:
+:::
+
+以下の定義は {name}`half` の事前定義をより読みやすくしたものです：
+
 ```lean
 def half' : Nat → Nat :=
   fun (x : Nat) =>
@@ -636,6 +702,10 @@ def half' : Nat → Nat :=
 
 To elaborate it as a structurally recursive function, the first step is to establish the `bRecOn` invocation.
 The definition must be marked {keywordOf Lean.Parser.Command.declaration}`noncomputable` because Lean does not support code generation for recursors such as {name}`Nat.brecOn`.
+:::
+
+この関数を構造的再帰関数として定義するには、まず `bRecOn` の呼び出しを確立します。この定義は {keywordOf Lean.Parser.Command.declaration}`noncomputable` とマークしなければなりません。なぜなら Lean は {name}`Nat.brecOn` のような再帰子のためのコード生成をサポートしていないからです。
+
 ```lean (error := true) (keep := false)
 noncomputable
 def half'' : Nat → Nat :=
@@ -650,8 +720,13 @@ def half'' : Nat → Nat :=
 -/
 ```
 
+:::comment
 The next step is to replace occurrences of `x` in the original function body with the `n` provided by {name Nat.brecOn}`brecOn`.
 Because `table`'s type depends on `x`, it must also be generalized when splitting cases with {name}`half.match_1`, leading to a motive with an extra parameter.
+
+:::
+
+次のステップは、もとの関数本体にある `x` を {name Nat.brecOn}`brecOn` が提供する `n` で置き換えることです。`table` の型は `x` に依存するため、 {name}`half.match_1` でケースを分割する際にも一般化する必要があり、追加のパラメータを持つ同期となります。
 
 ```lean (error := true) (keep := false) (name := threeCases)
 noncomputable
@@ -674,7 +749,12 @@ def half'' : Nat → Nat :=
       (fun n => Nat.succ (half' n)) -- Case for n + 2
 -/
 ```
+:::comment
 The three cases' placeholders expect the following types:
+:::
+
+3つのケースのプレースホルダは以下の型を期待します：
+
 ```leanOutput threeCases
 don't know how to synthesize placeholder for argument 'h_1'
 context:
@@ -699,7 +779,12 @@ table : Nat.below n
 ⊢ (n : Nat) → (fun k => Nat.below k → Nat) n.succ.succ
 ```
 
+:::comment
 The first two cases in the pre-definition are constant functions, with no recursion to check:
+
+:::
+
+事前定義にある最初の2つのケースは定数関数で、チェックする再帰はありません：
 
 ```lean (error := true) (keep := false) (name := oneMore)
 noncomputable
@@ -721,15 +806,25 @@ def half'' : Nat → Nat :=
 -/
 ```
 
+:::comment
 The final case contains a recursive call.
 It should be translated into a lookup into the course-of-values table.
 A more readable representation of the last hole's type is:
+:::
+
+最後のケースには再帰呼び出しが含まれています。これは累積テーブルへの検索に変換されるべきです。最後のホールの型をより読みやすく表現すると次のようになります：
+
 ```leanTerm
 (n : Nat) →
 Nat.below (motive := fun _ => Nat) n.succ.succ →
 Nat
 ```
+:::comment
 which is equivalent to
+:::
+
+これは以下と同等です：
+
 ```leanTerm
 (n : Nat) →
 Nat ×' (Nat ×' Nat.below (motive := fun _ => Nat) n) →
@@ -749,8 +844,13 @@ Nat) := rfl
 variable {n : Nat}
 ```
 
+:::comment
 The first {lean}`Nat` in the course-of-values table is the result of recursion on {lean}`n + 1`, and the second is the result of recursion on {lean}`n`.
 The recursive call can thus be replaced by a lookup, and the elaboration is successful:
+
+:::
+
+累積テーブルの最初の {lean}`Nat` は {lean}`n + 1` に対する再帰の結果であり、2番目は {lean}`n` に対する再帰の結果です。したがって、再帰呼び出しは検索に置き換えることができ、エラボレーションが成功します：
 
 ```lean (error := true) (keep := false) (name := oneMore)
 noncomputable
@@ -769,8 +869,13 @@ def half'' : Nat → Nat :=
       table
 ```
 
+:::comment
 The actual elaborator keeps track of the relationship between the parameter being checked for structural recursion and the positions in the course-of-values tables by inserting sentinel types with fresh names into the motive.
 :::
+
+実際のエラボレータは新しい名前を持つ番兵型を動機に挿入することによって、構造的再帰のためにチェックされるパラメータと累積テーブル内での位置との間の関係を追跡します。
+
+::::
 
 ```lean (show := false)
 end
