@@ -51,6 +51,7 @@
 | conversion | 変換 | |
 | core language | コア言語 | |
 | core type theory | コア型理論 | |
+| course-of-values recursion | 累積再帰 | course-of-values induction が累積帰納法であることに合わせた |
 | curly brace | 波括弧 | |
 | currying | カリー化 | |
 | cycle | 巡回 | |
@@ -68,6 +69,7 @@
 | deriving | 導出 | |
 | desugar | 脱糖 | |
 | diamond | ダイアモンド | 菱形継承問題関連の単語。菱形だとわかりづらいためカタカナにした |
+| discriminant | 判別子 | |
 | disjointness | 不連結性 | |
 | disjunction | 選言 | |
 | domain | 定義域 | |
@@ -233,6 +235,7 @@
 | separator | 区切り文字 | |
 | set | （数学的な集合の場合）集合、（数学的な集合を意味しない場合でプログラミング上実体のある集まりの場合）セット、（それ以外）あつまり | |
 | section | 節 | |
+| sentinel | 番兵 | |
 | serialize | シリアライズ | |
 | shadow | （変数の隠蔽の意で）シャドーイング | |
 | side effect | 副作用 | |
