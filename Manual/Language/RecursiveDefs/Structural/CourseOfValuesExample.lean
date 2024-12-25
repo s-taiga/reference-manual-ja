@@ -18,8 +18,16 @@ open Lean.Elab.Tactic.GuardMsgs.WhitespaceMode
 #doc (Manual) "再帰の例（Recursion Example (for inclusion elsewhere)）" =>
 
 
-:::example "Course-of-Values Tables"
+:::comment
+::example "Course-of-Values Tables"
+:::
+::::example "Course-of-Values Tables"
+:::comment
 This definition is equivalent to {name}`List.below`:
+:::
+
+以下の定義は {name}`List.below` と同等です：
+
 ```lean
 def List.below' {α : Type u} {motive : List α → Sort u} : List α → Sort (max 1 u)
   | [] => PUnit
@@ -33,17 +41,32 @@ theorem List.below_eq_below' : @List.below = @List.below' := by
   congr
 ```
 
-In other words, for a given {tech}[動機]motive, {lean}`List.below'` is a type that contains a realization of the motive for all suffixes of the list.
+:::comment
+In other words, for a given {tech}[motive], {lean}`List.below'` is a type that contains a realization of the motive for all suffixes of the list.
 
+:::
+
+言い換えると、与えられた {tech}[動機] に対して、 {lean}`List.below'` はリストのすべての接尾辞に対する動機の実現を含む型です。
+
+:::comment
 More recursive arguments require further nested iterations of the product type.
 For instance, binary trees have two recursive occurrences.
+:::
+
+より再帰的な引数は直積型の反復をさらに入れ子にする必要があります。例えば、二分木には2つの再帰が出現します。
+
 ```lean
 inductive Tree (α : Type u) : Type u where
   | leaf
   | branch (left : Tree α) (val : α) (right : Tree α)
 ```
 
+:::comment
 It's corresponding course-of-values table contains the realizations of the motive for all subtrees:
+:::
+
+対応する累積テーブルにはすべてのサブツリーに対する動機の実現が含まれています：
+
 ```lean
 def Tree.below' {α : Type u} {motive : Tree α → Sort u} : Tree α → Sort (max 1 u)
   | .leaf => PUnit
@@ -60,12 +83,22 @@ theorem Tree.below_eq_below' : @Tree.below = @Tree.below' := by
   congr
 ```
 
+:::comment
 For both lists and trees, the `brecOn` operator expects just a single case, rather than one per constructor.
 This case accepts a list or tree along with a table of results for all smaller values; from this, it should satisfy the motive for the provided value.
 Dependent case analysis of the provided value automatically refines the type of the memo table, providing everything needed.
 
+:::
+
+リストと木のどちらについても、`brecOn` 演算子はコンストラクタごとに1つではなく、1つのケースだけを想定しています。このエースはリストまたは木を、すべての小さい値に対する結果のテーブルと一緒に受け入れます；これにより、このケースは与えられた値に対する動機を満たすべきです。提供された値の依存ケース分析によって、メモテーブルの型が自動的に絞り込まれ、必要なものがすべて提供されます。
+
+:::comment
 The following definitions are equivalent to {name}`List.brecOn` and {name}`Tree.brecOn`, respectively.
 The primitive recursive helpers {name}`List.brecOnTable`  and {name}`Tree.brecOnTable` compute the course-of-values tables along with the final results, and the actual definitions of the `brecOn` operators simply project out the result.
+:::
+
+以下の定義はそれぞれ {name}`List.brecOn` と {name}`Tree.brecOn` に同等です。プリミティブな再帰補助関数 {name}`List.brecOnTable` と {name}`Tree.brecOnTable` は最終結果と共に累積テーブルを計算し、実際の `brecOn` 演算子の定義は単に結果を射影します。
+
 ```lean
 def List.brecOnTable {α : Type u}
     {motive : List α → Sort u}
@@ -169,4 +202,4 @@ info: fun motive x z step =>
 #reduce fun motive x z step => Tree.brecOn (motive := motive) (.branch (.branch .leaf x .leaf) z .leaf) step
 ```
 
-:::
+::::
