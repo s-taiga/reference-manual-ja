@@ -304,6 +304,7 @@
 | universe | 宇宙 | |
 | universe level | 宇宙レベル | |
 | universe-polymorphic | 宇宙多相 | |
+| well-behaved | 行儀よくふるまう | |
 | well-formed | 適格 | |
 | well-founded | 整礎 | |
 | whitespace | 空白 | |
