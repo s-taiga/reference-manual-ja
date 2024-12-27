@@ -596,7 +596,7 @@ If any fresh variables were created for missing explicit positional arguments, t
 Finally, instance synthesis is invoked and as many metavariables as possible are solved:
  1. A type is inferred for the entire function application. This may cause some metavariables to be solved due to unification that occurs during type inference.
  2. The instance metavariables are synthesized. {tech}[デフォルトインスタンス]Default instances are only used if the inferred type is a metavariable that is the output parameter of one of the instances.
- 3. If there is an expected type, it is unified with the inferred type; however, errors resulting from this unification are discarded. If the expected and inferred types can be equal, unification can solve leftover implicit argument metavariables. If they can't be equal, an error is not thrown because a surrounding elaborator may be able to insert {tech}[coercions] or {tech key:="lift"}[monad lifts].
+ 3. If there is an expected type, it is unified with the inferred type; however, errors resulting from this unification are discarded. If the expected and inferred types can be equal, unification can solve leftover implicit argument metavariables. If they can't be equal, an error is not thrown because a surrounding elaborator may be able to insert {tech}[coercions] or lift {tech key:="持ち上げ"}[monad lifts].
 
 
 ::::keepEnv
