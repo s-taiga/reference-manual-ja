@@ -692,7 +692,7 @@ These effects are implemented via transformations of the entire {keywordOf Lean.
 
 :::
 
-{keywordOf Lean.Parser.Term.do}`do` 記法は、データに依存する逐次計算のサポートに加えて、早期リターン・ローカルの可変状態・早期終了のループなど、さまざまな作用におけるローカルでの追加作用もサポートしています。これらの作用は、ローカルの脱糖ではなく、 {tech}[monad transformers] のような方法で {keywordOf Lean.Parser.Term.do}`do` ブロック全体の変換によって実装されています。
+{keywordOf Lean.Parser.Term.do}`do` 記法は、データに依存する逐次計算のサポートに加えて、早期リターン・ローカルの可変状態・早期終了のループなど、さまざまな作用におけるローカルでの追加作用もサポートしています。これらの作用は、ローカルの脱糖ではなく、 {tech}[モナド変換子] のような方法で {keywordOf Lean.Parser.Term.do}`do` ブロック全体の変換によって実装されています。
 
 :::comment
 ## Early Return
@@ -793,7 +793,7 @@ When {keywordOf Lean.Parser.Term.do}`do` blocks contain mutable bindings, the {k
 
 :::
 
-このようなローカルの可変な束縛は、そのレキシカルスコープの外では可変ではないため、 {tech}[state monad] よりも強力ではありません；この性質によって推論も簡単になります。 {keywordOf Lean.Parser.Term.do}`do` ブロックに可変な束縛が含まれている場合、 {keywordOf Lean.Parser.Term.do}`do` エラボレータは {lean}`StateT` と同じように式を変換し、新しいモナドを構築して正しい値で初期化します。
+このようなローカルの可変な束縛は、そのレキシカルスコープの外では可変ではないため、 {tech}[状態モナド] よりも強力ではありません；この性質によって推論も簡単になります。 {keywordOf Lean.Parser.Term.do}`do` ブロックに可変な束縛が含まれている場合、 {keywordOf Lean.Parser.Term.do}`do` エラボレータは {lean}`StateT` と同じように式を変換し、新しいモナドを構築して正しい値で初期化します。
 
 :::comment
 ## Control Structures

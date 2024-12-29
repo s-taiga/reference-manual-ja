@@ -180,7 +180,7 @@ There are also instances of {name}`MonadLift` for most of the standard library's
 For example, state monad actions can be lifted across reader and exception transformers, allowing compatible monads to be intermixed freely:
 :::
 
-また、標準ライブラリの {tech}[monad transformers] のほとんどに {name}`MonadLift` インスタンスがあるため、ベースとなるモナドアクションを追加作業無しに変換されたモナドで使用することができます。例えば、状態モナドアクションは、リーダと例外の変換を横断して持ち上げることができるため、互換性のあるモナドを自由に混在させることができます：
+また、標準ライブラリの {tech}[モナド変換子] のほとんどに {name}`MonadLift` インスタンスがあるため、ベースとなるモナドアクションを追加作業無しに変換されたモナドで使用することができます。例えば、状態モナドアクションは、リーダと例外の変換を横断して持ち上げることができるため、互換性のあるモナドを自由に混在させることができます：
 
 ````lean (keep := false)
 def incrBy (n : Nat) : StateM Nat Unit := modify (+ n)

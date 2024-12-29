@@ -32,7 +32,7 @@ Mutable references have a type {lean}`IO.Ref` that indicates that a cell is muta
 
 :::
 
-通常の {tech}[state monads] は計算の値とともに状態の内容を追跡するタプルを使用して状態のある計算をエンコードしますが、Lean のランタイムシステムは、常に可変なメモリセルにバックアップされた可変参照も提供しています。可変参照は {lean}`IO.Ref` 型を持ちます。これによってセルが可変であることが示され、読み取りと書き込みは明示的に行う必要があります。 {lean}`IO.Ref` は {lean}`ST.Ref` を使って実装されているため、 {ref "mutable-st-references"}[{lean}`ST.Ref` API] をすべて {lean}`IO.Ref` と一緒に使うことができます。
+通常の {tech}[状態モナド] は計算の値とともに状態の内容を追跡するタプルを使用して状態のある計算をエンコードしますが、Lean のランタイムシステムは、常に可変なメモリセルにバックアップされた可変参照も提供しています。可変参照は {lean}`IO.Ref` 型を持ちます。これによってセルが可変であることが示され、読み取りと書き込みは明示的に行う必要があります。 {lean}`IO.Ref` は {lean}`ST.Ref` を使って実装されているため、 {ref "mutable-st-references"}[{lean}`ST.Ref` API] をすべて {lean}`IO.Ref` と一緒に使うことができます。
 
 {docstring IO.Ref}
 

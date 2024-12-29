@@ -93,7 +93,7 @@ Error handling is accomplished by layering an appropriate exception monad transf
 
 :::
 
-{lean}`IO α` 型は副作用を実行することによって {lean}`α` 型の値を返すか、エラーを投げるべきプロセスについての記述です。これは世界全体を状態とする {tech}[state monad] として考えることができます。 {lean}`StateM Nat Bool` 型の値が自然数をミューテーションさせる能力を持ちながら {lean}`Bool` を計算することと同じように、 {lean}`IO Bool` 型の値は世界を変化させる可能性を有しながら {lean}`Bool` を計算します。エラー処理は、適切な例外モナド変換子をこの上に重ねることで達成されます。
+{lean}`IO α` 型は副作用を実行することによって {lean}`α` 型の値を返すか、エラーを投げるべきプロセスについての記述です。これは世界全体を状態とする {tech}[状態モナド] として考えることができます。 {lean}`StateM Nat Bool` 型の値が自然数をミューテーションさせる能力を持ちながら {lean}`Bool` を計算することと同じように、 {lean}`IO Bool` 型の値は世界を変化させる可能性を有しながら {lean}`Bool` を計算します。エラー処理は、適切な例外モナド変換子をこの上に重ねることで達成されます。
 
 :::::
 
@@ -208,7 +208,7 @@ The most-used constructor is {name IO.Error.userError}`userError`, which covers 
 
 :::
 
-{lean}`IO` モナドにおけるエラー処理は、他の {tech}[exception monad] と同じ機能を使用します。特に、例外のスローとキャッチは {name}`MonadExceptOf` {tech}[型クラス] のメソッドを使用します。 {lean}`IO` で投げられる例外は {lean}`IO.Error` 型を持ちます。このコンストラクタは、ファイルが存在しないなど、ほとんどのオペレーティングシステムで発生する低レベルのエラーを表します。最もよく使われるエラーは {name IO.Error.userError}`userError` で、これは他のすべてのケースをカバーし、問題を説明する文字列を含みます。
+{lean}`IO` モナドにおけるエラー処理は、他の {tech}[例外モナド] と同じ機能を使用します。特に、例外のスローとキャッチは {name}`MonadExceptOf` {tech}[型クラス] のメソッドを使用します。 {lean}`IO` で投げられる例外は {lean}`IO.Error` 型を持ちます。このコンストラクタは、ファイルが存在しないなど、ほとんどのオペレーティングシステムで発生する低レベルのエラーを表します。最もよく使われるエラーは {name IO.Error.userError}`userError` で、これは他のすべてのケースをカバーし、問題を説明する文字列を含みます。
 
 {docstring IO.Error}
 
