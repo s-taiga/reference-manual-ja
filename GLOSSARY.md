@@ -193,6 +193,7 @@
 | parse | パース | |
 | parser | パーサ | |
 | pattern matching | パターンマッチ | |
+| phantom type | 幽霊型 | |
 | polymorphic | 多相 | |
 | precedence | 優先順位 | 構文解析・演算子等の優先具合を指す |
 | predicate | 述語 | |
