@@ -273,7 +273,7 @@ The following data are tracked in section scopes:
 : The Current Namespace
 
   The {deftech}_current namespace_ is the namespace into which new declarations will be defined.
-  Additionally, {tech (key:="resolve")}[name resolution] includes all prefixes of the current namespace in the scope for global names.
+  Additionally, {tech (key:="解決")}[name resolution]resolve includes all prefixes of the current namespace in the scope for global names.
 
 : Opened Namespaces
 
@@ -286,7 +286,7 @@ The following data are tracked in section scopes:
 
 : Section Variables
 
-  {tech}[Section variables] are names (or {tech}[instance implicit] parameters) that are automatically added as parameters to definitions.
+  {tech}[Section variables] are names (or {tech}[インスタンス暗黙]instance implicit parameters) that are automatically added as parameters to definitions.
   They are also added as universally-quantified assumptions to theorems when they occur in the theorem's statement.
 
 
