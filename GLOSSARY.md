@@ -67,6 +67,7 @@
 | dependent type theory | 依存型理論 | |
 | derivation | 導出 | |
 | deriving | 導出 | |
+| destructure | 分解 | |
 | desugar | 脱糖 | |
 | diamond | ダイアモンド | 菱形継承問題関連の単語。菱形だとわかりづらいためカタカナにした |
 | discriminant | 判別子 | |
@@ -106,6 +107,7 @@
 | function extensionality | 関数外延性 | |
 | function type | 関数型 | |
 | gadget | ガジェット | |
+| generalized field notation | 一般化されたフィールド記法 | |
 | goal | ゴール | |
 | grammar | 文法 | |
 | guillemet | ギュメ | フランス語 |
@@ -113,6 +115,7 @@
 | hierarchical identifier | 階層的識別子 | |
 | hierarchy | 階層 | |
 | higher-order function | 高階関数 | |
+| hole | ホール | |
 | hygiene | （マクロの）健全性 | |
 | hypothese | 仮定 | |
 | identically | 同一 | |
@@ -158,6 +161,7 @@
 | letter | 文字 | |
 | letterlike | 文字様 | |
 | level expression | レベル式 | |
+| lexical | レキシカル | |
 | longest match | 最長一致 | |
 | main goal | メインゴール | |
 | macro | マクロ | |
@@ -166,6 +170,8 @@
 | macro Expansion | マクロ展開 | |
 | map | 写像 | |
 | mapping | マッピング | |
+| match alternative | マッチ選択肢 | |
+| match discriminant | マッチ判別子 | |
 | measure | 測度 | 再帰関数で停止性を証明するために使用する項のこと。普通に「尺度」でも良さそう |
 | membership predicate | メンバシップ述語 | |
 | memoization | メモ化 | |
@@ -177,6 +183,7 @@
 | multi-threading | マルチスレッド | |
 | mutation | ミューテーション | |
 | mutually inductive | 相互帰納 | |
+| named arguments | 名前付き引数 | |
 | namespace | 名前空間 | |
 | nested | ネストされた | |
 | newline | 改行 | |
@@ -215,6 +222,7 @@
 | quotient type | 商型 | |
 | range | 値域 | |
 | raw identifier | 生識別子 | Rust By Exampleの表現を利用 |
+| realizing name | 名前実現 | |
 | reasoning | 推論 | |
 | recovery | 回復 | |
 | recursive-descent parser | 再帰下降パーサ | |
@@ -225,12 +233,14 @@
 | representation | 表現 | |
 | reserved keyword | 予約キーワード | 下のreserved wordの表記ゆれかもしれないがいったん別の訳語を割り当てる |
 | reserved word | 予約語 | |
+| resolving name | 名前解決 | |
 | rewrite | 書き換え | |
 | run-length encoding | 連長圧縮 | |
 | run-time | ランタイム | |
 | rule | 規則 | |
 | saturated application | 完全な適用 | 固定訳は無いように思われ、飽和では意味が分かりづらいため |
 | schematic definition | スキーマ的定義 | |
+| scientific literal | 科学的リテラル | |
 | scope | スコープ | |
 | scrutinee | 被検査対象 | |
 | separator | 区切り文字 | |
@@ -318,6 +328,7 @@
 | --- | --- |
 | choice node | |
 | cumulative | |
+| ellipsis | 他言語でも類似概念があるが、そちらでもそのまま英単語で表現されることが多そうだったため |
 | idiom bracket | https://wiki.haskell.org/Idiom_brackets |
 | impredicativity, predicativity | |
 | inhabited | |

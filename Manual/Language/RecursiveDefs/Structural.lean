@@ -424,7 +424,7 @@ This definition of {lean}`half` terminates, but this can't be checked by either 
 This is because the gratuitous tuple in the {tech}[match discriminant] breaks the connection between {lean}`n` and the patterns that match it.
 :::
 
-この {lean}`half` の定義は停止しますが、これは構造的再帰でも十分な根拠のある再帰でもチェックできません。これは、 {tech}[match discriminant] の中にある不必要なタプルが {lean}`n` とそれにマッチするパターンとの間のつながりを壊してしまうからです。
+この {lean}`half` の定義は停止しますが、これは構造的再帰でも十分な根拠のある再帰でもチェックできません。これは、 {tech}[マッチ判別子] の中にある不必要なタプルが {lean}`n` とそれにマッチするパターンとの間のつながりを壊してしまうからです。
 
 ```lean (error := true) (name := badhalfmatch) (keep := false)
 def half (n : Nat) : Nat :=

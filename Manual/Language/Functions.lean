@@ -168,7 +168,7 @@ This information is used by the Lean elaborator, but it does not affect type che
 
 :::
 
-コア型理論には {tech}[implicit] パラメータはありませんが、関数型にはパラメータが暗黙かどうかの表示があります。この情報は Lean のエラボレータに使用されますが、コア型理論における型チェックや定義上の等価性には影響しないため、コア型理論についてだけ考える場合は無視しても構いません。
+コア型理論には {tech}[暗黙] パラメータはありませんが、関数型にはパラメータが暗黙かどうかの表示があります。この情報は Lean のエラボレータに使用されますが、コア型理論における型チェックや定義上の等価性には影響しないため、コア型理論についてだけ考える場合は無視しても構いません。
 
 :::comment
 ::example "Definitional Equality of Implicit and Explicit Function Types"
