@@ -2326,10 +2326,10 @@ variable {α : Type u}
 :::
 ::::example "型の絞り込み"
 :::comment
-This {tech}[添字族]indexed family describes mostly-balanced trees, with the depth encoded in the type.
+This {tech}[添字付けられた型の族]indexed family describes mostly-balanced trees, with the depth encoded in the type.
 :::
 
-この {tech}[添字族] は深さが型にエンコードされた平衡に近い木を記述します。
+この {tech}[添字付けられた型の族] は深さが型にエンコードされた平衡に近い木を記述します。
 
 ```lean
 inductive BalancedTree (α : Type u) : Nat → Type u where
@@ -2443,7 +2443,7 @@ This is useful to bridge the gap between dependent pattern matching on indexed f
 
 :::
 
-判別子の名前が指定されると、 {keywordOf Lean.Parser.Term.match}`match` はパターンと判別子が等しいという証明を生成し、 {tech}[右辺] で指定された名前に束縛します。これは添字族に対する依存パターンマッチと明示的な命題引数を期待する API とのギャップを埋めるにあたって便利であり、仮定を利用するタクティクを成功させるために役立ちます。
+判別子の名前が指定されると、 {keywordOf Lean.Parser.Term.match}`match` はパターンと判別子が等しいという証明を生成し、 {tech}[右辺] で指定された名前に束縛します。これは添字付けられた型の族に対する依存パターンマッチと明示的な命題引数を期待する API とのギャップを埋めるにあたって便利であり、仮定を利用するタクティクを成功させるために役立ちます。
 
 :::comment
 ::example "Pattern Equality Proofs"
@@ -2555,7 +2555,7 @@ However, a process called {deftech}[discriminant refinement] automatically adds 
 
 :::
 
-添字族にマッチする場合、添字も判別子でなければなりません。一方で、パターンは正しく型付けされない可能性があります：添字が単なる変数であるにもかかわらず、コンストラクタの型がより具体的な値を必要とする場合は型エラーとなります。しかし、 {deftech}[判別子の絞り込み] （discriminant refinement）と呼ばれる処理によって自動的に添字が追加の判別子として追加されます。
+添字付けられた型の族にマッチする場合、添字も判別子でなければなりません。一方で、パターンは正しく型付けされない可能性があります：添字が単なる変数であるにもかかわらず、コンストラクタの型がより具体的な値を必要とする場合は型エラーとなります。しかし、 {deftech}[判別子の絞り込み] （discriminant refinement）と呼ばれる処理によって自動的に添字が追加の判別子として追加されます。
 
 :::::keepEnv
 :::comment
@@ -2567,7 +2567,7 @@ In the definition of {lean}`f`, the equality proof is the only discriminant.
 However, equality is an indexed family, and the match is only valid when `n` is an additional discriminant.
 :::
 
-{lean}`f` の定義では、等式の証明が唯一の判別子です。しかし、等式は添字族であり、マッチは `n` が追加の判別子である場合にのみ有効です。
+{lean}`f` の定義では、等式の証明が唯一の判別子です。しかし、等式は添字付けられた型の族であり、マッチは `n` が追加の判別子である場合にのみ有効です。
 
 ```lean
 def f (n : Nat) (p : n = 3) : String :=

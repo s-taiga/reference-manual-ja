@@ -264,7 +264,7 @@ While {keywordOf Lean.Parser.Command.declaration}`deriving` clauses are allowed 
 
 :::
 
-{keywordOf Lean.Parser.Command.declaration}`deriving` 節は、クラスと構造体のエラボレーションの間の並列性を維持するためにクラス定義で許可されていますが、頻繁に使用されるものではなく、高度な機能と見なされるべきです。
+{keywordOf Lean.Parser.Command.declaration}`deriving` 句は、クラスと構造体のエラボレーションの間の並列性を維持するためにクラス定義で許可されていますが、頻繁に使用されるものではなく、高度な機能と見なされるべきです。
 
 :::comment
 ::example "No Instances of Non-Classes"
@@ -653,7 +653,7 @@ Lean は多くのクラスに対して自動的にインスタンスを生成す
 As part of a command that creates a new inductive type, a {keywordOf Lean.Parser.Command.declaration}`deriving` clause specifies a comma-separated list of class names for which instances should be generated:
 :::
 
-新しい帰納型を作成するコマンドの一部としての {keywordOf Lean.Parser.Command.declaration}`deriving` 節には、その型からインスタンスが生成されるべきクラス名のカンマ区切りのリストを指定します：
+新しい帰納型を作成するコマンドの一部としての {keywordOf Lean.Parser.Command.declaration}`deriving` 句には、その型からインスタンスが生成されるべきクラス名のカンマ区切りのリストを指定します：
 
 ```grammar
 $[deriving $[$_],*]?

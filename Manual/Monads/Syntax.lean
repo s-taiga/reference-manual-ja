@@ -447,7 +447,7 @@ The second binds a pattern to the result.
 The fallback clause, beginning with `|`, specifies the behavior when the pattern does not match the result.
 :::
 
-2番目はパターンを結果に束縛します。 `|` で始まるフォールバック節は、パターンが結果にマッチしなかった場合の動作を指定します。
+2番目はパターンを結果に束縛します。 `|` で始まるフォールバック句は、パターンが結果にマッチしなかった場合の動作を指定します。
 
 ```grammar
 let $x:term ← $e:term
@@ -461,7 +461,7 @@ This syntax is also translated to a use of {name}`bind`.
 This indicates a pure, rather than monadic, definition:
 :::
 
-この構文も {name}`bind` の使用に変換されます。 {lean}`do let x ← e1; es` は {lean}`e1 >>= fun x => do es` に変換され、フォールバック節はデフォルトのパターンマッチに変換されます。 {keywordOf Lean.Parser.Term.doLet}`let` は `←` の代わりに標準的な定義構文 `:=` によって使用することもできます。この場合はモナドではなく純粋な定義を示します：
+この構文も {name}`bind` の使用に変換されます。 {lean}`do let x ← e1; es` は {lean}`e1 >>= fun x => do es` に変換され、フォールバック句はデフォルトのパターンマッチに変換されます。 {keywordOf Lean.Parser.Term.doLet}`let` は `←` の代わりに標準的な定義構文 `:=` によって使用することもできます。この場合はモナドではなく純粋な定義を示します：
 
 :::syntax Lean.Parser.Term.doSeqItem
 ```grammar
@@ -891,7 +891,7 @@ Each collection is iterated over at the same time, and iteration stops when any 
 
 :::
 
-{keywordOf Lean.Parser.Term.doFor}`for`​`…`​{keywordOf Lean.Parser.Term.doFor}`in` ループでは、実行する反復処理を指定する節が少なくとも1つ必要です。この節は、コロン（`:`）が続くオプションのメンバシップ証明名・束縛パターン・キーワード {keywordOf Lean.Parser.Term.doFor}`in` ・コレクションの項から構成されます。パターンは {tech}[識別子] であり、コレクションの任意の要素と一致しなければなりません；この位置でのパターンは暗黙のフィルタとして使うことはできません。カンマで区切ることでさらに節を指定することができます。各コレクションは同時に反復され、いずれかのコレクションの要素がなくなると反復処理が停止します。
+{keywordOf Lean.Parser.Term.doFor}`for`​`…`​{keywordOf Lean.Parser.Term.doFor}`in` ループでは、実行する反復処理を指定する句が少なくとも1つ必要です。この節は、コロン（`:`）が続くオプションのメンバシップ証明名・束縛パターン・キーワード {keywordOf Lean.Parser.Term.doFor}`in` ・コレクションの項から構成されます。パターンは {tech}[識別子] であり、コレクションの任意の要素と一致しなければなりません；この位置でのパターンは暗黙のフィルタとして使うことはできません。カンマで区切ることでさらに句を指定することができます。各コレクションは同時に反復され、いずれかのコレクションの要素がなくなると反復処理が停止します。
 
 :::comment
 ::example "Iteration Over Multiple Collections"

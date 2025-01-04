@@ -30,7 +30,7 @@
 | case distinction | 場合分け | |
 | chapter | 章 | |
 | circular argument | 循環論法 | |
-| clause | 節 | |
+| clause | 句 | deriving, where はどちらも後ろに完全な文ではなく項が来るため、ニュアンス的に節よりも句の方が近いと判断 |
 | closed term | 閉項 | |
 | combinator | コンビネータ | |
 | comma | カンマ | |
@@ -126,9 +126,12 @@
 | immediate value | 即値 | |
 | imperative | 命令型 | |
 | implicit parameter | 暗黙のパラメータ | |
+| impredicative | 非可述 | |
+| impredicativity | 非可述性 | |
 | inaccessible | （仮定のアクセス可否の文脈で）アクセス不能 | |
 | incompatible | 互換性 | |
 | index, indices | 添字 | |
+| indexed family | 添字付けられた型の族 | |
 | induction | 帰納法 | |
 | induction hypothese | 帰納法の仮定 | |
 | inductively-defined | 帰納的に定義された | |
@@ -204,6 +207,8 @@
 | polymorphic | 多相 | |
 | precedence | 優先順位 | 構文解析・演算子等の優先具合を指す |
 | predicate | 述語 | |
+| predicative | 可述 | |
+| predicativity | 可述性 | |
 | pretty printer | プリティプリンタ | |
 | primitive | プリミティブ | |
 | primitive recursion | 原始再帰 | |
@@ -330,7 +335,6 @@
 | cumulative | |
 | ellipsis | 他言語でも類似概念があるが、そちらでもそのまま英単語で表現されることが多そうだったため |
 | idiom bracket | https://wiki.haskell.org/Idiom_brackets |
-| impredicativity, predicativity | |
 | inhabited | |
 | no confusion | |
 | out, semi-out | |
