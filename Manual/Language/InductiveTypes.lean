@@ -169,7 +169,7 @@ Type constructors with indices are said to specify {deftech}_indexed families_ {
 
 :::
 
-添字は型の _族_ （family）を定義していると見なすことができます。添字を選択するごとに、その族から型が選択され、その型は使用可能なコンストラクタのあつまりを持ちます。添字を持つ型のコンストラクタは {deftech}_添字族_ {index subterm:="of types"}[indexed family] （indexed family）の型を指定すると言われます。
+添字は型の _族_ （family）を定義していると見なすことができます。添字を選択するごとに、その族から型が選択され、その型は使用可能なコンストラクタのあつまりを持ちます。添字を持つ型のコンストラクタは {deftech}_添字付けられた型の族_ {index subterm:="of types"}[indexed family] （indexed family）の型を指定すると言われます。
 
 :::comment
 ## Example Inductive Types
@@ -555,7 +555,7 @@ Please refer to {ref "deriving-instances"}[the section on instance deriving] for
 
 :::
 
-帰納的宣言のオプションとして、 {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`deriving` 節は、型クラスのインスタンスを導出するために使用することができます。詳細は {ref "deriving-instances"}[インスタンス導出についての節] を参照してください。
+帰納的宣言のオプションとして、 {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`deriving` 句は、型クラスのインスタンスを導出するために使用することができます。詳細は {ref "deriving-instances"}[インスタンス導出についての節] を参照してください。
 
 {include 0 Manual.Language.InductiveTypes.Structures}
 

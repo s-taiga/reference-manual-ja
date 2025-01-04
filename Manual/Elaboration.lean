@@ -297,8 +297,8 @@ The language implemented by the kernel is a version of the Calculus of Construct
 カーネルが実装する言語は Calculus of Constructions の一種で、以下の特徴を持つ依存型理論です：
 + 完全な依存型
 + 相互に帰納的であったり、他の帰納型の下で入れ子になった再帰を含んだりする帰納的に定義されたデータ型
-+ {tech}[impredicative] ・定義上証明と irrelevant な {tech}[命題] の拡張的 {tech}[宇宙]
-+ {tech}[predicative] なデータの宇宙の非蓄積な階層
++ {tech}[非可述] ・定義上証明と irrelevant な {tech}[命題] の拡張的 {tech}[宇宙]
++ {tech}[可述] なデータの宇宙の非蓄積な階層
 * 定義上の計算規則を伴った {ref "quotients"}[商型] （Quotient type）
 + 命題上の関数外延性 {margin}[関数外延性は商型を使って証明できる定理ですが、重要な帰結であるため別で挙げておきます。]
 + 関数と積についての定義上のη等価性
@@ -342,7 +342,7 @@ In practice, apparent non-termination is indistinguishable from sufficiently slo
 These metatheoretic properties are a result of having impredicativity, quotient types that compute, definitional proof irrelevance, and propositional extensionality; these features are immensely valuable both to support ordinary mathematical practice and to enable automation.
 :::
 
-Lean の型理論には subject reduction の機能はなく、定義上の等価性は必ずしも推移的ではなく、型チェッカが停止しないようにすることも可能です。これらのメタ理論的な特性はいずれも実際には問題になりません。推移性が失敗するのは非常にまれであり、知る限りではそれを行使するために特別にコードを作成した場合を除き非停止は発生していません。最も重要なことは、論理的健全性に影響がないことです。実際には、見かけ上の非停止は十分に遅いプログラムと区別がつきません。これらのメタ理論的特性は、impredicativity・計算する商型・定義上の証明の irrelevance・命題上の外延性からの帰結です；これらの機能は、通常の数学的実践をサポートする上でも、自動化を可能にするうえでも非常に価値があります。
+Lean の型理論には subject reduction の機能はなく、定義上の等価性は必ずしも推移的ではなく、型チェッカが停止しないようにすることも可能です。これらのメタ理論的な特性はいずれも実際には問題になりません。推移性が失敗するのは非常にまれであり、知る限りではそれを行使するために特別にコードを作成した場合を除き非停止は発生していません。最も重要なことは、論理的健全性に影響がないことです。実際には、見かけ上の非停止は十分に遅いプログラムと区別がつきません。これらのメタ理論的特性は、非可述性・計算する商型・定義上の証明の irrelevance・命題上の外延性からの帰結です；これらの機能は、通常の数学的実践をサポートする上でも、自動化を可能にするうえでも非常に価値があります。
 
 :::comment
 # Elaboration Results

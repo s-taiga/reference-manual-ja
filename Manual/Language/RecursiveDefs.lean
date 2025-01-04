@@ -61,7 +61,7 @@ There are four main kinds of recursive functions that can be defined:
 
 : 構造的再帰関数
 
-  構造的再帰関数は、関数が当該引数の厳密な部分コンポーネントに対してのみ再帰呼び出しを行うように引数を取ります。 {margin}[厳密に言えば、型が {tech}[添字族] である引数は、それらの添字と共にグループ化され、コレクション全体が1つの単位とみなされます。] エラボレータは再帰を引数の {tech}[再帰子] の使用に変換します。型が正しい再帰子の使用は、すべての無限後退を回避することが保証されているため、この変換は関数が停止する根拠となります。再帰子を介して定義された関数の適用は定義上は再帰の結果と等しく、カーネル内部において通常は比較的効率的です。
+  構造的再帰関数は、関数が当該引数の厳密な部分コンポーネントに対してのみ再帰呼び出しを行うように引数を取ります。 {margin}[厳密に言えば、型が {tech}[添字付けられた型の族] である引数は、それらの添字と共にグループ化され、コレクション全体が1つの単位とみなされます。] エラボレータは再帰を引数の {tech}[再帰子] の使用に変換します。型が正しい再帰子の使用は、すべての無限後退を回避することが保証されているため、この変換は関数が停止する根拠となります。再帰子を介して定義された関数の適用は定義上は再帰の結果と等しく、カーネル内部において通常は比較的効率的です。
 
 :::comment
 : Recursion over well-founded relations
@@ -135,7 +135,7 @@ As described in the {ref "elaboration-results"}[overview of the elaborator's out
 
 :::
 
- 2. 停止性の分析では、4つの技法を使って Lean のカーネルに関数を正当化しようとします。定義が {keywordOf Lean.Parser.Command.declaration}`unsafe` または {keywordOf Lean.Parser.Command.declaration}`partial` とマークされている場合、この技法が使用されます。明示的な {keywordOf Lean.Parser.Command.declaration}`termination_by` 節が存在する場合、指定された技法のみが試みられます。この節がない場合、エラボレータは探索を実行し、構造的再帰の候補として関数への各パラメータをテストし、各再帰呼び出しで減少する整礎関係を持つ測度を見つけようとします。
+ 2. 停止性の分析では、4つの技法を使って Lean のカーネルに関数を正当化しようとします。定義が {keywordOf Lean.Parser.Command.declaration}`unsafe` または {keywordOf Lean.Parser.Command.declaration}`partial` とマークされている場合、この技法が使用されます。明示的な {keywordOf Lean.Parser.Command.declaration}`termination_by` 句が存在する場合、指定された技法のみが試みられます。この句がない場合、エラボレータは探索を実行し、構造的再帰の候補として関数への各パラメータをテストし、各再帰呼び出しで減少する整礎関係を持つ測度を見つけようとします。
 
 :::comment
 This section describes the four techniques in detail.
