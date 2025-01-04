@@ -64,7 +64,7 @@ This creates ambiguity, because an identifier `A.B.C.D.e.f` could refer to any o
 
 :::
 
-識別子の項は名前への参照です。 {margin}[識別子についての具体的なレキシカル構文は {ref "keywords-and-identifiers"}[Lean での具体的な構文の節] で説明されています。] {keywordOf Lean.Parser.Term.let}`let` や {keywordOf Lean.Parser.Term.fun}`fun` のように、識別子は名前を束縛するコンテキストでも出現します；しかし、この場合の束縛の出現はそれらだけでは完全な項にはなりません。識別子から名前へのマッピングは自明ではありません： {tech}[module] 内の任意のポイントでも、 {tech}[namespaces] を開くことができ、そこでは {tech}[section variables] やローカルの束縛があるかもしれません。さらに、識別子はドットで区切られた複数のアトミック識別子を含むことがあります；ドットは名前空間とその内容、または変数と {tech}[フィールド記法] を使用するフィールドまたは関数の両方を区切ります。これはあいまいさを生みます。なぜなら、識別子 `A.B.C.D.e.f` は以下のいずれかを指す可能性があるからです：
+識別子の項は名前への参照です。 {margin}[識別子についての具体的なレキシカル構文は {ref "keywords-and-identifiers"}[Lean での具体的な構文の節] で説明されています。] {keywordOf Lean.Parser.Term.let}`let` や {keywordOf Lean.Parser.Term.fun}`fun` のように、識別子は名前を束縛するコンテキストでも出現します；しかし、この場合の束縛の出現はそれらだけでは完全な項にはなりません。識別子から名前へのマッピングは自明ではありません： {tech}[module] 内の任意のポイントでも、 {tech}[namespaces] を開くことができ、そこでは {tech}[セクション変数] やローカルの束縛があるかもしれません。さらに、識別子はドットで区切られた複数のアトミック識別子を含むことがあります；ドットは名前空間とその内容、または変数と {tech}[フィールド記法] を使用するフィールドまたは関数の両方を区切ります。これはあいまいさを生みます。なぜなら、識別子 `A.B.C.D.e.f` は以下のいずれかを指す可能性があるからです：
 
 :::comment
  * A name `f` in the namespace `A.B.C.D.e` (for instance, a function defined in `e`'s {keywordOf Lean.Parser.Command.declaration}`where` block).
@@ -115,7 +115,7 @@ Name resolution is affected by the following:
  * 識別子にアタッチされた {tech}[マクロスコープ]
  * {keywordOf Lean.Parser.Term.letrec}`let rec` のエラボレーションの一部として作成された補助定義を含む、スコープ内のローカル束縛
  * 現在のモジュールによってインポートされたモジュール内で {keywordOf Lean.Parser.Command.export}`export` で作成されたエイリアス
- * 現在の {tech}[section scope] 、特に、現在の名前空間・開いている名前空間・セクション変数
+ * 現在の {tech}[セクションスコープ] 、特に、現在の名前空間・開いている名前空間・セクション変数
 
 :::comment
 Any prefix of an identifier can resolve to a set of names.
@@ -134,8 +134,8 @@ An identifier prefix may refer to any of the following, with earlier items takin
 識別子のどの接頭辞も一連の名前へ解決することができます。解決プロセスに含まれなかった接尾辞は、フィールドの射影またはフィールド記法として扱われます。接頭辞は短いものより長いものの解決が優先されます；言い換えれば、識別子のできるだけ少ない構成要素がフィールド記法として扱われます。識別子の接頭辞は上から優先的に以下のいずれかを指すことがあります：
  1. 識別子の接頭辞と同じ名前を持つローカル束縛変数。これはマクロスコープを含め、最も近いローカル束縛がそれより外側のものよりも優先されます。
  2. 識別子の接頭辞と同じ名前を持つローカルの補助定義
- 3. 識別子の接頭辞と同じ名前を持つ {tech}[section variable]
- 4. {tech}[current namespace] の接頭辞に識別子の接頭辞を付加したものと同じグローバル名、または現在の名前空間の接頭辞にエイリアスが存在するもの。これは現在の名前空間においてより長い接頭辞が短いものよりも優先されます。
+ 3. 識別子の接頭辞と同じ名前を持つ {tech}[セクション変数]
+ 4. {tech}[現在の名前空間] の接頭辞に識別子の接頭辞を付加したものと同じグローバル名、または現在の名前空間の接頭辞にエイリアスが存在するもの。これは現在の名前空間においてより長い接頭辞が短いものよりも優先されます。
  5. {keywordOf Lean.Parser.Command.open}`open` コマンドによってスコープに入れられた、識別子の接頭辞と同じグローバル名
 
 :::comment

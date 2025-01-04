@@ -197,7 +197,7 @@ By default, operators are available in any module that transitively imports the 
 
 :::
 
-演算子は属性と同じように、 {tech}[section scopes] と相互作用します。デフォルトでは、記法はそれが確立されたモジュールをインポートした任意のモジュールで遷移的に利用可能です。しかし、`scoped` または `local` と宣言することで、それぞれ現在の名前空間が開かれているコンテキストか、現在の {tech}[section scope] に限定することができます。
+演算子は属性と同じように、 {tech}[セクションスコープ] と相互作用します。デフォルトでは、記法はそれが確立されたモジュールをインポートした任意のモジュールで遷移的に利用可能です。しかし、`scoped` または `local` と宣言することで、それぞれ現在の名前空間が開かれているコンテキストか、現在の {tech}[セクションスコープ] に限定することができます。
 
 :::comment
 Custom operators require a {ref "precedence"}[precedence] specifier, following a colon.

@@ -83,7 +83,7 @@ By default, notations are available in any module that transitively imports the 
 
 :::
 
-記法は {tech}[section scopes] と属性や演算子と同様に相互作用します。デフォルトでは、記法はそれが確立されたモジュールをインポートした任意のモジュールで遷移的に利用可能です。しかし、`scoped` または `local` と宣言することで、それぞれ現在の名前空間が開かれているコンテキストか、現在の {tech}[section scope] に限定することができます。
+記法は {tech}[セクションスコープ] と属性や演算子と同様に相互作用します。デフォルトでは、記法はそれが確立されたモジュールをインポートした任意のモジュールで遷移的に利用可能です。しかし、`scoped` または `local` と宣言することで、それぞれ現在の名前空間が開かれているコンテキストか、現在の {tech}[セクションスコープ] に限定することができます。
 
 :::comment
 Like operators, the {tech}[local longest-match rule] is used while parsing notations.

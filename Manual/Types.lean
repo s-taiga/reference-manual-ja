@@ -821,7 +821,7 @@ In addition to using `autoImplicit`, particular identifiers can be declared as u
 
 :::
 
-`autoImplicit` を使うことに加えて、`universe` コマンドを使って特定の識別子を特定の {tech}[section scope] 内の宇宙変数として宣言することができます。
+`autoImplicit` を使うことに加えて、`universe` コマンドを使って特定の識別子を特定の {tech}[セクションスコープ] 内の宇宙変数として宣言することができます。
 
 ::::syntax Lean.Parser.Command.universe
 ```grammar

@@ -127,7 +127,7 @@ Each constructor's name is in the inductive type's namespace.{index subterm:="of
 
 :::
 
-新しい帰納型の名前は {tech}[current namespace] で定義されます。各コンストラクタの名前は帰納型の名前空間にあります。 {index subterm:="of inductive type"}[namespace]
+新しい帰納型の名前は {tech}[現在の名前空間] で定義されます。各コンストラクタの名前は帰納型の名前空間にあります。 {index subterm:="of inductive type"}[namespace]
 
 :::comment
 ## Parameters and Indices
