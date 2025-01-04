@@ -124,7 +124,7 @@ Parsers are highly extensible: users may define new syntax in any command, and t
 The open namespaces in the current {tech}[section scope] also influence which parsing rules are used, because parser extensions may be set to be active only when a given namespace is open.
 :::
 
-Lean のパーサは再帰下降パーサであり、Pratt パーサ {citep pratt73}[] に基づく動的テーブルを使用して、演算子の優先順位と結合性を解決します。文法が曖昧でない場合、パーサはバックトラックする必要がありません；曖昧な文法の場合、パックラットパースで使用されるものと同様のメモ化テーブルによって指数関数的な爆発を避けます。Lean のパーサは非常に拡張性が高いです：ユーザはどのコマンドでも新しい構文を定義でき、その構文は次のコマンドで使用できるようになります。現在の {tech}[section scope] で開いている名前空間も、どのパース規則を使用するかに影響します。なぜなら、パーサの拡張機能は指定した名前空間が開いているときにのみ有効になるように設定できるからです。
+Lean のパーサは再帰下降パーサであり、Pratt パーサ {citep pratt73}[] に基づく動的テーブルを使用して、演算子の優先順位と結合性を解決します。文法が曖昧でない場合、パーサはバックトラックする必要がありません；曖昧な文法の場合、パックラットパースで使用されるものと同様のメモ化テーブルによって指数関数的な爆発を避けます。Lean のパーサは非常に拡張性が高いです：ユーザはどのコマンドでも新しい構文を定義でき、その構文は次のコマンドで使用できるようになります。現在の {tech}[セクションスコープ] で開いている名前空間も、どのパース規則を使用するかに影響します。なぜなら、パーサの拡張機能は指定した名前空間が開いているときにのみ有効になるように設定できるからです。
 
 :::comment
 When ambiguity is encountered, the longest matching parse is selected.
@@ -196,7 +196,7 @@ Term elaboration may modify all of these fields except the open scopes.
 Additionally, it has access to all the machinery needed to create fully-explicit terms in the core language from Lean's terse, friendly syntax, including unification, type class instance synthesis, and type checking.
 :::
 
-コマンドエラボレーションと項エラボレーションは異なる能力を持ちます。コマンドエラボレーションは環境に副作用を与える可能性があり、 {lean}`IO` で任意の計算を実行するアクセス権を持っています。Lean の環境は名前から定義への通常のマッピングに加え、 {deftech}[環境拡張] （environment extension）で定義される追加データを含んでいます；環境拡張は {tactic}`simp` 補題・カスタムのプリティプリンタ・コンパイラの中間表現などの内部を含む、Lean コードに関する他のほとんどの情報を追跡するために使用されます。コマンドエラボレーションはまた、コンパイラの情報出力・警告・およびエラー内容を含むメッセージログ・メタデータをもとの構文に関連付ける {tech}[情報木] のセット（証明状態の表示・識別子の補完・ドキュメントの表示などの対話的な機能に使用されます）・蓄積されたデバッグトレース・開いた {tech}[section scope] ・マクロ展開に関連するいくつかの内部状態を維持します。項エラボレーションは開いたスコープを除くこれらすべてのフィールドを変更することができます。さらに、Lean の簡潔で親しみやすい構文からコア言語で完全に明示的な項を作成するために必要な単一化・型クラスインスタンス統合・型チェックを含むすべての機構にアクセスすることができます。
+コマンドエラボレーションと項エラボレーションは異なる能力を持ちます。コマンドエラボレーションは環境に副作用を与える可能性があり、 {lean}`IO` で任意の計算を実行するアクセス権を持っています。Lean の環境は名前から定義への通常のマッピングに加え、 {deftech}[環境拡張] （environment extension）で定義される追加データを含んでいます；環境拡張は {tactic}`simp` 補題・カスタムのプリティプリンタ・コンパイラの中間表現などの内部を含む、Lean コードに関する他のほとんどの情報を追跡するために使用されます。コマンドエラボレーションはまた、コンパイラの情報出力・警告・およびエラー内容を含むメッセージログ・メタデータをもとの構文に関連付ける {tech}[情報木] のセット（証明状態の表示・識別子の補完・ドキュメントの表示などの対話的な機能に使用されます）・蓄積されたデバッグトレース・開いた {tech}[セクションスコープ] ・マクロ展開に関連するいくつかの内部状態を維持します。項エラボレーションは開いたスコープを除くこれらすべてのフィールドを変更することができます。さらに、Lean の簡潔で親しみやすい構文からコア言語で完全に明示的な項を作成するために必要な単一化・型クラスインスタンス統合・型チェックを含むすべての機構にアクセスすることができます。
 
 :::comment
 The first step in both term and command elaboration is macro expansion.

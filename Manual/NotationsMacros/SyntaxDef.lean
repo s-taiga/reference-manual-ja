@@ -769,7 +769,7 @@ By default, syntax rules are available to the parser in any module that transiti
 
 :::
 
-構文属性は属性・演算子・記法と同じように {tech}[section scopes] と相互作用します。デフォルトでは、構文規則はそれが確立されたパーサをインポートした任意のモジュールで遷移的に利用可能です。しかし、`scoped` または `local` と宣言することで、それぞれ現在の名前空間が開かれているコンテキストか、現在の {tech}[section scope] に限定することができます。
+構文属性は属性・演算子・記法と同じように {tech}[セクションスコープ] と相互作用します。デフォルトでは、構文規則はそれが確立されたパーサをインポートした任意のモジュールで遷移的に利用可能です。しかし、`scoped` または `local` と宣言することで、それぞれ現在の名前空間が開かれているコンテキストか、現在の {tech}[セクションスコープ] に限定することができます。
 
 :::comment
 When multiple syntax rules for a category can match the current input, the {tech}[local longest-match rule] is used to select one of them.

@@ -1312,7 +1312,7 @@ Scoped macros are only active when the current namespace is open, and local macr
 
 :::
 
-{ref "notations"}[notations] と {ref "operators"}[operators] と同様に、マクロ規則も `scoped` や `local` として宣言することができます。スコープ付きマクロは現在の名前空間が開いているときにのみ有効であり、ローカルなマクロ規則は現在の {tech}[section scope] においてのみ有効です。
+{ref "notations"}[notations] と {ref "operators"}[operators] と同様に、マクロ規則も `scoped` や `local` として宣言することができます。スコープ付きマクロは現在の名前空間が開いているときにのみ有効であり、ローカルなマクロ規則は現在の {tech}[セクションスコープ] においてのみ有効です。
 
 :::::keepEnv
 ::::example "Idiom Brackets"
@@ -1679,7 +1679,7 @@ The documentation comment is associated with the new syntax, and the attribute k
 
 :::
 
-ドキュメントコメントは新しい構文に関連付けられ、属性の種類（無し・`local`・`scoped`）は記法の場合と同じようにマクロの可視性を制御します：`scoped` なマクロは定義されている名前空間か、その名前空間を開いている {tech}[section scope] で、`local` マクロはローカルのセクションスコープでのみ利用可能です。
+ドキュメントコメントは新しい構文に関連付けられ、属性の種類（無し・`local`・`scoped`）は記法の場合と同じようにマクロの可視性を制御します：`scoped` なマクロは定義されている名前空間か、その名前空間を開いている {tech}[セクションスコープ] で、`local` マクロはローカルのセクションスコープでのみ利用可能です。
 
 :::comment
 Behind the scenes, the {keywordOf Lean.Parser.Command.macro}`macro` command is itself implemented by a macro that expands it to a {keywordOf Lean.Parser.Command.syntax}`syntax` command and a {keywordOf Lean.Parser.Command.macro_rules}`macro_rules` command.
