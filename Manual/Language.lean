@@ -177,7 +177,7 @@ example $_ $_ where
 
 :::
 
-{deftech}_不透明な定数_ はそれらの定義へ簡約されない定数を定義します。
+{deftech}_不透明な定数_ はそれらの定義へ簡約されない定義された定数です。
 
 :::syntax Lean.Parser.Command.opaque
 ```grammar

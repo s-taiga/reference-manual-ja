@@ -91,6 +91,7 @@
 | equivalent | 同値、同等 | |
 | evaluate | 評価 | |
 | evidence | 根拠 | |
+| exactly one | 正確に1つ | |
 | exception | 例外 | |
 | exclamation mark | 感嘆符 | |
 | executable | 実行ファイル | |
