@@ -42,7 +42,7 @@ Constructors, type constructors, recursors, and opaque constants are not subject
 
 :::
 
-項は依存型付きラムダ計算です；関数抽象・適用・変数・`let` 束縛を含みます。束縛変数に加えて、項言語の変数は {tech}[コンストラクタ] ・ {tech}[型コンストラクタ] ・ {tech}[再帰子] ・ {deftech}[defined constants] ・不透明な定数を参照することができます。コンストラクタ・型コンストラクタ・再帰子・不透明な定数は置換の対象にはなりませんが、定義された定数はその定義に置き換えることができます。
+項は依存型付きラムダ計算です；関数抽象・適用・変数・`let` 束縛を含みます。束縛変数に加えて、項言語の変数は {tech}[コンストラクタ] ・ {tech}[型コンストラクタ] ・ {tech}[再帰子] ・ {deftech}[定義された定数] （defined constant）・不透明な定数を参照することができます。コンストラクタ・型コンストラクタ・再帰子・不透明な定数は置換の対象にはなりませんが、定義された定数はその定義に置き換えることができます。
 
 :::comment
 A {deftech}_derivation_ demonstrates the well-typedness of a term by explicitly indicating the precise inference rules that are used.
@@ -52,7 +52,7 @@ This means that proof terms are sufficient evidence of the truth of a theorem an
 
 :::
 
-{deftech}_導出_ （derivation）は使用される正確な推論規則を明示的に示すことで項の well-typed さを示します。暗黙的に、well-typed な項は、その well-typed であることを示す導出の代わりにすることができます。Lean の型理論は十分に明示的であるため、well-typed な項から導出を再構築することができ、完全な導出を保存することで発生するオーバーヘッドを大幅に削減することができるにもかかわらず、この理論は現代の研究数学を表現するに足る表現力を保ちます。これは、証明項が定理の真理の十分な根拠となり、独立した検証が可能であることを意味します。
+{deftech}_導出_ （derivation）は使用される正確な推論規則を明示的に示すことで項の well-typed さを示します。暗黙的に、well-typed な項は、その well-typed であることを示す導出の代わりにすることができます。Lean の型理論は well-typed な項から導出を再構築することができるほど十分に明示的であり、完全な導出を保存することで発生するオーバーヘッドを大幅に削減することができるにもかかわらず、この理論は現代の研究数学を表現するに足る表現力を保ちます。これは、証明項が定理の真理について十分な根拠となり、独立した検証が可能であることを意味します。
 
 :::comment
 In addition to having types, terms are also related by {deftech}_definitional equality_.
@@ -83,7 +83,7 @@ Definitional equality includes the following forms of {deftech}[reduction]:
 
  : {deftech}[δ] (delta)
 
-    {tech}[defined constant] の出現箇所を定義の値で置き換える
+    {tech}[定義された定数] の出現箇所を定義の値で置き換える
 
 :::comment
  : {deftech}[ι] (iota)
@@ -141,7 +141,7 @@ It also features proof irrelevance, so any two proofs of the same proposition ar
 It is reflexive, symmetric, and a congruence.
 :::
 
-定義上の等価性には関数と単一コンストラクタの帰納型についてのη同値が含まれます。つまり、 {lean}`fun x => f x` は {lean}`f` に定義上等しく、 {lean}`S` がフィールド {lean}`f1` と {lean}`f2` を持つ構造体である時には {lean}`S.mk x.f1 x.f2` は {lean}`x` と定義上等価です。また証明の irrelevance も特徴づけ、同じ命題の2つの証明は定義上等価です。これは反射的・対称的・合同です。
+定義上の等価性には関数と単一コンストラクタの帰納型についてのη同値が含まれます。つまり、 {lean}`fun x => f x` は {lean}`f` に定義上等しく、 {lean}`S` がフィールド {lean}`f1` と {lean}`f2` を持つ構造体である時には {lean}`S.mk x.f1 x.f2` は {lean}`x` と定義上等価です。また証明の irrelevance も特徴づけ、同じ命題の2つの証明は定義上等価です。これは反射的・対称的・合同的です。
 
 ::::
 
@@ -151,7 +151,7 @@ Because definitional equality includes reduction, types can result from computat
 
 :::
 
-定義上の等価性は変換にも用いられます：2つの項が定義上等しく、ある項がその一方を型として持つ場合、その項ももう一方を型として持ちます。定義上の等価性は簡約を含むため、データに対する計算から型が生じることがあります。
+定義上の等価性は変換にも用いられます：2つの項が定義上等しく、ある項がその一方を型として持つ場合、その項はもう一方の項も型として持ちます。定義上の等価性は簡約を含むため、データに対する計算から型が生じることがあります。
 
 :::::keepEnv
 :::comment
@@ -215,7 +215,7 @@ The basic types in Lean are {tech}[universes], {tech}[function] types, and {tech
 
 :::
 
-Lean の基本型は {tech}[宇宙] ・ {tech}[関数] 型・ {tech}[帰納型] の {tech}[型コンストラクタ] です。 {tech}[Defined constants] ・ {tech}[再帰子] の適用・関数適用・ {tech}[axioms] ・ {tech}[不透明な定数] のいずれかは他の型の項を生じさせることができるのと同様に、さらに型を与えることができます。
+Lean の基本型は {tech}[宇宙] ・ {tech}[関数] 型・ {tech}[帰納型] の {tech}[型コンストラクタ] です。 {tech}[定義された定数] ・ {tech}[再帰子] の適用・関数適用・ {tech}[axioms] ・ {tech}[不透明な定数] は、これらが任意の他の型の項を生じさせることができるのと同様に、さらに型を与えることができます。
 
 {include Manual.Language.Functions}
 
@@ -296,7 +296,7 @@ Propositions have the following properties:
 
 :::
 
-: {deftech key:="propositional extensionality"}[外延性] {index subterm:="of propositions"}[extensionality]
+: {deftech key:="propositional extensionality"}[外延性] （extensionality） {index subterm:="of propositions"}[extensionality]
 
   論理的に同等な2つの命題は、 {lean}`propext` 公理によって等しいことが証明できます。
 
@@ -306,6 +306,8 @@ Propositions have the following properties:
 # Universes
 
 :::
+
+# 宇宙（Universes）
 
 :::comment
 Types are classified by {deftech}_universes_. {index}[universe]
@@ -324,7 +326,7 @@ Every universe is an element of every strictly larger universe, so {lean}`Sort 5
 This means that the following examples are accepted:
 :::
 
-すべての宇宙はすべての狭義に大きな宇宙の要素なので、 {lean}`Sort 5` は {lean}`Sort 4` を含みます。つまり、以下の例が認められます：
+すべての宇宙はすべての狭義に大きな宇宙の要素であるため、 {lean}`Sort 5` は {lean}`Sort 4` を含みます。つまり、以下の例が受け入れられます：
 
 ```lean
 example : Sort 5 := Sort 4
@@ -395,7 +397,7 @@ The specific rules depend on whether the return type of the function is a propos
 
 :::
 
-各宇宙は依存関数型を含んでおり、それはさらに全称量化子と含意を表します。関数型の宇宙は、引数の型と戻り値の型の宇宙によって決定されます。具体的な規則は、関数の戻り値が命題かどうかに依存します。
+各宇宙は依存関数型を含んでいます。依存関数はさらに全称量化子と含意を表します。関数型の宇宙は、引数の型と戻り値の型の宇宙によって決定されます。具体的な規則は、関数の戻り値が命題かどうかに依存します。
 
 :::comment
 Predicates, which are functions that return propositions (that is, where the result of the function is some type in `Prop`) may have argument types in any universe whatsoever, but the function type itself remains in `Prop`.
@@ -403,7 +405,7 @@ In other words, propositions feature {deftech}[_impredicative_] {index}[impredic
 
 :::
 
-命題を返す関数である述語（つまり、関数の結果が `Prop` にある型である場合）は引数の型がどのような宇宙に会っても構いませんが、関数の型自体は `Prop` に留まります。言い換えると、命題は {deftech}[_非可述_] {index}[impredicative]{index subterm := "impredicative"}[quantification] な量化子を特徴づけます。というのも、命題はそれ自体、すべての命題（および他のすべての命題）についての文になりうるからです。
+命題を返す関数である述語（つまり、関数の結果が `Prop` にある型である場合）は引数の型がどのような宇宙に存在しても構いませんが、関数の型自体は `Prop` に留まります。言い換えると、命題は {deftech}[_非可述_] （impredicative） {index}[impredicative]{index subterm := "impredicative"}[quantification] な量化子を特徴づけます。というのも、命題はそれ自体、すべての命題（および他のすべての命題）についての文になりうるからです。
 
 :::comment
 ::Manual.example "Impredicativity"
@@ -437,7 +439,7 @@ For these universes, the universe of a function type is the least upper bound of
 
 :::
 
-{tech key:="universe level"}[レベル] `1` 以上の宇宙（つまり、`Type u` の階層）では、量化子は {deftech}[_可述_] です。 {index}[predicative]{index subterm := "predicative"}[quantification] これらの宇宙では、関数型の宇宙は引数の型と戻り値の型の宇宙の最小上界となります。
+{tech key:="universe level"}[レベル] `1` 以上の宇宙（つまり、`Type u` の階層）では、量化子は {deftech}[_可述_] （predicative）です。 {index}[predicative]{index subterm := "predicative"}[quantification] これらの宇宙では、関数型の宇宙は引数の型と戻り値の型の宇宙の最小上界となります。
 
 :::comment
 ::Manual.example "Universe levels of function types"
@@ -484,7 +486,7 @@ Each type inhabits precisely one universe.
 
 :::
 
-Lean の宇宙は {deftech}[cumulative] ではありません； {index}[cumulativity] これは `Type u` の型が自動的に `Type (u + 1)` にも存在するようにならないことを意味します。
+Lean の宇宙は {deftech}[cumulative] ではありません； {index}[cumulativity] これは `Type u` の型が自動的に `Type (u + 1)` にも存在するようにならないことを意味します。各型は正確に1つの宇宙に属します。
 
 :::comment
 ::Manual.example "No cumulativity"
@@ -524,7 +526,7 @@ Universe parameters are written in curly braces following a dot after a constant
 
 :::
 
-Lean は {deftech}_宇宙多相_ {index subterm:="universe"}[polymorphism] {index}[universe polymorphism] （universe polymorphism）をサポートしており、Lean 環境で定義された定数は {deftech}[宇宙パラメータ] を取ることができます。これらのパラメータは定数が使用されるときに宇宙レベルでインスタンス化されます。宇宙パラメータは定数名の後のドットに続く波括弧で記述します。
+Lean は {deftech}_宇宙多相_ {index subterm:="universe"}[polymorphism] {index}[universe polymorphism] （universe polymorphism）をサポートしており、Lean の環境で定義された定数は {deftech}[宇宙パラメータ] （universe parameter）を取ることができます。これらのパラメータはその定数が使用されるときに宇宙レベルでインスタンス化されます。宇宙パラメータは定数名の後のドットに続く波括弧で記述します。
 
 :::comment
 ::Manual.example "Universe-polymorphic identity function"
@@ -534,7 +536,7 @@ Lean は {deftech}_宇宙多相_ {index subterm:="universe"}[polymorphism] {inde
 When fully explicit, the identity function takes a universe parameter `u`. Its signature is:
 :::
 
-完全に明示的な場合、恒等関数は宇宙パラメータ `u` を取ります。このシグネチャは以下になります：
+完全に明示的にすると、恒等関数は宇宙パラメータ `u` を取ります。このシグネチャは以下になります：
 
 ```signature
 id.{u} {α : Sort u} (x : α) : α
@@ -547,7 +549,7 @@ When the polymorphic definition is instantiated with concrete levels, these univ
 
 :::
 
-宇宙変数はさらに、定義の中で特定の宇宙レベルを提供する {ref "level-expressions"}[宇宙レベル式] の中で現れるかもしれません。多相定義が具体的なレベルでインスタンス化されるとき、これらの宇宙レベル式も具体的なレベルをもたらすために評価されます。
+宇宙変数はさらに、定義の中で特定の宇宙レベルを提供する {ref "level-expressions"}[宇宙レベル式] の中で出現させることができます。多相定義が具体的なレベルでインスタンス化されるとき、これらの宇宙レベル式も具体的なレベルをもたらすために評価されます。
 
 :::::keepEnv
 :::comment
@@ -573,7 +575,7 @@ Lean automatically infers most level parameters.
 In the following example, it is not necessary to annotate the type as {lean}`Codec.{0}`, because {lean}`Char`'s type is {lean}`Type 0`, so `u` must be `0`:
 :::
 
-Lean はほとんどのレベルパラメータを自動的に推論します。以下の例では、 {lean}`Char` の型は {lean}`Type 0` であるため、`u` は `0` でなければならないことから、 {lean}`Codec.{0}` と注釈する必要はありません。
+Lean はほとんどのレベルパラメータを自動的に推論します。以下の例では、 {lean}`Char` の型は {lean}`Type 0` であるため、`u` は `0` でなければならないことから、 {lean}`Codec.{0}` と注釈する必要はありません：
 
 ```lean (keep := true)
 def Codec.char : Codec where
@@ -609,7 +611,7 @@ Because it is marked {keywordOf Lean.Parser.Command.declaration}`opaque`, Lean c
 Both instantiations of {lean}`T` have the parameters and the same type, but their differing universe instantiations make them incompatible.
 :::
 
-これは次の例で見ることができます。 {lean}`T` は不要な宇宙多相定義で、常に {lean}`true` を返します。 {keywordOf Lean.Parser.Command.declaration}`opaque` とマークされているため、Lean は {lean}`T` の定義を展開して等価性をチェックすることができません。 {lean}`T` のインスタンスはどれもパラメータと同じ型を持ちますが、宇宙のインスタンス化が異なるため互換性がありません：
+これは次の例で見ることができます。 {lean}`T` は不必要に宇宙多相な定義で、常に {lean}`true` を返します。 {keywordOf Lean.Parser.Command.declaration}`opaque` とマークされているため、Lean は {lean}`T` の定義を展開して等価性をチェックすることができません。 {lean}`T` のインスタンスはどれもパラメータと同じ型を持ちますが、宇宙のインスタンス化が異なるため互換性がありません：
 
 ```lean (error := true) (name := uniIncomp)
 opaque T.{u} (_ : Nat) : Bool := (fun (α : Sort u) => true) PUnit.{u}
@@ -694,7 +696,7 @@ More complex relationships between universes can be defined using level expressi
 
 :::
 
-定義に現れるレベルは変数と定数の和だけに限定されません。より複雑な宇宙間の関係もレベルの表現を使って定義できます。
+定義に現れるレベルは変数と定数の加算だけに限定されません。より複雑な宇宙間の関係もレベルの表現を使って定義できます。
 
 :::comment
 ````
@@ -708,7 +710,7 @@ Level ::= 0 | 1 | 2 | ...  -- Concrete levels
 ````
 Level ::= 0 | 1 | 2 | ...  -- 具体的なレベル
         | u, v             -- 変数
-        | Level + n        -- 定数の和
+        | Level + n        -- 定数の加算
         | max Level Level  -- 最小上界
         | imax Level Level -- 非可述な最小上界
 ````
@@ -730,7 +732,7 @@ If `B : Prop`, then the function type is itself a {lean}`Prop`; otherwise, the f
 
 :::
 
-`imax` は {lean}`Prop` の {tech}[非可述] な量化子を実装するために使用されます。特に、`A : Sort u` かつ `B : Sort v` である場合、`(x : A) → B : Sort (imax u v)` となります。もし `B : Prop` ならば、その関数型は {lean}`Prop` であり、それ以外ではその関数型のレベルは `u` と `v` の最大値になります。
+`imax` は {lean}`Prop` に対する {tech}[非可述] な量化子を実装するために使用されます。具体的には、`A : Sort u` かつ `B : Sort v` である場合、`(x : A) → B : Sort (imax u v)` となります。もし `B : Prop` ならば、その関数型は {lean}`Prop` であり、それ以外ではその関数型のレベルは `u` と `v` の最大値になります。
 
 :::comment
 ### Universe Variable Bindings
@@ -747,7 +749,7 @@ Universe parameters are defined or provided by suffixing the name of a constant 
 
 :::
 
-宇宙多相定義は宇宙変数を束縛します。これらの束縛は明示的・暗黙的のどちらも可能です。明示的な宇宙変数の束縛とインスタンス化は定義の名前の接尾辞として行われます。宇宙パラメータは定数名にピリオド（`.`）を接尾辞として付け、その後に波括弧の間にカンマで区切られた一連の宇宙変数を付けることで定義・提供されます。
+宇宙多相定義は宇宙変数を束縛します。これらの束縛は明示的・暗黙的のどちらも可能です。明示的な宇宙変数の束縛とインスタンス化は定義の名前の接尾辞として出現します。宇宙パラメータは定数名にピリオド（`.`）を接尾辞として付け、その後に波括弧の間にカンマで区切られた一連の宇宙変数を付けることで定義・提供されます。
 
 :::::keepEnv
 :::comment
@@ -758,7 +760,7 @@ Universe parameters are defined or provided by suffixing the name of a constant 
 The following declaration of {lean}`map` declares two universe parameters (`u` and `v`) and instantiates the polymorphic {name}`List` with each in turn:
 :::
 
-以下{lean}`map` の宣言では、2つの宇宙パラメータ（`u` と `v`）を宣言し、多相型の {name}`List` を順番にインスタンス化しています：
+以下 {lean}`map` の宣言では、2つの宇宙パラメータ（`u` と `v`）を宣言し、多相型の {name}`List` を順番にインスタンス化しています：
 
 ```lean
 def map.{u, v} {α : Type u} {β : Type v}
@@ -777,12 +779,12 @@ When it is set to {lean}`false`, then they must be added explicitly or declared 
 
 :::
 
-Lean が暗黙のパラメータを自動的にインスタンス化するように、宇宙パラメータも自動的にインスタンス化されます。`autoImplicit` オプションが {lean}`true` に設定されている場合（これがデフォルトです）、宇宙変数を明示的に束縛する必要はありません。 {lean}`false` に設定すると、明示的に追加するか `universe` コマンドを使って宣言する必要があります。
+Lean が暗黙のパラメータを自動的にインスタンス化するように、宇宙パラメータも自動的にインスタンス化されます。`autoImplicit` オプションが {lean}`true` に設定されている場合（デフォルト）、宇宙変数を明示的に束縛する必要はありません。 {lean}`false` に設定すると、明示的に追加するか `universe` コマンドを使って宣言する必要があります。
 
 :::comment
 ::Manual.example "Auto-implicits and universe polymorphism"
 :::
-::::Manual.example "自動的な暗黙さと宇宙多相"
+::::Manual.example "自動的な暗黙と宇宙多相"
 :::comment
 When `autoImplicit` is {lean}`true` (which is the default setting), this definition is accepted even though it does not bind its universe parameters:
 :::

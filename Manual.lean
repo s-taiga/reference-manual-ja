@@ -166,7 +166,7 @@ file := some "the-index"
 
 原文にはライセンスが無かったため、原著者様より許諾をいただいて翻訳させていただいています。（[Zulip Chat](https://leanprover.zulipchat.com/#narrow/channel/113488-general/topic/Discussion.20thread.20for.20Lean.20Language.20Reference/near/478724278)）。
 
-誤字脱字・内容の誤りの指摘・フォークからのPull Request・フォークによる翻訳の改変等歓迎いたします。ご指摘は [当該リポジトリ](https://github.com/lean-ja/reference-manual-ja) にてIssue・Pull Requestで受け付けております。
+誤字脱字・内容の誤りの指摘・フォークからのPull Request・フォークによる翻訳の改変等歓迎いたします。ご指摘は [当該リポジトリ](https://github.com/s-taiga/reference-manual-ja) にてIssue・Pull Requestで受け付けております。
 
 翻訳に際して、機械翻訳サービス [DeepL翻訳](https://www.deepl.com/ja/translator) を参考にしました。
 

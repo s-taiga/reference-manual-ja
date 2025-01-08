@@ -98,7 +98,7 @@ There are multiple kinds of elaboration: command elaboration implements the effe
 Tactic execution is a specialization of term elaboration.
 :::
 
-実際には、上記の段階は厳密に次々と行われるわけではありません。Lean は1つの {tech}[コマンド] （command、トップレベルの宣言）をパースし、ついでエラボレートし、必要なカーネルのチェックを実行します。マクロ展開はエラボレーションの一部です；構文の一部を翻訳する前に、エラボレータはまず一番外側のレイヤに存在するマクロを展開します。マクロ構文はより深いレイヤに残っているかもしれませんが、その後でエラボレータがそれらのレイヤに到達した時に展開されます。エラボレーションには複数の種類が存在します：コマンドエラボレーションは各トップレベルのコマンドの作用（例えば {tech}[帰納型] の宣言・定義の保存・式の評価）を実装し、項エラボレーションは多くのコマンドで出現する項（例えばシグネチャ内の型・定義の右辺・評価される式）の構築を担当します。タクティクの実行は、項エラボレーションの特殊化です。
+実際には、上記の段階は厳密に次々と行われるわけではありません。Lean は1つの {tech}[コマンド] （command、トップレベルの宣言）をパースし、続いてエラボレートし、必要なカーネルのチェックを実行します。マクロ展開はエラボレーションの一部です；構文の一部を翻訳する前に、エラボレータはまず一番外側のレイヤに存在するマクロを展開します。マクロ構文はより深いレイヤに残っているかもしれませんが、その後でエラボレータがそれらのレイヤに到達した時に展開されます。エラボレーションには複数の種類が存在します：コマンドエラボレーションは各トップレベルのコマンドの作用（例えば {tech}[帰納型] の宣言・定義の保存・式の評価）を実装し、項エラボレーションは多くのコマンドで出現する項（例えばシグネチャ内の型・定義の右辺・評価される式）の構築を担当します。タクティクの実行は、項エラボレーションの特殊化です。
 
 :::comment
 When a command is elaborated, the state of Lean changes.
@@ -124,7 +124,7 @@ Parsers are highly extensible: users may define new syntax in any command, and t
 The open namespaces in the current {tech}[section scope] also influence which parsing rules are used, because parser extensions may be set to be active only when a given namespace is open.
 :::
 
-Lean のパーサは再帰下降パーサであり、Pratt パーサ {citep pratt73}[] に基づく動的テーブルを使用して、演算子の優先順位と結合性を解決します。文法が曖昧でない場合、パーサはバックトラックする必要がありません；曖昧な文法の場合、パックラットパースで使用されるものと同様のメモ化テーブルによって指数関数的な爆発を避けます。Lean のパーサは非常に拡張性が高いです：ユーザはどのコマンドでも新しい構文を定義でき、その構文は次のコマンドで使用できるようになります。現在の {tech}[セクションスコープ] で開いている名前空間も、どのパース規則を使用するかに影響します。なぜなら、パーサの拡張機能は指定した名前空間が開いているときにのみ有効になるように設定できるからです。
+Lean のパーサは再帰下降パーサであり、Pratt パーサ {citep pratt73}[] に基づく動的テーブルを使用して、演算子の優先順位と結合性を解決します。文法が曖昧でない場合、パーサはバックトラックする必要がありません；曖昧な文法の場合、パックラットパースで使用されるものと同様のメモ化テーブルによって指数関数的な爆発を避けます。Lean のパーサは非常に高い拡張性を持ちます：ユーザはどのコマンドでも新しい構文を定義でき、その構文は次のコマンドで使用できるようになります。現在の {tech}[セクションスコープ] で開いている名前空間も、どのパース規則を使用するかに影響します。なぜなら、パーサの拡張機能は指定した名前空間が開いているときにのみ有効になるように設定できるからです。
 
 :::comment
 When ambiguity is encountered, the longest matching parse is selected.
@@ -154,7 +154,7 @@ The parser maintains a token table that tracks the reserved words that are curre
 Defining new syntax or opening namespaces can cause a formerly-valid identifier to become a keyword.
 :::
 
-パーサは、現在において言語の一部となっている予約語を追跡する字句テーブルを保持します。新しい構文を定義したり、名前空間を開いたりすると、以前は有効だった識別子がキーワードになることがあります。
+パーサは、その時点で言語の一部となっている予約語を追跡する字句テーブルを保持します。新しい構文を定義したり、名前空間を開いたりすると、以前は有効だった識別子がキーワードになることがあります。
 
 :::comment
 Each production in Lean's grammar is named.
@@ -209,7 +209,7 @@ New macros may be added to the macro table.
 Defining new macros is described in detail in {ref "macros"}[the section on macros].
 :::
 
-項とコマンドエラボレーションのどちらも最初のステップはマクロ展開です。構文の種とマクロの実装を対応付けるテーブルが存在し、マクロの実装はマクロ構文を新しい構文に変換するモナド関数です。マクロは同じテーブルに保存され、項・コマンド・タクティク・および Lean のその他のマクロ拡張可能な部分に対して同じモナドで実行されます。マクロによって拡張された構文それ自体がマクロである場合、その構文は再び拡張されます。このプロセスはマクロではない構文がせいせいされるか、最大反復回数に達するまで繰り返されます。最大反復回数に到達した場合、Lean はエラーを出力します。一般的なマクロは構文の外側のレイヤを処理し、いくつかの部分項はそのままにします。つまり、マクロ展開が完了しても、トップレベル以下の構文にはマクロ呼び出しが残っている可能性があります。新しいマクロをマクロテーブルに追加することができます。新しいマクロの定義については {ref "macros"}[マクロの節] で詳しく説明されます。
+項とコマンドエラボレーションのどちらも最初のステップはマクロ展開です。構文の種とマクロの実装を対応付けるテーブルが存在し、マクロの実装はマクロ構文を新しい構文に変換するモナド関数です。マクロは同じテーブルに保存され、項・コマンド・タクティク・および Lean のその他のマクロ拡張可能な部分に対して同じモナドで実行されます。マクロによって拡張された構文それ自体がマクロである場合、その構文は再び展開されます。このプロセスはマクロではない構文が生成されるか、最大反復回数に達するまで繰り返されます。最大反復回数に到達した場合、Lean はエラーを出力します。一般的なマクロは構文の外側のレイヤを処理し、いくつかの部分項はそのままにします。つまり、マクロ展開が完了しても、トップレベル以下の構文にはマクロ呼び出しが残っている可能性があります。新しいマクロをマクロテーブルに追加することができます。新しいマクロの定義については {ref "macros"}[マクロの節] で詳しく説明されます。
 
 :::comment
 After macro expansion, both the term and command elaborators consult tables that map syntax kinds to elaboration procedures.
@@ -218,7 +218,7 @@ Command elaborators accept syntax and return no value, but may have monadic side
 While both term and command elaborators have access to {lean}`IO`, it's unusual that they perform side effects; exceptions include interactions with external tools or solvers.
 :::
 
-マクロ展開の後、項とコマンドエラボレータのどちらも、構文の種をエラボレータの手続きにマップするテーブルを参照します。項エラボレータは、構文とオプションで期待される型を、前述の非常に強力なモナドを使用するコア言語の式にマッピングします。コマンドエラボレータは構文を受け入れ、値を返しませんが、グローバルのコマンド状態に対してモナドの副作用を持つかもしれません。項とコマンドエラボレータのどちらも {lean}`IO` にアクセスできますが、副作用を実行するのは一般的ではありません；例外は外部ツールやソルバとのやり取りを含みます。
+マクロ展開の後、項とコマンドエラボレータのどちらも、構文の種をエラボレータの手続きにマップするテーブルを参照します。項エラボレータは、構文とオプションで期待される型を、前述の非常に強力なモナドを使用するコア言語の式にマッピングします。コマンドエラボレータは構文を受け入れ、値を返しませんが、グローバルのコマンド状態に対してモナドの副作用を起こすことができます。項とコマンドエラボレータのどちらも {lean}`IO` にアクセスできますが、副作用を実行するのは一般的ではありません；例外は外部ツールやソルバとのやり取りが含まれます。
 
 :::comment
 The elaborator tables may be extended to enable the use of new syntax for both terms and commands by extending the tables.
@@ -258,7 +258,7 @@ The metadata can also be arbitrarily extended; the constructor {lean}`Info.ofCus
 This can be used to add information to be used by custom code actions or other user interface extensions.
 :::
 
-情報木はユーザのオリジナルの構文にメタデータを関連付けます。その木構造は構文の木構造に密接に対応していますが、構文木のあるノードにはそれについて異なる側面を文書化する多くの対応する情報木があるかもしれません。このメタデータには、Lean のコア言語におけるエラボレータの出力・ある時点でアクティブな証明状態・対話的な識別子補完のための提案等その他多くのものが含まれます。またこのメタデータは任意に拡張可能です；コンストラクタ {lean}`Info.ofCustomInfo` は {lean}`Dynamic` 型を受け付けます。これを使用して、カスタムコードアクションやその他のユーザインタフェース拡張で使用する情報を追加することができます。
+情報木はユーザのオリジナルの構文にメタデータを関連付けます。情報木の木構造は構文の木構造に密接に対応していますが、構文木の任意のノードにはそれについて異なる側面を文書化する多くの対応する情報木を持つことができます。このメタデータには、Lean のコア言語におけるエラボレータの出力・ある時点でアクティブな証明状態・対話的な識別子補完のための提案等その他多くのものが含まれます。またこのメタデータは任意に拡張可能です；コンストラクタ {lean}`Info.ofCustomInfo` は {lean}`Dynamic` 型を受け付けます。これを使用して、カスタムコードアクションやその他のユーザインタフェース拡張で使用する情報を追加することができます。
 
 :::comment
 # The Kernel
@@ -296,14 +296,14 @@ The language implemented by the kernel is a version of the Calculus of Construct
 
 カーネルが実装する言語は Calculus of Constructions の一種で、以下の特徴を持つ依存型理論です：
 + 完全な依存型
-+ 相互に帰納的であったり、他の帰納型の下で入れ子になった再帰を含んだりする帰納的に定義されたデータ型
++ 相互に帰納的であったり、他の帰納型の下で入れ子になった再帰を含んだりする帰納的に定義された型
 + {tech}[非可述] ・定義上証明と irrelevant な {tech}[命題] の拡張的 {tech}[宇宙]
 + {tech}[可述] なデータの宇宙の非蓄積な階層
 * 定義上の計算規則を伴った {ref "quotients"}[商型] （Quotient type）
 + 命題上の関数外延性 {margin}[関数外延性は商型を使って証明できる定理ですが、重要な帰結であるため別で挙げておきます。]
 + 関数と積についての定義上のη等価性
 + 宇宙多相定義
-+ 一貫性： {lean}`False` 型の公理にとらわれない閉項は存在しません
++ 一貫性： {lean}`False` 型の閉項で公理にとらわれないものは存在しません
 
 ```lean (show := false) (keep := false)
 -- Test definitional eta for structures
@@ -342,7 +342,7 @@ In practice, apparent non-termination is indistinguishable from sufficiently slo
 These metatheoretic properties are a result of having impredicativity, quotient types that compute, definitional proof irrelevance, and propositional extensionality; these features are immensely valuable both to support ordinary mathematical practice and to enable automation.
 :::
 
-Lean の型理論には subject reduction の機能はなく、定義上の等価性は必ずしも推移的ではなく、型チェッカが停止しないようにすることも可能です。これらのメタ理論的な特性はいずれも実際には問題になりません。推移性が失敗するのは非常にまれであり、知る限りではそれを行使するために特別にコードを作成した場合を除き非停止は発生していません。最も重要なことは、論理的健全性に影響がないことです。実際には、見かけ上の非停止は十分に遅いプログラムと区別がつきません。これらのメタ理論的特性は、非可述性・計算する商型・定義上の証明の irrelevance・命題上の外延性からの帰結です；これらの機能は、通常の数学的実践をサポートする上でも、自動化を可能にするうえでも非常に価値があります。
+Lean の型理論には subject reduction の機能はなく、定義上の等価性は必ずしも推移的ではなく、型チェッカが停止しないようにすることも可能です。これらのメタ理論的な特性はいずれも実際には問題になりません。推移性が失敗するのは非常にまれであり、知る限りではそれを行使するために特別にコードを作成した場合を除き非停止は発生していません。最も重要なことは、論理的健全性に影響がないことです。実際には、見かけ上の非停止は十分に遅いプログラムと区別がつきません。これらのメタ理論的特性は、非可述性・計算する商型・定義上の証明の irrelevance・命題上の外延性からの帰結です；これらの機能は、通常の数学的実践をサポートする上でも、自動化を可能にする上でも非常に価値があります。
 
 :::comment
 # Elaboration Results
@@ -360,7 +360,7 @@ Thus, the elaborator must translate definitions that use pattern matching and re
 This translation is additionally a proof that the function terminates for all potential arguments, because all functions that can be translated to recursors also terminate.
 :::
 
-Lean のコア型理論には、パターンマッチや再帰定義は含まれていません。その代わりに、場合分けと原始再帰の両方を実装するために使用できる低レベルの {tech}[再帰子] を提供します。したがって、エラボレータはパターンマッチと再帰を使用する定義から再帰子を使用する定義に変換する必要があります。この変換はさらに、関数がすべての潜在的な引数に対して停止することの証明でもあります。なぜなら再帰子へ翻訳されるすべての関数は停止するからです。
+Lean のコア型理論には、パターンマッチや再帰定義は含まれていません。その代わりに、場合分けと原始再帰の両方を実装するために使用できる低レベルの {tech}[再帰子] を提供します。したがって、エラボレータはパターンマッチと再帰を使用する定義から再帰子を使用する定義に変換する必要があります。この変換はさらに、関数がすべての潜在的な引数に対して停止することの証明でもあります。なぜなら再帰子へ翻訳されうるすべての関数は停止するからです。
 
 :::comment
 The translation to recursors happens in two phases: during term elaboration, uses of pattern matching are replaced by appeals to {deftech}_auxiliary matching functions_ that implement the particular case distinction that occurs in the code.
@@ -369,7 +369,7 @@ The term elaborator thus returns core-language terms in which pattern matching h
 To see auxiliary pattern matching functions in Lean's output, set the option {option}`pp.match` to {lean}`false`.
 :::
 
-再帰子への翻訳には2つのフェーズが発生します：項エラボレーションの間、パターンマッチの使用はコード中で発生する特定の場合分けを実装する {deftech}_補助マッチ関数_ （auxiliary matching function）の出現に置き換えられます。これらの補助関数はそれ自体が再帰子を使用して定義されますが、再帰子が実際に再帰的な動作を実装する機能は使用しません。 {margin}[再帰子は {ref "recursor-elaboration-helpers"}[再帰子とエラボレーションの節] で記述する `casesOn` 構成を使います。] このように、項エラボレータはパターンマッチが場合分けを実装する特別な関数の使用に置き換えられたコア言語による項を返しますが、これらの項には定義されている関数の再帰的な出現が含まれる可能性があります。Lean の出力に補助的なパターンマッチ関数を表示するには、オプション {option}`pp.match` を {lean}`false` に設定します。
+再帰子への翻訳には2つのフェーズが発生します：項エラボレーションを経ると、パターンマッチの使用はコード中で発生する特定の場合分けを実装する {deftech}_補助マッチ関数_ （auxiliary matching function）の出現に置き換えられます。これらの補助関数はそれ自体が再帰子を使用して定義されますが、再帰子が実際に再帰的な動作を実装する機能は使用しません。 {margin}[再帰子は {ref "recursor-elaboration-helpers"}[再帰子とエラボレーションの節] で記述する `casesOn` 構成を使います。] このように、項エラボレータはパターンマッチが場合分けを実装する特別な関数の使用に置き換えられたコア言語による項を返しますが、これらの項には定義されている関数の再帰的な出現が含まれる可能性があります。Lean の出力に補助的なパターンマッチ関数を表示するには、オプション {option}`pp.match` を {lean}`false` に設定します。
 
 {optionDocs pp.match}
 
@@ -431,7 +431,7 @@ To provide a uniform interface to functions defined via structural and well-foun
 In the function's namespace, `eq_unfold` relates the function directly to its definition, `eq_def` relates it to the definition after instantiating implicit parameters, and $`N` lemmas `eq_N` relate each case of its pattern-matching to the corresponding right-hand side, including sufficient assumptions to indicate that earlier branches were not taken.
 :::
 
-構造的に単純な再帰関数の場合、その翻訳は型の再帰子を使用します。このような関数はカーネルで実行すると比較的効率的である傾向があり、定義された等式が定義上成立し、理解も容易です。型の再帰子で捕捉できないその他のパターンの再帰を使用する関数は {deftech}[整礎再帰] （well-founded recursion）を使用して翻訳されます。これは各再帰呼び出しのたびに何かしらの {deftech}_測度_ （measure）が減少することの証明のもとの構造的な再帰です。Lean はこれらのケースの多くを自動的に導出できますが、手作業での証明が必要なものもあります。整礎再帰はより柔軟なものですが、基準が減少することを示す証明項が定義する等式が成立するのは命題上だけであるため、結果として得られる関数はカーネルでの実行速度が遅くなることが多いです。構造的で整礎な再帰によって定義された関数に統一されたインタフェースを提供し、それ自身の正しさをチェックするために、エラボレータは関数をもとの定義に関連付ける等式の補題を証明します。関数の名前空間において、`eq_unfold` は関数を直接定義に関連付け、`eq_def` は暗黙のパラメータをインスタンス化した後の定義に関連付け、 $`N` 個の補題 `eq_N` はパターンマッチの各ケースと対応する右辺を関連付けます。これにはそれより前の分岐が取られないことの十分な仮定を含みます。
+構造的に単純な再帰関数の場合、その翻訳は型の再帰子を使用します。このような関数はカーネルで実行すると比較的効率的である傾向があり、定義された等式が定義上成立し、理解も容易です。型の再帰子で捕捉できないその他のパターンの再帰を使用する関数は {deftech}[整礎再帰] （well-founded recursion）を使用して翻訳されます。これは各再帰呼び出しのたびに何かしらの {deftech}_測度_ （measure）が減少することの証明のもとの構造的な再帰です。Lean はこれらのケースの多くを自動的に導出できますが、手作業での証明が必要なものもあります。整礎再帰はより柔軟なものですが、測度が減少することを示す証明項が定義する等式が成立するのは命題上だけであるため、結果として得られる関数はカーネルでの実行速度が遅くなることが多いです。構造的で整礎な再帰によって定義された関数に統一されたインタフェースを提供し、それ自身の正しさをチェックするために、エラボレータは関数をもとの定義に関連付ける等式の補題を証明します。関数の名前空間において、`eq_unfold` は関数を直接定義に、`eq_def` は暗黙のパラメータをインスタンス化した後の定義に、 $`N` 個の補題 `eq_N` はパターンマッチの各ケースと対応する右辺に、それぞれ関連付けます。これにはそれより前の分岐が取られないことの十分な仮定を含みます。
 
 :::::keepEnv
 :::comment
@@ -473,7 +473,7 @@ thirdOfFive.eq_unfold.{u_1} :
 {lean}`thirdOfFive.eq_def` states that it matches its definition when applied to arguments:
 :::
 
-{lean}`thirdOfFive.eq_def` は引数に適用されたときにその定義を一致することを示します：
+{lean}`thirdOfFive.eq_def` は引数に適用されたときにその定義に一致することを示します：
 
 ```signature
 thirdOfFive.eq_def.{u_1} {α : Type u_1} :
@@ -500,7 +500,7 @@ thirdOfFive.eq_1.{u} {α : Type u}
 {lean}`thirdOfFive.eq_2` shows that its second defining equation holds:
 :::
 
-{lean}`thirdOfFive.eq_2` は二番目に定義された等式が成り立つことを示しています：
+{lean}`thirdOfFive.eq_2` は2番目に定義された等式が成り立つことを示しています：
 
 ```signature
 thirdOfFive.eq_2.{u_1} {α : Type u_1} :
@@ -587,7 +587,7 @@ everyOther.eq_1.{u} {α : Type u} : everyOther [] = ([] : List α)
 {lean}`everyOther.eq_2` demonstrates its second pattern:
 :::
 
-{lean}`everyOther.eq_2` は二番目のパターンを説明します：
+{lean}`everyOther.eq_2` は2番目のパターンを説明します：
 
 ```signature
 everyOther.eq_2.{u} {α : Type u} (x : α) : everyOther [x] = [x]
@@ -621,7 +621,7 @@ However, Lean is a very open, flexible system.
 To guard against the possibility of poorly-written metaprograms jumping through hoops to add unchecked values to the environment, a separate tool `lean4checker` can be used to validate that the entire environment in a `.olean` file satisfies the kernel.
 :::
 
-モジュールをエラボレートした後、カーネルで環境に対する各追加をチェックし、モジュールがグローバル環境（拡張を含む）に加えた変更を `.olean` ファイルにシリアライズします。これらのファイルでは、Lean の項と値はメモリにあるものと同じように表演されます；そのため、ファイルを直接メモリマップすることができます。Lean が環境に追加するすべてのコードパスでは、新しい型や定義が最初にカーネルによってチェックされます。しかし、Lean は非常にオープンで柔軟なシステムです。不完全に書かれたメタプログラムがチェックされていない値を環境に追加するために抜け穴をくぐってしまう可能性から守るために、別のツール `lean4lean` を使って `.olean` ファイル内の環境全体がカーネルを満たしているかどうかを検証することができます。
+モジュールをエラボレートした後、カーネルで環境に対する各追加をチェックし、モジュールがグローバル環境（拡張を含む）に加えた変更を `.olean` ファイルにシリアライズします。これらのファイルでは、Lean の項と値はメモリにあるものと同じように表現されます；そのため、ファイルを直接メモリにマップすることができます。Lean が環境に追加するすべてのコードパスでは、新しい型や定義が最初にカーネルによってチェックされます。しかし、Lean は非常にオープンで柔軟なシステムです。不完全に書かれたメタプログラムがチェックされていない値を環境に追加するために抜け穴をくぐってしまう可能性から守るために、別のツール `lean4lean` を使って `.olean` ファイル内の環境全体がカーネルを満たしているかどうかを検証することができます。
 
 :::comment
 In addition to the `.olean` file, the elaborator produces a `.ilean` file, which is an index used by the language server.
@@ -690,7 +690,7 @@ An {keywordOf Lean.Parser.Command.initialize}`initialize` block adds code to the
 The contents of an {keywordOf Lean.Parser.Command.initialize}`initialize` block are treated as the contents of a {keywordOf Lean.Parser.Term.do}`do` block in the {lean}`IO` monad.
 :::
 
-{keywordOf Lean.Parser.Command.initialize}`initialize` ブロックはモジュールの初期化にコードを追加します。 {keywordOf Lean.Parser.Command.initialize}`initialize` ブロックの内容は、 {lean}`IO` モナドの {keywordOf Lean.Parser.Term.do}`do` ブロックの内容として扱われます。
+{keywordOf Lean.Parser.Command.initialize}`initialize` ブロックはモジュールの初期化処理にコードを追加します。 {keywordOf Lean.Parser.Command.initialize}`initialize` ブロックの内容は、 {lean}`IO` モナドの {keywordOf Lean.Parser.Term.do}`do` ブロックの内容として扱われます。
 
 :::comment
 Sometimes, initialization only needs to extend internal data structures by side effects.

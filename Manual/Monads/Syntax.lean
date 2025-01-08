@@ -333,7 +333,7 @@ A {keywordOf Lean.Parser.Term.do}`do` term consists of the keyword {keywordOf Le
 
 :::
 
-モナドは主に {deftech}[{keywordOf Lean.Parser.Term.do}`do` 記法] （ {keywordOf Lean.Parser.Term.do}`do`-notation ）によって使用されます。これは作用を持つ操作の列・早期リターン・ローカル変数・ループ・例外処理のためのおなじみの構文を提供します。これらの機能はすべて {lean}`Monad` 型クラスの操作に変換され、そのうちのいくつかは {lean}`ForIn` のようなコンテナに対する反復を指定するクラスのインスタンスを追加する必要があります。 {keywordOf Lean.Parser.Term.do}`do` 項は、キーワード {keywordOf Lean.Parser.Term.do}`do` に続く {deftech}_{keywordOf Lean.Parser.Term.do}`do` 要素_ （ {keywordOf Lean.Parser.Term.do}`do` item ）から構成されます。
+モナドは主に {deftech}[{keywordOf Lean.Parser.Term.do}`do` 記法] （ {keywordOf Lean.Parser.Term.do}`do`-notation ）によって使用されます。これは作用を持つ操作の列・早期リターン・可変なローカル変数・ループ・例外処理のためのおなじみの構文を提供します。これらの機能はすべて {lean}`Monad` 型クラスの操作に変換され、そのうちのいくつかは {lean}`ForIn` のようなコンテナに対する反復を指定するクラスのインスタンスを追加する必要があります。 {keywordOf Lean.Parser.Term.do}`do` 項は、キーワード {keywordOf Lean.Parser.Term.do}`do` に続く {deftech}_{keywordOf Lean.Parser.Term.do}`do` 要素_ （ {keywordOf Lean.Parser.Term.do}`do` item ）から構成されます。
 
 ::::syntax term
 ```grammar
