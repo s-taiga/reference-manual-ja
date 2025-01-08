@@ -31,7 +31,7 @@ Many sections are still to be written.
 For tutorials and learning materials, please visit [the Lean documentation page](https://lean-lang.org/documentation/).
 :::
 
-_Lean 言語リファレンス_ は Lean の包括的で正確な説明を意図しています。本書は第一義的にリファレンスであり、新規ユーザ向けのチュートリアルではなく、Lean のユーザが詳細な情報を調べるためのマニュアルです。現時点では、このリファレンスマニュアルは高階プレビューです。多くの節は今なお執筆中です。チュートリアルや学習教材については [Lean のドキュメントのページ](https://lean-lang.org/documentation/) をご覧ください。
+_Lean 言語リファレンス_ は Lean の包括的で正確な説明を意図しています。本書は第一義的にリファレンスであり、新規ユーザ向けのチュートリアルではなく、Lean のユーザが詳細な情報を調べるためのマニュアルです。現時点では、このリファレンスマニュアルは公開プレビューです。多くの節は今なお執筆中です。チュートリアルや学習教材については [Lean のドキュメントのページ](https://lean-lang.org/documentation/) をご覧ください。
 
 :::comment
 This document describes version {versionString}[] of Lean.
@@ -63,7 +63,7 @@ As befits a programming language, Lean is primarily implemented in itself, inclu
 This very book is written in [Verso](https://github.com/leanprover/verso), a documentation authoring tool written in Lean.
 :::
 
-また、Lean は純粋 *関数型プログラミング言語* （functional programming language）でもあり、packed array 構造を効率的に扱うことができる参照カウントに基づくランタイムシステム・マルチスレッド・モナド {name}`IO` などの機能を備えています。プログラミング言語にふさわしく、Lean の言語サーバ・ビルドツール・ {tech}[エラボレータ] （elaborator）・タクティクシステムなどはもっぱら Lean 自体で実装されています。本書もまさに [Verso](https://github.com/leanprover/verso) という Lean で書かれた文書作成ツールで書かれています。
+また、Lean は純粋 *関数型プログラミング言語* （functional programming language）でもあり、packed array 構造を効率的に扱うことができる参照カウントに基づくランタイムシステム・マルチスレッド・モナドとしての {name}`IO` などの機能を備えています。プログラミング言語にふさわしく、Lean の言語サーバ・ビルドツール・ {tech}[エラボレータ] （elaborator）・タクティクシステムなどはもっぱら Lean 自体で実装されています。本書もまさに [Verso](https://github.com/leanprover/verso) という Lean で書かれた文書作成ツールで書かれています。
 
 :::comment
 Familiarity with Lean's programming features is valuable even for users whose primary interest is in writing proofs, because Lean programs are used to implement new tactics and proof automation.
@@ -87,7 +87,7 @@ The goal of the Lean project is to combine the high level of trust provided by a
 This vision still guides the development of Lean, as we invest in improved automation, improved performance, and user-friendliness; the trusted core proof checker is still minimal and independent implementations exist.
 :::
 
-Leonardo de Moura は2013年に Microsoft Research 在籍時に Lean プロジェクトを立ち上げ、2014年6月16日に Lean 0.1 が正式にリリースされました。Lean プロジェクトの目標は、独立に実装可能な小さな論理カーネル提供する高い信頼性と、SMTソルバのようなツールの利便性と自動化を組み合わせ、同時に大規模な問題にも対応できるようにすることです。このビジョンは現在も Lean の開発の指針となっており、自動化の改善・性能の向上・使いやすさの向上に投資されています；信頼されたコアな証明チェッカもまた最小限で、独立な実装が存在します。
+Leonardo de Moura は2013年に Microsoft Research 在籍時に Lean プロジェクトを立ち上げ、2014年6月16日に Lean 0.1 が正式にリリースされました。Lean プロジェクトの目標は、独立に実装可能な小さな論理カーネルが提供する高い信頼性と、SMTソルバのようなツールの利便性と自動化を組み合わせ、同時に大規模な問題にも対応できるようにすることです。このビジョンは現在も Lean の開発の指針となっており、自動化の改善・性能の向上・使いやすさの向上に投資されています；信頼されたコアな証明チェッカもまた最小限で、独立な実装が存在します。
 
 :::comment
 The initial versions of Lean were primarily configured as C++ libraries in which client code could carry out trustworthy proofs that were independently checkable.
@@ -316,7 +316,7 @@ tag := "technical-terms"
 Uses of {tech}[technical terminology] are frequently hyperlinked to their definition sites, using links like this one.
 :::
 
-{deftech}_専門用語_ とは、このようなリファレンスのような技術資料を書く際に、非常に特殊な意味で使われる用語を指します。 {tech}[専門用語] の使用はこのようなリンクを使ってその定義位置にハイパーリンクされることがよくあります。
+{deftech}_専門用語_ とは、このようなリファレンスのような技術資料を書く際に、非常に特殊な意味で使われる用語を指します。 {tech}[専門用語] の使用に際してはしばしば、このようなリンクを使ってその定義位置にハイパーリンクします。
 
 :::comment
 ## Constant, Syntax, and Tactic References

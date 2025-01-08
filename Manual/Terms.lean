@@ -683,7 +683,7 @@ Lean は関数への暗黙のパラメータをサポートしています。こ
 
   : 通常の暗黙のパラメータ
 
-    通常の {deftech}[暗黙] （implicit）のパラメータは、Lean が単一化によって値を決定すべき関数パラメータです。言い換えると、各呼び出し位置において、関数呼び出し全体が適切に型付けされるような潜在的な引数値を1つだけ持つべきです。Lean エラボレータは関数の各出現に対してすべての暗黙の引数の値を見つけようとします。通常の暗黙のパラメータは波括弧（`{` と `}`）で囲んで記述します。
+    通常の {deftech}[暗黙] （implicit）のパラメータは、Lean が単一化によって値を決定すべき関数パラメータです。言い換えると、各呼び出し位置において、関数呼び出し全体が well-typed な潜在的な引数値を1つだけ持つべきです。Lean エラボレータは関数の各出現に対してすべての暗黙の引数の値を見つけようとします。通常の暗黙のパラメータは波括弧（`{` と `}`）で囲んで記述します。
 
 :::comment
   : Strict implicit parameters
@@ -2410,7 +2410,7 @@ Matching on the depth of a tree and the tree itself leads to a refinement of the
 This means that certain combinations are not well-typed, such as {lean}`0` and {name BalancedTree.branch}`branch`, because refining the second discriminant's type yields {lean}`BalancedTree α 0` which does not match the constructor's type.
 :::
 
-木の深さと木自体でマッチすると、深さのパターンに従って木の型が絞り込まれます。これは {lean}`0` と {name BalancedTree.branch}`branch` のような特定の組み合わせがうまく型付けされないことを意味します。なぜなら、2番目の判別子の型を絞り込むと {lean}`BalancedTree α 0` が生成され、コンストラクタの型と一致しないからです。
+木の深さと木自体でマッチすると、深さのパターンに従って木の型が絞り込まれます。これは {lean}`0` と {name BalancedTree.branch}`branch` のような特定の組み合わせが well-typed ではないことを意味します。なぜなら、2番目の判別子の型を絞り込むと {lean}`BalancedTree α 0` が生成され、コンストラクタの型と一致しないからです。
 
 ````lean (name := patfail) (error := true)
 def BalancedTree.isPerfectlyBalanced (n : Nat) (t : BalancedTree α n) : Bool :=
