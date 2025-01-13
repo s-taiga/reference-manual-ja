@@ -67,7 +67,7 @@ The recursor takes the following parameters:
 
 : 帰納型の {tech}[パラメータ]
 
-  パラメータは一貫しているため、これらは再帰性全体を通して抽象化できます
+  パラメータは一貫しているため、これらは再帰子全体に対して抽象化することができます
 
 :::comment
 : The {deftech}_motive_
@@ -78,7 +78,7 @@ The recursor takes the following parameters:
 
 : {deftech}_動機_ （motive）
 
-  動機は再帰子の適用の型を決定します。動機は型の添字とこれらの添字をインスタンス化した型のインスタンスを引数とする関数です。動機が決定する型の特定の宇宙は帰納型の宇宙とその特定のコンストラクタに依存します。詳細は {ref "subsingleton-elimination"}[{tech}[subsingleton] 除去] の節を参照してください。
+  動機は再帰子の適用の型を決定します。動機は型の添字とこれらの添字をインスタンス化した型のインスタンスを引数とする関数です。動機に決定される型の特定の宇宙は帰納型の宇宙とその特定のコンストラクタに依存します。詳細は {ref "subsingleton-elimination"}[{tech}[subsingleton] 除去] の節を参照してください。
 
 :::comment
 : A case for each constructor
@@ -87,9 +87,9 @@ The recursor takes the following parameters:
 
 :::
 
-: 各コンストラクタのケース
+: 各コンストラクタに対するケース
 
-  それぞれのコンストラクタに対して、再帰子はコンストラクタの任意の適用の動機を満たす関数を期待します。各ケースはコンストラクタのすべてのパラメータを抽象します。コンストラクタのパラメータの型が帰納型そのものである場合、ケースはさらにそのパラメータの値に適用される動機を型とするパラメータを取ります。これは再帰的なパラメータの再帰的な処理結果を受け取ります。
+  それぞれのコンストラクタに対して、再帰子はコンストラクタの任意の適用の動機を満たす関数を期待します。各ケースはコンストラクタのすべてのパラメータを抽象します。コンストラクタのパラメータの型がその帰納型そのものである場合、ケースはさらにそのパラメータの値に適用された動機を型とするパラメータを取ります。これは再帰的なパラメータの再帰的な処理結果を受け取ります。
 
 :::comment
 : The target
@@ -107,7 +107,7 @@ The result type of the recursor is the motive applied to these indices and the t
 
 :::
 
-再帰子の結果の型は、これらの添字とターゲットに適用される動機です。
+再帰子の結果の型は、これらの添字とターゲットに適用された動機です。
 
 :::comment
 ::example "The recursor for {lean}`Bool`"
@@ -128,7 +128,7 @@ The result type of the recursor is the motive applied to these indices and the t
 :::
 
  * 動機は {lean}`Bool` から任意の宇宙における型を計算します。
- * {lean}`false` と {lean}`true` の両方で動機が満たされる両方のコンストラクタのケースが存在します。
+ * {lean}`false` と {lean}`true` の両方で満たされる動機に対する、両方のコンストラクタのケースが存在します。
  * ターゲットはなんらかの {lean}`Bool` です。
 
 :::comment
@@ -175,7 +175,7 @@ axiom α.{u} : Type u
  * 動機は {lean}`List α` から任意の宇宙における型を計算します。宇宙レベル `u` と `v` の間には何の関連もありません。
  * それぞれのコンストラクタのためのケースがあります：
     - この動機は {name}`List.nil` を満たします。
-    - この動機は後続のリストが満たされているならば {name}`List.cons` のどの適用でも満たすことができるはずです。追加のパラメータ `motive tail` は `tail` の型が {name}`List` の再帰的な出現であるためです。
+    - この動機は、後続のリストに対して満たされているならば {name}`List.cons` のどの適用でも満たすことができるべきです。追加のパラメータとして `motive tail` があるのは `tail` の型が {name}`List` の再帰的な出現であるためです。
  * ターゲットはなんらかの {lean}`List` です。
 
 ::::
@@ -226,7 +226,7 @@ The difference comes from the presence of the index:
 
 再帰子 {name}`EvenOddList.rec` は `List` のものと非常に似たものになります。違う箇所は添字の存在に由来します：
  * ここでは動機は任意の添字の選択を抽象化します。
- * {name EvenOddList.nil}`nil` のケースでは、 {name EvenOddList.nil}`nil` の添字の値 `true` に動機を適用しています。
+ * {name EvenOddList.nil}`nil` のケースでは、 {name EvenOddList.nil}`nil` に対応する添字の値 `true` に動機を適用しています。
  * {name EvenOddList.cons}`cons` のケースでは、再帰的な出現で使用される添字の値を抽象化し、その否定で動機をインスタンス化しています。
  * ターゲットでは追加で任意の添字の選択を抽象化しています。
 
@@ -249,7 +249,7 @@ The cases for non-recursive constructors are the base cases, and the additional 
 
 :::
 
-動機に述語（つまり {lean}`Prop` を返す関数）を使用する場合、再帰子は帰納法を表現します。非再帰コンストラクタのケースは基本ケースであり、再帰引数を持つコンストラクタに供給される追加の引数は帰納法の仮定
+動機に述語（つまり {lean}`Prop` を返す関数）を使用する場合、再帰子は帰納法を表現します。非再帰コンストラクタのケースは基本ケースであり、再帰引数を持つコンストラクタに供給される追加の引数は帰納法の仮定です。
 
 :::comment
 ### Subsingleton Elimination
@@ -275,9 +275,9 @@ Propositions that fulfill both of the following requirements are considered to b
 
 :::
 
-Lean において証明は計算上 irrelevant です。言い換えると、ある命題の *ある* 証明が提供されたとき、プログラムが *どの* 証明を受け取ったかをチェックすることは不可能でなければなりません。これは帰納的に定義された命題や述語の再帰子の型に反映されています。これらの型では、定理の証明に複数の可能性がある場合、動機は別の {lean}`Prop` を返すだけです。型が高々1つの証明しかないような構造になっている場合、動機はどの宇宙でも型を返すことができます。高々1つしか存在しない命題を {deftech}_subsingleton_ と呼びます。可能な証明が1つしかないことをユーザに _証明_ することを義務付ける代わりに、命題が subsingleton であるかどうかをチェックするための保守的な構文的近似が使われます。
+Lean において証明は計算上 irrelevant です。言い換えると、ある命題の *ある* 証明が提供されたとき、プログラムが *どの* 証明を受け取ったかをチェックすることは不可能でなければなりません。これは帰納的に定義された命題や述語の再帰子の型に反映されます。これらの型では、定理の証明に複数の可能性がある場合、動機はどれか1つの {lean}`Prop` を返すだけです。型が高々1つの証明しかないような構造になっている場合、動機はどの宇宙でも型を返すことができます。高々1つしか存在しない命題を {deftech}_subsingleton_ と呼びます。可能な証明が1つしかないことをユーザに _証明_ することを義務付ける代わりに、命題が subsingleton であるかどうかをチェックするための保守的な構文的近似が使われます。命題は以下の要件をどちらも満たす場合に subsingleton であると考えられます：
  * コンストラクタを高々1つ持つ
- * 各コンストラクタのパラメータの型は {lean}`Prop` ・パラメータ・添字のいずれかである
+ * コンストラクタのパラメータの各型は {lean}`Prop` ・パラメータ・添字のいずれかである
 
 :::comment
 ::example "{lean}`True` is a subsingleton"
@@ -316,7 +316,7 @@ Note that the motive is an explicit parameter.
 This is because it is not mentioned in any further parameters' types, so it could not be solved by unification.
 :::
 
-動機は明示的なパラメータであることに注意してください。これは動機がそれ以降のパラメータの型において言及されていないため、単一化では解決できなかったからです。
+動機は明示的なパラメータであることに注意してください。これは動機がそれ以降のパラメータの型において言及されていないため、単一化では解決することができないからです。
 
 ::::
 
@@ -361,7 +361,7 @@ The motive's type indicates that {name}`Or.rec` can only be used to produce proo
 A proof of a disjunction can be used to prove something else, but there's no way for a program to inspect _which_ of the two disjuncts was true and used for the proof.
 :::
 
-動機の型は、 {name}`Or.rec` が証明を作成するためにのみ使用できることを示しています。。選言の証明は何かしらを用いることで証明できますが、2つの選言のうち、どちらが真で証明に使われたかをプログラムが推察する方法はありません。
+動機の型は、 {name}`Or.rec` が証明を作成するためにのみ使用できることを示しています。選言の証明は何かしらを証明するために使うことができますが、2つの選言のうち、 _どちらが_ 真であるとして証明に使われたかをプログラムが推察する方法はありません。
 
 ::::
 
@@ -445,7 +445,7 @@ They are conservative: there exist potential inductive types that do not undermi
 
 :::
 
-帰納型の宣言は、多くの適格要件に従います。これらの要件は、Lean が帰納的データ型の新しい規則で拡張された時に、論理としての一貫性が保たれることを保証します。これらの要件は保守的です：一貫性を損なわない帰納型だったとしてもこれらの要件はその帰納型を拒否する可能性があります。
+帰納型の宣言は、多くの適格要件に従います。これらの要件によって、Lean が帰納的データ型の新しい規則で拡張された時に、論理としての一貫性が保たれることが保証されます。これらの要件は保守的です：一貫性を損なわない帰納型だったとしてもこれらの要件はその帰納型を拒否する可能性があります。
 
 :::comment
 ## Universe Levels
@@ -527,7 +527,7 @@ This restriction rules out unsound inductive type definitions, at the cost of al
 
 :::
 
-定義される型がコンストラクタの引数の型に出現する場合は、すべて {deftech}_strictly positive_ な位置になければなりません。ある位置が strictly positive であるとは、それが関数の引数型になく（その周囲にいくつの関数型がネストしていても同様です）、帰納型の型コンストラクタ以外の式の引数でない場合です。この制限により不健全な帰納型の定義は除外されますが、問題のないものも除外されます。
+定義される型がコンストラクタの引数の型に出現する場合は、すべて {deftech}_strictly positive_ な位置になければなりません。ある位置が strictly positive であるとは、それが関数の引数型になく（その周囲にいくつの関数型がネストしていても同様です）、帰納型の型コンストラクタ以外の式の引数でない場合です。この制限により不健全な帰納型の定義は除外されますが、問題のないものも一定数除外されてしまいます。
 
 :::comment
 ::example "Non-strictly-positive inductive types"
@@ -538,7 +538,7 @@ This restriction rules out unsound inductive type definitions, at the cost of al
 The type `Bad` would make Lean inconsistent if it were not rejected:
 :::
 
-`Bad` 型はもし不許可でなければ Lean を矛盾した存在にしてしまいます：
+`Bad` 型がもし不許可でなければ、Lean は矛盾した存在になってしまいます：
 
 ```lean (name := Bad) (error := true)
 inductive Bad where
@@ -672,7 +672,7 @@ First, the equation compiler (which translates recursive functions with pattern 
 :::
 
 Lean のコア型理論が帰納型に対して規定している型コンストラクタ・コンストラクタ・再帰子に加えて、Lean は多くの補助構成を構築しています。まず、等式のコンパイラ（パターンマッチによる再帰関数を再帰子の適用に変換する）はこれらの追加のコンストラクタを使用します：
- * `recOn` は各コンストラクタのケースよりもターゲットが優先される再帰子のバージョンです。
+ * `recOn` は各コンストラクタのケースよりもターゲットが先に来る再帰子のバージョンです。
  * `casesOn` は再帰子のバージョンであり、ターゲットが各コンストラクタのケースより前にあり、再帰的な引数は帰納法の仮定を生成しません。これは原始再帰ではなく、ケース分析を表現しています。
  * `below` はある動機に対して、ターゲットの部分木である帰納型の _すべての_ 住人がその動機を満たすことを表現する型を計算します。これは、帰納法や原始再帰の動機を強再帰や強帰納法の動機に変換します。
  * `brecOn` は `below` を使用して、直前の再帰パラメータだけでなく、すべての部分木へのアクセスを提供する再帰子のバージョンです。これは強帰納法を表現しています。

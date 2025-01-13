@@ -61,7 +61,7 @@ Definitional equality includes the following forms of {deftech}[reduction]:
 
 :::
 
-型を持つことに加えて、項は {deftech}_定義上の等価性_ （definitional equality）によっても関連付けられます。これは機械的にチェック可能な関係であり、計算動作に応じて項を等しくします。定義上の等価性には {deftech}[簡約] （reduction）の以下の形式が含まれます：
+型を持つことに加えて、項は {deftech}_definitional equality_{margin}[訳注：形容詞的に用いることもあり、その場合は definitionally equal と記述されます。] によっても関連付けられます。これは機械的にチェック可能な関係であり、計算動作に応じて項を等しくします。definitional equality には {deftech}[簡約] （reduction）の以下の形式が含まれます：
 
 :::comment
  : {deftech}[β] (beta)
@@ -141,7 +141,7 @@ It also features proof irrelevance, so any two proofs of the same proposition ar
 It is reflexive, symmetric, and a congruence.
 :::
 
-定義上の等価性には関数と単一コンストラクタの帰納型についてのη同値が含まれます。つまり、 {lean}`fun x => f x` は {lean}`f` に定義上等しく、 {lean}`S` がフィールド {lean}`f1` と {lean}`f2` を持つ構造体である時には {lean}`S.mk x.f1 x.f2` は {lean}`x` と定義上等価です。また証明の irrelevance も特徴づけ、同じ命題の2つの証明は定義上等価です。これは反射的・対称的・合同的です。
+definitional equality には関数と単一コンストラクタの帰納型についてのη同値が含まれます。つまり、 {lean}`fun x => f x` は {lean}`f` に definitionally equal であり、 {lean}`S` がフィールド {lean}`f1` と {lean}`f2` を持つ構造体である時には {lean}`S.mk x.f1 x.f2` は {lean}`x` と definitionally equal です。また証明の irrelevance も特徴づけ、同じ命題の2つの証明は definitionally equal です。これは反射的・対称的・合同的です。
 
 ::::
 
@@ -151,7 +151,7 @@ Because definitional equality includes reduction, types can result from computat
 
 :::
 
-定義上の等価性は変換にも用いられます：2つの項が定義上等しく、ある項がその一方を型として持つ場合、その項はもう一方の項も型として持ちます。定義上の等価性は簡約を含むため、データに対する計算から型が生じることがあります。
+definitional equality は変換にも用いられます：2つの項が definitionally equal であり、ある項がその一方を型として持つ場合、その項はもう一方の項も型として持ちます。definitional equality は簡約を含むため、データに対する計算から型が生じることがあります。
 
 :::::keepEnv
 :::comment
@@ -252,7 +252,7 @@ Propositions have the following properties:
 
 :::
 
-: 定義上の証明の irrelevance
+: Definitional proof irrelevance
 
   同じ命題の2つの証明は完全に交換可能です。
 
@@ -603,7 +603,7 @@ Universe-polymorphic definitions in fact create a _schematic definition_ that ca
 ::Manual.example "Universe polymorphism and definitional equality"
 :::
 :::::keepEnv
-::::Manual.example "宇宙多相と定義上の等価性"
+::::Manual.example "宇宙多相と definitional equality"
 
 :::comment
 This can be seen in the following example, in which {lean}`T` is a gratuitously-universe-polymorphic function that always returns {lean}`true`.

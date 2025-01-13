@@ -244,11 +244,7 @@ If in doubt, use {lean}`Unit` until universe errors occur.
 
 {docstring PUnit}
 
-:::comment
 ## Definitional Equality
-:::
-
-## 定義上の等価性（Definitional Equality）
 
 
 :::comment
@@ -258,18 +254,18 @@ All elements of unit-like types are {tech key:="definitional equality"}[definiti
 
 :::
 
-{deftech}_unit-like 型_ （unit-like type）は非証明のパラメータを取らない単一のコンストラクタを持つ帰納型です。 {lean}`PUnit` はそのような型の1つです。unit-like 型のすべての要素は、他のすべての要素を {tech key:="定義上の等価性"}[定義上等しいです] 。
+{deftech}_unit-like 型_ （unit-like type）は非証明のパラメータを取らない単一のコンストラクタを持つ帰納型です。 {lean}`PUnit` はそのような型の1つです。unit-like 型のすべての要素は、他のすべての要素と {tech key:="definitional equality"}[definitionally equal] です。
 
 :::comment
 ::example "Definitional Equality of {lean}`Unit`"
 :::
-::::example "{lean}`Unit` の定義上の等価性"
+::::example "{lean}`Unit` の definitional equality"
 :::comment
 Every term with type {lean}`Unit` is definitionally equal to every other term with type {lean}`Unit`:
 
 :::
 
-{lean}`Unit` 型を持つすべての項は、 {lean}`Unit` 型を持つすべての項と定義上等しいです：
+{lean}`Unit` 型を持つすべての項は、 {lean}`Unit` 型を持つすべての項と definitionally equal tです：
 
 ```lean
 example (e1 e2 : Unit) : e1 = e2 := rfl
@@ -280,7 +276,7 @@ example (e1 e2 : Unit) : e1 = e2 := rfl
 :::comment
 ::example "Definitional Equality of Unit-Like Types"
 :::
-::::example "unit-like 型の定義上の等価性"
+::::example "unit-like 型の definitional equality"
 
 :::comment
 Both {lean}`CustomUnit` and {lean}`AlsoUnit` are unit-like types, with a single constructor that takes no parameters.
@@ -288,7 +284,7 @@ Every pair of terms with either type is definitionally equal.
 
 :::
 
-{lean}`CustomUnit` と {lean}`AlsoUnit` はどちらも unit-like 型であり、パラメータを取らないコンストラクタを1つ持ちます。どちらの型を持つ項のペアも定義上等しいです。
+{lean}`CustomUnit` と {lean}`AlsoUnit` はどちらも unit-like 型であり、パラメータを取らないコンストラクタを1つ持ちます。どちらの型を持つ項のペアも definitionally equal tです。
 
 ```lean
 inductive CustomUnit where
