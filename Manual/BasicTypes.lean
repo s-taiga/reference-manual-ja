@@ -14,6 +14,7 @@ import Manual.BasicTypes.Array
 import Manual.BasicTypes.Fin
 import Manual.BasicTypes.UInt
 import Manual.BasicTypes.Option
+import Manual.BasicTypes.Empty
 
 open Manual.FFIDocType
 
@@ -205,17 +206,8 @@ example (e1 e2 : ProofUnitLike) : e1 = e2 := rfl
 :::
 ::::
 
-# The Empty Type
+{include 0 Manual.BasicTypes.Empty}
 
-:::planned 170
- * What is {lean}`Empty`?
- * Contrast with {lean}`Unit` and {lean}`False`
- * Definitional equality
-:::
-
-{docstring Empty}
-
-{docstring PEmpty}
 
 # Booleans
 
