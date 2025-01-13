@@ -46,7 +46,7 @@ Structures do not add any expressive power to Lean; all of their features are im
 
 :::
 
-{deftech}[構造体] （structure）は単一のコンストラクタを持ち、添字を持たない帰納型です。これらの制限と引き換えに、Lean は構造体のための数々の便利なコードを生成します：アクセサ関数が各フィールドに対して生成される・位置引数ではなくフィールド名に基づく追加のコンストラクタ構文が利用できる・同様の構文を使用して特定の名前付きフィールドの値を書き換えることができる・構造体は他の構造体を拡張することができる。他の帰納型と同様に、構造体も再帰的にすることができます；また strict positivity に関しても同じ制約を受けます。構造体は Lean の表現力を増すものではありません；すべての機能はコード生成の観点から実装されます。
+{deftech}[構造体] （structure）は単一のコンストラクタを持ち、添字を持たない帰納型です。これらの制限と引き換えに、Lean は構造体のための数々の便利なコードを生成します：各フィールドに対して生成される射影関数・位置引数ではなくフィールド名に基づく追加のコンストラクタ構文が利用できる・同様の構文を使用して特定の名前付きフィールドの値を書き換えることができる・構造体は他の構造体を拡張することができる。他の帰納型と同様に、構造体も再帰的にすることができます；また strict positivity に関しても同じ制約を受けます。構造体は Lean の表現力を増すものではありません；構造体のすべての機能はコード生成によって実装されています。
 
 ```lean (show := false)
 -- Test claim about recursive above
@@ -126,7 +126,7 @@ MyStructure.{u, v} : Type (max u v)
 The resulting type is in `Type` rather than `Sort` because the constructor fields quantify over types in `Sort`. In particular, both fields in its constructor {name}`MyStructure.mk` take an implicit type parameter:
 :::
 
-コンストラクタのフィールドは `Sort` の型に対して量化されるため、結果の型は `Type` ではなく `Sort` になります。特に、コンストラクタ {name}`MyStructure.mk` の両方のフィールドは暗黙の型パラメータを取ります：
+コンストラクタのフィールドは `Sort` の型に対して量化されるため、結果の型は `Type` ではなく `Sort` になります。具体的には、コンストラクタ {name}`MyStructure.mk` の両方のフィールドは暗黙の型パラメータを取ります：
 
 ```signature
 MyStructure.mk.{u, v}
@@ -147,7 +147,7 @@ When field types depend on prior fields, the types of the dependent projection f
 
 :::
 
-各フィールドに対してベースとなる型のコンストラクタからフィールドの値を抽出する {deftech}[射影関数] （projection function）が生成されます。この関数は構造体の名前の名前空間に存在します。構造体のフィールドの射影はエラボレータによって特別に処理され（ {ref "structure-inheritance"}[構造体の継承についての節] で説明します）、名前空間を検索する以上の余分なステップが実行されます。フィールドの型が先行するフィールドに依存する場合、依存する射影関数の型は、明示的なパターンマッチではなく、先行する射影の観点から記述されます。
+各フィールドに対してベースとなる型のコンストラクタからフィールドの値を抽出する {deftech}[射影関数] （projection function）が生成されます。この関数は構造体の名前の名前空間に存在します。構造体のフィールドの射影はエラボレータによって特別に処理され（ {ref "structure-inheritance"}[構造体の継承についての節] で説明します）、名前空間を検索する以上の余分なステップが実行されます。フィールドの型が先行するフィールドに依存する場合、依存する射影関数の型は、明示的なパターンマッチではなく、先行する射影によって記述されます。
 
 :::comment
 :: example "Dependent projection types"
@@ -280,7 +280,7 @@ Additionally, providing the default constructor name explicitly is an opportunit
 
 :::
 
-構造体 {lean}`NatStringBimap` は自然数と文字列の間の有限な全単射を保持します。これは写像のペアで構成され、それぞれのキーがもう一方の写像の値として一度だけ出現するようになっています。コンストラクタはプライベートであるため、これを定義したモジュールの外のコードは新しいインスタンスを作成できず、提供されたAPIを使用しなければなりません。このAPIではデータ型の不変量を保持します。さらに、デフォルトのコンストラクタ名を明示的に指定することで、コンストラクタに {tech}[documentation comment] を付けることができます。
+構造体 {lean}`NatStringBimap` は自然数と文字列の間の有限な全単射を保持します。これはマップのペアで構成され、それぞれのキーがもう一方の写像の値として一度だけ出現するようになっています。コンストラクタはプライベートであるため、これを定義したモジュールの外のコードでは新しいインスタンスを作成できず、提供されたAPIを使用しなければなりません。このAPIでは型の不変量を保持します。さらに、デフォルトのコンストラクタ名を明示的に指定することで、コンストラクタに {tech}[documentation comment] を付けることができます。
 
 ```lean
 structure NatStringBimap where
@@ -312,7 +312,7 @@ Additionally, structures may be constructed or matched against using {deftech}_s
 
 :::
 
-構造体は単一コンストラクタの帰納型として表現されるため、そのコンストラクタは {tech}[匿名コンストラクタ構文] を使用して呼び出したり、マッチしたりすることができます。さらに、構造体は {deftech}_構造体インスタンス_ （structure instance）の記法を用いて、フィールドの名前とフィールドの値を使って構築したり、マッチすることができます。
+構造体は単一コンストラクタの帰納型として表現されるため、そのコンストラクタは {tech}[匿名コンストラクタ構文] を使用して呼び出したり、マッチしたりすることができます。さらに、構造体は {deftech}_構造体インスタンス_ （structure instance）の記法を用いて構築したり、マッチすることができます。構造体インスタンスの記法ではフィールド名とそれに紐づく値を含みます。
 
 ::::syntax term (title := "Structure Instances")
 
@@ -342,7 +342,7 @@ Subfields are either a field name or index preceded by a dot, or a term in squar
 
 :::
 
-{syntaxKind}`structInstLVal` はフィールド名（識別子）・フィールドインデックス（自然数）・角括弧内の項のいずれかで、その後に0個以上のサブフィールドが続きます。サブフィールドはドットで始まるフィールド名・インデックス・角括弧内の項のいずれかです。
+{syntaxKind}`structInstLVal` はフィールド名（識別子）・フィールドインデックス（自然数）・大括弧内の項のいずれかで、その後に0個以上のサブフィールドが続きます。サブフィールドはドットで始まるフィールド名・インデックス、もしくは大括弧で囲まれた項のどちらかです。
 
 :::comment
 This syntax is elaborated to applications of structure constructors.
@@ -352,7 +352,7 @@ Terms in square brackets are not allowed when constructing a structure; they are
 
 :::
 
-この構文は、構造体コンストラクタの適用にエラボレートされます。フィールドに提供される値は名前であり、どのような順序で提供されても構いません。サブフィールドに指定された値は、構造体のコンストラクタのフィールドを初期化するために使用されます。角括弧内の項は構造体を構築する際には使用できません；これらは構造体の更新で用いられます。
+この構文は、構造体コンストラクタの適用にエラボレートされます。フィールドに提供される値は名前であり、どのような順序で提供されても構いません。サブフィールドに指定された値は、それ自体がフィールドに含まれる構造体のコンストラクタのフィールドを初期化するために使用されます。大括弧内の項は構造体を構築する際には使用できません；これらは構造体の更新で用いられます。
 
 :::comment
 Field specifiers that do not contain `:=` are field abbreviations.
@@ -368,7 +368,7 @@ If a tactic is specified as the default argument, then it is run at elaboration 
 
 :::
 
-デフォルト値を持たないすべてのフィールドは提供されなければなりません。デフォルトの引数としてタクティクが指定された場合、そのタクティクは引数の値を構築するためにエラボレーション時に実行されます。
+デフォルト値を持たないすべてのフィールドには値を提供されなければなりません。デフォルトの引数としてタクティクが指定された場合、そのタクティクは引数の値を構築するためにエラボレーション時に実行されます。
 
 :::comment
 In a pattern context, field names are mapped to patterns that match the corresponding projection, and field abbreviations bind a pattern variable that is the field's name.
@@ -376,7 +376,7 @@ Default arguments are still present in patterns; if a pattern does not specify a
 
 :::
 
-パターンの文脈では、フィールド名は対応する射影にマッチするパターンにマップされ、フィールドの省略形はフィールド名であるパターン変数を束縛します。デフォルト値を持つフィールドに対してパターンが値を指定しない場合、パターンはデフォルト値のみにマッチします。
+パターンの文脈では、フィールド名は対応する射影にマッチするパターンにマップされ、フィールドの省略形はそのフィールド名を持つパターン変数を束縛します。デフォルト引数はパターンでも出現します；デフォルト値を持つフィールドに対してパターンが値を指定しない場合、パターンはデフォルト値のみにマッチします。
 
 :::comment
 The optional type annotation allows the structure type to be specified in contexts where it is not otherwise determined.
@@ -438,7 +438,7 @@ When updating a structure, array values may also be replaced by including the in
 This updating does not require that the index expression be in bounds for the array, and out-of-bounds updates are discarded.
 :::
 
-コンストラクタの型の値を更新します。 {keywordOf Lean.Parser.Term.structInst}`with` 句の前にある項は構造体型を持つことが期待されます；これが更新される値です。構造体の新しいインスタンスが作成され、指定されていないすべてのフィールドが更新される値からコピーされ、指定されたフィールドは新しい値に置き換えられます。構造体を更新する時、更新するインデックスを角括弧で囲むことで配列の値を置き換えることもできます。この更新では、インデックスの式が配列の範囲内にある必要はなく、範囲外の更新は破棄されます。
+コンストラクタの型の値を更新します。 {keywordOf Lean.Parser.Term.structInst}`with` 句の前にある項は構造体型を持つことが期待されます；これがこれから更新される値です。構造体の新しいインスタンスが作成され、指定されていないすべてのフィールドが更新される値からコピーされ、指定されたフィールドは新しい値に置き換えられます。構造体を更新する時、更新するインデックスを大括弧で囲むことで配列の値を置き換えることもできます。この更新では、インデックスの式が配列の範囲内にある必要はなく、範囲外の更新は破棄されます。
 
 ::::
 
@@ -523,7 +523,7 @@ New default values in the child structure take precedence over default values fr
 
 :::
 
-構造体はオプションの {keywordOf Lean.Parser.Command.declaration (parser:=«structure»)}`extends` 句を使用することで他の構造体を拡張することを宣言できます。結果として得られる構造体型は、すべての親構造体型のすべてのフィールドを持ちます。親構造体型が重複するフィールド名を持つ場合、重複するフィールド名はすべて同じ型を持たなければなりません。重複するフィールド名が異なるデフォルト値を持つ場合、そのフィールドを含む最後の親構造体のデフォルト値が使用されます。子構造体の新しいデフォルト値は、親構造体のデフォルト値よりも優先されます。
+構造体はオプションの {keywordOf Lean.Parser.Command.declaration (parser:=«structure»)}`extends` 句を使用することで複数の他の構造体を拡張することを宣言できます。結果として得られる構造体型は、すべての親構造体型のすべてのフィールドを持ちます。親構造体型が重複するフィールド名を持つ場合、重複するフィールド名はすべて同じ型を持たなければなりません。重複するフィールド名が異なるデフォルト値を持つ場合、そのフィールドを含む最後の親構造体のデフォルト値が使用されます。子構造体の新しいデフォルト値は、親構造体のデフォルト値よりも優先されます。
 
 ```lean (show := false) (keep := false)
 -- If the overlapping fields have different default values, then the default value from the last parent structure that includes the field is used.
@@ -646,7 +646,7 @@ The encoding is, however, visible when using the constructor's name, when using 
 
 :::
 
-結果として得られる構造体の射影はそのフィールドが単に親のフィールドの合併であるかのように使うことができます。Lean のエラボレータは射影に遭遇すると、自動的に適切なアクセサを生成します。同様に、フィールドベースの初期化と構造体の更新の表記は、継承のエンコーディングの詳細を隠します。しかし、このエンコーディングはコンストラクタの名前の使用時・ {tech}[匿名コンストラクタ構文] の使用時・名前ではなくインデックスでフィールドを参照する時には表示されます。
+結果として得られる構造体の射影はそのフィールドが単に親のフィールドの合併であるかのように使うことができます。Lean のエラボレータは射影に遭遇すると、自動的に適切な射影を生成します。同様に、フィールドベースの初期化と構造体の更新の記法は、継承のエンコーディングの詳細を隠します。しかし、このエンコーディングはコンストラクタの名前の使用時・ {tech}[匿名コンストラクタ構文] の使用時・名前ではなくインデックスでフィールドを参照する時には表示されます。
 
 :::comment
 :: example "Field Indices and Structure Inheritance"

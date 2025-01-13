@@ -328,7 +328,7 @@ The structurally recursive version is typically easier to use in contexts where 
 
 :::
 
-多くの反復演算子には、構造的再帰バージョンと末尾再帰バージョンの2種類があります。構造的再帰バージョンは自然数の接頭辞のみが分かっている場合に計算されるため、定義上の等価性が重要な文脈では一般的に使いやすいです。
+多くの反復演算子には、構造的再帰バージョンと末尾再帰バージョンの2種類があります。構造的再帰バージョンは自然数の接頭辞のみが分かっている場合に計算されるため、definitional equality が重要な文脈では一般的に使いやすいです。
 
 {docstring Nat.repeat}
 

@@ -58,10 +58,9 @@
 | datatype | データ型 | |
 | debugging trace | デバッグトレース | |
 | declaration | 宣言 | |
+| declaration modifier | 宣言修飾子 | |
 | definition | 定義 | |
-| definitional (η-)equality | 定義上の(η)等価性 | |
 | definition-like | 定義に類する | |
-| definitional proof irrelevance | 定義上の証明の irrelevance | |
 | dependent | 依存的 | 後ろに何も続かない場合 |
 | dependent function | 依存関数 | |
 | dependent type theory | 依存型理論 | |
@@ -264,7 +263,7 @@
 | singleton | 単集合 | |
 | sort | ソート | |
 | soundness | 健全性 | |
-| square bracket | 角括弧 | |
+| square bracket | 大括弧 | |
 | specialization | 特殊化 | |
 | statement | 文 | |
 | strict implicit parameter | 厳格な暗黙のパラメータ | |
@@ -334,6 +333,8 @@
 | --- | --- |
 | choice node | |
 | cumulative | |
+| definitionally equal, definitional equality, definitional η-equality, definitional proof irrelevance | 型理論由来の用語であり、定訳は無いため |
+| propositional equality | 上記の definitional equality に対置される用語であることから併せて英語のままとした |
 | ellipsis | 他言語でも類似概念があるが、そちらでもそのまま英単語で表現されることが多そうだったため |
 | idiom bracket | https://wiki.haskell.org/Idiom_brackets |
 | inhabited | |

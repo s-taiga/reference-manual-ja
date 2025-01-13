@@ -561,7 +561,7 @@ instance [Monad m] : Monad (IdT m) where
 Because {lean}`IdT m` is definitionally equal to {lean}`m`, the {lean}`MonadLift m (IdT m)` instance doesn't need to modify the action being lifted:
 :::
 
-{lean}`IdT m` は定義上 {lean}`m` と等しいため、 {lean}`MonadLift m (IdT m)` インスタンスはリフトされるアクションを変更する必要はありません：
+{lean}`IdT m` は {lean}`m` と definitionally equal であるため、 {lean}`MonadLift m (IdT m)` インスタンスはリフトされるアクションを変更する必要はありません：
 
 ```lean
 instance : MonadLift m (IdT m) where

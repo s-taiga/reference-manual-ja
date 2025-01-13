@@ -90,17 +90,17 @@ However, the Lean elaborator does not introduce a local binding for non-dependen
 
 :::
 
-Lean のコア言語では、すべての関数型は依存的です：非依存関数型はパラメータ名が値域内に出現しない依存関数型のことです。さらに、パラメータ名が異なる2つの依存関数型について、パラメータ名をリネームしたものが等しい場合、これら2つは定義上等しくなります。しかし、Lean のエラボレータは非依存関数のパラメータにローカル束縛を導入しません。
+Lean のコア言語では、すべての関数型は依存的です：非依存関数型はパラメータ名が値域内に出現しない依存関数型のことです。さらに、パラメータ名が異なる2つの依存関数型について、パラメータ名をリネームしたものが等しい場合、これら2つは definitionally equal になります。しかし、Lean のエラボレータは非依存関数のパラメータにローカル束縛を導入しません。
 
 :::comment
 ::example "Definitional Equality of Dependent and Non-Dependent Functions"
 :::
-::::example "依存・非依存関数の定義上の等価性"
+::::example "依存・非依存関数の definitional equality"
 :::comment
 The types {lean}`(x : Nat) → String` and {lean}`Nat → String` are definitionally equal:
 :::
 
-型 {lean}`(x : Nat) → String` と {lean}`Nat → String` は定義上等価です：
+型 {lean}`(x : Nat) → String` と {lean}`Nat → String` は definitionally equal です：
 
 ```lean
 example : ((x : Nat) → String) = (Nat → String) := rfl
@@ -109,7 +109,7 @@ example : ((x : Nat) → String) = (Nat → String) := rfl
 Similarly, the types {lean}`(n : Nat) → n + 1 = 1 + n` and {lean}`(k : Nat) → k + 1 = 1 + k` are definitionally equal:
 :::
 
-同様に、型 {lean}`(n : Nat) → n + 1 = 1 + n` と {lean}`(k : Nat) → k + 1 = 1 + k` は定義上等価です：
+同様に、型 {lean}`(n : Nat) → n + 1 = 1 + n` と {lean}`(k : Nat) → k + 1 = 1 + k` は definitionally equal です：
 
 
 ```lean
@@ -168,17 +168,17 @@ This information is used by the Lean elaborator, but it does not affect type che
 
 :::
 
-コア型理論には {tech}[暗黙] パラメータの機能はありませんが、関数型にはパラメータが暗黙かどうかの表示があります。この情報は Lean のエラボレータに使用されますが、コア型理論における型チェックや定義上の等価性には影響しないため、コア型理論についてだけ考える場合は無視しても構いません。
+コア型理論には {tech}[暗黙] パラメータの機能はありませんが、関数型にはパラメータが暗黙かどうかの表示があります。この情報は Lean のエラボレータに使用されますが、コア型理論における型チェックや definitional equality には影響しないため、コア型理論についてだけ考える場合は無視しても構いません。
 
 :::comment
 ::example "Definitional Equality of Implicit and Explicit Function Types"
 :::
-::::example "暗黙・明示の関数型の定義上の等価性"
+::::example "暗黙・明示の関数型の definitional equality"
 :::comment
 The types {lean}`{α : Type} → (x : α) → α` and {lean}`(α : Type) → (x : α) → α` are definitionally equal, even though the first parameter is implicit in one and explicit in the other.
 :::
 
-型 {lean}`{α : Type} → (x : α) → α` と {lean}`(α : Type) → (x : α) → α` は最初のパラメータが一方が暗黙的で他方では明示的でありながら、定義上等価です。
+型 {lean}`{α : Type} → (x : α) → α` と {lean}`(α : Type) → (x : α) → α` は最初のパラメータが一方が暗黙的で他方では明示的でありながら definitionally equal です。
 
 ```lean
 example :
@@ -206,7 +206,7 @@ When type checking, there are no such restrictions; the equational theory of def
 
 :::
 
-Lean の型理論では、関数は変数を束縛する {deftech}_関数抽象_ （function abstraction）を使用して作成されます。 {margin}[様々なコミュニティでは、関数抽象は Alonzo Church の記法に由来する _ラムダ式_ としても知られており、グローバル環境で名前を定義する必要がないことから _無名関数_ （anonymous function）としても知られています。] 関数を適用すると、 {tech key:="β"}[β簡約] によって結果が求められます：引数でその束縛変数を置換します。コンパイルされたコードでは、これは正格に行われます：引数はすでに値でなければなりません。型チェックの際には、このような制約はありません；定義上の等価における等式の理論では、どのような項でもβ簡約が許可されます。
+Lean の型理論では、関数は変数を束縛する {deftech}_関数抽象_ （function abstraction）を使用して作成されます。 {margin}[様々なコミュニティでは、関数抽象は Alonzo Church の記法に由来する _ラムダ式_ としても知られており、グローバル環境で名前を定義する必要がないことから _無名関数_ （anonymous function）としても知られています。] 関数を適用すると、 {tech key:="β"}[β簡約] によって結果が求められます：引数でその束縛変数を置換します。コンパイルされたコードでは、これは正格に行われます：引数はすでに値でなければなりません。型チェックの際には、このような制約はありません；definitional equality における等式の理論では、どのような項でもβ簡約が許可されます。
 
 :::comment
 In Lean's {ref "function-terms"}[term language], function abstractions may take multiple parameters or use pattern matching.
@@ -258,7 +258,7 @@ To a first approximation, this means that two functions are definitionally equal
 
 :::
 
-Lean における関数の定義上の等価性は {deftech}_内包的_ （intensional）です。つまり、この定義上の等価性は、束縛変数のリネームと {tech}[簡約] によって _構文上_ （syntactically）で定義されます。大まかに言えば、これは2つの関数が同じアルゴリズムを実装していれば定義上等しいということを意味し、定義域の等しい要素を値域の等しい要素にマッピングしていれば等しいという通常の数学的な等値性の概念とは異なります。
+Lean における関数の definitional equality は {deftech}_内包的_ （intensional）です。つまり、この definitional equality は、束縛変数のリネームと {tech}[簡約] によって _構文上_ （syntactically）で定義されます。大まかに言えば、これは2つの関数が同じアルゴリズムを実装していれば definitionally equal であるということを意味し、定義域の等しい要素を値域の等しい要素にマッピングしていれば等しいという通常の数学的な等値性の概念とは異なります。
 
 :::comment
 Definitional equality is used by the type checker, so it's important that it be predictable.
@@ -269,7 +269,7 @@ Function extensionality is instead made available as a reasoning principle that 
 
 :::
 
-定義上の等価性は型チェッカで使用されるため、予測可能であることが重要です。内包的な等価性の構文的特徴によって、それをチェックするアルゴリズムが適切に指定できます。外延的な等価性のチェックには、関数の等価性に関する本質的に任意の定理を証明する必要があり、それをチェックするアルゴリズムの明確な仕様はありません。このため、外延的な等価性は型チェッカに向きません。その代わりに関数の外延性は、2つの関数が等しいという {tech}[命題] を証明する時に推論原理として利用できるようになっています。
+definitional equality は型チェッカで使用されるため、予測可能であることが重要です。内包的な等価性の構文的特徴によって、それをチェックするアルゴリズムが適切に指定できます。外延的な等価性のチェックには、関数の等価性に関する本質的に任意の定理を証明する必要があり、それをチェックするアルゴリズムの明確な仕様はありません。このため、外延的な等価性は型チェッカに向きません。その代わりに関数の外延性は、2つの関数が等しいという {tech}[命題] を証明する時に推論原理として利用できるようになっています。
 
 ::::keepEnv
 ```lean (show := false)
@@ -286,7 +286,7 @@ In addition to reduction and renaming of bound variables, definitional equality 
 Given {lean}`f` with type {lean}`(x : α) → β x`, {lean}`f` is definitionally equal to {lean}`fun x => f x`.
 :::
 
-束縛変数の簡約とリネームに加えて、 {deftech}[η同値] （η-equivalence）と呼ばれる外延性の1つの限定された形式をサポートします。これは、ある関数とその本体が引数に適用されている抽象と等しいことを指します。 {lean}`f` の型が {lean}`(x : α) → β x` であるとすると、 {lean}`f` は {lean}`fun x => f x` と定義上等価です。
+束縛変数の簡約とリネームに加えて、 {deftech}[η同値] （η-equivalence）と呼ばれる外延性の1つの限定された形式をサポートします。これは、ある関数とその本体が引数に適用されている抽象と等しいことを指します。 {lean}`f` の型が {lean}`(x : α) → β x` であるとすると、 {lean}`f` は {lean}`fun x => f x` と definitionally equal です。
 
 ::::
 

@@ -495,7 +495,7 @@ Hiding proofs is controlled by two options: {option}`pp.proofs` turns the featur
 
 :::
 
-証明状態の項は非常に大きくなることがあり、多くの仮定が存在することもあります。定義上の証明の irrelevance により通常、証明項はほとんど有用な情報を与えません。デフォルトでは、 {deftech}_アトミック_ でない限り、証明状態のゴールには表示されません。アトミックとは部分項を持たないことを意味します。証明の非表示は2つのオプションで制御できます： {option}`pp.proofs` はこの機能のオン・オフを切り替え、 {option}`pp.proofs.threshold` は証明の非表示のサイズ閾値を決定します。
+証明状態の項は非常に大きくなることがあり、多くの仮定が存在することもあります。definitional proof irrelevance により通常、証明項はほとんど有用な情報を与えません。デフォルトでは、 {deftech}_アトミック_ でない限り、証明状態のゴールには表示されません。アトミックとは部分項を持たないことを意味します。証明の非表示は2つのオプションで制御できます： {option}`pp.proofs` はこの機能のオン・オフを切り替え、 {option}`pp.proofs.threshold` は証明の非表示のサイズ閾値を決定します。
 
 :::comment
 ::example "Hiding Proof Terms"
@@ -1470,7 +1470,7 @@ These operators allow this default to be adjusted for some part of a tactic scri
 
 :::
 
-デフォルトでは、定義上の等価性をチェックする時を除いて、reducible とマークされた定義だけが展開されます。これらの演算子により、タクティクスクリプトの一部でこのデフォルトを調整することができます。
+デフォルトでは、definitional equality をチェックする時を除いて、reducible とマークされた定義だけが展開されます。これらの演算子により、タクティクスクリプトの一部でこのデフォルトを調整することができます。
 
 :::tactic Lean.Parser.Tactic.withReducibleAndInstances
 :::

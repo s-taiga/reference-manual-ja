@@ -103,7 +103,7 @@ Aside from that, they are named according to a system of prefixes and suffixes t
 
 : `d-` 接頭辞
 
-  定義上成立する書き換えのみを単純化します
+  definitionally に成立する書き換えのみを単純化します
 
 :::comment
 : `-_all` suffix
@@ -347,7 +347,7 @@ The simplifier has three kinds of rewrite rules:
 
 : 定義の展開
 
-  単純化器はデフォルトで {tech}[reducible] な定義のみを展開します。しかし、任意の {tech}[semi-reducible] または {tech}[irreducible] な定義用に書き換え規則を追加して、単純化器が同様にそれらを展開するようにできます。単純化器が定義上モード（ {tactic}`dsimp` とその亜種）で動作している場合、定義の展開は定義された名前をその値で置き換えるだけです；それ以外では、等式のコンパイラから提供された等式の補題も使用します。
+  単純化器はデフォルトで {tech}[reducible] な定義のみを展開します。しかし、任意の {tech}[semi-reducible] または {tech}[irreducible] な定義用に書き換え規則を追加して、単純化器が同様にそれらを展開するようにできます。単純化器が definitionally モード（ {tactic}`dsimp` とその亜種）で動作している場合、定義の展開は定義された名前をその値で置き換えるだけです；それ以外では、等式のコンパイラから提供された等式の補題も使用します。
 
 :::comment
 : Equational lemmas

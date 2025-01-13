@@ -421,7 +421,7 @@ The {name}`ToString` instance represents the constructors of {name}`Syntax` as f
  * {name Syntax.ident}`ident` コンストラクタはベースになっている名前として表現されます。ソース情報と事前解決された名前は表示されません。
  * {name Syntax.atom}`atom` コンストラクタは文字列として表現されます。
  * {name Syntax.missing}`missing` コンストラクタは `<missing>` で表現されます。
- * {name Syntax.node}`node` コンストラクタの表現は種別に依存します。もし種別が ``​`null`` の場合、ノードは角括弧で囲まれた子ノードで表現されます。そうでない場合、ノードはその種別とその子ノードで表現され、どちらも括弧で囲まれます。
+ * {name Syntax.node}`node` コンストラクタの表現は種別に依存します。もし種別が ``​`null`` の場合、ノードは大括弧で囲まれた子ノードで表現されます。そうでない場合、ノードはその種別とその子ノードで表現され、どちらも括弧で囲まれます。
 
 :::comment
 ::example "Syntax as Strings"
@@ -1023,14 +1023,14 @@ sepBy1($_:stx, $_:str, $_:stx, allowTrailingSep)
 :::comment
 ::example "Parsing Matched Parentheses and Brackets"
 :::
-::::example "一致した丸括弧と角括弧のパース"
+::::example "一致した丸括弧と大括弧のパース"
 
 :::comment
 A language that consists of matched parentheses and brackets can be defined using syntax rules.
 The first step is to declare a new {tech}[syntax category]:
 :::
 
-一致する丸括弧と角括弧で構成される言語は、構文規則を使って定義することができます。最初のステップは新しい {tech}[構文カテゴリ] を宣言することです：
+一致する丸括弧と大括弧で構成される言語は、構文規則を使って定義することができます。最初のステップは新しい {tech}[構文カテゴリ] を宣言することです：
 
 ```lean
 declare_syntax_cat balanced
@@ -1040,7 +1040,7 @@ Next, rules can be added for parentheses and square brackets.
 To rule out empty strings, the base cases consist of empty pairs.
 :::
 
-次に、丸括弧と角括弧の規則を追加することができます。空の文字列を除外するために、基本ケースは空のペアで構成されます。
+次に、丸括弧と大括弧の規則を追加することができます。空の文字列を除外するために、基本ケースは空のペアで構成されます。
 
 ```lean
 syntax "(" ")" : balanced
@@ -1113,7 +1113,7 @@ example := balanced [() (]]
 A variant of list literals that requires double square brackets and allows a trailing comma can be added with the following syntax:
 :::
 
-二重の角括弧を必要とし、末尾のカンマを許容するリストリテラルの亜種は、以下の構文で追加できます：
+二重の大括弧を必要とし、末尾のカンマを許容するリストリテラルの亜種は、以下の構文で追加できます：
 
 ```lean
 syntax "[[" term,*,? "]]" : term

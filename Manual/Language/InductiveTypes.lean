@@ -34,7 +34,7 @@ Inductive types may have any number of constructors; these constructors introduc
 
 :::
 
-{deftech}_帰納型_ （inductive type）は Lean に新しい型を導入する主な手段です。 {tech}[宇宙] と {tech}[関数] は組み込みのプリミティブでユーザが追加することはできませんが、Lean の他のすべての型は帰納型であるか、宇宙・関数・帰納型によって定義されたものであるかのどちらかです。帰納型は {deftech}_型コンストラクタ_ （type constructor）{index}[type constructor] と {deftech}_コンストラクタ_ （constructor） {index}[constructor] によって指定されます；帰納型の性質はこれらから導かれます。各帰納型は1つの型コンストラクタを持ち、 {tech}[宇宙パラメータ] と通常のパラメータの両方を取ることができます。帰納型は任意の数のコンストラクタを持つことができます；これらのコンストラクタは帰納型の型コンストラクタによって型が導かれる新しい値を導入します。
+{deftech}_帰納型_ （inductive type）は Lean に新しい型を導入する主な手段です。 {tech}[宇宙] と {tech}[関数] は組み込みのプリミティブでユーザが追加することはできませんが、Lean の他のすべての型は帰納型であるか、宇宙・関数・帰納型によって定義されたものであるかのどちらかです。帰納型は {deftech}_型コンストラクタ_ （type constructor）{index}[type constructor] と {deftech}_コンストラクタ_ （constructor） {index}[constructor] によって指定されます；帰納型の性質はこれらから導かれます。各帰納型は1つの型コンストラクタを持ち、 {tech}[宇宙パラメータ] と通常のパラメータの両方を取ることができます。帰納型は任意の数のコンストラクタを持つことができます；これらのコンストラクタは帰納型の型コンストラクタによってもたらされた型を持つ新しい値を導入します。
 
 :::comment
 Based on the type constructor and the constructors for an inductive type, Lean derives a {deftech}_recursor_{index}[recursor]{see "recursor"}[eliminator].
@@ -45,7 +45,7 @@ Lean additionally produces a number of helper constructions based on the recurso
 
 :::
 
-帰納型の型コンストラクタとコンストラクタに基づいて、Lean は {deftech}_再帰子_{index}[recursor]{see "recursor"}[eliminator] （recursor）を導出します。論理的には、再帰子は帰納原理や除去則を表し、計算上は原始再帰計算を表します。再帰関数の停止は、再帰子の使用に変換することで正当化されるため、Lean のカーネルは再帰子の適用の型チェックを行うだけでよく、停止性の分析を別途行う必要はありません。Lean はさらに、システムの他の場所でも使用される再帰子 {margin}[_再帰子_ という用語は再帰的でない型でも常に使用されます。] に基づいた数多くの補助的な構成を提供しています。
+帰納型の型コンストラクタとコンストラクタに基づいて、Lean は {deftech}_再帰子_{index}[recursor]{see "recursor"}[eliminator] （recursor）を導出します。論理的には、再帰子は帰納原理や除去則を表し、計算上は原始再帰計算を表します。再帰関数の停止は、再帰子の使用に変換することで正当化されるため、Lean のカーネルは再帰子の適用の型チェックを行うだけでよく、停止性の分析を別途行う必要はありません。Lean はさらに再帰子 {margin}[_再帰子_ という用語は再帰的でない型でも常に使用されます。] に基づいた数多くの補助的な構成を提供しており、これはシステムの他の場所でも使用されます。
 
 :::comment
 _Structures_ are a special case of inductive types that have exactly one constructor.
@@ -60,13 +60,13 @@ This section describes the specific details of the syntax used to specify both i
 
 :::
 
-本節では、帰納型と構造体の両方を指定するために使用される構文の具体的な詳細・帰納型の宣言から生じる環境内の新しい定数と定義・コンパイルされたコードにおける帰納型の値のランタイム表現について説明します。
+本節では、帰納型と構造体の両方を指定するために使用される構文の具体的な詳細・帰納型の宣言から生じる環境内における新しい定数と定義・コンパイルされたコードにおける帰納型の値のランタイム表現について説明します。
 
 :::comment
 # Inductive Type Declarations
 :::
 
-# 帰納型の宣言
+# 帰納型の宣言（Inductive Type Declarations）
 %%%
 tag := "inductive-declarations"
 %%%
@@ -119,7 +119,7 @@ If no signature is provided, then the constructor's type is inferred by insertin
 
 :::
 
-コンストラクタの仕様は {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`where` の後に続きます。コンストラクタは必須ではありません。コンストラクタのない帰納型としては {lean}`False` と {lean}`Empty` などがまさに当てはまります。各コンストラクタの指定は、縦棒（`'|'`、Unicode `'VERTICAL BAR' (U+007c)`）・宣言修飾子・名前で始まります。名前は {tech}[生識別子] です。宣言シグネチャは名前の後に続きます。シグネチャは帰納的宣言の適格要件に従って任意のパラメータを指定することができますが、シグネチャの戻り型は指定された帰納型の型コンストラクタを完全に適用したものでなければなりません。シグネチャが提供されない場合、コンストラクタの型は適格な戻り値を構成するのに十分な暗黙のパラメータを挿入することによって推測されます。
+コンストラクタの仕様は {keywordOf Lean.Parser.Command.declaration (parser:=«inductive»)}`where` の後に続きます。コンストラクタは必須ではありません。コンストラクタのない帰納型である {lean}`False` と {lean}`Empty` などは完全に合法です。各コンストラクタの指定は、縦棒（`'|'`、Unicode `'VERTICAL BAR' (U+007c)`）・宣言修飾子・名前で始まります。名前は {tech}[生識別子] です。名前の後に宣言シグネチャが続きます。このシグネチャは帰納的宣言の適格要件に従って任意のパラメータを指定することができますが、シグネチャの戻り型は指定された帰納型の型コンストラクタを完全に適用したものでなければなりません。シグネチャが提供されない場合、コンストラクタの型は適格な戻り値を構成するのに十分な暗黙のパラメータを挿入することによって推測されます。
 
 :::comment
 The new inductive type's name is defined in the {tech}[current namespace].
@@ -127,13 +127,13 @@ Each constructor's name is in the inductive type's namespace.{index subterm:="of
 
 :::
 
-新しい帰納型の名前は {tech}[現在の名前空間] で定義されます。各コンストラクタの名前は帰納型の名前空間にあります。 {index subterm:="of inductive type"}[namespace]
+新しい帰納型の名前は {tech}[現在の名前空間] で定義されます。各コンストラクタの名前は帰納型の名前空間に含まれます。 {index subterm:="of inductive type"}[namespace]
 
 :::comment
 ## Parameters and Indices
 :::
 
-## パラメータと添字
+## パラメータと添字（Parameters and Indices）
 %%%
 tag := "inductive-datatypes-parameters-and-indices"
 %%%
@@ -147,7 +147,7 @@ All parameters must precede all indices in the type constructor's signature.
 
 :::
 
-型コンストラクタは2種類の引数を取ることができます： {deftech}_パラメータ_ {index subterm:="of inductive type"}[parameter] （parameter）と {deftech key:="index"}_添字_ {index subterm:="of inductive type"}[index] （index, indices）です。パラメータは定義全体で一貫して使用されなければなりません；宣言内の各コンストラクタで型コンストラクタが出現する場合は、すべて正確に同じ引数を取る必要があります。添字は型コンストラクタの出現箇所によって異なっていてもかまいません。すべてのパラメータは、型コンストラクタのシグネチャのすべての添字の前にいなければなりません。
+型コンストラクタは2種類の引数を取ることができます： {deftech}_パラメータ_ {index subterm:="of inductive type"}[parameter] （parameter）と {deftech}_添字_ {index subterm:="of inductive type"}[index] （index, indices）です。パラメータは定義全体で一貫して使用されなければなりません；宣言内の各コンストラクタで型コンストラクタが出現する場合は、すべて正確に同じ引数を取る必要があります。添字は型コンストラクタの出現箇所によって異なっていてもかまいません。すべてのパラメータは、型コンストラクタのシグネチャのすべての添字の前にいなければなりません。
 
 :::comment
 Parameters that occur prior to the colon (`':'`) in the type constructor's signature are considered parameters to the entire inductive type declaration.
@@ -158,7 +158,7 @@ An index could have been a parameter if all of its type dependencies are themsel
 
 :::
 
-型コンストラクタのシグネチャのコロン（`':'`）より前に現れるパラメータは帰納型宣言全体に対するパラメータと見なされます。これらは常に型の定義全体を通して一様でなければならないパラメータです。一般的に言えば、コロンの後にあるパラメータは型の定義全体を通して変化する可能性のある添字です。しかし、オプション {option}`inductive.autoPromoteIndices` が {lean}`true` の場合、パラメータになる可能性のある構文としては添字のものがパラメータになります。添字がパラメータである可能性があるのは、その型の依存関係がすべてパラメータであり、帰納型の型コンストラクタのすべてのコンストラクタで一律にインスタンス化されていない変数として使用される場合です。
+型コンストラクタのシグネチャのコロン（`':'`）より前に現れるパラメータはその帰納型宣言全体に対するパラメータと見なされます。これらは常にその型の定義全体を通して一様でなければならないパラメータです。一般的に言えば、コロンの後にあるパラメータは添字であり、型の定義全体を通して変化させることができます。しかし、オプション {option}`inductive.autoPromoteIndices` が {lean}`true` の場合、構文としては添字でありながらパラメータになる可能性のあるものがパラメータとなります。添字がパラメータである可能性があるのは、その型の依存関係がすべてパラメータであり、帰納型の型コンストラクタのすべてのコンストラクタで一律にインスタンス化されていない変数として使用される場合です。
 
 {optionDocs inductive.autoPromoteIndices}
 
@@ -175,7 +175,7 @@ Type constructors with indices are said to specify {deftech}_indexed families_ {
 ## Example Inductive Types
 :::
 
-## 帰納型の例
+## 帰納型の例（Example Inductive Types）
 %%%
 tag := "example-inductive-types"
 %%%
@@ -382,7 +382,7 @@ In this declaration, {lean}`α` is a {tech}[parameter], because it is used consi
 {lean}`b` is an {tech}[index], because different {lean}`Bool` values are used for it at different occurrences.
 :::
 
-この宣言では、 {lean}`α` は {tech}[パラメータ] です。なぜなら、これは {name}`EvenOddList` のすべての出現で一貫して使用されているからです。 {lean}`b` は {tech}[index] であり、異なる出現で異なる {lean}`Bool` 値が使用されるからです。
+この宣言では、 {lean}`α` は {tech}[パラメータ] です。なぜなら、これは {name}`EvenOddList` のすべての出現で一貫して使用されているからです。 {lean}`b` は {tech}[添字] であり、異なる出現で異なる {lean}`Bool` 値が使用されるからです。
 
 ::::
 
@@ -424,7 +424,7 @@ inductive Either (α : Type u) (β : Type v) : Type (max u v) where
 In this version, there are two types named `α` that might not be identical:
 :::
 
-このバージョンでは `α` という名前の型が2つあり、同一ではないかもしれません：
+このバージョンでは `α` という名前の型が2つあり、これらは同一ではないかもしれません：
 
 ```lean (name := Either') (error := true)
 inductive Either' (α : Type u) (β : Type v) : Type (max u v) where
@@ -463,7 +463,7 @@ inductive Either'' : Type u → Type v → Type (max u v) where
 ## Anonymous Constructor Syntax
 :::
 
-## 匿名コンストラクタ構文
+## 匿名コンストラクタ構文（Anonymous Constructor Syntax）
 %%%
 tag := "anonymous-constructor-syntax"
 %%%
@@ -542,7 +542,7 @@ def AtLeastOne.head' : AtLeastOne α → α
 ## Deriving Instances
 :::
 
-## インスタンスの導出
+## インスタンスの導出（Deriving Instances）
 %%%
 tag := "inductive-declarations-deriving-instances"
 %%%
@@ -561,7 +561,7 @@ Please refer to {ref "deriving-instances"}[the section on instance deriving] for
 
 {include 0 Manual.Language.InductiveTypes.LogicalModel}
 
-# ランタイム表現
+# ランタイム表現（Run-Time Representation）
 %%%
 tag := "run-time-inductives"
 %%%
@@ -582,7 +582,7 @@ An inductive type's run-time representation depends both on how many constructor
 ## Exceptions
 :::
 
-## 例外
+## 例外（Exceptions）
 %%%
 tag := "inductive-types-runtime-special-support"
 %%%
@@ -713,7 +713,7 @@ However, in cases where some representation is required (such as when they are a
 ## Trivial Wrappers
 :::
 
-## 自明なラッパ
+## 自明なラッパ（Trivial Wrappers）
 %%%
 tag := "inductive-types-trivial-wrappers"
 %%%
@@ -753,7 +753,7 @@ Thus, subtypes impose no runtime overhead in compiled code, and are represented 
 ## Other Inductive Types
 :::
 
-## その他の帰納型
+## その他の帰納型（Other Inductive Types）
 %%%
 tag := "inductive-types-standard-representation"
 %%%
@@ -776,7 +776,7 @@ Elaborating recursive functions to recursors serves to provide reliable terminat
 
 :::
 
-再帰関数は帰納型の再帰子を使用するのではなく、ほとんどのプログラミング言語と同じようにコンパイルされます。再帰関数を再帰子にエラボレートするのは、実行ファイルのコードではなく、信頼された停止の根拠を提供するために役立てられます。
+再帰関数は帰納型の再帰子を使用するのではなく、ほとんどのプログラミング言語と同じようにコンパイルされます。再帰関数の再帰子へのエラボレートは、実行ファイルのコードではなく、信頼された停止の根拠を提供するために役立てられます。
 
 ### FFI
 %%%
@@ -886,7 +886,7 @@ Figure out how to test/validate/CI these statements
 # Mutual Inductive Types
 :::
 
-# 相互帰納型
+# 相互帰納型（Mutual Inductive Types）
 %%%
 tag := "mutual-inductive-types"
 %%%
@@ -911,7 +911,7 @@ This distinction can also be expressed by the choice of one of two mutually indu
 
 :::
 
-先の例の型 {name}`EvenOddList` は真偽値の添字を使用して問題のリストの要素数が偶数か奇数かを選択しました。この区別は、2つの相互帰納型 {name}`EvenList` と {name}`OddList` のどちらかを選択することでも表現できます：
+上述の例の型 {name}`EvenOddList` は真偽値の添字を使用して問題のリストの要素数が偶数か奇数かを選択しました。この区別は、2つの相互帰納型 {name}`EvenList` と {name}`OddList` のどちらかを選択することでも表現できます：
 
 ```lean
 mutual
@@ -938,7 +938,7 @@ invalid dotted identifier notation, unknown identifier `OddList.nil` from expect
 ## Requirements
 :::
 
-## 要件
+## 要件（Requirements）
 %%%
 tag := "mutual-inductive-types-requirements"
 %%%
@@ -951,13 +951,13 @@ This is true even if they could be defined without the `mutual` block, because t
 
 :::
 
-`mutual` ブロックで宣言された帰納型は1つのグループとして扱われます；これらはすべて非相互再帰帰納型の適格な基準を一般化したものを満たさなければなりません。これらは実は相互に再帰的ではないため、`mutual` ブロック無しで定義できた場合でも同様です。
+`mutual` ブロックで宣言された帰納型は1つのグループとして扱われます；これらはすべて非相互再帰帰納型の適格な基準を一般化したものを満たさなければなりません。これらは実際には相互に再帰的ではないため、`mutual` ブロック無しで定義できた場合でも同様です。
 
 :::comment
 ### Mutual Dependencies
 :::
 
-### 相互依存
+### 相互依存（Mutual Dependencies）
 %%%
 tag := "mutual-inductive-types-dependencies"
 %%%
@@ -970,7 +970,7 @@ The constructors of each inductive type may mention the other type constructors 
 
 :::
 
-それぞれの型コンストラクタのシグネチャは、`mutual` グループ内の他の帰納型を参照することなくエラボレートできなければなりません。言い換えると、`mutual` グループ内の帰納型はお互いを引数として取ることはできません。それぞれの帰納型のコンストラクタは、非相互帰納型における再帰的な出現のための制限を一般化したもので、パラメータ型においてグループ内の他の型コンストラクタに言及することができます。
+それぞれの型コンストラクタのシグネチャは、`mutual` グループ内の他の帰納型を参照することなくエラボレートできなければなりません。言い換えると、`mutual` グループ内の帰納型はお互いを引数として取ることはできません。非相互帰納型における再帰的な出現のための制限を一般化したものによって、それぞれの帰納型のコンストラクタはそれらのパラメータの型においてグループ内の他の型コンストラクタに言及することができます。
 
 :::comment
 ::example "Mutual inductive type constructors may not mention each other"
@@ -1009,7 +1009,7 @@ unknown identifier 'FreshList'
 ### Parameters Must Match
 :::
 
-### マッチすべきパラメータ
+### マッチすべきパラメータ（Parameters Must Match）
 %%%
 tag := "mutual-inductive-types-same-parameters"
 %%%
@@ -1032,7 +1032,7 @@ Their indices may differ.
 Even though `Both` and `OneOf` are not mutually recursive, they are declared in the same `mutual` block and must therefore have identical parameters:
 :::
 
-`Both` と `OneOf` は相互再帰的ではありませんが、同じ `mutual` ブロックで宣言されているため、同じパラメータを持たなければなりません：
+`Both` と `OneOf` は相互再帰的ではありませんが、同じ `mutual` ブロックで宣言されているため、同一のパラメータを持たなければなりません：
 
 ```lean (name := bothOptional) (error := true)
 mutual
@@ -1059,7 +1059,7 @@ Even though `Many` and `OneOf` are not mutually recursive, they are declared in 
 They both have exactly one parameter, but `Many`'s parameter is not necessarily in the same universe as `Optional`'s:
 :::
 
-`Many` と `OneOf` は相互再帰的ではありませんが、同じ `mutual` ブロックで宣言されているため、同じパラメータを持たなければなりません。両者は正確に1つのパラメータを持っていますが、`Many` のパラメータは `Optional` のパラメータと同じ宇宙にあるとは限りません：
+`Many` と `OneOf` は相互再帰的ではありませんが、同じ `mutual` ブロックで宣言されているため、同一のパラメータを持たなければなりません。両者は正確に1つのパラメータを持っていますが、`Many` のパラメータは `Optional` のパラメータと同じ宇宙にあるとは限りません：
 
 ```lean (name := manyOptional) (error := true)
 mutual
@@ -1084,7 +1084,7 @@ but is expected to have type
 ### Universe Levels
 :::
 
-### 宇宙レベル
+### 宇宙レベル（Universe Levels）
 %%%
 tag := "mutual-inductive-types-same-universe"
 %%%
@@ -1211,7 +1211,7 @@ In other words, in the type of each parameter to each constructor in all the typ
 :::comment
 :: example "Mutual strict positivity"
 :::
-:::: example "相互に strict positivity"
+:::: example "相互 strict positivity"
 :::comment
 In the following mutual group, `Tm` occurs in a negative position in the argument to `Binding.scope`:
 :::
@@ -1265,7 +1265,7 @@ end
 ## Recursors
 :::
 
-## 再帰子
+## 再帰子（Recursors）
 %%%
 tag := "mutual-inductive-types-recursors"
 %%%
@@ -1280,7 +1280,7 @@ The actual dependency structure between the types is not taken into account; eve
 
 :::
 
-相互帰納型には、非相互に定義された帰納型と同様に、原始再帰子が用意されています。これらの再帰子は、グループ内の他の型を処理しなければならないことを考慮し、それぞれの帰納型に対して動機を持つことになります。`mutual` グループ内のすべての帰納型は同一のパラメータを持つ必要があるため、再帰子はパラメータを最初に受け取り、動機と再帰子の残りの部分を抽象化します。さらに、再帰子はグループの他の型を処理する必要があるため、グループ内の各型コンストラクタについてのケースが必要になります。型の間の実施あの依存構造は考慮されません；相互依存関係が少ないことで追加の動機またはコンストラクタのケースが実際には必要ない場合でも、生成された再帰子はそれらを必要とします。
+相互帰納型には、非相互に定義された帰納型と同様に、原始再帰子が用意されています。これらの再帰子は、グループ内の他の型を処理しなければならないことを考慮し、それぞれの帰納型に対して動機を持つことになります。`mutual` グループ内のすべての帰納型は同一のパラメータを持つ必要があるため、再帰子はパラメータを最初に受け取り、動機と再帰子の残りの部分を抽象化します。さらに、再帰子はグループの他の型を処理する必要があるため、グループ内の各型コンストラクタについてのケースが必要になります。型の間の実際の依存構造は考慮されません；相互依存関係が少ないことで追加の動機またはコンストラクタのケースが実際には必要ない場合でも、生成された再帰子はそれらを必要とします。
 
 :::comment
 :: example "Even and odd"
@@ -1359,7 +1359,7 @@ Two.rec.{u} {α : Type}
 ## Run-Time Representation
 :::
 
-## ランタイム表現
+## ランタイム表現（Run-Time Representation）
 %%%
 tag := "mutual-inductive-types-run-time"
 %%%

@@ -90,7 +90,7 @@ When a term of type {lean}`n β` is expected, but the provided term has type {le
 There are the following possibilities:
 :::
 
-{lean}`n β` 型の項が期待されているが、提供された項が {lean}`m α` 型であり、2つの型が定義上等しくない場合、Lean はエラーを報告する前に持ち上げと強制の挿入を試みます。これには以下の可能性があります：
+{lean}`n β` 型の項が期待されているが、提供された項が {lean}`m α` 型であり、2つの型が definitionally equal ではない場合、Lean はエラーを報告する前に持ち上げと強制の挿入を試みます。これには以下の可能性があります：
 
 :::comment
  1. If {lean}`m` and {lean}`n` can be unified to the same monad, then {lean}`α` and {lean}`β` are not the same.

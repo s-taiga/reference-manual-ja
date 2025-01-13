@@ -297,11 +297,11 @@ The language implemented by the kernel is a version of the Calculus of Construct
 カーネルが実装する言語は Calculus of Constructions の一種で、以下の特徴を持つ依存型理論です：
 + 完全な依存型
 + 相互に帰納的であったり、他の帰納型の下で入れ子になった再帰を含んだりする帰納的に定義された型
-+ {tech}[非可述] ・定義上証明と irrelevant な {tech}[命題] の拡張的 {tech}[宇宙]
++ {tech}[非可述] ・definitionally proof-irrelevant な {tech}[命題] の拡張的 {tech}[宇宙]
 + {tech}[可述] なデータの宇宙の非蓄積な階層
-* 定義上の計算規則を伴った {ref "quotients"}[商型] （Quotient type）
-+ 命題上の関数外延性 {margin}[関数外延性は商型を使って証明できる定理ですが、重要な帰結であるため別で挙げておきます。]
-+ 関数と積についての定義上のη等価性
+* definitional な計算規則を伴った {ref "quotients"}[商型] （Quotient type）
++ propositional な関数外延性 {margin}[関数外延性は商型を使って証明できる定理ですが、重要な帰結であるため別で挙げておきます。]
++ 関数と積についての definitional η-equality
 + 宇宙多相定義
 + 一貫性： {lean}`False` 型の閉項で公理にとらわれないものは存在しません
 
@@ -342,7 +342,7 @@ In practice, apparent non-termination is indistinguishable from sufficiently slo
 These metatheoretic properties are a result of having impredicativity, quotient types that compute, definitional proof irrelevance, and propositional extensionality; these features are immensely valuable both to support ordinary mathematical practice and to enable automation.
 :::
 
-Lean の型理論には subject reduction の機能はなく、定義上の等価性は必ずしも推移的ではなく、型チェッカが停止しないようにすることも可能です。これらのメタ理論的な特性はいずれも実際には問題になりません。推移性が失敗するのは非常にまれであり、知る限りではそれを行使するために特別にコードを作成した場合を除き非停止は発生していません。最も重要なことは、論理的健全性に影響がないことです。実際には、見かけ上の非停止は十分に遅いプログラムと区別がつきません。これらのメタ理論的特性は、非可述性・計算する商型・定義上の証明の irrelevance・命題上の外延性からの帰結です；これらの機能は、通常の数学的実践をサポートする上でも、自動化を可能にする上でも非常に価値があります。
+Lean の型理論には subject reduction の機能はなく、definitional equality は必ずしも推移的ではなく、型チェッカが停止しないようにすることも可能です。これらのメタ理論的な特性はいずれも実際には問題になりません。推移性が失敗するのは非常にまれであり、知る限りではそれを行使するために特別にコードを作成した場合を除き非停止は発生していません。最も重要なことは、論理的健全性に影響がないことです。実際には、見かけ上の非停止は十分に遅いプログラムと区別がつきません。これらのメタ理論的特性は、非可述性・計算する商型・definitional proof irrelevance・propositional な外延性からの帰結です；これらの機能は、通常の数学的実践をサポートする上でも、自動化を可能にする上でも非常に価値があります。
 
 :::comment
 # Elaboration Results
@@ -431,7 +431,7 @@ To provide a uniform interface to functions defined via structural and well-foun
 In the function's namespace, `eq_unfold` relates the function directly to its definition, `eq_def` relates it to the definition after instantiating implicit parameters, and $`N` lemmas `eq_N` relate each case of its pattern-matching to the corresponding right-hand side, including sufficient assumptions to indicate that earlier branches were not taken.
 :::
 
-構造的に単純な再帰関数の場合、その翻訳は型の再帰子を使用します。このような関数はカーネルで実行すると比較的効率的である傾向があり、定義された等式が定義上成立し、理解も容易です。型の再帰子で捕捉できないその他のパターンの再帰を使用する関数は {deftech}[整礎再帰] （well-founded recursion）を使用して翻訳されます。これは各再帰呼び出しのたびに何かしらの {deftech}_測度_ （measure）が減少することの証明のもとの構造的な再帰です。Lean はこれらのケースの多くを自動的に導出できますが、手作業での証明が必要なものもあります。整礎再帰はより柔軟なものですが、測度が減少することを示す証明項が定義する等式が成立するのは命題上だけであるため、結果として得られる関数はカーネルでの実行速度が遅くなることが多いです。構造的で整礎な再帰によって定義された関数に統一されたインタフェースを提供し、それ自身の正しさをチェックするために、エラボレータは関数をもとの定義に関連付ける等式の補題を証明します。関数の名前空間において、`eq_unfold` は関数を直接定義に、`eq_def` は暗黙のパラメータをインスタンス化した後の定義に、 $`N` 個の補題 `eq_N` はパターンマッチの各ケースと対応する右辺に、それぞれ関連付けます。これにはそれより前の分岐が取られないことの十分な仮定を含みます。
+構造的に単純な再帰関数の場合、その翻訳は型の再帰子を使用します。このような関数はカーネルで実行すると比較的効率的である傾向があり、定義された等式が definitionally に成立し、理解も容易です。型の再帰子で捕捉できないその他のパターンの再帰を使用する関数は {deftech}[整礎再帰] （well-founded recursion）を使用して翻訳されます。これは各再帰呼び出しのたびに何かしらの {deftech}_測度_ （measure）が減少することの証明のもとの構造的な再帰です。Lean はこれらのケースの多くを自動的に導出できますが、手作業での証明が必要なものもあります。整礎再帰はより柔軟なものですが、測度が減少することを示す証明項が定義する等式が成立するのは propositional としてだけであるため、結果として得られる関数はカーネルでの実行速度が遅くなることが多いです。構造的で整礎な再帰によって定義された関数に統一されたインタフェースを提供し、それ自身の正しさをチェックするために、エラボレータは関数をもとの定義に関連付ける等式の補題を証明します。関数の名前空間において、`eq_unfold` は関数を直接定義に、`eq_def` は暗黙のパラメータをインスタンス化した後の定義に、 $`N` 個の補題 `eq_N` はパターンマッチの各ケースと対応する右辺に、それぞれ関連付けます。これにはそれより前の分岐が取られないことの十分な仮定を含みます。
 
 :::::keepEnv
 :::comment

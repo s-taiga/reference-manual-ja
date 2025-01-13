@@ -125,7 +125,7 @@ Thus, type class instance synthesis is also a means of constructing programs in 
 
 :::
 
-通常の多相定義は単に任意のパラメータでインスタンス化されることを想定していますが、型クラスでオーバーロードされる演算子は特定のパラメータセットに対してオーバーロードされる演算を定義する {deftech}_インスタンス_ （instance）としてインスタンス化されます。これらの {deftech}[インスタンス暗黙] （instance-implicit）パラメータは角括弧で示されます。呼び出しの際において、Lean は利用可能な候補から適切なインスタンスを {deftech key:="synthesis"}_統合_ {index}[instance synthesis] {index subterm:="of type class instances"}[synthesis] （synthesize）するかエラーを通知します。インスタンスはそれ自身がインスタンスパラメータを持つことがあるため、この検索プロセスは再帰的であり、様々なインスタンスからのコードを組み合わせた最終的な合成インスタンス値になる可能性があります。このように型クラスのインスタンス統合は型指向の流儀によるプログラムを構築する手段でもあります。
+通常の多相定義は単に任意のパラメータでインスタンス化されることを想定していますが、型クラスでオーバーロードされる演算子は特定のパラメータセットに対してオーバーロードされる演算を定義する {deftech}_インスタンス_ （instance）としてインスタンス化されます。これらの {deftech}[インスタンス暗黙] （instance-implicit）パラメータは大括弧で示されます。呼び出しの際において、Lean は利用可能な候補から適切なインスタンスを {deftech key:="synthesis"}_統合_ {index}[instance synthesis] {index subterm:="of type class instances"}[synthesis] （synthesize）するかエラーを通知します。インスタンスはそれ自身がインスタンスパラメータを持つことがあるため、この検索プロセスは再帰的であり、様々なインスタンスからのコードを組み合わせた最終的な合成インスタンス値になる可能性があります。このように型クラスのインスタンス統合は型指向の流儀によるプログラムを構築する手段でもあります。
 
 :::comment
 Here are some typical use cases for type classes:
@@ -423,7 +423,7 @@ Two instances of the same class with the same parameters are not necessarily ide
 
 :::
 
-型がクラスであるかどうかは定義上の等価性には影響しません。同じパラメータを持つ同じクラスの2つのインスタンスは必ずしも同一ではなく、実際には大きく異なる可能性があります。
+型がクラスであるかどうかは definitional equality には影響しません。同じパラメータを持つ同じクラスの2つのインスタンスは必ずしも同一ではなく、実際には大きく異なる可能性があります。
 
 :::comment
 ::example "Instances are Not Unique"

@@ -710,7 +710,7 @@ Lean は関数への暗黙のパラメータをサポートしています。こ
 
   : インスタンス暗黙のパラメータ
 
-    {deftech}_インスタンス暗黙_ （instance implicit）のパラメータは {ref "instance-synth"}[型クラス統合] を介して見つかります。インスタンス暗黙のパラメータは角括弧（`[` と `]`）で囲まれます。他の種類の暗黙のパラメータとは異なり、インスタンス暗黙のパラメータは `:` 無しで記述され、名前を指定するのではなく、パラメータの型を指定します。さらに、単一の名前しか許されません。関数のパラメータとして統合されたインスタンスは、明示的に名前をつけなくても関数の本体ですでに利用可能であるため、ほとんどのインスタンス暗黙のパラメータはパラメータ名を省略します。
+    {deftech}_インスタンス暗黙_ （instance implicit）のパラメータは {ref "instance-synth"}[型クラス統合] を介して見つかります。インスタンス暗黙のパラメータは大括弧（`[` と `]`）で囲まれます。他の種類の暗黙のパラメータとは異なり、インスタンス暗黙のパラメータは `:` 無しで記述され、名前を指定するのではなく、パラメータの型を指定します。さらに、単一の名前しか許されません。関数のパラメータとして統合されたインスタンスは、明示的に名前をつけなくても関数の本体ですでに利用可能であるため、ほとんどのインスタンス暗黙のパラメータはパラメータ名を省略します。
 
 :::::keepEnv
 :::comment
@@ -860,7 +860,7 @@ The differences can be observed only during elaboration.
 
 :::
 
-Lean のコア言語では暗黙・インスタンス暗黙・明示的なパラメータを区別しません：様々な種類の関数と関数型は定義上等価です。これらの違いはエラボレーション時においてのみ観測されます。
+Lean のコア言語では暗黙・インスタンス暗黙・明示的なパラメータを区別しません：様々な種類の関数と関数型は definitionally equal です。これらの違いはエラボレーション時においてのみ観測されます。
 
 ```lean (show := false)
 -- Evidence of claims in prior paragraph
@@ -2841,7 +2841,7 @@ def isZero' : Nat → Bool :=
 Because the former is syntactic sugar for the latter, they are definitionally equal:
 :::
 
-前者は後者のための構文糖衣であるため、定義上等価です：
+前者は後者のための構文糖衣であるため definitionally equal です：
 
 ```lean
 example : isZero = isZero' := rfl
@@ -3105,7 +3105,7 @@ Type ascriptions are useful for more than just documenting a program:
 
 :::
 
-{deftech}_Type ascriptions_ は項の型を明示的に注釈します。これは Lean に対して、項に期待される型を提供する方法です。この型は定義上、項の文脈から予想される型と等しくなければなりません。type ascription は単にプログラムを文書化する以外にも役立ちます：
+{deftech}_Type ascriptions_ は項の型を明示的に注釈します。これは Lean に対して、項に期待される型を提供する方法です。この型は項の文脈から予想される型と definitionally equal でなければなりません。type ascription は単にプログラムを文書化する以外にも役立ちます：
  * プログラムのテキストには、項の型を導くのに十分な情報がない場合があります。ascription はそのような型を提供する方法の1つです。
  * 推論された型は項に望まれた型ではないかもしれません。
  * 項の期待される型は {tech}[coercions] の挿入を推進するために使用され、ascription はどこに強制が挿入されるかを制御する方法の1つです。
