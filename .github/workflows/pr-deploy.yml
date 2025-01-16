@@ -5,6 +5,9 @@ on:
     workflows: [Build and check HTML]
     types: [completed]
 
+permissions:
+  pull-requests: write
+
 jobs:
   deploy:
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request' && github.repository == 'leanprover/reference-manual'
