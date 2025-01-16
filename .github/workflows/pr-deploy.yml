@@ -38,6 +38,7 @@ jobs:
         name: Compute Alias
         if: ${{ steps.workflow-info.outputs.pullRequestNumber != '' }}
         with:
+          result-encoding: string
           script: |
             if (process.env.PR) {
                 return `pr-${process.env.PR}`
