@@ -109,5 +109,5 @@ jobs:
 
             Built with commit: ${{ env.PR_HEADSHA }}
         env:
-          PR_NUMBER: steps.workflow-info.outputs.pullRequestNumber
-          PR_HEADSHA: steps.workflow-info.outputs.sourceHeadSha
+          PR_NUMBER: ${{ steps.workflow-info.outputs.pullRequestNumber }}
+          PR_HEADSHA: ${{ steps.workflow-info.outputs.sourceHeadSha }}
