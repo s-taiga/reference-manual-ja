@@ -93,3 +93,21 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: "32e0f63e-7a18-4bf9-87f4-713650c7db70"
     
+      # actions-netlify cannot add deploy links to a PR because it assumes a
+      # pull_request context, not a workflow_run context, see
+      # https://github.com/nwtgck/actions-netlify/issues/545
+      # We work around by using a comment to post the latest link
+      - name: 'Comment on PR with preview links'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          number: ${{ env.PR_NUMBER }}
+          header: preview-comment
+          recreate: true
+          message: |
+            [Preview for this PR](${{ steps.deploy-draft.outputs.deploy-url }}) is ready! :tada:
+            [(also as a proofreading version)](${{ steps.deploy-draft-proofreading.outputs.deploy-url }})
+
+            Built with commit: ${{ env.PR_HEADSHA }}
+        env:
+          PR_NUMBER: steps.workflow-info.outputs.pullRequestNumber
+          PR_HEADSHA: steps.workflow-info.outputs.sourceHeadSha
