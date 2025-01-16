@@ -104,10 +104,7 @@ jobs:
           header: preview-comment
           recreate: true
           message: |
-            [Preview for this PR](${{ steps.deploy-draft.outputs.deploy-url }}) is ready! :tada:
-            [(also as a proofreading version)](${{ steps.deploy-draft-proofreading.outputs.deploy-url }})
-
-            Built with commit: ${{ env.PR_HEADSHA }}
+            [Preview for this PR](${{ steps.deploy-draft.outputs.deploy-url }}) is ready! :tada: [(also as a proofreading version)](${{ steps.deploy-draft-proofreading.outputs.deploy-url }}). built with commit ${{ env.PR_HEADSHA }}.
         env:
           PR_NUMBER: ${{ steps.workflow-info.outputs.pullRequestNumber }}
           PR_HEADSHA: ${{ steps.workflow-info.outputs.sourceHeadSha }}
