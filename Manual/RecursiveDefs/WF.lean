@@ -90,7 +90,7 @@ The most important instances are:
 * {name}[`Prod`], ordered lexicographically: {lean}`(a₁, b₁) ≺ (a₂, b₂)` if and only if {lean}`a₁ ≺ a₂` or {lean}`a₁ = a₂` and {lean}`b₁ ≺ b₂`.
 
 * Every type that is an instance of the {name}`SizeOf` type class, which provides a method {name}`SizeOf.sizeOf`, has a well-founded relation.
-  For these types, {lean}`x₁ ≺ x₂` if and only if {lean}`sizeOf x₁ < sizeOf x₂`. For {tech}[inductive types], a {lean}`SizeOf` instance is automatically derived by Lean.
+  For these types, {lean}`x₁ ≺ x₂` if and only if {lean}`sizeOf x₁ < sizeOf x₂`. For {tech}[帰納型]inductive types, a {lean}`SizeOf` instance is automatically derived by Lean.
 
 ```lean (show := false)
 end
@@ -152,7 +152,7 @@ The proof obligation for each recursive call is of the form {lean}`g a₁ a₂ �
 
 The context of the proof obligation is the local context of the recursive call.
 In particular, local assumptions (such as those introduced by `if h : _`, `match h : _ with ` or `have`) are available.
-If a function parameter is the {tech key:="match discriminant"}[discriminant] of a pattern match (e.g. by a {keywordOf Lean.Parser.Term.match}`match` expression), then this parameter is refined to the matched pattern in the proof obligation.
+If a function parameter is the {tech key:="マッチ判別子"}[discriminant] match discriminant of a pattern match (e.g. by a {keywordOf Lean.Parser.Term.match}`match` expression), then this parameter is refined to the matched pattern in the proof obligation.
 
 ```lean (show := false)
 end
@@ -235,7 +235,7 @@ end
 
 :::example "Refined Parameters"
 
-If a parameter of the function is the {tech key:="match discriminant"}[discriminant] of a pattern match, then the proof obligations mention the refined parameter.
+If a parameter of the function is the {tech key:="マッチ判別子"}[discriminant] match discriminant of a pattern match, then the proof obligations mention the refined parameter.
 
 ```lean (error := true) (keep := false) (name := fibGoals2)
 def fib : Nat → Nat
@@ -711,7 +711,7 @@ noncomputable def div (n k : Nat) : Nat :=
     n
 ```
 The definition must be marked {keywordOf Lean.Parser.Command.declaration}`noncomputable` because well-founded recursion is not supported by the compiler.
-Like {tech}[recursors], it is part of Lean's logic.
+Like {tech}[再帰子]recursors, it is part of Lean's logic.
 
 The definition of division should satisfy the following equations:
  * {lean}`∀{n k : Nat}, (k = 0) → div n k = 0`

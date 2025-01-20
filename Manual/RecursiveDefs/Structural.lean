@@ -31,7 +31,7 @@ The constructions used to implement structural recursion are, however, implement
 
 :::
 
-構造的再帰関数とは、各再帰呼び出しが引数よりも構造的に小さい項に対して行われる関数のことです。構造的再帰は、再帰子が提供する原始再帰よりも強力です。なぜなら、再帰呼び出しが引数の直前の部分項だけでなく、任意の部分項を使用できるからです。しかし、構造的再帰を実装するために使用される構成は再帰子を使用して実装されます；これらの補助構成は {ref "recursor-elaboration-helpers"}[帰納型の節] で説明されています。
+構造的再帰関数とは、各再帰呼び出しが引数よりも構造的に小さい項に対して行われる関数のことです。同じパラメータはすべての再帰呼び出しで減少しなければなりません；このパラメータは {deftech}_減少パラメータ_ （decreasing parameter）と呼ばれます。構造的再帰は、再帰子が提供する原始再帰よりも強力です。なぜなら、再帰呼び出しが引数の直前の部分項だけでなく、任意の部分項を使用できるからです。しかし、構造的再帰を実装するために使用される構成は再帰子を使用して実装されます；これらの補助構成は {ref "recursor-elaboration-helpers"}[帰納型の節] で説明されています。
 
 The rules that govern structural recursion are fundamentally _syntactic_ in nature.
 There are many recursive definitions that exhibit structurally recursive computational behavior, but which are not accepted by these rules; this is a fundamental consequence of the analysis being fully automatic.
@@ -79,7 +79,7 @@ n' : Nat := n - 1
 ⊢ n - 1 < n
 ```
 This is because there was no pattern matching on the parameter {lean}`n`.
-While this function indeed terminates, the argument that it does so is based on properties of if, the equality test, and subtraction, rather than being a generic feature of {lean}`Nat` being an {tech}[inductive type].
+While this function indeed terminates, the argument that it does so is based on properties of if, the equality test, and subtraction, rather than being a generic feature of {lean}`Nat` being an {tech}[帰納型]inductive type.
 These arguments are expressed using {tech}[well-founded recursion], and a slight change to the function definition allows Lean's automatic support for well-founded recursion to construct an alternative termination proof.
 This version branches on the decidability of propositional equality for {lean}`Nat` rather than the result of a Boolean equality test:
 
@@ -99,7 +99,7 @@ end
 ```
 
 Structural recursion may be used explicitly or automatically.
-With explicit structural recursion, the function definition declares which parameter is the {tech}[decreasing parameter].
+With explicit structural recursion, the function definition declares which parameter is the {tech}[減少パラメータ]decreasing parameter.
 If no termination strategy is explicitly declared, Lean performs a search for a decreasing parameter as well as a decreasing measure for use with {tech}[well-founded recursion].
 Explicitly annotating structural recursion has the following benefits:
  * It can speed up elaboration, because no search occurs.
@@ -108,7 +108,7 @@ Explicitly annotating structural recursion has the following benefits:
 
 # Explicit Structural Recursion
 
-To explicitly use structural recursion, a function or theorem definition can be annotated with a {keywordOf Lean.Parser.Command.declaration}`termination_by structural` clause that specifies the {tech}[decreasing parameter].
+To explicitly use structural recursion, a function or theorem definition can be annotated with a {keywordOf Lean.Parser.Command.declaration}`termination_by structural` clause that specifies the {tech}[減少パラメータ]decreasing parameter.
 The decreasing parameter may be a reference to a parameter named in the signature.
 When the signature specifies a function type, the decreasing parameter may additionally be a parameter not named in the signature; in this case, names for the remaining parameters may be introduced by writing them before an arrow ({keywordOf Lean.Parser.Command.declaration}`=>`).
 
@@ -148,9 +148,9 @@ already bound in the declaration header, and the mandatory term must indicate on
 
 The decreasing parameter must satisfy the following conditions:
 
-* Its type must be an {tech}[inductive type].
+* Its type must be an {tech}[帰納型]inductive type.
 
-* If its type is an {tech}[indexed family], then all indices must be parameters of the function.
+* If its type is an {tech}[添字付けられた型の族]indexed family, then all indices must be parameters of the function.
 
 * If the inductive or indexed family of the decreasing parameter has data type parameters, then these data type parameters may themselves only depend on function parameters that are part of the {tech}[fixed prefix].
 
@@ -216,7 +216,7 @@ Furthermore, every recursive call of the functions must be on a {deftech}_strict
 parameter.
 
  * The decreasing parameter itself is a sub-term, but not a strict sub-term.
- * If a sub-term is the {tech key:="match discriminant"}[discriminant] of a {keywordOf Lean.Parser.Term.match}`match` expression or other pattern-matching syntax, the pattern that matches the discriminant is a sub-term in the {tech}[right-hand side] of each {tech}[match alternative].
+ * If a sub-term is the {tech key:="マッチ判別子"}[discriminant] match discriminant of a {keywordOf Lean.Parser.Term.match}`match` expression or other pattern-matching syntax, the pattern that matches the discriminant is a sub-term in the {tech}[右辺]right-hand side of each {tech}[マッチ選択肢]match alternative.
    In particular, the rules of {ref "match-generalization"}[match generalization] are used to connect the discriminant to the occurrences of the pattern term in the right-hand side; thus, it respects {tech}[definitional equality].
    The pattern is a _strict_ sub-term if and only if the discriminant is a strict sub-term.
  * If a sub-term is a constructor applied to arguments, then its recursive arguments are strict sub-terms.
@@ -253,7 +253,7 @@ variable {α : Type u} (n n' : Nat) (xs : List α)
 ```
 :::example "Matching on Complex Expressions Can Prevent Elaboration"
 
-In the following example, the decreasing parameter {lean}`n` is not directly the {tech key:="match discriminant"}[discriminant] of the {keywordOf Lean.Parser.Term.match}`match` expression.
+In the following example, the decreasing parameter {lean}`n` is not directly the {tech key:="マッチ判別子"}[discriminant] match discriminant of the {keywordOf Lean.Parser.Term.match}`match` expression.
 Therefore, {lean}`n'` is not considered a sub-term of {lean}`n`.
 
 ```lean (error := true) (keep := false) (name := badtarget)
@@ -299,7 +299,7 @@ end
 
 :::example "Simultaneous Matching vs Matching Pairs for Structural Recursion"
 
-An important consequence of the strategies that are used to prove termination is that *simultaneous matching of two {tech key:="match discriminant"}[discriminants] is not equivalent to matching a pair*.
+An important consequence of the strategies that are used to prove termination is that *simultaneous matching of two {tech key:="マッチ判別子"}[discriminants] match discriminant is not equivalent to matching a pair*.
 Simultaneous matching maintains the connection between the discriminants and the patterns, allowing the pattern matching to refine the types of the assumptions in the local context as well as the expected type of the {keywordOf Lean.Parser.Term.match}`match`.
 Essentially, the elaboration rules for {keywordOf Lean.Parser.Term.match}`match` treat the discriminants specially, and changing discriminants in a way that preserves the run-time meaning of a program does not necessarily preserve the compile-time meaning.
 
@@ -380,7 +380,7 @@ termination_by structural n
 ```
 
 This is because {lean}`n' + 0` is {tech key:="definitional equality"}[definitionally equal] to {lean}`n'`, which is a strict sub-term of {lean}`n`.
-{tech key:="strict sub-term"}[Sub-terms] that result from pattern matching are connected to the {tech key:="match discriminant"}[discriminant] using the rules for {ref "match-generalization"}[match generalization], which respect definitional equality.
+{tech key:="strict sub-term"}[Sub-terms] that result from pattern matching are connected to the {tech key:="マッチ判別子"}[discriminant] match discriminant using the rules for {ref "match-generalization"}[match generalization], which respect definitional equality.
 
 In {lean}`countdown'`, the recursive occurrence is applied to {lean}`0 + n'`, which is not definitionally equal to `n'` because addition on natural numbers is structurally recursive in its second parameter:
 ```lean (error := true) (name := countdownNonDefEq)
@@ -700,6 +700,7 @@ def half' : Nat → Nat :=
       (fun n => Nat.succ (half' n)) -- Case for n + 2
 ```
 
+:::comment
 To elaborate it as a structurally recursive function, the first step is to establish the `bRecOn` invocation.
 The definition must be marked {keywordOf Lean.Parser.Command.declaration}`noncomputable` because Lean does not support code generation for recursors such as {name}`Nat.brecOn`.
 :::

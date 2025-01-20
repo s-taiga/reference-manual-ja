@@ -87,16 +87,26 @@ theorem succ_injective : n + 1 = k + 1 → n = k := noConfusion (n + 1) (k + 1)
 theorem succ_not_zero : ¬n + 1 = 0 := noConfusion (n + 1) 0
 ```
 
+:::comment
 # Run-Time Representation
+:::
+
+# ランタイム表現（Run-Time Representation）
+
 %%%
 tag := "nat-runtime"
 %%%
 
 
+:::comment
 In compiled code, sufficiently-small natural numbers are represented as unboxed values: the lowest-order bit in an object pointer is used to indicate that the value is not, in fact, a pointer, and the remaining bits are used to store the number.
 31 bits are available on 32-bits architectures for unboxed {lean}`Nat`s, while 63 bits are available on 64-bit architectures.
 In other words, natural numbers smaller than $`2^31 = 2,147,483,648` or $`2^63 = 9,223,372,036,854,775,808` do not require allocations.
 If an natural number is too large for the unboxed representation, it is instead allocated as an ordinary Lean object that consists of an object header and an arbitrary-precision integer value.
+
+:::
+
+コンパイルされたコードでは、ボックス化解除された値は十分に小さな自然数として表現されます：オブジェクトポインタの最下位ビットは、その値が実際にポインタではないかどうかを示すために使用され、残りのビットは数を格納するために使用されます。ボックス化解除された {lean}`Nat` に対して、32ビットアーキテクチャでは31ビットが、64ビットアーキテクチャでは63ビットが利用可能です。言い換えると、 $`2^31 = 2,147,483,648` または $`2^63 = 9,223,372,036,854,775,808` より小さい自然数は割り当てを必要としません。ボックス化解除された表現として大きすぎる自然数の場合、前述の代わりにオブジェクトヘッダと任意精度の整数値からなる通常の Lean オブジェクトとして割り当てられます。
 
 :::comment
 ## Performance Notes
