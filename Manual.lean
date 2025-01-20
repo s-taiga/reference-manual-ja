@@ -173,7 +173,7 @@ file := some "the-index"
 
 翻訳に際して、機械翻訳サービス [DeepL翻訳](https://www.deepl.com/ja/translator) を参考にしました。
 
-この翻訳は原文のcommit [27f733b339554f1cc0b3b70e9ca3054397075b97](https://github.com/leanprover/reference-manual/commit/27f733b339554f1cc0b3b70e9ca3054397075b97) に基づいています。
+この翻訳は原文のcommit [e6745898cb986fda8e24849178a673f99f55cda5](https://github.com/leanprover/reference-manual/commit/e6745898cb986fda8e24849178a673f99f55cda5) に基づいています。
 
 ::::::draft
 

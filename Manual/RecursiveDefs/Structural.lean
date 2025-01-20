@@ -700,6 +700,7 @@ def half' : Nat → Nat :=
       (fun n => Nat.succ (half' n)) -- Case for n + 2
 ```
 
+:::comment
 To elaborate it as a structurally recursive function, the first step is to establish the `bRecOn` invocation.
 The definition must be marked {keywordOf Lean.Parser.Command.declaration}`noncomputable` because Lean does not support code generation for recursors such as {name}`Nat.brecOn`.
 :::

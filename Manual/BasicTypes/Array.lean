@@ -39,7 +39,7 @@ Arrays are specially supported by Lean:
 {lean}`Array` 型は要素のシーケンスを表し、シーケンス内の位置によってアクセスすることが可能です。配列は Lean で特別にサポートされています：
  * 配列には要素のリストという観点からその動作を指定する _論理モデル_ があり、配列に対する各操作の意味を指定します。
  * {tech}[動的配列] としてコンパイルされたコードに最適化されたランタイム表現があり、Lean のランタイムは配列操作を特別に最適化します。
- * 文字列を記述するための {ref "array-syntax"}[配列リテラル構文] が存在します。
+ * 配列を記述するための {ref "array-syntax"}[配列リテラル構文] が存在します。
 
 :::comment
 Arrays can be vastly more efficient than lists or other sequences in compiled code.

@@ -311,13 +311,11 @@ example (e1 e2 : ProofUnitLike) : e1 = e2 := rfl
 
 {include 0 Manual.BasicTypes.Empty}
 
+# 真偽値（Booleans）
 
 :::comment
 # Booleans
 :::
-
-# 真偽値（Booleans）
-
 
 {docstring Bool}
 

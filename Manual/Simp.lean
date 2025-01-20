@@ -163,7 +163,7 @@ In other words, an invocation of a simplification tactic takes the following mod
 :::
 
 言い換えれば、単純化タクティクの呼び出しは以下の修飾子を順番に取ります。またこれらはすべて任意です：
- * {ref "tactic-config"}[設定オプション] 、呼び出される単純化器が {tactic}`simp` のバージョンか {tactic}`dsimp` のバージョンであるかに応じて、 {name}`Lean.Meta.Simp.Config` か {name}`Lean.Meta.DSimp.Config` のフィールドでなければなりません。
+ * {ref "tactic-config"}[設定オプション] 、呼び出される単純化器が {tactic}`simp` のバージョンか {tactic}`dsimp` のバージョンであるかに応じて、 {name}`Lean.Meta.Simp.Config` か {name}`Lean.Meta.DSimp.Config` のフィールドを含まなければなりません。
  * {keywordOf Lean.Parser.Tactic.simp}`only` 修飾子はデフォルトの simp セットを除外し、代わりに空の {margin}[厳密には、再帰的なケースを除外するために、simp セットは常に {name}`eq_self` と {name}`iff_self` を含みます。] simp セットから開始します。
  * 補題リストは simp セットに補題を追加したり削除したりします。補題リストで補題を指定する方法は3つあります：
    * `*`、これは証明状態にあるすべての仮定を simp セットに追加します
