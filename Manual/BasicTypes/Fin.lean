@@ -22,7 +22,7 @@ section
 variable (n : Nat)
 ```
 
-For any {tech}[natural number] {lean}`n`, the {lean}`Fin n` is a type that contains all the natural numbers that are strictly less than {lean}`n`.
+For any {tech}[自然数]natural number {lean}`n`, the {lean}`Fin n` is a type that contains all the natural numbers that are strictly less than {lean}`n`.
 In other words, {lean}`Fin n` has exactly {lean}`n` elements.
 It can be used to represent the valid indices into a list or array, or it can serve as a canonical {lean}`n`-element type.
 
