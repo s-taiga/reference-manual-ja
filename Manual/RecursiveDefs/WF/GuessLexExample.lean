@@ -18,11 +18,19 @@ open Lean.Elab.Tactic.GuardMsgs.WhitespaceMode
 
 #doc (Manual) "Termination failure (for inclusion elsewhere)" =>
 
-:::example "Termination failure"
+:::comment
+::example "Termination failure"
+:::
+::::example "Termination failure"
 
+:::comment
 If there is no {keywordOf Lean.Parser.Command.declaration}`termination_by` clause, Lean attempts to infer a measure for well-founded recursion.
 If it fails, then it prints the table mentioned above.
 In this example, the {keywordOf Lean.Parser.Command.declaration}`decreasing_by` clause simply prevents Lean from also attempting structural recursion; this keeps the error message specific.
+
+:::
+
+
 
 ```lean (error := true) (keep := false) (name := badwf)
 def f : (n m l : Nat) → Nat
@@ -44,15 +52,30 @@ The arguments relate at each recursive call as follows:
 Please use `termination_by` to specify a decreasing measure.
 ```
 
+:::comment
 The three recursive calls are identified by their source positions.
 This message conveys the following facts:
 
+:::
+
+
+
+:::comment
 * In the first recursive call, all arguments are (provably) equal to the parameters
 * In the second recursive call, the first argument is equal to the first parameter and the second argument is provably smaller than the second parameter.
   The third parameter was not checked for this recursive call, because it was not necessary to determine that no suitable termination argument exists.
 * In the third recursive call, the first argument decreases strictly, and the other arguments were not checked.
 
+:::
+
+
+
+:::comment
 When termination proofs fail in this manner, a good technique to discover the problem is to explicitly indicate the expected termination argument using {keywordOf Lean.Parser.Command.declaration}`termination_by`.
 This will surface the messages from the failing tactic.
 
 :::
+
+
+
+::::
