@@ -185,6 +185,7 @@
 | multiset | 多集合 | |
 | multi-threading | マルチスレッド | |
 | mutation | ミューテーション | |
+| mutual group | 相互グループ | |
 | mutually inductive | 相互帰納 | |
 | named arguments | 名前付き引数 | |
 | namespace | 名前空間 | |
@@ -259,6 +260,7 @@
 | simplifier | 単純化器 | |
 | simplify | 単純化 | |
 | simp set | simp セット | |
+| simultaneous matching | 同時マッチ | |
 | single quote | シングルクォート | |
 | singleton | 単集合 | |
 | sort | ソート | |
@@ -269,6 +271,7 @@
 | strict implicit parameter | 厳格な暗黙のパラメータ | |
 | strictly | （順序の意味で）狭義 | |
 | strictness | 正格 | |
+| strict sub-term | 厳密な部分項 | |
 | strong induction | 強帰納法 | |
 | structure | 構造体 | |
 | structurally recursive function | 構造的再帰関数 | |
@@ -336,6 +339,7 @@
 | definitionally equal, definitional equality, definitional η-equality, definitional proof irrelevance | 型理論由来の用語であり、定訳は無いため |
 | propositional equality | 上記の definitional equality に対置される用語であることから併せて英語のままとした |
 | ellipsis | 他言語でも類似概念があるが、そちらでもそのまま英単語で表現されることが多そうだったため |
+| fixed | 構造的再帰で使用されるパラメータの種類の一種。不動点的な意味があると思われるが、単純に固定されたというニュアンスの気もしたのでそのままにする |
 | idiom bracket | https://wiki.haskell.org/Idiom_brackets |
 | inhabited | |
 | no confusion | |
