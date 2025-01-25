@@ -21,7 +21,7 @@ open Lean.Elab.Tactic.GuardMsgs.WhitespaceMode
 :::comment
 ::example "Termination failure"
 :::
-::::example "Termination failure"
+::::example "停止の失敗"
 
 :::comment
 If there is no {keywordOf Lean.Parser.Command.declaration}`termination_by` clause, Lean attempts to infer a measure for well-founded recursion.
@@ -30,7 +30,7 @@ In this example, the {keywordOf Lean.Parser.Command.declaration}`decreasing_by` 
 
 :::
 
-
+{keywordOf Lean.Parser.Command.declaration}`termination_by` 句が無い場合、Lean は整礎再帰のための測度を推測しようとします。失敗した場合、前述の表を出力します。この例では {keywordOf Lean.Parser.Command.declaration}`decreasing_by` 句によって Lean の構造的再帰の推測が阻害されます；これによってエラーメッセージが特定されます。
 
 ```lean (error := true) (keep := false) (name := badwf)
 def f : (n m l : Nat) → Nat
@@ -58,7 +58,7 @@ This message conveys the following facts:
 
 :::
 
-
+この3つの再帰呼び出しは、呼び出し元の位置によって識別されます。このメッセージは以下の事実を伝えています：
 
 :::comment
 * In the first recursive call, all arguments are (provably) equal to the parameters
@@ -68,7 +68,9 @@ This message conveys the following facts:
 
 :::
 
-
+* 最初の再帰呼び出しでは、すべての引数はパラメータと（証明的に）等価です。
+* 2回目の再帰呼び出しでは、第1引数は第1パラメータに等しく、第2引数は第2パラメータよりも証明的に小さいです。第3パラメータはこの再帰呼び出しではチェックされません。なぜなら適切な停止引数が存在しないことを判断する必要がないためです。
+* 3回目の再帰呼び出しでは、第1引数は厳密に減少し、他の引数はチェックされませんでした。
 
 :::comment
 When termination proofs fail in this manner, a good technique to discover the problem is to explicitly indicate the expected termination argument using {keywordOf Lean.Parser.Command.declaration}`termination_by`.
@@ -76,6 +78,6 @@ This will surface the messages from the failing tactic.
 
 :::
 
-
+このように停止証明に失敗した場合、問題を発見するための良いテクニックは {keywordOf Lean.Parser.Command.declaration}`termination_by` を使って予想される停止引数を明示的に示すことです。これにより、失敗したタクティクからのメッセージが表示されます。
 
 ::::
