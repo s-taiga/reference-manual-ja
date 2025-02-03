@@ -145,7 +145,12 @@ After a description of mutual recursion, each of the four kinds of recursive def
 
 本節では再帰関数を支配する規則について説明します。相互再帰についての記述の後に、4種類の再帰定義それぞれについて、推論の機能性と柔軟性のトレードオフについて説明します。
 
+:::comment
 # Mutual Recursion
+:::
+
+# 相互再帰（Mutual Recursion）
+
 %%%
 tag := "mutual-syntax"
 %%%
