@@ -46,11 +46,23 @@ Could not find a decreasing measure.
 The arguments relate at each recursive call as follows:
 (<, ≤, =: relation proved, ? all proofs failed, _: no proof attempted)
            n m l
+1) 38:6-25 = = =
+2) 39:6-23 = < _
+3) 40:6-23 < _ _
+Please use `termination_by` to specify a decreasing measure.
+```
+:::comment
+```leanOutput badwf (whitespace := lax)
+Could not find a decreasing measure.
+The arguments relate at each recursive call as follows:
+(<, ≤, =: relation proved, ? all proofs failed, _: no proof attempted)
+           n m l
 1) 30:6-25 = = =
 2) 31:6-23 = < _
 3) 32:6-23 < _ _
 Please use `termination_by` to specify a decreasing measure.
 ```
+:::
 
 :::comment
 The three recursive calls are identified by their source positions.
