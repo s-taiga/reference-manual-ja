@@ -16,6 +16,7 @@
 | atomic | アトミック | |
 | attribute | 属性 | |
 | auto-bound | 自動的に束縛された | |
+| automatic implicit parameter | 自動的な暗黙パラメータ | |
 | backtrack | バックトラック | 後戻りと書かれる場合あり |
 | base case | 基本ケース | |
 | bijection | 全単射 | |

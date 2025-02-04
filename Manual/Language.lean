@@ -744,7 +744,7 @@ variable {α : Type u} (xs : List α) [Zero α] [Add α]
 Because automatic implicit parameters are disabled, the following definition fails:
 :::
 
-自動の暗黙パラメータが無効になっているため、以下の定義は失敗します：
+自動的な暗黙パラメータが無効になっているため、以下の定義は失敗します：
 
 ```lean (error := true) (name := secvars) (keep := false)
 def addAll (lst : List β) : β :=
