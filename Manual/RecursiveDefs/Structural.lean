@@ -633,7 +633,7 @@ If every function in the mutual group has a {keyword}`termination_by structural`
 
 :::
 
-Lean は構造的再帰を利用した {tech}[mutually recursive] 関数の定義をサポートしています。相互再帰は {tech}[mutual block] を使って導入できますが、 {keywordOf Lean.Parser.Term.letrec}`let rec` 式と {keywordOf Lean.Parser.Command.declaration}`where` ブロックにおいても得ることができます。相互再帰の規則は、相互グループの {ref "mutual-syntax"}[エラボレーションのステップ] から得られる、実際に相互再帰的で持ち上げられた定義のグループに適用されます。相互グループ内のすべての関数が、その関数の減少引数を示す {keyword}`termination_by structural` 注釈を持っている場合、構造的再帰は定義の翻訳に使用されます。
+Lean は構造的再帰を利用した {tech}[相互再帰] 関数の定義をサポートしています。相互再帰は {tech}[相互ブロック] を使って導入できますが、 {keywordOf Lean.Parser.Term.letrec}`let rec` 式と {keywordOf Lean.Parser.Command.declaration}`where` ブロックにおいても得ることができます。相互再帰の規則は、相互グループの {ref "mutual-syntax"}[エラボレーションのステップ] から得られる、実際に相互再帰的で持ち上げられた定義のグループに適用されます。相互グループ内のすべての関数が、その関数の減少引数を示す {keyword}`termination_by structural` 注釈を持っている場合、構造的再帰は定義の翻訳に使用されます。
 
 :::comment
 The requirements on the decreasing argument above are extended:

@@ -145,30 +145,63 @@ After a description of mutual recursion, each of the four kinds of recursive def
 
 本節では再帰関数を支配する規則について説明します。相互再帰についての記述の後に、4種類の再帰定義それぞれについて、推論の機能性と柔軟性のトレードオフについて説明します。
 
+:::comment
 # Mutual Recursion
+:::
+
+# 相互再帰（Mutual Recursion）
+
 %%%
 tag := "mutual-syntax"
 %%%
 
+:::comment
 Just as a recursive definition is one that mentions the name being defined in the body of the definition, {deftech}_mutually recursive_ definitions are definitions that may be recursive or mention one another.
 To use mutual recursion between multiple declarations, they must be placed in a {deftech}[mutual block].
 
-:::syntax command (title := "Mutual Declaration Blocks")
+:::
+
+再帰定義が定義本体にて定義されている名前を言及する定義であるのと同様に、 {deftech}_相互再帰_ （mutually recursive）定義とは互いに再帰的または言及している定義のことです。複数の宣言の間で相互再帰を使用するには、それらを {deftech}[相互ブロック] （mutual block）に配置する必要があります。
+
+::::syntax command (title := "Mutual Declaration Blocks")
+:::comment
 The general syntax for mutual recursion is:
+
+:::
+
+相互再帰の一般的な構文は以下です：
 
 ```grammar
 mutual
   $[$declaration:declaration]*
 end
 ```
+:::comment
 where the declarations must be definitions or theorems.
 :::
 
+ここで宣言は定義か定理でなければなりません。
+
+::::
+
+:::comment
 The declarations in a mutual block are not in scope in each others' signatures, but they are in scope in each others' bodies.
 Even though the names are not in scope in signatures, they will not be inserted as auto-bound implicit parameters.
 
-:::example "Mutual Block Scope"
+:::
+
+相互ブロック内の宣言は、互いのシグネチャにおいてはスコープに含まれませんが、互いの本体ではスコープ内となります。名前がシグネチャのスコープに無いとしても、自動的に束縛された暗黙パラメータとして挿入されることはありません。
+
+:::comment
+::example "Mutual Block Scope"
+:::
+::::example "相互ブロックスコープ"
+:::comment
 Names defined in a mutual block are not in scope in each others' signatures.
+
+:::
+
+相互ブロックで定義された名前は、お互いのシグネチャのスコープに入りません。
 
 ```lean (error := true) (name := mutScope) (keep := false)
 mutual
@@ -180,16 +213,29 @@ end
 unknown identifier 'NaturalNum'
 ```
 
+:::comment
 Without the mutual block, the definition succeeds:
+:::
+
+相互ブロック外では、この定義は成功します：
+
 ```lean
 abbrev NaturalNum : Type := Nat
 def n : NaturalNum := 5
 ```
-:::
+::::
 
-:::example "Mutual Block Scope and Automatic Implicit Parameters"
+:::comment
+::example "Mutual Block Scope and Automatic Implicit Parameters"
+:::
+::::example "相互ブロックスコープと自動的な暗黙パラメータ"
+:::comment
 Names defined in a mutual block are not in scope in each others' signatures.
 Nonetheless, they cannot be used as automatic implicit parameters:
+
+:::
+
+相互ブロックで定義された名前はお互いのシグネチャのスコープに入りません。それにもかかわらず、これらは自動的な暗黙パラメータとして使用することはできません：
 
 ```lean (error := true) (name := mutScopeTwo) (keep := false)
 mutual
@@ -201,21 +247,36 @@ end
 unknown identifier 'α'
 ```
 
+:::comment
 With a different name, the implicit parameter is automatically added:
+:::
+
+異なる名前であれば、暗黙パラメータが自動的に追加されます：
+
 ```lean
 mutual
   abbrev α : Type := Nat
   def identity (x : β) : β := x
 end
 ```
-:::
+::::
 
+:::comment
 Elaborating recursive definitions always occurs at the granularity of mutual blocks, as if there were a singleton mutual block around every declaration that is not itself part of such a block.
 Local definitions introduced via {keywordOf Lean.Parser.Term.letrec}`let rec` and
  {keywordOf Lean.Parser.Command.declaration}`where` are lifted out of their context, introducing parameters for captured free variables as necessary, and treated as if they were separate definitions within the {keywordOf Lean.Parser.Command.mutual}`mutual` block as well. {TODO}[Explain this mechanism in more detail, here or in the term section.]
 Thus, helpers defined in a {keywordOf Lean.Parser.Command.declaration}`where` block may use mutual recursion both with one another and with the definition in which they occur, but they may not mention each other in their type signatures.
 
+:::
+
+再帰定義のエラボレートは常に相互ブロックの粒度で行われ、そのようなブロックの一部ではない定義ではあたかもそれぞれの定義を囲む単一の相互ブロックがあるかのように扱われます。 {keywordOf Lean.Parser.Term.letrec}`let rec` と {keywordOf Lean.Parser.Command.declaration}`where` で導入されたローカル定義はそれらのコンテキストから持ち出され、必要に応じてキャプチャされた自由変数のパラメータを導入し、 {keywordOf Lean.Parser.Command.mutual}`mutual` ブロック内でも別の定義であるかのように扱われます。したがって {keywordOf Lean.Parser.Command.declaration}`where` ブロック内で定義された補助関数お互いに、またそれらが出現する定義の両方で相互再帰を使用することができますが、それらの型シグネチャでお互いに言及することはできません。
+
+:::comment
 After the first step of elaboration, in which definitions are still recursive, and before translating recursion using the techniques above, Lean identifies the actually (mutually) recursive cliques{TODO}[define this term, it's useful]  among the definitions in the mutual block and processes them separately and in dependency order.
+
+:::
+
+定義がまだ再帰的のままであるエラボレーションの最初のステップの後、上記のテクニックを使って再帰を翻訳する前に、Lean は相互ブロック内の定義の中から実際に再帰的なあつまりを特定し、それらを別々に依存関係順に処理します。
 
 {include 0 Manual.RecursiveDefs.Structural}
 

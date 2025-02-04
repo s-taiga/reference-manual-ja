@@ -627,8 +627,8 @@ In this case, explicitly stating the termination {tech}[measure] helps.
 tag := "mutual-well-founded-recursion"
 %%%
 
-Lean supports the definition of {tech}[mutually recursive] functions using {tech}[well-founded recursion].
-Mutual recursion may be introduced using a {tech}[mutual block], but it also results from {keywordOf Lean.Parser.Term.letrec}`let rec` expressions and {keywordOf Lean.Parser.Command.declaration}`where` blocks.
+Lean supports the definition of {tech}[相互再帰] mutually recursive functions using {tech}[well-founded recursion].
+Mutual recursion may be introduced using a {tech}[相互ブロック] mutual block, but it also results from {keywordOf Lean.Parser.Term.letrec}`let rec` expressions and {keywordOf Lean.Parser.Command.declaration}`where` blocks.
 The rules for mutual well-founded recursion are applied to a group of actually mutually recursive, lifted definitions, that results from the {ref "mutual-syntax"}[elaboration steps] for mutual groups.
 
 If any function in the mutual group has a {keywordOf Lean.Parser.Command.declaration}`termination_by` or {keywordOf Lean.Parser.Command.declaration}`decreasing_by` clause, well-founded recursion is attempted.
