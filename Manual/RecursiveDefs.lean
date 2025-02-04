@@ -259,7 +259,7 @@ mutual
   def identity (x : β) : β := x
 end
 ```
-:::
+::::
 
 :::comment
 Elaborating recursive definitions always occurs at the granularity of mutual blocks, as if there were a singleton mutual block around every declaration that is not itself part of such a block.
