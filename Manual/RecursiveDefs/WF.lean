@@ -15,7 +15,10 @@ open Verso.Genre
 open Verso.Genre.Manual
 open Lean.Elab.Tactic.GuardMsgs.WhitespaceMode
 
+/-
 #doc (Manual) "Well-Founded Recursion" =>
+-/
+#doc (Manual) "整礎再帰（Well-Founded Recursion）" =>
 %%%
 tag := "well-founded-recursion"
 %%%
