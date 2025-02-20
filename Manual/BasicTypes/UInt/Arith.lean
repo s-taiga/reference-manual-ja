@@ -12,7 +12,10 @@ open Manual.FFIDocType
 
 open Verso.Genre Manual
 
+/-
 #doc (Manual) "Arithmetic" =>
+-/
+#doc (Manual) "算術（Arithmetic）" =>
 %%%
 tag := "fixed-int-arithmetic"
 %%%

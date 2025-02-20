@@ -12,7 +12,10 @@ open Verso.Genre Manual
 
 set_option pp.rawOnError true
 
+/-
 #doc (Manual) "The Empty Type" =>
+-/
+#doc (Manual) "空の型（The Empty Type）" =>
 %%%
 tag := "empty"
 %%%
