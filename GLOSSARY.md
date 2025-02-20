@@ -19,6 +19,8 @@
 | automatic implicit parameter | 自動的な暗黙パラメータ | |
 | backtrack | バックトラック | 後戻りと書かれる場合あり |
 | base case | 基本ケース | |
+| basic measure | 基本測度 | |
+| basic termination measure | 基本停止測度 | |
 | bijection | 全単射 | |
 | binder | 束縛子 | |
 | binding | 束縛 | |
@@ -26,6 +28,7 @@
 | bound variable | 束縛変数 | |
 | box | ボックス化 | |
 | bullet | ブレット | |
+| candidate measure | 測度候補 | |
 | canonical | 標準 | |
 | carriage return | CR | |
 | case distinction | 場合分け | |
@@ -138,6 +141,7 @@
 | inductively-defined | 帰納的に定義された | |
 | inductive predicate | 帰納的述語 | |
 | inductive type | 帰納型 | |
+| infinitely descending chain | 無限降鎖 | |
 | infinite regress | 無限後退 | |
 | info tree | 情報木 | |
 | inhabitant | 住人 | |
@@ -219,6 +223,7 @@
 | product type | 直積型 | |
 | projection function | 射影関数 | |
 | proof checker | 証明チェッカ | |
+| proof obligation | 証明義務 | |
 | proof state | 証明状態 | |
 | proof term | 証明項 | |
 | qualification | 修飾 | |
@@ -294,6 +299,8 @@
 | synthetic syntax | 統合的な構文 | |
 | tactic | タクティク | |
 | Technical Terminology | 専門用語 | |
+| termination | 停止 | |
+| termination argument | 停止引数 | |
 | tail | 後続のリスト | 「末尾」だと「最後の1要素」というようにも読めるため |
 | term | 項 | |
 | term elaboration | 項エラボレーション | |
