@@ -785,7 +785,7 @@ It can be automatically added to the source file using the offered suggestion or
 
 :::
 
-{keyword}`termination_by?` 句を指定すると、推論された停止注釈が表示されます。この内容は提案されたサジェストかコードアクションを使用することでソースファイルに自動で追加することができます。
+{keyword}`termination_by?` 句を指定すると、推論された停止注釈が表示されます。この内容は提案に対するサジェスト、またはコードアクションを使用することでソースファイルに自動で追加することができます。
 
 :::comment
 ::example "Inferred Termination Annotations"
