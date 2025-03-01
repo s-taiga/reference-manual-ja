@@ -12,12 +12,20 @@ open Manual.FFIDocType
 
 open Verso.Genre Manual
 
+/-
 #doc (Manual) "Arithmetic" =>
+-/
+#doc (Manual) "算術（Arithmetic）" =>
 %%%
 tag := "fixed-int-arithmetic"
 %%%
 
+:::comment
 Typically, arithmetic operations on fixed-width integers should be accessed using Lean's overloaded arithmetic notation, particularly their instances of {name}`Add`, {name}`Sub`, {name}`Mul`, {name}`Div`, and {name}`Mod`, as well as {name}`Neg` for signed types.
+
+:::
+
+通常、固定長整数に対する算術操作は Lean のオーバーロードされた算術記法を用いてアクセスするべきであり、特に {name}`Add` ・ {name}`Sub` ・ {name}`Mul` ・ {name}`Div` ・ and {name}`Mod` ・符号付き型の {name}`Neg` のインスタンスを使用します。
 
 ```lean (show := false)
 -- Check that all those instances really exist
