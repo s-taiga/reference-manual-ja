@@ -23,8 +23,13 @@ tag := "fixed-int-comparisons"
 %%%
 
 
+:::comment
 The operators in this section are rarely invoked by name.
 Typically, comparisons operations on fixed-width integers should use the decidability of the corresponding relations, which consist of the equality type {name}`Eq` and those implemented in instances of {name}`LE`, {name}`LT`.
+
+:::
+
+本節の演算子が名前で呼び出されることはほとんどありません。通常、固定長整数に対する比較演算は、対応する関係についての決定性を使用する必要があり、等号型 {name}`Eq` と {name}`LE` ・ {name}`LT` のインスタンスで実装されているものから構成されます。
 
 ```lean (show := false)
 -- Check that all those instances really exist
