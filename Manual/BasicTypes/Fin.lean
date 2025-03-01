@@ -12,7 +12,10 @@ open Manual.FFIDocType
 
 open Verso.Genre Manual
 
+/-
 #doc (Manual) "Finite Natural Numbers" =>
+-/
+#doc (Manual) "有限な自然数" =>
 %%%
 tag := "Fin"
 %%%
