@@ -12,7 +12,10 @@ open Manual.FFIDocType
 
 open Verso.Genre Manual
 
+/-
 #doc (Manual) "Integers" =>
+-/
+#doc (Manual) "整数" =>
 %%%
 tag := "Int"
 %%%
