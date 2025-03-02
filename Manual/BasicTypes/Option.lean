@@ -12,7 +12,10 @@ open Verso.Genre Manual
 
 set_option pp.rawOnError true
 
+/-
 #doc (Manual) "Optional Values" =>
+-/
+#doc (Manual) "オプショナルの値" =>
 %%%
 tag := "option"
 %%%
