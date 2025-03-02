@@ -348,6 +348,7 @@
 | propositional equality | 上記の definitional equality に対置される用語であることから併せて英語のままとした |
 | ellipsis | 他言語でも類似概念があるが、そちらでもそのまま英単語で表現されることが多そうだったため |
 | fixed | 構造的再帰で使用されるパラメータの種類の一種。不動点的な意味があると思われるが、単純に固定されたというニュアンスの気もしたのでそのままにする |
+| heterogeneous | 定訳を見つけられなかったため |
 | idiom bracket | https://wiki.haskell.org/Idiom_brackets |
 | inhabited | |
 | no confusion | |
