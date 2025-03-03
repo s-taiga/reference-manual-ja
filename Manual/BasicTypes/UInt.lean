@@ -14,7 +14,10 @@ open Manual.FFIDocType
 
 open Verso.Genre Manual
 
+/-
 #doc (Manual) "Fixed-Precision Integer Types" =>
+-/
+#doc (Manual) "固定精度整数型（Fixed-Precision Integer Types）" =>
 %%%
 tag := "fixed-ints"
 %%%
