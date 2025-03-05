@@ -604,7 +604,7 @@ axiom α : Prop
 
 :::
 
- * 固定幅整数 {lean}`UInt8`, ..., {lean}`UInt64` ・ {lean}`USize` は、それぞれ C の `uint8_t`, ..., `uint64_t` と `size_t` 型で表されます。
+ * 固定長整数 {lean}`UInt8`, ..., {lean}`UInt64` ・ {lean}`USize` は、それぞれ C の `uint8_t`, ..., `uint64_t` と `size_t` 型で表されます。
 
 :::comment
  * {lean}`Char` is represented by `uint32_t`

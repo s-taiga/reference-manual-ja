@@ -104,7 +104,7 @@
 | field specifier | フィールド指定子 | |
 | first-class | 第一級 | |
 | fixed point operator | 不動点演算子 | |
-| fixed-width integer | 固定幅  整数 | |
+| fixed-width integer | 固定長整数 | |
 | formalization | 形式化 | |
 | form feed | 改ページ | |
 | functional programming language | 関数型プログラミング言語 | |
