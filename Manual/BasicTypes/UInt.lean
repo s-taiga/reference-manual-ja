@@ -22,18 +22,36 @@ open Verso.Genre Manual
 tag := "fixed-ints"
 %%%
 
+:::comment
 Lean's standard library includes the usual assortment of fixed-width integer types.
 From the perspective of formalization and proofs, these types are wrappers around bitvectors of the appropriate size; the wrappers ensure that the correct implementations of e.g. arithmetic operations are applied.
 In compiled code, they are represented efficiently: the compiler has special support for them, as it does for other fundamental types.
 
-# Logical Model
+:::
 
+Lean の標準ライブラリには一般的な固定長整数型が含まれています。形式化と証明の観点において、これらの型は適切なサイズのビットベクタを包んだラッパです；このラッパによって、例えば算術演算の正しい実装が適用されることが保証されます。コンパイルされたコードでは、これらの型は効率的な表現になります：コンパイラは他の基本的な型と同様に、これらの型を特別にサポートしています。
+
+:::comment
+# Logical Model
+:::
+
+# 論理モデル（Logical Model）
+
+:::comment
 Fixed-width integers may be unsigned or signed.
 Furthermore, they are available in five sizes: 8, 16, 32, and 64 bits, along with the current architecture's word size.
 In their logical models, the unsigned integers are structures that wrap a {name}`BitVec` of the appropriate width.
 Signed integers wrap the corresponding unsigned integers, and use a twos-complement representation.
 
+:::
+
+固定長整数は符号なしと符号ありのどちらも可能です。さらに、5種類のサイズがあります；8 ・ 16 ・ 32 ・ 64 ビットおよび現在のアーキテクチャのワードサイズと同じものです。論理モデルでは、符号なし整数は適切な幅の {name}`BitVec` をラップした構造体です。符号付き整数は対応する符号なし整数をラップし、2 の補数表現を使用します。
+
+:::comment
 ## Unsigned
+:::
+
+## 符号なし（Unsigned）
 
 {docstring USize}
 
@@ -45,7 +63,11 @@ Signed integers wrap the corresponding unsigned integers, and use a twos-complem
 
 {docstring UInt64}
 
+:::comment
 ## Signed
+:::
+
+## 符号あり（Signed）
 
 {docstring ISize}
 
@@ -57,23 +79,54 @@ Signed integers wrap the corresponding unsigned integers, and use a twos-complem
 
 {docstring Int64}
 
+:::comment
 # Run-Time Representation
+:::
 
+# ランタイム表現（Run-Time Representation）
+
+:::comment
 In compiled code, fixed-width integer types that fit in one less bit than the platform's pointer size are represented unboxed, without additional allocations or indirections.
 This always includes {lean}`Int8`, {lean}`UInt8`, {lean}`Int16`, and {lean}`UInt16`.
 On 64-bit architectures, {lean}`Int32` and {lean}`UInt32` are also unboxed.
 
+:::
+
+コンパイルされたコードでは、プラットフォームのポインタサイズより1ビット小さいサイズに収まる固定長整数型は、追加の割り当てやインダイレクション無しでボックス化解除されたものとして表現されます。 {lean}`Int8` ・ {lean}`UInt8` ・ {lean}`Int16` ・ {lean}`UInt16` は必ずこれに含まれます。64ビットのアーキテクチャでは、 {lean}`Int32` と {lean}`UInt32` もボックス化解除されます。
+
+:::comment
 Fixed-width integer types that take at least as many bits as the platform's pointer type are represented the same way as {name}`Nat`: if they are sufficiently small, then they are represented unboxed; if they are larger, then they are represented by a heap-allocated number value.
 {lean}`Int64`, {lean}`UInt64`, {lean}`ISize`, and {lean}`USize` are always represented this way, as are {lean}`Int32` and {lean}`UInt32` on 32-bit architectures.
 
-# Syntax
+:::
 
+プラットフォームのポインタ型のビット数以上の固定長整数型は {name}`Nat` と同じ方法で表現されます：十分に小さい場合はボックス化解除され、大きい場合はヒープに割り当てられた数値として表現されます。 {lean}`Int64` ・ {lean}`UInt64` ・ {lean}`ISize` ・ {lean}`USize` は必ずこの方法で表現され、32ビットのアーキテクチャでは {lean}`Int32` と {lean}`UInt32` も同様です。
+
+:::comment
+# Syntax
+:::
+
+# 構文（Syntax）
+
+:::comment
 All the fixed-width integer types have {name}`OfNat` instances, which allow numerals to be used as literals, both in expression and in pattern contexts.
 The signed types additionally have {lean}`Neg` instances, allowing negation to be applied.
 
-:::example "Fixed-Width Literals"
+:::
+
+すべての固定長整数型は {name}`OfNat` インスタンスを持っており、式とパターンのコンテキストの両方で数値をリテラルとして使用することができます。符号あり型はさらに {lean}`Neg` インスタンスを持っており、マイナスを適用することができます。
+
+:::comment
+::example "Fixed-Width Literals"
+:::
+::::example "固定長リテラル"
+:::comment
 Lean allows both decimal and hexadecimal literals to be used for types with {name}`OfNat` instances.
 In this example, literal notation is used to define masks.
+
+:::
+
+Lean では、 {name}`OfNat` インスタンスを持つ型に対して10進数と16進数の両方のリテラルを使用することができます。この例では、マスクの定義にリテラル表記を使用しています。
 
 ```lean
 structure Permissions where
@@ -98,13 +151,26 @@ theorem Permissions.decode_encode (p : Permissions) : p = .decode (p.encode) := 
   cases r <;> cases w <;> cases x <;>
   simp +decide [encode, decode]
 ```
-:::
+::::
 
+:::comment
 Literals that overflow their types' precision are interpreted modulus the precision.
 Signed types, are interpreted according to the underlying twos-complement representation.
 
-:::example "Overflowing Fixed-Width Literals"
+:::
+
+型の精度をオーバーフローするリテラルは、その精度の剰余として解釈されます。符号あり型では、基礎となる2の補数表現に従って解釈されます。
+
+:::comment
+::example "Overflowing Fixed-Width Literals"
+:::
+::::example "オーバーフローした固定長リテラル"
+:::comment
 The following statements are all true:
+:::
+
+以下の文は全て真です：
+
 ```lean
 example : (255 : UInt8) = 255 := by rfl
 example : (256 : UInt8) = 0   := by rfl
@@ -114,14 +180,27 @@ example : (0x7f : Int8) = 127  := by rfl
 example : (0x8f : Int8) = -113 := by rfl
 example : (0xff : Int8) = -1   := by rfl
 ```
+::::
+
+:::comment
+# API Reference
 :::
 
-# API Reference
+# API リファレンス（API Reference）
 
+:::comment
 ## Sizes
+:::
 
+## サイズ（Sizes）
+
+:::comment
 Each fixed-width integer has a _size_, which is the number of distinct values that can be represented by the type.
 This is not equivalent to C's `sizeof` operator, which instead determines how many bytes the type occupies.
+
+:::
+
+各固定長整数には _サイズ_ があり、これはその型が表現できることを示す個別の数値です。これは C の `sizeof` 演算子とは同等ではなく、型が占めるバイト数を決定するものです。
 
 {docstring USize.size}
 
@@ -143,9 +222,17 @@ This is not equivalent to C's `sizeof` operator, which instead determines how ma
 
 {docstring Int64.size}
 
+:::comment
 ## Conversions
+:::
 
+## 変換（Conversions）
+
+:::comment
 ### To and From `Int`
+:::
+
+### `Int` との相互変換（To and From `Int`）
 
 {docstring ISize.toInt}
 
@@ -167,7 +254,11 @@ This is not equivalent to C's `sizeof` operator, which instead determines how ma
 
 {docstring Int64.ofInt}
 
+:::comment
 ### To and From `Nat`
+:::
+
+### `Nat` との相互変換（To and From `Nat`）
 
 {docstring USize.ofNat}
 
@@ -225,7 +316,11 @@ This is not equivalent to C's `sizeof` operator, which instead determines how ma
 
 {docstring Int64.toNat}
 
+:::comment
 ### To Other Fixed-Width Integers
+:::
+
+### その他の固定長整数への変換（To Other Fixed-Width Integers）
 
 {docstring Int32.toISize}
 
@@ -303,13 +398,21 @@ This is not equivalent to C's `sizeof` operator, which instead determines how ma
 
 {docstring UInt64.toUSize}
 
+:::comment
 ### To Floating-Point Numbers
+:::
+
+### 浮動小数点への変換（To Floating-Point Numbers）
 
 {docstring UInt64.toFloat}
 
 {docstring UInt64.toFloat32}
 
+:::comment
 ### To Bitvectors
+:::
+
+### ビットベクタへの変換（To Bitvectors）
 
 {docstring ISize.toBitVec}
 
@@ -321,7 +424,11 @@ This is not equivalent to C's `sizeof` operator, which instead determines how ma
 
 {docstring Int64.toBitVec}
 
+:::comment
 ### To Finite Numbers
+:::
+
+### 有限な値への変換（To Finite Numbers）
 
 {docstring USize.val}
 
@@ -335,10 +442,19 @@ This is not equivalent to C's `sizeof` operator, which instead determines how ma
 
 {docstring USize.repr}
 
+:::comment
 ### To Characters
+:::
 
+### 文字型への変換（To Characters）
+
+:::comment
 The {name}`Char` type is a wrapper around {name}`UInt32` that requires a proof that the wrapped integer represents a Unicode code point.
 This predicate is part of the {name}`UInt32` API.
+
+:::
+
+{name}`Char` 型は {name}`UInt32` のラッパであり、ラップされた整数が Unicode のコードポイントを表すことを証明する必要があります。この述語は {name}`UInt32` API の一部です。
 
 {docstring UInt32.isValidChar}
 
@@ -347,8 +463,17 @@ This predicate is part of the {name}`UInt32` API.
 {include 2 Manual.BasicTypes.UInt.Arith}
 
 ## Bitwise Operations
+:::comment
+## ビット演算（Bitwise Operations）
 
+:::
+
+:::comment
 Typically, bitwise operations on fixed-width integers should be accessed using Lean's overloaded operators, particularly their instances of {name}`ShiftLeft`, {name}`ShiftRight`, {name}`AndOp`, {name}`OrOp`, and {name}`Xor`.
+
+:::
+
+通常、固定長整数に対するビット演算は、Lean のオーバーロードされた演算子によってアクセスされるべきであり、特に {name}`ShiftLeft` ・ {name}`ShiftRight` ・ {name}`AndOp` ・ {name}`OrOp` ・ {name}`Xor` のインスタンスを使用します。
 
 ```lean (show := false)
 -- Check that all those instances really exist
@@ -481,10 +606,20 @@ open Lean Elab Command in
 
 {docstring Int64.shiftRight}
 
+:::comment
 ## Proof Automation
+:::
 
+## 証明の自動化（Proof Automation）
+
+:::comment
 The functions in this section are primarily parts of the implementation of simplification rules employed by {tactic}`simp`.
 They are probably only of interest to users who are implementing custom proof automation that involves fixed-precision integers.
+
+:::
+
+本節の関数は主に {tactic}`simp` で採用される単純化規則の実装の一部です。これらはおそらく、固定長整数を含むカスタムの証明自動化を実装しているユーザにとっては興味深いものになるでしょう。
+
 
 {docstring USize.fromExpr}
 
